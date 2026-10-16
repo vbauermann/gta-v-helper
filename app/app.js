@@ -1,29 +1,61 @@
 (function () {
   'use strict';
-  const { h } = UI;
+  const { h, icon } = UI;
+  const P = GtaProduction;
 
   const App = {
     data: null,
     state: null,
     receivedAt: 0,
-    page: 'businesses',
+    page: 'overview',
     pages: window.Pages || {},
     // Online minutes elapsed since the main process last ticked, for smooth second-by-second countdowns.
     extraMinutes() {
       if (!this.state || !this.state.counting) return 0;
       return Math.max(0, (Date.now() - this.receivedAt) / 60000);
     },
+    // Current projection and urgency of one owned business, shared by every page and the sidebar badge.
+    business(def) {
+      const biz = this.state.businesses[def.id];
+      const p = P.project(def, biz, biz.activeMinutes + (biz.owned ? this.extraMinutes() : 0));
+      let tone = 'ok';
+      let text;
+      if (!p.producing) tone = 'stopped';
+      else if (p.minutesToStop <= this.state.settings.warnMinutes) tone = 'warning';
+      if (p.producing) {
+        text = p.stopsOn === 'supply'
+          ? `Suprimento acaba em ${P.formatMinutes(p.minutesToSupplyEmpty)}`
+          : `Estoque enche em ${P.formatMinutes(p.minutesToFull)}`;
+      } else {
+        text = p.stock >= def.capacity - 1e-9 ? 'Parado: estoque cheio, hora de vender' : 'Parado: sem suprimentos';
+      }
+      return { biz, p, tone, text, pill: { ok: 'Produzindo', warning: 'Acabando', stopped: 'Parado' }[tone] };
+    },
+    owned() {
+      return this.data.catalog.businesses.filter(d => this.state.businesses[d.id].owned);
+    },
+    gameStatus() {
+      const s = this.state;
+      if (s.settings.paused) return { tone: 'warn', title: 'Timers pausados', sub: 'Clique pra retomar a contagem' };
+      if (s.settings.detection === 'always') return { tone: 'ok', title: 'Contando tempo', sub: 'Modo sempre ligado · clique pra pausar' };
+      if (!s.detectionSupported) return { tone: '', title: 'Detecção indisponível', sub: 'Só funciona no Windows' };
+      if (s.gameRunning) return { tone: 'ok', title: 'Contando tempo', sub: 'GTA aberto · clique pra pausar' };
+      return { tone: '', title: 'Timers parados', sub: 'Esperando o GTA abrir' };
+    },
     async act(promise) {
       try {
         this.setState(await promise, true);
       } catch (error) {
         console.error(error);
+        toast('Não deu certo', String(error.message || error).replace(/^Error invoking remote method '[^']+': (Error: )?/, ''));
       }
     },
+    navigate(page) { navigate(page); },
     setState(state, force) {
       this.state = state;
       this.receivedAt = Date.now();
-      renderStatus();
+      document.documentElement.dataset.theme = state.settings.theme || 'dark';
+      renderChrome();
       const page = this.pages[this.page];
       const editing = document.activeElement && document.getElementById('page').contains(document.activeElement)
         && ['INPUT', 'SELECT'].includes(document.activeElement.tagName);
@@ -32,49 +64,65 @@
   };
   window.App = App;
 
-  function renderStatus() {
+  function toast(title, text) {
+    const el = h('div', { class: 'toast danger' }, icon('alert', 18), h('div', null, h('div', { class: 't-title' }, title), h('div', { class: 't-text' }, text)));
+    document.getElementById('toasts').append(el);
+    setTimeout(() => el.remove(), 5000);
+  }
+
+  // Title bar pill, sidebar badges and the watch card. Runs on every state and every second.
+  function renderChrome() {
+    if (!App.state || !App.data) return;
+    const g = App.gameStatus();
     const s = App.state;
-    const bar = document.getElementById('statusbar');
-    let label, tone;
-    if (s.settings.paused) { label = 'Timers pausados'; tone = 'paused'; }
-    else if (s.settings.detection === 'always') { label = 'Contando tempo (modo sempre ligado)'; tone = 'on'; }
-    else if (!s.detectionSupported) { label = 'Detecção do GTA indisponível neste sistema. Use o modo sempre ligado nas configurações.'; tone = 'paused'; }
-    else if (s.gameRunning) { label = 'GTA aberto: contando tempo de produção'; tone = 'on'; }
-    else { label = 'GTA fechado: timers parados'; tone = 'off'; }
-    bar.replaceChildren(
-      h('span', { class: `dot ${tone}` }),
-      h('span', { class: 'status-label' }, label),
-      h('button', {
-        class: s.settings.paused ? 'primary' : '',
-        onclick: () => App.act(window.gta.setSettings({ paused: !s.settings.paused }))
-      }, s.settings.paused ? 'Retomar' : 'Pausar (estou no modo história ou no menu)')
-    );
+    const pill = document.getElementById('game-pill');
+    pill.className = `game-pill ${s.gameRunning ? 'on' : ''}`;
+    pill.replaceChildren(icon('gamepad', 15), s.gameRunning ? 'GTA aberto' : 'GTA fechado');
+
+    const watch = document.getElementById('watch');
+    watch.replaceChildren(
+      h('div', { class: 'row' }, h('span', { class: `dot ${g.tone === 'ok' ? 'on' : g.tone}` }), g.title),
+      h('div', { class: 'sub' }, g.sub));
+    watch.title = s.settings.paused ? 'Retomar timers' : 'Pausar timers (modo história, menu, loading)';
+
+    const attention = App.owned().filter(d => App.business(d).tone !== 'ok').length;
+    document.querySelector('[data-page=businesses] .badge').textContent = attention ? String(attention) : '';
+    const cd = s.cayoCooldownEndsAt;
+    document.querySelector('[data-page=cayo] .badge').textContent = cd && cd > Date.now() ? P.formatMinutes((cd - Date.now()) / 60000) : '';
   }
 
   function navigate(page) {
     App.page = page;
-    for (const b of document.querySelectorAll('#nav button')) b.classList.toggle('active', b.dataset.page === page);
+    for (const b of document.querySelectorAll('#nav .nav-item')) b.classList.toggle('active', b.dataset.page === page);
     const root = document.getElementById('page');
     root.replaceChildren();
+    // Restart the page fade like Nexo does on route change.
+    root.style.animation = 'none';
+    void root.offsetWidth;
+    root.style.animation = '';
+    document.getElementById('main').scrollTop = 0;
     App.pages[page].mount(root);
   }
 
-  function tickClock() {
-    const clock = document.getElementById('clock');
-    const cd = App.state && App.state.cayoCooldownEndsAt;
-    clock.textContent = cd ? `Cayo libera em ${GtaProduction.formatMinutes((cd - Date.now()) / 60000)}` : '';
+  function tick() {
+    renderChrome();
     const page = App.pages[App.page];
     if (page && page.onSecond) page.onSecond();
   }
 
   async function start() {
+    document.getElementById('brand').prepend(icon('logo', 20));
+    for (const b of document.querySelectorAll('#nav .nav-item')) {
+      b.prepend(icon(b.dataset.icon, 18));
+      b.addEventListener('click', () => navigate(b.dataset.page));
+    }
+    document.getElementById('watch').addEventListener('click', () =>
+      App.act(window.gta.setSettings({ paused: !App.state.settings.paused })));
     App.data = await window.gta.data();
     App.setState(await window.gta.state());
     window.gta.onState(state => App.setState(state));
-    for (const b of document.querySelectorAll('#nav button')) b.addEventListener('click', () => navigate(b.dataset.page));
-    navigate('businesses');
-    setInterval(tickClock, 1000);
-    tickClock();
+    navigate('overview');
+    setInterval(tick, 1000);
   }
 
   start();

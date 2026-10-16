@@ -8,7 +8,7 @@ const DEFAULT_SETTINGS = Object.freeze({
   paused: false,
   warnMinutes: 10,
   notify: true,
-  closeToTray: true
+  closeToTray: true, theme: 'dark'
 });
 
 function emptyBusiness() {

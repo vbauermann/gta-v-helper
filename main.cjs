@@ -6,6 +6,11 @@ const { advance } = require('./timers.cjs');
 const { createGameWatcher } = require('./game-watcher.cjs');
 
 const TICK_MS = 5000;
+// Window controls drawn by Windows over the 44px title bar, matching Nexo's colours per theme.
+const OVERLAY = {
+  dark: { color: '#0d0f15', symbolColor: '#c6c9d4', height: 44 },
+  light: { color: '#eef0f5', symbolColor: '#3b3f4c', height: 44 }
+};
 const MAX_TICK_MINUTES = 0.5; // A sleeping PC must not count as hours of production.
 
 app.setName('GTA Helper');
@@ -140,6 +145,13 @@ function registerIpc() {
     if ('warnMinutes' in patch) s.settings.warnMinutes = num(patch.warnMinutes, 0, 120);
     if ('notify' in patch) s.settings.notify = !!patch.notify;
     if ('closeToTray' in patch) s.settings.closeToTray = !!patch.closeToTray;
+    if ('theme' in patch && OVERLAY[patch.theme]) {
+      s.settings.theme = patch.theme;
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        try { mainWindow.setTitleBarOverlay(OVERLAY[patch.theme]); } catch { /* sem overlay neste sistema */ }
+        mainWindow.setBackgroundColor(OVERLAY[patch.theme].color);
+      }
+    }
   }));
 
   ipcMain.handle('gta:cayo-cooldown', (_e, minutes) => mutate(s => {
@@ -148,9 +160,11 @@ function registerIpc() {
 }
 
 function createWindow() {
+  const theme = OVERLAY[store.get().settings.theme] ? store.get().settings.theme : 'dark';
   mainWindow = new BrowserWindow({
-    title: 'GTA Helper', width: 1280, height: 860, minWidth: 900, minHeight: 600,
-    backgroundColor: '#0b0d12', show: false,
+    title: 'GTA Helper', width: 1320, height: 880, minWidth: 980, minHeight: 640,
+    backgroundColor: OVERLAY[theme].color, show: false,
+    titleBarStyle: 'hidden', titleBarOverlay: OVERLAY[theme],
     icon: path.join(__dirname, 'assets/icon.png'),
     webPreferences: {
       nodeIntegration: false, contextIsolation: true, sandbox: true,
@@ -160,6 +174,8 @@ function createWindow() {
   mainWindow.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
   mainWindow.webContents.on('will-navigate', event => event.preventDefault());
   mainWindow.on('ready-to-show', () => mainWindow.show());
+  // ready-to-show is not guaranteed on every system; make sure the window appears once loaded.
+  mainWindow.webContents.once('did-finish-load', () => { if (!mainWindow.isVisible()) mainWindow.show(); });
   mainWindow.on('close', event => {
     if (!quitting && store.get().settings.closeToTray && tray) {
       event.preventDefault();
@@ -176,7 +192,7 @@ function showWindow() {
 
 function createTray() {
   try {
-    tray = new Tray(nativeImage.createFromPath(path.join(__dirname, 'assets/icon.png')));
+    tray = new Tray(nativeImage.createFromPath(path.join(__dirname, 'assets/tray.png')));
   } catch (error) {
     console.error('Bandeja indisponível:', error.message);
     tray = null;

@@ -1,6 +1,7 @@
 (function () {
   'use strict';
-  const { h, money, pct, number, field, numberInput, select, checkbox } = UI;
+  const { h, money, pct, number, field, numberInput, select, checkbox, segmented, icon } = UI;
+  const head = (iconName, title, ...extra) => h('div', { class: 'card-head' }, h('h3', null, icon(iconName, 18), title), ...extra);
   const KEY = 'gta-helper.cayo';
   const DEFAULT_CUTS = { 1: [100], 2: [85, 15], 3: [70, 15, 15], 4: [55, 15, 15, 15] };
   let root = null;
@@ -39,25 +40,24 @@
     results = h('div', { class: 'results' });
     root.replaceChildren(
       h('div', { class: 'page-head' },
-        h('h1', null, 'Cayo Perico'),
-        h('p', { class: 'muted' }, 'Marque os alvos secundários que achou no scout. O plano enche as bolsas com o que vale mais por espaço.')),
+        h('div', null,
+          h('h1', null, 'Cayo Perico'),
+          h('div', { class: 'sub' }, 'Marque os alvos secundários que achou no scout. O plano enche as bolsas com o que vale mais por espaço.'))),
       mapCard(data),
       h('div', { class: 'two-col' },
-        h('div', { class: 'card form' },
-          h('h3', null, 'Golpe'),
+        h('div', { class: 'card pad form' },
+          head('cayo', 'Golpe'),
           field('Alvo principal', select(data.primaries.map(p => ({ value: p.id, label: `${p.name} · ${money(p.value)}` })), form.primaryId,
             { onchange: e => update({ primaryId: e.target.value }) })),
           checkbox('Modo difícil (+10% no alvo principal)', form.hard, e => update({ hard: e.target.checked })),
-          field('Jogadores', select([1, 2, 3, 4].map(n => ({ value: String(n), label: String(n) })), String(form.crewSize), {
-            onchange: e => {
-              const n = Number(e.target.value);
-              form.cuts = DEFAULT_CUTS[n].slice();
-              update({ crewSize: n });
-              renderCuts();
-            }
+          field('Jogadores', segmented([1, 2, 3, 4].map(n => ({ value: n, label: n === 1 ? 'Solo' : String(n) })), form.crewSize, n => {
+            form.cuts = DEFAULT_CUTS[n].slice();
+            update({ crewSize: n });
+            renderCuts();
           })),
           cutsBox,
-          h('h3', null, 'Alvos secundários encontrados (pilhas)'),
+          h('div', { class: 'divider' }),
+          h('div', { class: 'form-title' }, 'Alvos secundários encontrados (pilhas)'),
           stacksBox,
           field('Cofre do El Rubio', numberInput(form.safe, { min: 0, step: 1000, oninput: e => update({ safe: Number(e.target.value) || 0 }) }), 'Entre GTA$ 18 mil e 99 mil, não ocupa bolsa.'),
           checkbox('Elite Challenge (menos de 15 min, bolsas cheias, sem falhar hack)', form.elite, e => update({ elite: e.target.checked }))),
@@ -110,7 +110,7 @@
       menu.replaceChildren(
         h('div', { class: 'map-menu-title' }, `${spot.area}${spot.locked ? ' · sala trancada' : ''}`),
         ...data.secondaries.map(s => h('button', { class: `loot-${s.id}`, onclick: () => setMarker(spot.id, s.id) }, s.name)),
-        h('button', { onclick: () => setMarker(spot.id, 'empty') }, 'Vazio'),
+        h('button', { class: 'loot-empty-opt', onclick: () => setMarker(spot.id, 'empty') }, 'Vazio'),
         h('button', { onclick: () => setMarker(spot.id, null) }, 'Desmarcar'));
       const box = scout.getBoundingClientRect();
       const r = btn.getBoundingClientRect();
@@ -147,11 +147,10 @@
       menu);
     scout.addEventListener('click', () => { if (!menu.hidden) closeMenu(); });
     drawSpots();
-    return h('div', { class: 'card' },
-      h('div', { class: 'row space' },
-        h('h3', null, 'Mapa do scout'),
-        h('button', { onclick: () => { form.markers = {}; form.found = {}; save(); render(); } }, 'Limpar mapa')),
-      h('p', { class: 'muted' }, `${map.note} Clique no ponto e escolha o que tinha lá. Se preferir, preencha só as quantidades no formulário.`),
+    return h('div', { class: 'card pad map-card' },
+      head('cayo', 'Mapa do scout', h('span', { class: 'grow' }),
+        h('button', { class: 'btn secondary sm', onclick: () => { form.markers = {}; form.found = {}; save(); render(); } }, icon('eraser', 15), 'Limpar mapa')),
+      h('p', { class: 'muted small' }, `${map.note} Clique no ponto e escolha o que tinha lá. Se preferir, preencha só as quantidades no formulário.`),
       scout,
       h('div', { class: 'legend' }, data.secondaries.map(s => h('span', { class: `legend-item loot-${s.id}` }, h('i', null, LOOT_SHORT[s.id]), s.name))));
   }
@@ -163,17 +162,17 @@
     const total = GtaHeists.cutsTotal(form.cuts);
     const cd = App.state.cayoCooldownEndsAt;
     results.replaceChildren(
-      h('div', { class: 'card' },
-        h('h3', null, 'Plano das bolsas'),
+      h('div', { class: 'card pad' },
+        head('bag', 'Plano das bolsas'),
         r.bags.picks.length
           ? h('table', null,
             h('thead', null, h('tr', null, h('th', null, 'Alvo'), h('th', null, 'Pilhas'), h('th', null, 'Bolsa'), h('th', null, 'Valor'))),
             h('tbody', null, r.bags.picks.map(p => h('tr', null, h('td', null, p.name), h('td', null, number(p.stacks)), h('td', null, pct(p.bagPct)), h('td', null, money(p.value))))))
           : h('p', { class: 'muted' }, 'Nenhum secundário marcado.'),
-        h('p', { class: 'muted' }, `Bolsas usadas: ${pct(r.bags.usedPct)} de ${pct(r.bags.capacityPct)}.`),
+        h('p', { class: 'muted small' }, `Bolsas usadas: ${pct(r.bags.usedPct)} de ${pct(r.bags.capacityPct)}.`),
         r.bags.skipped.length ? h('p', { class: 'warn' }, 'Ouro ignorado: a sala do ouro no complexo precisa de 2 jogadores.') : null),
-      h('div', { class: 'card' },
-        h('h3', null, 'Pagamento'),
+      h('div', { class: 'card pad' },
+        head('dollar', 'Pagamento'),
         h('dl', { class: 'sums' },
           h('dt', null, r.primary), h('dd', null, money(r.primaryValue)),
           h('dt', null, 'Secundários'), h('dd', null, money(r.bags.value)),
@@ -186,14 +185,14 @@
           h('tbody', null, r.players.map(p => h('tr', null,
             h('td', null, p.player === 1 ? 'Líder' : `Jogador ${p.player}`), h('td', null, `${p.pct}%`), h('td', { class: 'strong' }, money(p.value)))))),
         form.elite ? h('p', { class: 'muted' }, 'Inclui o bônus do Elite Challenge para cada jogador.') : null),
-      h('div', { class: 'card' },
-        h('h3', null, 'Cooldown'),
+      h('div', { class: 'card pad' },
+        head('clock', 'Cooldown'),
         cd
-          ? h('div', { class: 'row' }, h('span', { class: 'strong', dataset: { live: 'cooldown' } }, ''), h('button', { onclick: () => App.act(window.gta.cayoCooldown(null)) }, 'Cancelar'))
+          ? h('div', { class: 'row' }, h('span', { class: 'strong', dataset: { live: 'cooldown' } }, ''), h('button', { class: 'btn ghost sm', onclick: () => App.act(window.gta.cayoCooldown(null)) }, 'Cancelar'))
           : h('div', { class: 'row' },
-            h('button', { class: 'primary', onclick: () => App.act(window.gta.cayoCooldown(r.cooldownMinutes)) },
+            h('button', { class: 'btn primary', onclick: () => App.act(window.gta.cayoCooldown(r.cooldownMinutes)) },
               `Terminei o golpe: iniciar cooldown (${r.cooldownMinutes} min)`)),
-        h('p', { class: 'muted' }, 'Solo: 144 min reais. Em grupo: 48 min.')));
+        h('p', { class: 'muted small' }, 'Solo: 144 min reais. Em grupo: 48 min.')));
     onSecond();
   }
 

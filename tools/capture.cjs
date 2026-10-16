@@ -31,12 +31,17 @@ app.whenReady().then(async () => {
   const errors = [];
   win.webContents.on('console-message', e => { if (e.level === 'error') errors.push(e.message); });
   await wait(1200);
-  for (const page of ['businesses', 'cayo', 'casino', 'payouts', 'settings']) {
+  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'payouts', 'settings']) {
     await win.webContents.executeJavaScript(`document.querySelector('[data-page=${page}]').click();
       ${page === 'cayo' ? "for (const [i,loot] of [[11,0],[12,0],[13,3],[0,1],[3,1],[7,2],[9,1]]) { document.querySelectorAll('.map .spot')[i].click(); [...document.querySelectorAll('.map-menu button')][loot].click(); } document.querySelectorAll('.map .spot')[14].click();" : ''}`);
     await wait(700);
     fs.writeFileSync(path.join(out, `${page}.png`), (await win.webContents.capturePage()).toPNG());
   }
+  // Light theme check, then back to dark.
+  await win.webContents.executeJavaScript(`window.gta.setSettings({ theme: 'light' }).then(s => App.setState(s, true)); document.querySelector('[data-page=overview]').click();`);
+  await wait(900);
+  fs.writeFileSync(path.join(out, 'overview-light.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`window.gta.setSettings({ theme: 'dark' }).then(s => App.setState(s, true))`);
   // Exercise the IPC round trip: resupply meth, toggle its staff upgrade, then read state back.
   const after = await win.webContents.executeJavaScript(`(async () => {
     document.querySelector('[data-page=businesses]').click();

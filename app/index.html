@@ -1,30 +1,43 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
   <title>GTA Helper</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles/nexo.css">
+  <link rel="stylesheet" href="styles/app.css">
 </head>
 <body>
-  <aside class="sidebar">
-    <div class="brand">GTA <span>Helper</span></div>
-    <nav id="nav">
-      <button data-page="businesses" class="active"><img class="nav-icon" src="assets/icons/nav-businesses.svg" alt="">Negócios</button>
-      <button data-page="cayo"><img class="nav-icon" src="assets/icons/nav-cayo.svg" alt="">Cayo Perico</button>
-      <button data-page="casino"><img class="nav-icon" src="assets/icons/nav-casino.svg" alt="">Diamond Casino</button>
-      <button data-page="payouts"><img class="nav-icon" src="assets/icons/nav-payouts.svg" alt="">Tabela de payouts</button>
-      <button data-page="settings"><img class="nav-icon" src="assets/icons/nav-settings.svg" alt="">Configurações</button>
-    </nav>
-    <div class="clock" id="clock"></div>
-  </aside>
-  <main>
-    <header class="statusbar" id="statusbar"></header>
-    <section id="page"></section>
-  </main>
+  <div class="app">
+    <header class="titlebar">
+      <div class="brand" id="brand">GTA Helper</div>
+      <div class="spacer"></div>
+      <span class="game-pill" id="game-pill"></span>
+    </header>
+    <div class="body">
+      <aside class="sidebar" id="nav">
+        <button class="nav-item" data-page="overview" data-icon="overview"><span class="label">Visão geral</span></button>
+        <button class="nav-item" data-page="businesses" data-icon="businesses"><span class="label">Negócios</span><span class="badge hot"></span></button>
+        <div class="nav-section">Golpes</div>
+        <button class="nav-item" data-page="cayo" data-icon="cayo"><span class="label">Cayo Perico</span><span class="badge"></span></button>
+        <button class="nav-item" data-page="casino" data-icon="casino"><span class="label">Diamond Casino</span></button>
+        <button class="nav-item" data-page="payouts" data-icon="payouts"><span class="label">Tabela de payouts</span></button>
+        <div class="nav-section">App</div>
+        <button class="nav-item" data-page="settings" data-icon="settings"><span class="label">Ajustes</span></button>
+        <div class="nav-fill"></div>
+        <button class="watch-card" id="watch"></button>
+      </aside>
+      <main class="main" id="main">
+        <section class="page" id="page"></section>
+      </main>
+    </div>
+  </div>
+  <div class="toasts" id="toasts"></div>
   <script src="../lib/production.js"></script>
   <script src="../lib/heists.js"></script>
+  <script src="icons.js"></script>
   <script src="ui.js"></script>
+  <script src="pages/overview.js"></script>
   <script src="pages/businesses.js"></script>
   <script src="pages/cayo.js"></script>
   <script src="pages/casino.js"></script>
