@@ -255,11 +255,13 @@ if (!app.requestSingleInstanceLock()) {
     overlay = createOverlay({
       getSettings: () => store.get().settings,
       saveSettings: patch => { Object.assign(store.get().settings.overlay, patch); dirty = true; persist(); },
-      onChange: broadcast
+      onChange: broadcast,
+      onAuto: on => { if (scanner) scanner.toggled(on); }
     });
     overlay.registerHotkeys();
     scanner = createScanner({
-      isEnabled: () => store.get().settings.overlay.auto !== false && (watcher.isRunning() || !!process.env.GTA_HELPER_FAKE_SCREEN),
+      isAuto: () => store.get().settings.overlay.auto !== false,
+      isActive: () => watcher.isRunning() || !!process.env.GTA_HELPER_FAKE_SCREEN,
       onChange: broadcast
     });
     scanner.start();

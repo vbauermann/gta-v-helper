@@ -27,22 +27,31 @@ function fakeScreen() {
   return fakeCache.img;
 }
 
-function createScanner({ isEnabled, onChange }) {
+function createScanner({ isAuto, isActive, onChange }) {
+  const isEnabled = () => isAuto() && isActive();
   let worker = null;
   let marker = null;
+  let badge = null;
+  let badgeState = null; // { on, found } last sent, or null when hidden
+  let offUntil = 0; // shows "OFF" briefly after turning it off with the shortcut
   let timer = null;
   let busy = false;
   let misses = 0;
   let status = { state: 'off', picks: [], at: 0, ms: 0 };
   let boxes = [];
   const send = () => { if (marker && !marker.isDestroyed()) marker.webContents.send('marker:boxes', boxes); };
-  // The page asks for the boxes once its listener is in place.
-  ipcMain.on('marker:ready', e => { if (marker && !marker.isDestroyed() && e.sender === marker.webContents) send(); });
+  const sendBadge = () => { if (badge && !badge.isDestroyed() && badgeState) badge.webContents.send('marker:badge', badgeState); };
+  // Each page asks for its data once its listener is in place.
+  ipcMain.on('marker:ready', e => {
+    if (marker && !marker.isDestroyed() && e.sender === marker.webContents) send();
+    if (badge && !badge.isDestroyed() && e.sender === badge.webContents) sendBadge();
+  });
 
   function setStatus(next) {
     const changed = next.state !== status.state || next.picks.join() !== status.picks.join();
     status = next;
     if (changed) { draw(); onChange(); }
+    updateBadge();
   }
 
   function display() { return screen.getPrimaryDisplay(); }
@@ -50,20 +59,51 @@ function createScanner({ isEnabled, onChange }) {
   function ensureMarker() {
     if (marker && !marker.isDestroyed()) return marker;
     const { bounds } = display();
-    marker = new BrowserWindow({
-      ...bounds, show: false, frame: false, transparent: true, resizable: false, movable: false,
+    marker = layerWindow({ ...bounds, title: 'GTA Helper marcador' }, 'marker.html');
+    marker.on('closed', () => { marker = null; });
+    return marker;
+  }
+
+  function layerWindow(opts, page) {
+    const w = new BrowserWindow({
+      ...opts, show: false, frame: false, transparent: true, resizable: false, movable: false,
       maximizable: false, minimizable: false, fullscreenable: false, skipTaskbar: true, focusable: false,
-      hasShadow: false, alwaysOnTop: true, backgroundColor: '#00000000', title: 'GTA Helper marcador',
+      hasShadow: false, alwaysOnTop: true, backgroundColor: '#00000000',
       webPreferences: { nodeIntegration: false, contextIsolation: true, sandbox: true, preload: path.join(__dirname, 'preload-marker.cjs') }
     });
-    marker.setAlwaysOnTop(true, 'screen-saver');
-    marker.setIgnoreMouseEvents(true);
-    marker.setContentProtection(true); // keep our own borders out of the next screenshot
-    marker.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
-    marker.webContents.on('will-navigate', e => e.preventDefault());
-    marker.on('closed', () => { marker = null; });
-    marker.loadFile(path.join(__dirname, 'app/marker.html'));
-    return marker;
+    w.setAlwaysOnTop(true, 'screen-saver');
+    w.setIgnoreMouseEvents(true);
+    w.setContentProtection(true); // keep our own layers out of the next screenshot
+    w.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
+    w.webContents.on('will-navigate', e => e.preventDefault());
+    w.loadFile(path.join(__dirname, 'app', page));
+    return w;
+  }
+
+  // Small "Detecção de digitais ON" pill at the top right while it runs.
+  function updateBadge() {
+    const flashOff = Date.now() < offUntil && isActive();
+    const next = isEnabled() ? { on: true, found: status.state === 'found' } : flashOff ? { on: false, found: false } : null;
+    if (JSON.stringify(next) === JSON.stringify(badgeState)) return;
+    badgeState = next;
+    if (!next) { if (badge && !badge.isDestroyed()) badge.hide(); return; }
+    if (!badge || badge.isDestroyed()) {
+      badge = layerWindow({ width: 340, height: 40, title: 'GTA Helper detecção' }, 'badge.html');
+      badge.on('closed', () => { badge = null; });
+    }
+    const area = display().workArea;
+    badge.setBounds({ x: area.x + area.width - 340 - 16, y: area.y + 12, width: 340, height: 40 });
+    sendBadge();
+    if (!badge.isVisible()) badge.showInactive();
+    badge.moveTop();
+  }
+
+  // Called when the setting changes (shortcut or switch in the app).
+  function toggled(on) {
+    offUntil = on ? 0 : Date.now() + 2500;
+    if (!on) setTimeout(updateBadge, 2600);
+    updateBadge();
+    scan();
   }
 
   function draw() {
@@ -111,7 +151,7 @@ function createScanner({ isEnabled, onChange }) {
 
   async function scan() {
     if (busy) return;
-    if (!isEnabled()) { misses = 0; setStatus({ state: 'off', picks: [], at: Date.now(), ms: 0 }); return; }
+    if (!isEnabled()) { misses = 0; setStatus({ state: 'off', picks: [], at: Date.now(), ms: 0 }); updateBadge(); return; }
     busy = true;
     const t = Date.now();
     try {
@@ -136,9 +176,10 @@ function createScanner({ isEnabled, onChange }) {
     timer = null;
     if (worker) worker.terminate();
     if (marker && !marker.isDestroyed()) marker.destroy();
+    if (badge && !badge.isDestroyed()) badge.destroy();
   }
 
-  return { start, destroy, refresh: scan, state: () => ({ state: status.state, picks: status.picks, ms: status.ms, error: status.error || null }) };
+  return { start, destroy, toggled, refresh: scan, state: () => ({ state: status.state, picks: status.picks, ms: status.ms, error: status.error || null }) };
 }
 
 module.exports = { createScanner };

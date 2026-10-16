@@ -80,8 +80,7 @@
               h('div', { class: 'loot-main' },
                 qtyPicker(s.id),
                 h('div', { class: 'loot-hint' },
-                  `Valor por pilha: ${money(s.stackValue)} | Ocupa da bolsa: ${number(s.bagPct)}%`,
-                  s.needsTwo ? ' | 2 jogadores' : !s.divisible ? ' | Inteira ou nada' : ''))))))),
+                  `Valor por pilha: ${money(s.stackValue)} | Ocupa da bolsa: ${number(s.bagPct)}%`))))))),
         results));
     renderResults();
   }

@@ -4,3 +4,15 @@ html, body { margin: 0; height: 100%; background: transparent; overflow: hidden;
   border: 4px solid #3ddc97; border-radius: 6px;
   box-shadow: 0 0 12px rgba(61, 220, 151, 0.85), inset 0 0 6px rgba(61, 220, 151, 0.5);
 }
+
+@font-face { font-family: Inter; src: url('../assets/fonts/inter-latin-wght.woff2') format('woff2'); font-weight: 100 900; }
+.badge-page { display: flex; justify-content: flex-end; align-items: flex-start; }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px; margin: 4px;
+  border-radius: 15px; background: rgba(13, 15, 21, 0.88); border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #eef0f6; font: 600 12.5px/1 Inter, 'Segoe UI', sans-serif; white-space: nowrap;
+}
+.badge[hidden] { display: none; }
+.badge i { width: 8px; height: 8px; border-radius: 50%; background: #f4c542; }
+.badge.found i { background: #3ddc97; box-shadow: 0 0 8px #3ddc97; }
+.badge.off i { background: #ff6b6b; }

@@ -10,7 +10,7 @@ const TILE = { sm: 200, md: 280, lg: 380 }; // width of one fingerprint, in DIPs
 const HEADER = 30;
 const MARGIN = 24;
 
-function createOverlay({ getSettings, saveSettings, onChange }) {
+function createOverlay({ getSettings, saveSettings, onChange, onAuto = () => {} }) {
   let win = null;
   let visible = false;
   let interact = false;
@@ -141,6 +141,7 @@ function createOverlay({ getSettings, saveSettings, onChange }) {
     }
     saveSettings(next);
     if ('hotkeys' in next || 'keys' in next) registerHotkeys();
+    if ('auto' in next) onAuto(next.auto);
     relayout();
     onChange();
   }
@@ -149,7 +150,8 @@ function createOverlay({ getSettings, saveSettings, onChange }) {
     toggle: () => (visible ? hide() : show()),
     all: () => setPrint('all'),
     S: () => setPrint('S'), O: () => setPrint('O'), J: () => setPrint('J'), L: () => setPrint('L'),
-    move: () => setInteract(!interact)
+    move: () => setInteract(!interact),
+    auto: () => configure({ auto: settings().auto === false })
   };
 
   function unregisterAll() {
