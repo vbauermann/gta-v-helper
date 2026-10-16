@@ -119,5 +119,11 @@
   const compactFmt = new Intl.NumberFormat('pt-BR', { notation: 'compact', maximumFractionDigits: 1 });
   const moneyShort = v => `GTA$ ${compactFmt.format(Math.round(v || 0))}`;
 
-  window.UI = { h, money, moneyShort, pct, number, field, numberInput, select, checkbox, segmented, icon, bizIcon, ring, bar };
+  // replaceChildren that skips null/false like h() does (the DOM method would print "null").
+  function fill(el, ...children) {
+    el.replaceChildren(...children.flat(Infinity).filter(c => c != null && c !== false)
+      .map(c => (c instanceof Node ? c : document.createTextNode(String(c)))));
+  }
+
+  window.UI = { fill, h, money, moneyShort, pct, number, field, numberInput, select, checkbox, segmented, icon, bizIcon, ring, bar };
 })();

@@ -37,6 +37,24 @@ app.whenReady().then(async () => {
     await wait(700);
     fs.writeFileSync(path.join(out, `${page}.png`), (await win.webContents.capturePage()).toPNG());
   }
+  // Casino fingerprint tab and the overlay window itself (all four, then one in move mode).
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=casino]').click();
+    [...document.querySelectorAll('.tabs button')].find(b => b.textContent === 'Digitais').click();`);
+  await wait(700);
+  fs.writeFileSync(path.join(out, 'casino-digitais.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`window.gta.overlay('show').then(s => App.setState(s, true))`);
+  await wait(1200);
+  const ovWin = BrowserWindow.getAllWindows().find(w => w.getTitle() === 'GTA Helper overlay');
+  if (!ovWin || !ovWin.isVisible()) errors.push('overlay não apareceu');
+  else {
+    fs.writeFileSync(path.join(out, 'overlay-todas.png'), (await ovWin.webContents.capturePage()).toPNG());
+    await win.webContents.executeJavaScript(`window.gta.overlay('print', 'J').then(() => window.gta.overlay('interact', true)).then(s => App.setState(s, true))`);
+    await wait(900);
+    fs.writeFileSync(path.join(out, 'overlay-j-mover.png'), (await ovWin.webContents.capturePage()).toPNG());
+    const st = await win.webContents.executeJavaScript('window.gta.state().then(s => s.overlay)');
+    if (st.print !== 'J' || !st.interact || !st.visible) errors.push(`overlay estado: ${JSON.stringify(st)}`);
+    await win.webContents.executeJavaScript(`window.gta.overlay('interact', false).then(() => window.gta.overlay('hide'))`);
+  }
   // Light theme check, then back to dark.
   await win.webContents.executeJavaScript(`window.gta.setSettings({ theme: 'light' }).then(s => App.setState(s, true)); document.querySelector('[data-page=overview]').click();`);
   await wait(900);

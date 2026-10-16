@@ -1,0 +1,29 @@
+/* Fingerprint overlay window: transparent background, only the panel is drawn. */
+html, body { background: transparent !important; overflow: hidden; }
+.ov {
+  position: fixed; inset: 0; display: flex; flex-direction: column;
+  background: rgba(13, 15, 21, 0.9); border: 1px solid rgba(138, 155, 255, 0.28); border-radius: 12px; overflow: hidden;
+}
+.ov.interact { border: 2px dashed var(--accent); }
+.ov-head {
+  flex: none; display: flex; flex-direction: column; padding: 0 8px 0 10px;
+  font-size: 12px; color: var(--text-2); background: rgba(22, 25, 34, 0.95); border-bottom: 1px solid var(--border);
+}
+.ov.interact .ov-head { -webkit-app-region: drag; cursor: move; }
+.ov-title { font-weight: 650; color: var(--text); white-space: nowrap; }
+.ov-hint { margin-left: auto; color: var(--faint); font-size: 11px; white-space: nowrap; }
+.ov-tools { margin-left: auto; display: flex; align-items: center; gap: 2px; -webkit-app-region: no-drag; }
+.ov-tools button {
+  height: 20px; min-width: 20px; padding: 0 5px; border-radius: 5px; font-size: 11px; font-weight: 650; color: var(--muted);
+}
+.ov-tools button:hover { background: var(--card-3); color: var(--text); }
+.ov-tools button.on { background: var(--accent); color: var(--accent-ink); }
+.ov-tools button.done { background: var(--ok-soft); color: var(--ok); padding: 0 8px; }
+.ov-tools .sep { width: 1px; height: 14px; background: var(--border-2); margin: 0 3px; }
+.ov-body { flex: 1; min-height: 0; display: grid; }
+.ov-body.all { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; background: rgba(60, 64, 80, 0.6); }
+.ov-body img { width: 100%; height: 100%; object-fit: contain; display: block; background: #000; }
+.ov-row { height: 29px; display: flex; align-items: center; gap: 8px; }
+.ov-head { border-bottom-width: 1px; }
+.ov-tools.left { margin-left: 0; }
+.ov.interact .ov-row + .ov-row { height: 28px; }

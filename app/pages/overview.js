@@ -68,7 +68,7 @@
       supplyRing.set(low ? low.p.supplyPct : 0, low ? `${Math.round(low.p.supplyPct)}%` : '—', supplyColor(low ? low.p.supplyPct : 0));
     });
 
-    root.replaceChildren(
+    UI.fill(root, 
       h('div', { class: 'page-head' },
         h('div', null, h('h1', null, 'Visão geral'), h('div', { class: 'sub' }, 'Produção dos negócios e golpes num lugar só. O tempo só conta com você online.')),
         h('div', { class: 'actions' },

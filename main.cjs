@@ -4,6 +4,7 @@ const path = require('node:path');
 const { createStore } = require('./store.cjs');
 const { advance } = require('./timers.cjs');
 const { createGameWatcher } = require('./game-watcher.cjs');
+const { createOverlay } = require('./overlay.cjs');
 
 const TICK_MS = 5000;
 // Window controls drawn by Windows over the 44px title bar, matching Nexo's colours per theme.
@@ -25,6 +26,7 @@ let tray = null;
 let quitting = false;
 let store;
 let watcher;
+let overlay = null;
 let lastTick = Date.now();
 let dirty = false;
 
@@ -41,7 +43,8 @@ function snapshot() {
     tickAt: lastTick,
     counting: isCounting(),
     gameRunning: watcher.isRunning(),
-    detectionSupported: watcher.supported
+    detectionSupported: watcher.supported,
+    overlay: overlay ? overlay.state() : null
   };
 }
 
@@ -154,6 +157,27 @@ function registerIpc() {
     }
   }));
 
+  // Fingerprint overlay controls from the main window.
+  ipcMain.handle('gta:overlay', (_e, action, value) => {
+    if (action === 'show') overlay.show();
+    else if (action === 'hide') overlay.hide();
+    else if (action === 'print') overlay.setPrint(String(value));
+    else if (action === 'interact') overlay.setInteract(!!value);
+    else if (action === 'configure' && value && typeof value === 'object') overlay.configure(value);
+    else throw new TypeError('ação desconhecida');
+    return snapshot();
+  });
+
+  // The overlay's own toolbar (move mode only). Rejects any other sender.
+  ipcMain.handle('overlay:set', (e, patch) => {
+    if (!overlay.isOverlay(e.sender) || !patch || typeof patch !== 'object') throw new Error('origem inválida');
+    if (patch.print) overlay.setPrint(String(patch.print));
+    if (patch.size) overlay.configure({ size: patch.size });
+    if ('interact' in patch) overlay.setInteract(!!patch.interact);
+    if (patch.hide) overlay.hide();
+    return overlay.state();
+  });
+
   ipcMain.handle('gta:cayo-cooldown', (_e, minutes) => mutate(s => {
     s.cayoCooldownEndsAt = minutes ? Date.now() + num(minutes, 1, 24 * 60) * 60000 : null;
   }));
@@ -202,6 +226,7 @@ function createTray() {
   tray.setContextMenu(Menu.buildFromTemplate([
     { label: 'Abrir', click: showWindow },
     { label: 'Pausar/retomar timers', click: () => mutate(s => { s.settings.paused = !s.settings.paused; }) },
+    { label: 'Mostrar/esconder digitais (Ctrl+Shift+F)', click: () => (overlay.state().visible ? overlay.hide() : overlay.show()) },
     { type: 'separator' },
     { label: 'Sair', click: () => { quitting = true; app.quit(); } }
   ]));
@@ -222,6 +247,12 @@ if (!app.requestSingleInstanceLock()) {
     store = createStore(dataFile, catalog);
     watcher = createGameWatcher({ onChange: () => tick() });
     watcher.start();
+    overlay = createOverlay({
+      getSettings: () => store.get().settings,
+      saveSettings: patch => { Object.assign(store.get().settings.overlay, patch); dirty = true; persist(); },
+      onChange: broadcast
+    });
+    overlay.registerHotkeys();
     registerIpc();
     createTray();
     createWindow();
@@ -229,6 +260,6 @@ if (!app.requestSingleInstanceLock()) {
     setInterval(tick, TICK_MS);
     setInterval(persist, 30000);
   });
-  app.on('before-quit', () => { quitting = true; tick(); dirty = true; persist(); });
+  app.on('before-quit', () => { quitting = true; tick(); dirty = true; persist(); if (overlay) overlay.destroy(); });
   app.on('window-all-closed', () => { if (!tray) app.quit(); });
 }

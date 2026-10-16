@@ -8,7 +8,9 @@ const DEFAULT_SETTINGS = Object.freeze({
   paused: false,
   warnMinutes: 10,
   notify: true,
-  closeToTray: true, theme: 'dark'
+  closeToTray: true,
+  theme: 'dark',
+  overlay: Object.freeze({ print: 'all', size: 'md', opacity: 0.92, hotkeys: true, pos: null })
 });
 
 function emptyBusiness() {
@@ -43,7 +45,11 @@ function createStore(file, catalog) {
     }
     return {
       version: 1,
-      settings: { ...DEFAULT_SETTINGS, ...raw.settings },
+      settings: {
+        ...DEFAULT_SETTINGS,
+        ...raw.settings,
+        overlay: { ...DEFAULT_SETTINGS.overlay, ...(raw.settings && raw.settings.overlay) }
+      },
       businesses,
       cayoCooldownEndsAt: typeof raw.cayoCooldownEndsAt === 'number' ? raw.cayoCooldownEndsAt : null
     };

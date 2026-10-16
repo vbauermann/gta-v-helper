@@ -32,11 +32,8 @@
       numberInput(c, { min: 0, max: 100, step: 5, oninput: e => { form.cuts[i] = Number(e.target.value) || 0; update({}); } }))));
     renderCuts();
     results = h('div', { class: 'results' });
-    root.replaceChildren(
-      h('div', { class: 'page-head' },
-        h('div', null,
-          h('h1', null, 'Diamond Casino'),
-          h('div', { class: 'sub' }, 'Valores base da atualização de economia. Hacker melhor dá mais tempo no cofre, mas cobra mais.'))),
+    body.replaceChildren(
+      h('p', { class: 'muted small tab-note' }, 'Valores base da atualização de economia. Hacker melhor dá mais tempo no cofre, mas cobra mais.'),
       h('div', { class: 'two-col' },
         h('div', { class: 'card pad form' },
           h('div', { class: 'card-head' }, h('h3', null, icon('casino', 18), 'Golpe')),
@@ -81,7 +78,28 @@
   }
 
   window.Pages = window.Pages || {};
+  // The Casino page has two tabs: the payout calculator and the fingerprint overlay.
+  let body = null;
+  let tab = 'calc';
+  function mountTab() {
+    if (tab === 'fingerprint') window.CasinoFingerprint.mount(body);
+    else render();
+  }
   window.Pages.casino = {
-    mount(el) { root = el; render(); }
+    mount(el) {
+      root = el;
+      body = h('div', { class: 'tab-body' });
+      UI.fill(root, 
+        h('div', { class: 'page-head' },
+          h('div', null,
+            h('h1', null, 'Diamond Casino'),
+            h('div', { class: 'tabs' }, segmented([{ value: 'calc', label: 'Calculadora' }, { value: 'fingerprint', label: 'Digitais' }], tab,
+              v => { tab = v; results = null; mountTab(); })))),
+        body);
+      mountTab();
+    },
+    onState(s, force) {
+      if (tab === 'fingerprint' && body && body.isConnected) window.CasinoFingerprint.onState(s, force);
+    }
   };
 })();

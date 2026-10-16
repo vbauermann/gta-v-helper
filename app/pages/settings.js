@@ -18,7 +18,7 @@
   function render() {
     const s = App.state.settings;
     const set = patch => App.act(window.gta.setSettings(patch));
-    root.replaceChildren(
+    UI.fill(root, 
       h('div', { class: 'page-head' },
         h('div', null, h('h1', null, 'Ajustes'), h('div', { class: 'sub' }, 'Como o app conta o tempo e te avisa.'))),
       h('div', { class: 'settings-grid' },

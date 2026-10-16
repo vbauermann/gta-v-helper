@@ -38,7 +38,7 @@
     renderStacks();
 
     results = h('div', { class: 'results' });
-    root.replaceChildren(
+    UI.fill(root, 
       h('div', { class: 'page-head' },
         h('div', null,
           h('h1', null, 'Cayo Perico'),
@@ -186,13 +186,12 @@
             h('td', null, p.player === 1 ? 'Líder' : `Jogador ${p.player}`), h('td', null, `${p.pct}%`), h('td', { class: 'strong' }, money(p.value)))))),
         form.elite ? h('p', { class: 'muted' }, 'Inclui o bônus do Elite Challenge para cada jogador.') : null),
       h('div', { class: 'card pad' },
-        head('clock', 'Cooldown'),
+        head('clock', 'Cooldown', h('span', { class: 'hint' }, '(Solo: 144 min. Grupo: 48 min)')),
         cd
           ? h('div', { class: 'row' }, h('span', { class: 'strong', dataset: { live: 'cooldown' } }, ''), h('button', { class: 'btn ghost sm', onclick: () => App.act(window.gta.cayoCooldown(null)) }, 'Cancelar'))
           : h('div', { class: 'row' },
             h('button', { class: 'btn primary', onclick: () => App.act(window.gta.cayoCooldown(r.cooldownMinutes)) },
-              `Terminei o golpe: iniciar cooldown (${r.cooldownMinutes} min)`)),
-        h('p', { class: 'muted small' }, 'Solo: 144 min reais. Em grupo: 48 min.')));
+              `Terminei o golpe: iniciar cooldown (${r.cooldownMinutes} min)`))));
     onSecond();
   }
 

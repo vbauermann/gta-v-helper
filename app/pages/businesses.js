@@ -77,7 +77,7 @@
     const defs = App.data.catalog.businesses;
     const owned = defs.filter(d => App.state.businesses[d.id].owned);
     const others = defs.filter(d => !App.state.businesses[d.id].owned);
-    root.replaceChildren(
+    UI.fill(root, 
       h('div', { class: 'page-head' },
         h('div', null,
           h('h1', null, 'Negócios'),
