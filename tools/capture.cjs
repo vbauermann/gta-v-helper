@@ -42,6 +42,34 @@ app.whenReady().then(async () => {
     [...document.querySelectorAll('.tabs button')].find(b => b.textContent === 'Mapa').click();`);
   await wait(900);
   fs.writeFileSync(path.join(out, 'cayo-mapa.png'), (await win.webContents.capturePage()).toPNG());
+  const mapCheck = await win.webContents.executeJavaScript(`(() => {
+    const imgs = [...document.querySelectorAll('.map-viewport.cayo img, .map-filters img')];
+    return { pins: document.querySelectorAll('.pin.icon-pin').length, broken: imgs.filter(i => !i.complete || !i.naturalWidth).map(i => i.src) };
+  })()`);
+  if (mapCheck.pins !== 73 || mapCheck.broken.length) errors.push(`mapa cayo: ${JSON.stringify(mapCheck)}`);
+  // Point popup: mark one guard clothing as found, then open a 2-player locked room.
+  await win.webContents.executeJavaScript(`localStorage.removeItem('gta-helper.cayo-map.v2');
+    document.querySelector('[data-page=overview]').click(); document.querySelector('[data-page=cayo]').click();
+    [...document.querySelectorAll('.tabs button')].find(b => b.textContent === 'Mapa').click();
+    const pinOf = src => [...document.querySelectorAll('.pin.icon-pin')].find(p => p.querySelector('img').src.endsWith(src));
+    pinOf('clothes.png').click();
+    [...document.querySelectorAll('.map-pop button')].find(b => b.textContent === 'Achei!').click();
+    pinOf('secondary_locked.png').click();`);
+  await wait(900);
+  fs.writeFileSync(path.join(out, 'cayo-mapa-ponto.png'), (await win.webContents.capturePage()).toPNG());
+  const marked = await win.webContents.executeJavaScript(`[JSON.parse(localStorage.getItem('gta-helper.cayo-map.v2')).found.length,
+    document.querySelectorAll('.pin.found').length, [...document.querySelectorAll('.filter-row .count')].map(c => c.textContent).join(' ')]`);
+  if (marked[0] !== 1 || marked[1] !== 1 || !marked[2].includes('1/4')) errors.push(`achei: ${JSON.stringify(marked)}`);
+  // Zoom in past 2x (swaps the 8192 px image) with every group on.
+  await win.webContents.executeJavaScript(`for (const s of document.querySelectorAll('.group-row .switch')) if (!s.checked) s.click();
+    const vp = document.querySelector('.map-viewport.cayo'), r = vp.getBoundingClientRect();
+    const at = { clientX: r.left + r.width * 0.58, clientY: r.top + r.height * 0.74, deltaY: -100, bubbles: true, cancelable: true };
+    for (let i = 0; i < 9; i++) vp.dispatchEvent(new WheelEvent('wheel', at));`);
+  await wait(2500);
+  const hi = await win.webContents.executeJavaScript(`document.querySelector('.map-viewport.cayo .map img').src`);
+  if (!hi.includes('8192')) errors.push(`zoom sem imagem grande: ${hi}`);
+  fs.writeFileSync(path.join(out, 'cayo-mapa-zoom.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`localStorage.removeItem('gta-helper.cayo-map.v2')`);
   const found = await win.webContents.executeJavaScript(`JSON.parse(localStorage.getItem('gta-helper.cayo')).found`);
   if (found.gold !== 2 || found.cocaine !== 3) errors.push(`cayo pilhas: ${JSON.stringify(found)}`);
   // Casino fingerprint tab and the overlay window itself (all four, then one in move mode).

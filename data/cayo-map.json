@@ -1,0 +1,1366 @@
+{
+ "source": "cayoperico.online",
+ "images": [
+  {
+   "src": "assets/cayo/map/cayo-map-4096.jpg",
+   "size": 4096
+  },
+  {
+   "src": "assets/cayo/map/cayo-map-8192.jpg",
+   "size": 8192
+  }
+ ],
+ "groups": [
+  {
+   "id": "scoping",
+   "title": "Reconhecimento",
+   "defaultVisible": true,
+   "categories": [
+    {
+     "id": "secondary-targets",
+     "title": "Alvos secundários",
+     "icon": "assets/cayo/icons/secondary.png",
+     "note": "O que tem em cada sala muda a cada golpe. Os marcados com cadeado só abrem com 2 jogadores."
+    },
+    {
+     "id": "guard-clothing",
+     "title": "Roupa de guarda",
+     "icon": "assets/cayo/icons/clothes.png",
+     "foundIcon": "assets/cayo/icons/clothes_found.png",
+     "lookingFor": 4,
+     "trackFound": true,
+     "canHide": true,
+     "note": "O jogo coloca 4 destes por golpe. Marque os que achar."
+    },
+    {
+     "id": "grappling-equipment",
+     "title": "Equipamento de escalada",
+     "icon": "assets/cayo/icons/grapple.png",
+     "foundIcon": "assets/cayo/icons/grapple_found.png",
+     "lookingFor": 4,
+     "trackFound": true,
+     "canHide": true,
+     "note": "O jogo coloca 4 destes por golpe."
+    },
+    {
+     "id": "bolt-cutters",
+     "title": "Alicate corta-cadeado",
+     "icon": "assets/cayo/icons/cutters.png",
+     "foundIcon": "assets/cayo/icons/cutters_found.png",
+     "lookingFor": 4,
+     "trackFound": true,
+     "canHide": true,
+     "note": "O jogo coloca 4 destes por golpe."
+    },
+    {
+     "id": "supply-truck",
+     "title": "Caminhão de suprimentos",
+     "icon": "assets/cayo/icons/truck.png",
+     "foundIcon": "assets/cayo/icons/truck_found.png",
+     "lookingFor": 1,
+     "trackFound": true,
+     "canHide": true,
+     "note": "Só 1 caminhão aparece por golpe."
+    },
+    {
+     "id": "cutting-powder",
+     "title": "Pó de corte",
+     "icon": "assets/cayo/icons/powder.png",
+     "canHide": true,
+     "note": "Usado pra diminuir a atenção dos guardas no complexo."
+    },
+    {
+     "id": "water-towers",
+     "title": "Caixas d'água",
+     "icon": "assets/cayo/icons/water.png"
+    }
+   ]
+  },
+  {
+   "id": "treasure-chests",
+   "title": "Baús do tesouro",
+   "defaultVisible": false,
+   "categories": [
+    {
+     "id": "treasure-land",
+     "title": "Em terra",
+     "icon": "assets/cayo/icons/treasure_land.png",
+     "note": "Um baú em terra e um no mar aparecem por dia; a lista diária do site parou em 2022, então todos os possíveis aparecem."
+    },
+    {
+     "id": "treasure-sea",
+     "title": "No mar",
+     "icon": "assets/cayo/icons/treasure_sea.png",
+     "note": "Um baú no mar aparece por dia."
+    }
+   ]
+  },
+  {
+   "id": "unique",
+   "title": "Pontos únicos",
+   "defaultVisible": false,
+   "categories": [
+    {
+     "id": "infiltration-points",
+     "title": "Pontos de infiltração",
+     "icon": "assets/cayo/icons/infiltration.png"
+    },
+    {
+     "id": "escape-points",
+     "title": "Pontos de fuga",
+     "icon": "assets/cayo/icons/escape.png"
+    },
+    {
+     "id": "compound-entry-points",
+     "title": "Entradas do complexo",
+     "icon": "assets/cayo/icons/compound.png"
+    },
+    {
+     "id": "combat-shotgun",
+     "title": "Escopeta de combate",
+     "icon": "assets/cayo/icons/shotgun.png",
+     "canHide": true
+    },
+    {
+     "id": "power-station",
+     "title": "Estação de energia",
+     "icon": "assets/cayo/icons/power.png"
+    },
+    {
+     "id": "control-tower",
+     "title": "Torre de controle",
+     "icon": "assets/cayo/icons/tower.png"
+    }
+   ]
+  },
+  {
+   "id": "transportation",
+   "title": "Transporte",
+   "defaultVisible": false,
+   "categories": [
+    {
+     "id": "bikes",
+     "title": "Motos",
+     "icon": "assets/cayo/icons/bike.png"
+    },
+    {
+     "id": "boats",
+     "title": "Barcos",
+     "icon": "assets/cayo/icons/boat.png"
+    }
+   ]
+  }
+ ],
+ "points": [
+  {
+   "id": "secondary-targets-1",
+   "category": "secondary-targets",
+   "place": "hangar, térreo",
+   "x": 0.378175,
+   "y": 0.178008,
+   "icon": "assets/cayo/icons/secondary.png",
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_hangar_down.jpg"
+  },
+  {
+   "id": "secondary-targets-2",
+   "category": "secondary-targets",
+   "place": "hangar, andar de cima",
+   "x": 0.383546,
+   "y": 0.175994,
+   "icon": "assets/cayo/icons/secondary.png",
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_hangar_up.jpg"
+  },
+  {
+   "id": "secondary-targets-3",
+   "category": "secondary-targets",
+   "place": "pista de pouso",
+   "x": 0.409467,
+   "y": 0.22735,
+   "icon": "assets/cayo/icons/secondary.png",
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_airstrip.jpg"
+  },
+  {
+   "id": "secondary-targets-4",
+   "category": "secondary-targets",
+   "place": "doca norte",
+   "x": 0.666763,
+   "y": 0.243417,
+   "icon": "assets/cayo/icons/secondary.png",
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_north_docks_1.jpg"
+  },
+  {
+   "id": "secondary-targets-5",
+   "category": "secondary-targets",
+   "place": "doca norte",
+   "x": 0.697464,
+   "y": 0.253182,
+   "icon": "assets/cayo/icons/secondary.png",
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_north_docks_2.jpg"
+  },
+  {
+   "id": "secondary-targets-6",
+   "category": "secondary-targets",
+   "place": "doca norte",
+   "x": 0.678783,
+   "y": 0.285815,
+   "icon": "assets/cayo/icons/secondary_locked.png",
+   "locked": true,
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_north_docks_3.jpg",
+   "description": "Esta sala só abre com 2 jogadores."
+  },
+  {
+   "id": "secondary-targets-7",
+   "category": "secondary-targets",
+   "place": "centro da ilha",
+   "x": 0.725691,
+   "y": 0.492595,
+   "icon": "assets/cayo/icons/secondary.png",
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_central.jpg"
+  },
+  {
+   "id": "secondary-targets-8",
+   "category": "secondary-targets",
+   "place": "doca principal",
+   "x": 0.601543,
+   "y": 0.542831,
+   "icon": "assets/cayo/icons/secondary.png",
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_main_docks_1.jpg"
+  },
+  {
+   "id": "secondary-targets-9",
+   "category": "secondary-targets",
+   "place": "doca principal",
+   "x": 0.636683,
+   "y": 0.506252,
+   "icon": "assets/cayo/icons/secondary.png",
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_main_docks_2.jpg"
+  },
+  {
+   "id": "secondary-targets-10",
+   "category": "secondary-targets",
+   "place": "doca principal",
+   "x": 0.618861,
+   "y": 0.479762,
+   "icon": "assets/cayo/icons/secondary_locked.png",
+   "locked": true,
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_main_docks_3.jpg",
+   "description": "Esta sala só abre com 2 jogadores."
+  },
+  {
+   "id": "secondary-targets-11",
+   "category": "secondary-targets",
+   "place": "plantação de maconha",
+   "x": 0.787254,
+   "y": 0.555265,
+   "icon": "assets/cayo/icons/secondary.png",
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_weed_fields.jpg"
+  },
+  {
+   "id": "secondary-targets-12",
+   "category": "secondary-targets",
+   "place": "porão do complexo",
+   "x": 0.636768,
+   "y": 0.77339,
+   "icon": "assets/cayo/icons/secondary_locked.png",
+   "locked": true,
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_compound_basement.jpg",
+   "description": "Esta sala só abre com 2 jogadores."
+  },
+  {
+   "id": "secondary-targets-13",
+   "category": "secondary-targets",
+   "place": "complexo, ala oeste",
+   "x": 0.63986,
+   "y": 0.790076,
+   "icon": "assets/cayo/icons/secondary_locked.png",
+   "locked": true,
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_compound_west.jpg",
+   "description": "Esta sala só abre com 2 jogadores."
+  },
+  {
+   "id": "secondary-targets-14",
+   "category": "secondary-targets",
+   "place": "complexo, ala norte",
+   "x": 0.64987,
+   "y": 0.769141,
+   "icon": "assets/cayo/icons/secondary_locked.png",
+   "locked": true,
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_compound_north.jpg",
+   "description": "Esta sala só abre com 2 jogadores."
+  },
+  {
+   "id": "secondary-targets-15",
+   "category": "secondary-targets",
+   "place": "complexo, ala sul",
+   "x": 0.673612,
+   "y": 0.777564,
+   "icon": "assets/cayo/icons/secondary_locked.png",
+   "locked": true,
+   "screenshot": "assets/cayo/screenshots/secondary/secondary_compound_south.jpg",
+   "description": "Esta sala só abre com 2 jogadores."
+  },
+  {
+   "id": "guard-clothing-1",
+   "category": "guard-clothing",
+   "place": "pista de pouso",
+   "x": 0.408091,
+   "y": 0.211206,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_airstrip_1.jpg"
+  },
+  {
+   "id": "guard-clothing-2",
+   "category": "guard-clothing",
+   "place": "pista de pouso",
+   "x": 0.419322,
+   "y": 0.218286,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_airstrip_2.jpg"
+  },
+  {
+   "id": "guard-clothing-3",
+   "category": "guard-clothing",
+   "place": "píer",
+   "x": 0.528654,
+   "y": 0.329928,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_jetty.jpg"
+  },
+  {
+   "id": "guard-clothing-4",
+   "category": "guard-clothing",
+   "place": "doca norte",
+   "x": 0.663616,
+   "y": 0.24483,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_north_docks_1.jpg"
+  },
+  {
+   "id": "guard-clothing-5",
+   "category": "guard-clothing",
+   "place": "doca norte",
+   "x": 0.681127,
+   "y": 0.25189,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_north_docks_2.jpg"
+  },
+  {
+   "id": "guard-clothing-6",
+   "category": "guard-clothing",
+   "place": "doca norte",
+   "x": 0.704477,
+   "y": 0.258056,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_north_docks_3.jpg"
+  },
+  {
+   "id": "guard-clothing-7",
+   "category": "guard-clothing",
+   "place": "doca norte",
+   "x": 0.713887,
+   "y": 0.28384,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_north_docks_4.jpg"
+  },
+  {
+   "id": "guard-clothing-8",
+   "category": "guard-clothing",
+   "place": "posto de controle",
+   "x": 0.709542,
+   "y": 0.429051,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_checkpoint.jpg"
+  },
+  {
+   "id": "guard-clothing-9",
+   "category": "guard-clothing",
+   "place": "centro da ilha",
+   "x": 0.690675,
+   "y": 0.491675,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_central.jpg"
+  },
+  {
+   "id": "guard-clothing-10",
+   "category": "guard-clothing",
+   "place": "torre",
+   "x": 0.75669,
+   "y": 0.629747,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_tower.jpg"
+  },
+  {
+   "id": "guard-clothing-11",
+   "category": "guard-clothing",
+   "place": "mirante sul",
+   "x": 0.68571,
+   "y": 0.669725,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_south_lookout.jpg"
+  },
+  {
+   "id": "guard-clothing-12",
+   "category": "guard-clothing",
+   "place": "mirante oeste",
+   "x": 0.584032,
+   "y": 0.639339,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_west_lookout.jpg"
+  },
+  {
+   "id": "guard-clothing-13",
+   "category": "guard-clothing",
+   "place": "doca principal",
+   "x": 0.612265,
+   "y": 0.578768,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_main_docks_1.jpg"
+  },
+  {
+   "id": "guard-clothing-14",
+   "category": "guard-clothing",
+   "place": "doca principal",
+   "x": 0.601419,
+   "y": 0.55591,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_main_docks_2.jpg"
+  },
+  {
+   "id": "guard-clothing-15",
+   "category": "guard-clothing",
+   "place": "doca principal",
+   "x": 0.641745,
+   "y": 0.523975,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_main_docks_3.jpg"
+  },
+  {
+   "id": "guard-clothing-16",
+   "category": "guard-clothing",
+   "place": "contêineres",
+   "x": 0.637483,
+   "y": 0.488108,
+   "icon": "assets/cayo/icons/clothes.png",
+   "screenshot": "assets/cayo/screenshots/clothes/clothes_container.jpg"
+  },
+  {
+   "id": "grappling-equipment-1",
+   "category": "grappling-equipment",
+   "place": "pista de pouso",
+   "x": 0.139023,
+   "y": 0.292432,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_airstrip.jpg"
+  },
+  {
+   "id": "grappling-equipment-2",
+   "category": "grappling-equipment",
+   "place": "estação de energia",
+   "x": 0.403285,
+   "y": 0.310637,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_power_station.jpg"
+  },
+  {
+   "id": "grappling-equipment-3",
+   "category": "grappling-equipment",
+   "place": "ancoradouro",
+   "x": 0.427028,
+   "y": 0.29434,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_boats_1.jpg"
+  },
+  {
+   "id": "grappling-equipment-4",
+   "category": "grappling-equipment",
+   "place": "ancoradouro",
+   "x": 0.583748,
+   "y": 0.339395,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_boats_2.jpg"
+  },
+  {
+   "id": "grappling-equipment-5",
+   "category": "grappling-equipment",
+   "place": "mirante norte",
+   "x": 0.582092,
+   "y": 0.195743,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_north_lookout.jpg"
+  },
+  {
+   "id": "grappling-equipment-6",
+   "category": "grappling-equipment",
+   "place": "ruínas",
+   "x": 0.575364,
+   "y": 0.26522,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_ruins.jpg"
+  },
+  {
+   "id": "grappling-equipment-7",
+   "category": "grappling-equipment",
+   "place": "caixa d'água norte",
+   "x": 0.687005,
+   "y": 0.238212,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_north_water_tower.jpg"
+  },
+  {
+   "id": "grappling-equipment-8",
+   "category": "grappling-equipment",
+   "place": "telhado",
+   "x": 0.681342,
+   "y": 0.284937,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_roof.jpg"
+  },
+  {
+   "id": "grappling-equipment-9",
+   "category": "grappling-equipment",
+   "place": "silo",
+   "x": 0.695851,
+   "y": 0.252461,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_silo.jpg"
+  },
+  {
+   "id": "grappling-equipment-10",
+   "category": "grappling-equipment",
+   "place": "centro da ilha",
+   "x": 0.692698,
+   "y": 0.47652,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_central.jpg"
+  },
+  {
+   "id": "grappling-equipment-11",
+   "category": "grappling-equipment",
+   "place": "plantação de maconha",
+   "x": 0.822314,
+   "y": 0.50921,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_weed_fields.jpg"
+  },
+  {
+   "id": "grappling-equipment-12",
+   "category": "grappling-equipment",
+   "place": "leste",
+   "x": 0.89551,
+   "y": 0.516948,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_east.jpg"
+  },
+  {
+   "id": "grappling-equipment-13",
+   "category": "grappling-equipment",
+   "place": "torre",
+   "x": 0.758482,
+   "y": 0.628326,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_tower.jpg"
+  },
+  {
+   "id": "grappling-equipment-14",
+   "category": "grappling-equipment",
+   "place": "farol",
+   "x": 0.917116,
+   "y": 0.728469,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_lighthouse.jpg"
+  },
+  {
+   "id": "grappling-equipment-15",
+   "category": "grappling-equipment",
+   "place": "caixa d'água sul",
+   "x": 0.59051,
+   "y": 0.58311,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_south_water_tower.jpg"
+  },
+  {
+   "id": "grappling-equipment-16",
+   "category": "grappling-equipment",
+   "place": "doca principal",
+   "x": 0.571227,
+   "y": 0.503322,
+   "icon": "assets/cayo/icons/grapple.png",
+   "screenshot": "assets/cayo/screenshots/grapples/grapple_main_docks.jpg"
+  },
+  {
+   "id": "bolt-cutters-1",
+   "category": "bolt-cutters",
+   "place": "pista de pouso",
+   "x": 0.217899,
+   "y": 0.278576,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_airstrip_1.jpg"
+  },
+  {
+   "id": "bolt-cutters-2",
+   "category": "bolt-cutters",
+   "place": "pista de pouso",
+   "x": 0.418611,
+   "y": 0.207893,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_airstrip_2.jpg"
+  },
+  {
+   "id": "bolt-cutters-3",
+   "category": "bolt-cutters",
+   "place": "pista de pouso",
+   "x": 0.423785,
+   "y": 0.222039,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_airstrip_3.jpg"
+  },
+  {
+   "id": "bolt-cutters-4",
+   "category": "bolt-cutters",
+   "place": "usina solar",
+   "x": 0.410536,
+   "y": 0.270806,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_solar_plant.jpg"
+  },
+  {
+   "id": "bolt-cutters-5",
+   "category": "bolt-cutters",
+   "place": "norte",
+   "x": 0.545107,
+   "y": 0.118411,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_north.jpg"
+  },
+  {
+   "id": "bolt-cutters-6",
+   "category": "bolt-cutters",
+   "place": "doca norte",
+   "x": 0.682121,
+   "y": 0.259103,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_north_docks_1.jpg"
+  },
+  {
+   "id": "bolt-cutters-7",
+   "category": "bolt-cutters",
+   "place": "doca norte",
+   "x": 0.669155,
+   "y": 0.264833,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_north_docks_2.jpg"
+  },
+  {
+   "id": "bolt-cutters-8",
+   "category": "bolt-cutters",
+   "place": "doca norte",
+   "x": 0.718105,
+   "y": 0.28119,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_north_docks_3.jpg"
+  },
+  {
+   "id": "bolt-cutters-9",
+   "category": "bolt-cutters",
+   "place": "centro da ilha",
+   "x": 0.735202,
+   "y": 0.488083,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_central.jpg"
+  },
+  {
+   "id": "bolt-cutters-10",
+   "category": "bolt-cutters",
+   "place": "plantação de maconha",
+   "x": 0.785412,
+   "y": 0.552765,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_weed_fields.jpg"
+  },
+  {
+   "id": "bolt-cutters-11",
+   "category": "bolt-cutters",
+   "place": "mirante leste",
+   "x": 0.850093,
+   "y": 0.536098,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_east_lookout.jpg"
+  },
+  {
+   "id": "bolt-cutters-12",
+   "category": "bolt-cutters",
+   "place": "mirante sul",
+   "x": 0.802851,
+   "y": 0.631632,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_south_lookout.jpg"
+  },
+  {
+   "id": "bolt-cutters-13",
+   "category": "bolt-cutters",
+   "place": "cerca",
+   "x": 0.526364,
+   "y": 0.678791,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_fence.jpg"
+  },
+  {
+   "id": "bolt-cutters-14",
+   "category": "bolt-cutters",
+   "place": "caixa d'água sul",
+   "x": 0.59048,
+   "y": 0.590169,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_south_water_tower.jpg"
+  },
+  {
+   "id": "bolt-cutters-15",
+   "category": "bolt-cutters",
+   "place": "doca principal",
+   "x": 0.615463,
+   "y": 0.513507,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_main_docks_1.jpg"
+  },
+  {
+   "id": "bolt-cutters-16",
+   "category": "bolt-cutters",
+   "place": "doca principal",
+   "x": 0.583297,
+   "y": 0.486756,
+   "icon": "assets/cayo/icons/cutters.png",
+   "screenshot": "assets/cayo/screenshots/cutters/cutters_main_docks_2.jpg"
+  },
+  {
+   "id": "supply-truck-1",
+   "category": "supply-truck",
+   "place": "pista de pouso",
+   "x": 0.420057,
+   "y": 0.215337,
+   "icon": "assets/cayo/icons/truck.png",
+   "screenshot": "assets/cayo/screenshots/trucks/truck_airstrip.jpg"
+  },
+  {
+   "id": "supply-truck-2",
+   "category": "supply-truck",
+   "place": "doca norte",
+   "x": 0.707516,
+   "y": 0.257847,
+   "icon": "assets/cayo/icons/truck.png",
+   "screenshot": "assets/cayo/screenshots/trucks/truck_north_docks.jpg"
+  },
+  {
+   "id": "supply-truck-3",
+   "category": "supply-truck",
+   "place": "centro da ilha",
+   "x": 0.707374,
+   "y": 0.491341,
+   "icon": "assets/cayo/icons/truck.png",
+   "screenshot": "assets/cayo/screenshots/trucks/truck_central.jpg"
+  },
+  {
+   "id": "supply-truck-4",
+   "category": "supply-truck",
+   "place": "doca principal",
+   "x": 0.590136,
+   "y": 0.52891,
+   "icon": "assets/cayo/icons/truck.png",
+   "screenshot": "assets/cayo/screenshots/trucks/truck_main_docks.jpg"
+  },
+  {
+   "id": "supply-truck-5",
+   "category": "supply-truck",
+   "place": "complexo",
+   "x": 0.623139,
+   "y": 0.750246,
+   "icon": "assets/cayo/icons/truck.png",
+   "screenshot": "assets/cayo/screenshots/trucks/truck_compound.jpg"
+  },
+  {
+   "id": "cutting-powder-1",
+   "category": "cutting-powder",
+   "place": "centro da ilha",
+   "x": 0.735628,
+   "y": 0.491661,
+   "icon": "assets/cayo/icons/powder.png",
+   "screenshot": "assets/cayo/screenshots/powder/powder_central.jpg"
+  },
+  {
+   "id": "cutting-powder-2",
+   "category": "cutting-powder",
+   "place": "doca principal",
+   "x": 0.602147,
+   "y": 0.555544,
+   "icon": "assets/cayo/icons/powder.png",
+   "screenshot": "assets/cayo/screenshots/powder/powder_main_docks.jpg"
+  },
+  {
+   "id": "cutting-powder-3",
+   "category": "cutting-powder",
+   "place": "plantação de maconha",
+   "x": 0.822054,
+   "y": 0.509515,
+   "icon": "assets/cayo/icons/powder.png",
+   "screenshot": "assets/cayo/screenshots/powder/powder_weed_fields.jpg"
+  },
+  {
+   "id": "water-towers-1",
+   "category": "water-towers",
+   "name": "Caixa d'água",
+   "x": 0.685261,
+   "y": 0.238765,
+   "icon": "assets/cayo/icons/water.png",
+   "screenshot": "assets/cayo/screenshots/unique/north_water_tower.jpg"
+  },
+  {
+   "id": "water-towers-2",
+   "category": "water-towers",
+   "name": "Caixa d'água",
+   "x": 0.591831,
+   "y": 0.585002,
+   "icon": "assets/cayo/icons/water.png",
+   "screenshot": "assets/cayo/screenshots/unique/south_water_tower.jpg"
+  },
+  {
+   "id": "treasure-land-1",
+   "category": "treasure-land",
+   "place": "doca norte",
+   "x": 0.716495,
+   "y": 0.284389,
+   "icon": "assets/cayo/icons/treasure_land.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_north_docks.jpg"
+  },
+  {
+   "id": "treasure-land-2",
+   "category": "treasure-land",
+   "place": "pista de pouso",
+   "x": 0.13953,
+   "y": 0.298292,
+   "icon": "assets/cayo/icons/treasure_land.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_airstrip.jpg"
+  },
+  {
+   "id": "treasure-land-3",
+   "category": "treasure-land",
+   "place": "norte da pista de pouso",
+   "x": 0.256267,
+   "y": 0.138316,
+   "icon": "assets/cayo/icons/treasure_land.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_airstrip_north.jpg"
+  },
+  {
+   "id": "treasure-land-4",
+   "category": "treasure-land",
+   "place": "ancoradouro",
+   "x": 0.428759,
+   "y": 0.294157,
+   "icon": "assets/cayo/icons/treasure_land.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_boats_1.jpg"
+  },
+  {
+   "id": "treasure-land-5",
+   "category": "treasure-land",
+   "place": "zona de salto norte",
+   "x": 0.554738,
+   "y": 0.120192,
+   "icon": "assets/cayo/icons/treasure_land.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_north_drop_zone.jpg"
+  },
+  {
+   "id": "treasure-land-6",
+   "category": "treasure-land",
+   "place": "ancoradouro",
+   "x": 0.579402,
+   "y": 0.332948,
+   "icon": "assets/cayo/icons/treasure_land.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_boats_2.jpg"
+  },
+  {
+   "id": "treasure-land-7",
+   "category": "treasure-land",
+   "place": "penhasco leste",
+   "x": 0.907078,
+   "y": 0.530474,
+   "icon": "assets/cayo/icons/treasure_land.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_east_cliff.jpg"
+  },
+  {
+   "id": "treasure-land-8",
+   "category": "treasure-land",
+   "place": "zona de salto sul",
+   "x": 0.846971,
+   "y": 0.824891,
+   "icon": "assets/cayo/icons/treasure_land.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_south_drop_zone.jpg"
+  },
+  {
+   "id": "treasure-land-9",
+   "category": "treasure-land",
+   "place": "cerca",
+   "x": 0.566286,
+   "y": 0.687491,
+   "icon": "assets/cayo/icons/treasure_land.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_fence.jpg"
+  },
+  {
+   "id": "treasure-land-10",
+   "category": "treasure-land",
+   "place": "doca principal",
+   "x": 0.56729,
+   "y": 0.504787,
+   "icon": "assets/cayo/icons/treasure_land.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_main_docks.jpg"
+  },
+  {
+   "id": "treasure-sea-1",
+   "category": "treasure-sea",
+   "place": "mar",
+   "x": 0.610602,
+   "y": 0.105453,
+   "icon": "assets/cayo/icons/treasure_sea.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_sea_1.jpg"
+  },
+  {
+   "id": "treasure-sea-2",
+   "category": "treasure-sea",
+   "place": "mar",
+   "x": 0.170654,
+   "y": 0.226318,
+   "icon": "assets/cayo/icons/treasure_sea.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_sea_2.jpg"
+  },
+  {
+   "id": "treasure-sea-3",
+   "category": "treasure-sea",
+   "place": "mar",
+   "x": 0.369292,
+   "y": 0.272491,
+   "icon": "assets/cayo/icons/treasure_sea.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_sea_3.jpg"
+  },
+  {
+   "id": "treasure-sea-4",
+   "category": "treasure-sea",
+   "place": "mar",
+   "x": 0.433504,
+   "y": 0.324916,
+   "icon": "assets/cayo/icons/treasure_sea.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_sea_4.jpg"
+  },
+  {
+   "id": "treasure-sea-5",
+   "category": "treasure-sea",
+   "place": "mar",
+   "x": 0.43488,
+   "y": 0.138072,
+   "icon": "assets/cayo/icons/treasure_sea.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_sea_5.jpg"
+  },
+  {
+   "id": "treasure-sea-6",
+   "category": "treasure-sea",
+   "place": "mar",
+   "x": 0.751523,
+   "y": 0.391306,
+   "icon": "assets/cayo/icons/treasure_sea.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_sea_6.jpg"
+  },
+  {
+   "id": "treasure-sea-7",
+   "category": "treasure-sea",
+   "place": "mar",
+   "x": 0.90866,
+   "y": 0.710903,
+   "icon": "assets/cayo/icons/treasure_sea.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_sea_7.jpg"
+  },
+  {
+   "id": "treasure-sea-8",
+   "category": "treasure-sea",
+   "place": "mar",
+   "x": 0.608094,
+   "y": 0.50655,
+   "icon": "assets/cayo/icons/treasure_sea.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_sea_8.jpg"
+  },
+  {
+   "id": "treasure-sea-9",
+   "category": "treasure-sea",
+   "place": "mar",
+   "x": 0.536024,
+   "y": 0.619185,
+   "icon": "assets/cayo/icons/treasure_sea.png",
+   "screenshot": "assets/cayo/screenshots/treasures/treasure_sea_9.jpg"
+  },
+  {
+   "id": "infiltration-points-1",
+   "category": "infiltration-points",
+   "name": "Pista de pouso",
+   "x": 0.295177,
+   "y": 0.245006,
+   "icon": "assets/cayo/icons/plane_in.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/airstrip_in.jpg",
+   "description": "Infiltração pela pista de pouso, com um destes veículos de aproximação (se tiver):\n- Velum"
+  },
+  {
+   "id": "infiltration-points-2",
+   "category": "infiltration-points",
+   "name": "Doca principal",
+   "x": 0.5245,
+   "y": 0.506086,
+   "icon": "assets/cayo/icons/infiltration.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/main_docks.jpg",
+   "description": "Infiltração pela doca principal, com um destes veículos de aproximação (se tiver):\n- Kosatka\n- Patrol Boat\n- Longfin"
+  },
+  {
+   "id": "infiltration-points-3",
+   "category": "infiltration-points",
+   "name": "Doca norte",
+   "x": 0.71021,
+   "y": 0.321899,
+   "icon": "assets/cayo/icons/infiltration.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/north_docks.jpg",
+   "description": "Infiltração pela doca norte, com um destes veículos de aproximação (se tiver):\n- Kosatka\n- Patrol Boat\n- Longfin"
+  },
+  {
+   "id": "infiltration-points-4",
+   "category": "infiltration-points",
+   "name": "Zona de salto norte",
+   "x": 0.551033,
+   "y": 0.111542,
+   "icon": "assets/cayo/icons/annihilator.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/north_drop_zone.jpg",
+   "description": "Infiltração pela zona de salto norte, com este veículo de aproximação (se tiver):\n- Stealth Annihilator"
+  },
+  {
+   "id": "infiltration-points-5",
+   "category": "infiltration-points",
+   "name": "Zona de salto sul",
+   "x": 0.856295,
+   "y": 0.826931,
+   "icon": "assets/cayo/icons/annihilator.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/south_drop_zone.jpg",
+   "description": "Infiltração pela zona de salto sul, com este veículo de aproximação (se tiver):\n- Stealth Annihilator"
+  },
+  {
+   "id": "infiltration-points-6",
+   "category": "infiltration-points",
+   "name": "Praia oeste",
+   "x": 0.577157,
+   "y": 0.399042,
+   "icon": "assets/cayo/icons/infiltration.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/west_beach.jpg",
+   "description": "Infiltração pela praia oeste, com um destes veículos de aproximação (se tiver):\n- Kosatka\n- Patrol Boat"
+  },
+  {
+   "id": "infiltration-points-7",
+   "category": "infiltration-points",
+   "name": "Túnel de drenagem",
+   "x": 0.656467,
+   "y": 0.805695,
+   "icon": "assets/cayo/icons/drainage.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/drainage.jpg",
+   "description": "Infiltração pelo túnel de drenagem, com este veículo de aproximação (se tiver):\n- Kosatka"
+  },
+  {
+   "id": "escape-points-1",
+   "category": "escape-points",
+   "name": "Pista de pouso",
+   "x": 0.27851,
+   "y": 0.245006,
+   "icon": "assets/cayo/icons/plane_out.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/airstrip_out.jpg",
+   "description": "Depois de pegar o alvo principal, use um avião da pista de pouso pra fugir da ilha.\nA torre de controle precisa estar desativada antes de decolar.\nDá pra fugir de outro jeito se o plano mudar durante o golpe."
+  },
+  {
+   "id": "escape-points-2",
+   "category": "escape-points",
+   "name": "Doca principal",
+   "x": 0.541167,
+   "y": 0.506086,
+   "icon": "assets/cayo/icons/escape.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/main_docks.jpg",
+   "description": "Depois de pegar o alvo principal, use um barco da doca principal pra fugir da ilha.\nDá pra fugir de outro jeito se o plano mudar durante o golpe."
+  },
+  {
+   "id": "escape-points-3",
+   "category": "escape-points",
+   "name": "Doca norte",
+   "x": 0.726877,
+   "y": 0.321899,
+   "icon": "assets/cayo/icons/escape.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/north_docks.jpg",
+   "description": "Depois de pegar o alvo principal, use um barco da doca norte pra fugir da ilha.\nDá pra fugir de outro jeito se o plano mudar durante o golpe."
+  },
+  {
+   "id": "escape-points-4",
+   "category": "escape-points",
+   "name": "Kosatka",
+   "x": 0.426846,
+   "y": 0.108342,
+   "icon": "assets/cayo/icons/kosatka.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/kosatka.jpg",
+   "description": "Depois de pegar o alvo principal, volte pro Kosatka pra fugir da ilha.\nDá pra fugir de outro jeito se o plano mudar durante o golpe.\nAtenção: pra fugir de Kosatka, ele também precisa ter sido o veículo de aproximação."
+  },
+  {
+   "id": "compound-entry-points-1",
+   "category": "compound-entry-points",
+   "name": "Portão principal",
+   "x": 0.627184,
+   "y": 0.757889,
+   "icon": "assets/cayo/icons/main_gate.png",
+   "screenshot": "assets/cayo/screenshots/compound/main_gate.jpg",
+   "description": "Entre no pátio do complexo do El Rubio destruindo o portão principal, ou sem ser visto usando disfarce."
+  },
+  {
+   "id": "compound-entry-points-2",
+   "category": "compound-entry-points",
+   "name": "Muro norte",
+   "x": 0.648598,
+   "y": 0.744818,
+   "icon": "assets/cayo/icons/wall.png",
+   "screenshot": "assets/cayo/screenshots/compound/north_wall.jpg",
+   "description": "Entre no complexo sem ser visto escalando o muro quebrado.\nAtenção: não dá pra escolher esta entrada no início do golpe. Só funciona se você pegar o equipamento de escalada durante o golpe."
+  },
+  {
+   "id": "compound-entry-points-3",
+   "category": "compound-entry-points",
+   "name": "Portão norte",
+   "x": 0.673858,
+   "y": 0.76673,
+   "icon": "assets/cayo/icons/side_gate.png",
+   "screenshot": "assets/cayo/screenshots/compound/north_gate.jpg",
+   "description": "Entre no complexo sem ser visto abrindo o portão lateral.\nAtenção: não dá pra escolher esta entrada no início do golpe. Só funciona se você pegar o código do portão com um guarda durante o golpe."
+  },
+  {
+   "id": "compound-entry-points-4",
+   "category": "compound-entry-points",
+   "name": "Muro sul",
+   "x": 0.630449,
+   "y": 0.799824,
+   "icon": "assets/cayo/icons/wall.png",
+   "screenshot": "assets/cayo/screenshots/compound/south_wall.jpg",
+   "description": "Entre no complexo sem ser visto escalando o muro quebrado.\nAtenção: não dá pra escolher esta entrada no início do golpe. Só funciona se você pegar o equipamento de escalada durante o golpe."
+  },
+  {
+   "id": "compound-entry-points-5",
+   "category": "compound-entry-points",
+   "name": "Portão sul",
+   "x": 0.617964,
+   "y": 0.791384,
+   "icon": "assets/cayo/icons/side_gate.png",
+   "screenshot": "assets/cayo/screenshots/compound/south_gate.jpg",
+   "description": "Entre no complexo sem ser visto abrindo o portão lateral.\nAtenção: não dá pra escolher esta entrada no início do golpe. Só funciona se você pegar o código do portão com um guarda durante o golpe."
+  },
+  {
+   "id": "compound-entry-points-6",
+   "category": "compound-entry-points",
+   "name": "Túnel de drenagem",
+   "x": 0.656467,
+   "y": 0.805695,
+   "icon": "assets/cayo/icons/drainage.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/drainage.jpg",
+   "description": "Entre no complexo sem ser visto pelo túnel de drenagem submerso."
+  },
+  {
+   "id": "combat-shotgun-1",
+   "category": "combat-shotgun",
+   "x": 0.64525,
+   "y": 0.750402,
+   "icon": "assets/cayo/icons/shotgun.png",
+   "screenshot": "assets/cayo/screenshots/compound/shotgun_1.jpg"
+  },
+  {
+   "id": "combat-shotgun-2",
+   "category": "combat-shotgun",
+   "x": 0.630779,
+   "y": 0.758692,
+   "icon": "assets/cayo/icons/shotgun.png",
+   "screenshot": "assets/cayo/screenshots/compound/shotgun_2.jpg"
+  },
+  {
+   "id": "combat-shotgun-3",
+   "category": "combat-shotgun",
+   "x": 0.652569,
+   "y": 0.766032,
+   "icon": "assets/cayo/icons/shotgun.png",
+   "screenshot": "assets/cayo/screenshots/compound/shotgun_3.jpg"
+  },
+  {
+   "id": "combat-shotgun-4",
+   "category": "combat-shotgun",
+   "x": 0.669476,
+   "y": 0.774475,
+   "icon": "assets/cayo/icons/shotgun.png",
+   "screenshot": "assets/cayo/screenshots/compound/shotgun_4.jpg"
+  },
+  {
+   "id": "combat-shotgun-5",
+   "category": "combat-shotgun",
+   "x": 0.642498,
+   "y": 0.779753,
+   "icon": "assets/cayo/icons/shotgun.png",
+   "screenshot": "assets/cayo/screenshots/compound/shotgun_5.jpg"
+  },
+  {
+   "id": "combat-shotgun-6",
+   "category": "combat-shotgun",
+   "x": 0.659283,
+   "y": 0.786161,
+   "icon": "assets/cayo/icons/shotgun.png",
+   "screenshot": "assets/cayo/screenshots/compound/shotgun_6.jpg"
+  },
+  {
+   "id": "combat-shotgun-7",
+   "category": "combat-shotgun",
+   "x": 0.668194,
+   "y": 0.786957,
+   "icon": "assets/cayo/icons/shotgun.png",
+   "screenshot": "assets/cayo/screenshots/compound/shotgun_7.jpg"
+  },
+  {
+   "id": "combat-shotgun-8",
+   "category": "combat-shotgun",
+   "x": 0.648769,
+   "y": 0.789955,
+   "icon": "assets/cayo/icons/shotgun.png",
+   "screenshot": "assets/cayo/screenshots/compound/shotgun_8.jpg"
+  },
+  {
+   "id": "combat-shotgun-9",
+   "category": "combat-shotgun",
+   "x": 0.643459,
+   "y": 0.80244,
+   "icon": "assets/cayo/icons/shotgun.png",
+   "screenshot": "assets/cayo/screenshots/compound/shotgun_9.jpg"
+  },
+  {
+   "id": "power-station-1",
+   "category": "power-station",
+   "name": "Estação de energia",
+   "x": 0.401937,
+   "y": 0.240047,
+   "icon": "assets/cayo/icons/power.png",
+   "screenshot": "assets/cayo/screenshots/unique/power.jpg",
+   "description": "Desliga as câmeras e todas as luzes da ilha, reduzindo o alcance de visão dos guardas à noite."
+  },
+  {
+   "id": "control-tower-1",
+   "category": "control-tower",
+   "name": "Torre de controle",
+   "x": 0.347057,
+   "y": 0.238192,
+   "icon": "assets/cayo/icons/tower.png",
+   "screenshot": "assets/cayo/screenshots/unique/tower.jpg",
+   "description": "Desativa a defesa aérea da ilha e libera chamar a equipe de apoio contratada pelo Menu de Interação."
+  },
+  {
+   "id": "bikes-1",
+   "category": "bikes",
+   "place": "portão",
+   "x": 0.426838,
+   "y": 0.193713,
+   "icon": "assets/cayo/icons/bike.png",
+   "screenshot": "assets/cayo/screenshots/transportation/bike_gate.jpg"
+  },
+  {
+   "id": "bikes-2",
+   "category": "bikes",
+   "place": "estação de energia",
+   "x": 0.415924,
+   "y": 0.254414,
+   "icon": "assets/cayo/icons/bike.png",
+   "screenshot": "assets/cayo/screenshots/transportation/bike_power_station.jpg"
+  },
+  {
+   "id": "bikes-3",
+   "category": "bikes",
+   "place": "norte",
+   "x": 0.566766,
+   "y": 0.121896,
+   "icon": "assets/cayo/icons/bike.png",
+   "screenshot": "assets/cayo/screenshots/transportation/bike_north.jpg"
+  },
+  {
+   "id": "bikes-4",
+   "category": "bikes",
+   "place": "doca norte",
+   "x": 0.642188,
+   "y": 0.279175,
+   "icon": "assets/cayo/icons/bike.png",
+   "screenshot": "assets/cayo/screenshots/transportation/bike_north_docks.jpg"
+  },
+  {
+   "id": "bikes-5",
+   "category": "bikes",
+   "place": "caixa d'água norte",
+   "x": 0.696519,
+   "y": 0.242551,
+   "icon": "assets/cayo/icons/bike.png",
+   "screenshot": "assets/cayo/screenshots/transportation/bike_north_water_tower.jpg"
+  },
+  {
+   "id": "bikes-6",
+   "category": "bikes",
+   "place": "caixa d'água sul",
+   "x": 0.565083,
+   "y": 0.623308,
+   "icon": "assets/cayo/icons/bike.png",
+   "screenshot": "assets/cayo/screenshots/transportation/bike_south_water_tower.jpg"
+  },
+  {
+   "id": "bikes-7",
+   "category": "bikes",
+   "place": "plantação de maconha",
+   "x": 0.821129,
+   "y": 0.513211,
+   "icon": "assets/cayo/icons/bike.png",
+   "screenshot": "assets/cayo/screenshots/transportation/bike_weed_fields.jpg"
+  },
+  {
+   "id": "bikes-8",
+   "category": "bikes",
+   "place": "depois do posto de controle",
+   "x": 0.757809,
+   "y": 0.474804,
+   "icon": "assets/cayo/icons/bike.png",
+   "screenshot": "assets/cayo/screenshots/transportation/bike_after_checkpoint.jpg"
+  },
+  {
+   "id": "bikes-9",
+   "category": "bikes",
+   "place": "Verus",
+   "x": 0.705364,
+   "y": 0.421849,
+   "icon": "assets/cayo/icons/verus.png",
+   "screenshot": "assets/cayo/screenshots/transportation/bike_verus.jpg"
+  },
+  {
+   "id": "boats-1",
+   "category": "boats",
+   "place": "doca norte",
+   "x": 0.692322,
+   "y": 0.273567,
+   "icon": "assets/cayo/icons/boat.png",
+   "screenshot": "assets/cayo/screenshots/infiltration_escape/north_docks.jpg"
+  },
+  {
+   "id": "boats-2",
+   "category": "boats",
+   "place": "doca principal",
+   "x": 0.596478,
+   "y": 0.499172,
+   "icon": "assets/cayo/icons/boat.png",
+   "screenshot": "assets/cayo/screenshots/transportation/boat_main_docks.jpg"
+  },
+  {
+   "id": "boats-3",
+   "category": "boats",
+   "place": "centro da ilha",
+   "x": 0.681274,
+   "y": 0.508423,
+   "icon": "assets/cayo/icons/boat.png",
+   "screenshot": "assets/cayo/screenshots/transportation/boat_central.jpg"
+  }
+ ]
+}
