@@ -157,3 +157,17 @@ td:last-child, th:last-child { text-align: right; }
 .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; font-size: 12px; color: var(--muted); }
 .legend-item { display: inline-flex; align-items: center; gap: 6px; }
 .legend-item i { font-style: normal; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--loot); color: #111; font-size: 10px; }
+
+.nav-icon { width: 18px; height: 18px; vertical-align: -4px; margin-right: 10px; opacity: .7; }
+nav button.active .nav-icon { opacity: 1; }
+.biz-head { align-items: center; }
+.biz-icon { width: 34px; height: 34px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--biz, #2a2f3a); flex: none; }
+.biz-icon img { width: 20px; height: 20px; }
+.biz-cocaine { --biz: #8a6d3b; }
+.biz-meth { --biz: #2f7f9e; }
+.biz-cash { --biz: #2e8b57; }
+.biz-weed { --biz: #4f8a2e; }
+.biz-documents { --biz: #7a5c99; }
+.biz-bunker { --biz: #6b6f3a; }
+.biz-acid { --biz: #b5476e; }
+.biz-head .status { flex-basis: 100%; }

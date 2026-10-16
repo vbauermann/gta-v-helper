@@ -30,7 +30,7 @@
     const gta = window.gta;
     if (!biz.owned) {
       return h('article', { class: 'card biz not-owned' },
-        h('div', { class: 'biz-head' }, h('h3', null, def.name), h('span', { class: 'tag' }, def.group)),
+        h('div', { class: 'biz-head' }, icon(def), h('h3', null, def.name), h('span', { class: 'tag' }, def.group)),
         h('button', { onclick: () => App.act(gta.setOwned(def.id, true)) }, 'Tenho este negócio'));
     }
     const p = current(def, biz);
@@ -42,6 +42,7 @@
 
     return h('article', { class: `card biz ${tone(p)}`, dataset: { id: def.id } },
       h('div', { class: 'biz-head' },
+        icon(def),
         h('h3', null, def.name),
         h('span', { class: 'tag' }, def.group),
         h('span', { class: 'status', dataset: { live: 'status' } }, statusText(def, p))),
@@ -71,6 +72,10 @@
             h('button', { onclick: () => App.act(gta.setCalibration(def.id, { barMinutes: Number(barInput.value) || null, minutesPerUnit: Number(mpuInput.value) || null })) }, 'Aplicar calibração'),
             h('button', { onclick: () => App.act(gta.setCalibration(def.id, {})) }, 'Voltar ao padrão'),
             h('button', { class: 'danger', onclick: () => App.act(gta.setOwned(def.id, false)) }, 'Não tenho mais')))));
+  }
+
+  function icon(def) {
+    return h('span', { class: `biz-icon biz-${def.id}` }, h('img', { src: `assets/icons/${def.id}.svg`, alt: '' }));
   }
 
   function meter(label, value, max, kind, text) {
