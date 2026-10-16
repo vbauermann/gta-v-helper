@@ -33,10 +33,17 @@ app.whenReady().then(async () => {
   await wait(1200);
   for (const page of ['overview', 'businesses', 'cayo', 'casino', 'payouts', 'settings']) {
     await win.webContents.executeJavaScript(`document.querySelector('[data-page=${page}]').click();
-      ${page === 'cayo' ? "for (const [i,loot] of [[11,0],[12,0],[13,3],[0,1],[3,1],[7,2],[9,1]]) { document.querySelectorAll('.map .spot')[i].click(); [...document.querySelectorAll('.map-menu button')][loot].click(); } document.querySelectorAll('.map .spot')[14].click();" : ''}`);
+      ${page === 'cayo' ? "const rows = document.querySelectorAll('.loot-row'); for (const [r, n] of [[0, 2], [1, 3], [2, 1], [3, 1]]) { const b = rows[r].querySelectorAll('.qty button')[n - 1]; if (!b.classList.contains('active')) b.click(); }" : ''}`);
     await wait(700);
     fs.writeFileSync(path.join(out, `${page}.png`), (await win.webContents.capturePage()).toPNG());
   }
+  // Cayo map tab.
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=cayo]').click();
+    [...document.querySelectorAll('.tabs button')].find(b => b.textContent === 'Mapa').click();`);
+  await wait(900);
+  fs.writeFileSync(path.join(out, 'cayo-mapa.png'), (await win.webContents.capturePage()).toPNG());
+  const found = await win.webContents.executeJavaScript(`JSON.parse(localStorage.getItem('gta-helper.cayo')).found`);
+  if (found.gold !== 2 || found.cocaine !== 3) errors.push(`cayo pilhas: ${JSON.stringify(found)}`);
   // Casino fingerprint tab and the overlay window itself (all four, then one in move mode).
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=casino]').click();
     [...document.querySelectorAll('.tabs button')].find(b => b.textContent === 'Digitais').click();`);
