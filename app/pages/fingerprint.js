@@ -52,6 +52,7 @@
           h('div', { class: 'title' }, 'Alguns atalhos não foram registrados'),
           h('div', { class: 'text' }, `Outro programa já usa: ${o.hotkeysFailed.join(', ')}. Feche esse programa e reabra o GTA Helper.`)))
         : null,
+      autoCard(s, App.state.scanner),
       h('div', { class: 'card pad' },
         h('div', { class: 'card-head' }, h('h3', null, icon('fingerprint', 18), 'As 4 digitais'),
           h('span', { class: 'hint' }, 'Clique numa pra mostrar ela no overlay')),
@@ -81,6 +82,26 @@
             }, recording === a.id ? 'Aperte as teclas…' : o.keys[a.id]),
             h('span', null, a.label)))),
           h('p', { class: 'muted small keys-note' }, 'Clique num atalho e aperte a nova combinação. Use Ctrl, Alt ou Shift com uma letra, número ou tecla do numpad, ou uma tecla F1 a F24 sozinha. Esc cancela.'))));
+  }
+
+  // Automatic marking: the app looks at the screen and borders the 4 right pieces in the game.
+  function autoCard(s, sc) {
+    const on = s.auto !== false;
+    const state = !on ? 'off' : (sc && sc.state) || 'off';
+    const TEXT = {
+      off: on ? 'Liga sozinha quando o GTA estiver aberto.' : 'Desligada. Use o overlay com as imagens de referência.',
+      searching: 'Procurando o hack na tela…',
+      found: 'Peças certas marcadas com borda verde na tela.',
+      error: `Não consegui olhar a tela: ${sc && sc.error}`
+    };
+    return h('div', { class: `card pad fp-auto ${state}` },
+      h('div', { class: 'fp-auto-row' },
+        h('span', { class: 'fp-auto-dot' }),
+        h('div', { class: 'grow' },
+          h('div', { class: 'toggle-label' }, 'Marcar as peças automaticamente'),
+          h('small', null, TEXT[state] || TEXT.off)),
+        h('input', { type: 'checkbox', class: 'switch', checked: on, onchange: e => ov('configure', { auto: e.target.checked }) })),
+      h('p', { class: 'muted small' }, 'Enquanto o GTA está aberto, o app tira um print pequeno da tela 1 vez por segundo, acha a digital grande e põe uma borda verde nas 4 peças certas. Só olha a imagem da tela: não mexe no jogo nem aperta teclas. Funciona em Janela sem bordas.'));
   }
 
   function tile(p, key, active) {

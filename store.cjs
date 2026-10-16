@@ -10,7 +10,7 @@ const DEFAULT_SETTINGS = Object.freeze({
   notify: true,
   closeToTray: true,
   theme: 'dark',
-  overlay: Object.freeze({ print: 'all', size: 'md', opacity: 0.92, hotkeys: true, pos: null, keys: null })
+  overlay: Object.freeze({ print: 'all', size: 'md', opacity: 0.92, hotkeys: true, auto: true, pos: null, keys: null })
 });
 
 function emptyBusiness() {

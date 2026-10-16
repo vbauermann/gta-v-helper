@@ -26,7 +26,7 @@ require('../main.cjs');
 app.whenReady().then(async () => {
   const wait = ms => new Promise(r => setTimeout(r, ms));
   let win;
-  while (!(win = BrowserWindow.getAllWindows()[0])) await wait(100);
+  while (!(win = BrowserWindow.getAllWindows().find(w => w.getTitle() === 'GTA Helper'))) await wait(100);
   await new Promise(r => win.webContents.once('did-finish-load', r));
   const errors = [];
   win.webContents.on('console-message', e => { if (e.level === 'error') errors.push(e.message); });
@@ -37,6 +37,9 @@ app.whenReady().then(async () => {
     await wait(700);
     fs.writeFileSync(path.join(out, `${page}.png`), (await win.webContents.capturePage()).toPNG());
   }
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=cayo]').click(); document.querySelector('.loot-rows').scrollIntoView({ block: 'center' });`);
+  await wait(600);
+  fs.writeFileSync(path.join(out, 'cayo-alvos.png'), (await win.webContents.capturePage()).toPNG());
   // Cayo map tab.
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=cayo]').click();
     [...document.querySelectorAll('.tabs button')].find(b => b.textContent === 'Mapa').click();`);
@@ -77,6 +80,24 @@ app.whenReady().then(async () => {
     [...document.querySelectorAll('.tabs button')].find(b => b.textContent === 'Digitais').click();`);
   await wait(700);
   fs.writeFileSync(path.join(out, 'casino-digitais.png'), (await win.webContents.capturePage()).toPNG());
+  // Scanner: feed hack-1 (right tiles 0, 1, 3 and 4) instead of the real screen. 
+  process.env.GTA_HELPER_FAKE_SCREEN = path.join(__dirname, '../test/fixtures/hack-1.pgm.gz');
+  await wait(2500);
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=casino]').click(); [...document.querySelectorAll('.tabs button')].find(b => b.textContent === 'Digitais').click();`);
+  await wait(800);
+  fs.writeFileSync(path.join(out, 'casino-digitais-auto.png'), (await win.webContents.capturePage()).toPNG());
+  const marker = BrowserWindow.getAllWindows().find(w => w.getTitle() === 'GTA Helper marcador');
+  const scan = await win.webContents.executeJavaScript('App.state.scanner');
+  if (!marker || !marker.isVisible()) errors.push('marcador não apareceu');
+  else {
+    const boxes = await marker.webContents.executeJavaScript(`[...document.querySelectorAll('.box')].map(b => [b.style.left, b.style.top, b.style.width])`);
+    fs.writeFileSync(path.join(out, 'marker-boxes.json'), JSON.stringify({ bounds: marker.getBounds(), boxes, scan }));
+    if (boxes.length !== 4) errors.push(`marcador com ${boxes.length} bordas`);
+  }
+  if (!scan || scan.state !== 'found' || scan.picks.join() !== '0,1,3,4') errors.push(`scanner: ${JSON.stringify(scan)}`);
+  delete process.env.GTA_HELPER_FAKE_SCREEN; // back to "GTA fechado": the marker hides
+  await wait(2500);
+  if (marker && marker.isVisible()) errors.push('marcador não sumiu');
   await win.webContents.executeJavaScript(`window.gta.overlay('show').then(s => App.setState(s, true))`);
   await wait(1200);
   const ovWin = BrowserWindow.getAllWindows().find(w => w.getTitle() === 'GTA Helper overlay');

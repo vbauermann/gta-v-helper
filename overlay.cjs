@@ -73,7 +73,7 @@ function createOverlay({ getSettings, saveSettings, onChange }) {
 
   function state() {
     const s = settings();
-    return { visible, interact, print: s.print, size: s.size, opacity: s.opacity, hotkeys: s.hotkeys, keys: Hotkeys.normalize(s.keys), hotkeysFailed };
+    return { visible, interact, print: s.print, size: s.size, opacity: s.opacity, hotkeys: s.hotkeys, auto: s.auto !== false, keys: Hotkeys.normalize(s.keys), hotkeysFailed };
   }
 
   function push() {
@@ -127,6 +127,7 @@ function createOverlay({ getSettings, saveSettings, onChange }) {
     if (patch.size && TILE[patch.size]) next.size = patch.size;
     if ('opacity' in patch) next.opacity = Math.min(1, Math.max(0.4, Number(patch.opacity) || 1));
     if ('hotkeys' in patch) next.hotkeys = !!patch.hotkeys;
+    if ('auto' in patch) next.auto = !!patch.auto;
     if (patch.resetPosition) next.pos = null;
     if (patch.resetKeys) next.keys = { ...Hotkeys.DEFAULT_KEYS };
     if (patch.key && typeof patch.key === 'object') {

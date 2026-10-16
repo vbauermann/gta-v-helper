@@ -5,6 +5,7 @@ const { createStore } = require('./store.cjs');
 const { advance } = require('./timers.cjs');
 const { createGameWatcher } = require('./game-watcher.cjs');
 const { createOverlay } = require('./overlay.cjs');
+const { createScanner } = require('./fp-scanner.cjs');
 
 const TICK_MS = 5000;
 // Window controls drawn by Windows over the 44px title bar, matching Nexo's colours per theme.
@@ -28,6 +29,7 @@ let quitting = false;
 let store;
 let watcher;
 let overlay = null;
+let scanner = null;
 let lastTick = Date.now();
 let dirty = false;
 
@@ -45,7 +47,8 @@ function snapshot() {
     counting: isCounting(),
     gameRunning: watcher.isRunning(),
     detectionSupported: watcher.supported,
-    overlay: overlay ? overlay.state() : null
+    overlay: overlay ? overlay.state() : null,
+    scanner: scanner ? scanner.state() : null
   };
 }
 
@@ -255,6 +258,11 @@ if (!app.requestSingleInstanceLock()) {
       onChange: broadcast
     });
     overlay.registerHotkeys();
+    scanner = createScanner({
+      isEnabled: () => store.get().settings.overlay.auto !== false && (watcher.isRunning() || !!process.env.GTA_HELPER_FAKE_SCREEN),
+      onChange: broadcast
+    });
+    scanner.start();
     registerIpc();
     createTray();
     createWindow();
@@ -262,6 +270,6 @@ if (!app.requestSingleInstanceLock()) {
     setInterval(tick, TICK_MS);
     setInterval(persist, 30000);
   });
-  app.on('before-quit', () => { quitting = true; tick(); dirty = true; persist(); if (overlay) overlay.destroy(); });
+  app.on('before-quit', () => { quitting = true; tick(); dirty = true; persist(); if (overlay) overlay.destroy(); if (scanner) scanner.destroy(); });
   app.on('window-all-closed', () => { if (!tray) app.quit(); });
 }

@@ -236,14 +236,14 @@ td:last-child, th:last-child { text-align: right; }
 /* ---------- Cayo: secondary loot ---------- */
 .cat-icon.loot { color: var(--loot); background: color-mix(in srgb, var(--loot) 16%, transparent); }
 :root[data-theme='light'] .loot-cocaine { --loot: #7b8299; }
-.loot-table .cat-icon { width: 26px; height: 26px; border-radius: 7px; }
-.loot-table .cat-icon svg { width: 15px; height: 15px; }
-.loot-rows { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
-.loot-row { display: flex; align-items: center; gap: 12px; }
-.loot-name { width: 82px; font-size: 13.5px; font-weight: 550; }
+.loot-rows { display: flex; flex-direction: column; gap: 14px; }
+.loot-row { display: flex; align-items: flex-start; gap: 12px; }
+.loot-row > .cat-icon { margin-top: 1px; }
+.loot-main { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; min-width: 0; }
+.loot-hint { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .segmented.qty button { width: 30px; padding: 0; justify-content: center; font-variant-numeric: tabular-nums; }
-.loot-table td:last-child { text-align: left; }
-.loot-table th:last-child { text-align: left; }
+.segmented.qty button.on { background: color-mix(in srgb, var(--loot) 22%, transparent); color: var(--text); }
+.segmented.qty button.on.active { background: color-mix(in srgb, var(--loot) 42%, transparent); }
 .left-col { display: flex; flex-direction: column; gap: 16px; }
 
 /* ---------- Cayo: informative map (cayoperico.online) ---------- */
@@ -302,3 +302,12 @@ td:last-child, th:last-child { text-align: right; }
 .filter-row .count.complete { color: var(--ok); font-weight: 650; }
 .filters-notes { margin-top: 8px; font-size: 12px; color: var(--muted); line-height: 1.5; }
 @media (max-width: 1100px) { .map-layout { grid-template-columns: 1fr; } }
+
+/* ---------- fingerprint auto marking ---------- */
+.fp-auto { display: flex; flex-direction: column; gap: 8px; }
+.fp-auto-row { display: flex; align-items: center; gap: 12px; }
+.fp-auto-row small { color: var(--muted); font-size: 12.5px; }
+.fp-auto-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--faint); flex: none; }
+.fp-auto.searching .fp-auto-dot { background: var(--warn); }
+.fp-auto.found .fp-auto-dot { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+.fp-auto.error .fp-auto-dot { background: var(--danger); }

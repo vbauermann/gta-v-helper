@@ -27,17 +27,20 @@
     renderResults();
   }
 
-  // Quantity of stacks found in the scout: a 1-10 group; clicking the selected value clears it.
+  // Quantity of stacks found in the scout: a 1-10 slider; clicking the current value clears it.
   function qtyPicker(id) {
     const box = h('div', { class: 'segmented qty' });
-    const draw = () => box.replaceChildren(...Array.from({ length: 10 }, (_, i) => i + 1).map(n => h('button', {
-      type: 'button', class: (form.found[id] || 0) === n ? 'active' : '',
-      onclick: () => {
-        form.found[id] = (form.found[id] || 0) === n ? 0 : n;
-        draw();
-        update({});
-      }
-    }, String(n))));
+    const draw = () => {
+      const v = form.found[id] || 0;
+      box.replaceChildren(...Array.from({ length: 10 }, (_, i) => i + 1).map(n => h('button', {
+        type: 'button', class: `${n <= v ? 'on' : ''}${n === v ? ' active' : ''}`,
+        onclick: () => {
+          form.found[id] = (form.found[id] || 0) === n ? 0 : n;
+          draw();
+          update({});
+        }
+      }, String(n))));
+    };
     draw();
     return box;
   }
@@ -72,17 +75,13 @@
             cutsBox),
           h('div', { class: 'card pad' },
             head('bag', 'Alvos secundários', h('span', { class: 'hint' }, 'pilhas encontradas no scout')),
-            h('div', { class: 'loot-rows' }, data.secondaries.map(s => h('div', { class: 'loot-row' },
+            h('div', { class: 'loot-rows' }, data.secondaries.map(s => h('div', { class: `loot-row loot-${s.id}`, title: s.name },
               lootIcon(s.id),
-              h('span', { class: 'loot-name' }, s.name),
-              qtyPicker(s.id)))),
-            h('table', { class: 'loot-table' },
-              h('thead', null, h('tr', null, ['Alvo', 'Valor por pilha', 'Ocupa da bolsa', 'Observação'].map(t => h('th', null, t)))),
-              h('tbody', null, data.secondaries.map(s => h('tr', null,
-                h('td', null, h('span', { class: 'flex gap-8' }, lootIcon(s.id), s.name)),
-                h('td', null, money(s.stackValue)),
-                h('td', null, `${number(s.bagPct)}%`),
-                h('td', { class: 'muted' }, s.needsTwo ? 'Precisa de 2 jogadores' : s.divisible ? 'Dá pra pegar parcial' : 'Inteira ou nada'))))))),
+              h('div', { class: 'loot-main' },
+                qtyPicker(s.id),
+                h('div', { class: 'loot-hint' },
+                  `Valor por pilha: ${money(s.stackValue)} | Ocupa da bolsa: ${number(s.bagPct)}%`,
+                  s.needsTwo ? ' | 2 jogadores' : !s.divisible ? ' | Inteira ou nada' : ''))))))),
         results));
     renderResults();
   }
