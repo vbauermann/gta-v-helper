@@ -66,7 +66,7 @@
         countdown),
       old ? h('div', { class: 'banner warn' }, icon('alert', 20), h('div', { class: 'grow' },
         h('div', { class: 'title' }, 'Já começou outra semana'),
-        h('div', { class: 'text' }, 'Estes bônus são da semana passada. A lista nova chega com a próxima versão do app.'))) : null,
+        h('div', { class: 'text' }, 'Estes bônus são da semana passada. O app busca a lista nova sozinho assim que ela for publicada.'))) : null,
       h('div', { class: 'grid wk-top' },
         tile('star', '', `Maior bônus · ${top.mult}`, top.items.map(i => i.name).join(', ')),
         tile('casino', 'podium', 'Carro do pódio', w.vehicles.podium.name),

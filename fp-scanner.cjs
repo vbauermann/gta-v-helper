@@ -135,7 +135,9 @@ function createScanner({ isAuto, isActive, onChange }) {
 
   function analyze(img) {
     if (!worker) {
-      worker = new Worker(path.join(__dirname, 'lib/fp-worker.cjs'));
+      // Workers can't load from inside app.asar; the installer ships lib/ unpacked next to it.
+      const file = path.join(__dirname, 'lib/fp-worker.cjs').replace(`app.asar${path.sep}`, `app.asar.unpacked${path.sep}`);
+      worker = new Worker(file);
       worker.unref();
     }
     return new Promise((resolve, reject) => {

@@ -383,3 +383,14 @@ td:last-child, th:last-child { text-align: right; }
 .todo-chip { display: inline-flex; align-items: center; gap: 5px; }
 .todo-chip.boost { color: var(--ok); border-color: var(--ok-line); background: var(--ok-soft); }
 .todo-hour .input { width: auto; min-width: 170px; }
+
+/* Update ready (sidebar) */
+.update-card {
+  margin-top: auto; margin-bottom: 10px; padding: 12px; border-radius: 12px;
+  border: 1px solid var(--accent-line); background: var(--accent-soft);
+  display: flex; flex-direction: column; gap: 10px; font-size: 13px; font-weight: 600;
+}
+.update-card[hidden] { display: none; }
+.update-card .row { display: flex; align-items: center; gap: 8px; color: var(--accent); }
+.update-card .btn { width: 100%; justify-content: center; }
+.update-card:not([hidden]) + .watch-card { margin-top: 0; }

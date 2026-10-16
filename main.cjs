@@ -7,6 +7,8 @@ const { createGameWatcher } = require('./game-watcher.cjs');
 const { createOverlay } = require('./overlay.cjs');
 const { createScanner } = require('./fp-scanner.cjs');
 const todos = require('./lib/todos.js');
+const { createUpdater } = require('./updater.cjs');
+const { createWeeklyFeed } = require('./weekly-feed.cjs');
 
 const TICK_MS = 5000;
 // Window controls drawn by Windows over the 44px title bar, matching Nexo's colours per theme.
@@ -22,7 +24,7 @@ app.setAppUserModelId('local.gtahelper');
 const catalog = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/businesses.json'), 'utf8'));
 const heists = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/heists.json'), 'utf8'));
 heists.cayo.map = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/cayo-map.json'), 'utf8'));
-const weekly = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/weekly.json'), 'utf8'));
+const bundledWeekly = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/weekly.json'), 'utf8'));
 const dataFile = process.env.GTA_HELPER_DATA || path.join(app.getPath('userData'), 'gta-helper.json');
 
 let mainWindow = null;
@@ -32,6 +34,10 @@ let store;
 let watcher;
 let overlay = null;
 let scanner = null;
+let updater = null;
+let weeklyFeed = null;
+// Only the main process may go online, and only to GitHub (app updates and the weekly bonuses).
+const ONLINE_HOSTS = new Set(['github.com', 'api.github.com', 'objects.githubusercontent.com', 'release-assets.githubusercontent.com', 'raw.githubusercontent.com']);
 let lastTick = Date.now();
 let dirty = false;
 
@@ -50,7 +56,8 @@ function snapshot() {
     gameRunning: watcher.isRunning(),
     detectionSupported: watcher.supported,
     overlay: overlay ? overlay.state() : null,
-    scanner: scanner ? scanner.state() : null
+    scanner: scanner ? scanner.state() : null,
+    updater: updater ? updater.state() : null
   };
 }
 
@@ -102,7 +109,7 @@ const num = (v, lo, hi) => {
   return Math.min(hi, Math.max(lo, n));
 };
 
-const todoOpts = s => ({ dailyHour: s.todos.dailyHour, weekly: todos.weeklyAnchor(weekly.resetUtc) });
+const todoOpts = s => ({ dailyHour: s.todos.dailyHour, weekly: todos.weeklyAnchor(weeklyFeed.get().resetUtc) });
 
 function business(id) {
   const def = catalog.businesses.find(b => b.id === id);
@@ -111,7 +118,7 @@ function business(id) {
 }
 
 function registerIpc() {
-  ipcMain.handle('gta:data', () => ({ catalog, heists, weekly }));
+  ipcMain.handle('gta:data', () => ({ catalog, heists, weekly: weeklyFeed.get() }));
   ipcMain.handle('gta:state', () => snapshot());
 
   ipcMain.handle('gta:set-owned', (_e, id, owned) => mutate(s => {
@@ -210,6 +217,13 @@ function registerIpc() {
     } else throw new TypeError('ação desconhecida');
   }));
 
+  ipcMain.handle('gta:update', (_e, action) => {
+    if (action === 'check') updater.check();
+    else if (action === 'install') updater.install();
+    else throw new TypeError('ação desconhecida');
+    return snapshot();
+  });
+
   ipcMain.handle('gta:cayo-cooldown', (_e, minutes) => mutate(s => {
     s.cayoCooldownEndsAt = minutes ? Date.now() + num(minutes, 1, 24 * 60) * 60000 : null;
   }));
@@ -273,10 +287,21 @@ if (!app.requestSingleInstanceLock()) {
     session.defaultSession.setPermissionRequestHandler((_c, _p, callback) => callback(false));
     session.defaultSession.setPermissionCheckHandler(() => false);
     session.defaultSession.webRequest.onBeforeRequest((details, callback) => {
-      callback({ cancel: !details.url.startsWith('file:') && !details.url.startsWith('devtools:') });
+      const url = details.url;
+      if (url.startsWith('file:') || url.startsWith('devtools:')) return callback({ cancel: false });
+      // Pages never go online; main-process requests (no webContents) may reach GitHub over HTTPS.
+      let host = '';
+      try { const u = new URL(url); if (u.protocol === 'https:') host = u.hostname; } catch { /* invalid URL */ }
+      callback({ cancel: details.webContentsId != null || !ONLINE_HOSTS.has(host) });
     });
     Menu.setApplicationMenu(null);
     store = createStore(dataFile, catalog);
+    weeklyFeed = createWeeklyFeed({
+      bundled: bundledWeekly,
+      cacheFile: path.join(path.dirname(dataFile), 'weekly-cache.json'),
+      onChange: w => { if (mainWindow && !mainWindow.isDestroyed()) mainWindow.webContents.send('gta:weekly', w); }
+    });
+    updater = createUpdater({ onChange: broadcast, beforeInstall: () => { quitting = true; } });
     watcher = createGameWatcher({ onChange: () => tick() });
     watcher.start();
     overlay = createOverlay({
@@ -295,6 +320,8 @@ if (!app.requestSingleInstanceLock()) {
     registerIpc();
     createTray();
     createWindow();
+    if (!process.env.GTA_HELPER_DATA) weeklyFeed.start();
+    updater.start();
     lastTick = Date.now();
     setInterval(tick, TICK_MS);
     setInterval(persist, 30000);

@@ -89,8 +89,23 @@
     document.querySelector('[data-page=businesses] .badge').textContent = attention ? String(attention) : '';
     const open = App.pages.todos.pending(s);
     document.querySelector('[data-page=todos] .badge').textContent = open ? String(open) : '';
+    renderUpdate(s.updater);
     const cd = s.cayoCooldownEndsAt;
     document.querySelector('[data-page=cayo] .badge').textContent = cd && cd > Date.now() ? P.formatMinutes((cd - Date.now()) / 60000) : '';
+  }
+
+  // Sidebar card once a new version has been downloaded.
+  let updateShown = '';
+  function renderUpdate(u) {
+    const box = document.getElementById('update');
+    const key = u && u.state === 'ready' ? u.version : '';
+    if (key === updateShown) return;
+    updateShown = key;
+    box.hidden = !key;
+    if (!key) return box.replaceChildren();
+    box.replaceChildren(
+      h('div', { class: 'row' }, icon('star', 15), `Versão ${u.version} pronta`),
+      h('button', { class: 'btn primary', type: 'button', onclick: () => App.act(window.gta.update('install')) }, 'Reiniciar e atualizar'));
   }
 
   function navigate(page) {
@@ -123,6 +138,11 @@
     App.data = await window.gta.data();
     App.setState(await window.gta.state());
     window.gta.onState(state => App.setState(state));
+    // A new week arrived from GitHub: redraw the pages that show it.
+    window.gta.onWeekly(weekly => {
+      App.data.weekly = weekly;
+      if (App.page === 'weekly' || App.page === 'todos') navigate(App.page);
+    });
     navigate('overview');
     setInterval(tick, 1000);
   }

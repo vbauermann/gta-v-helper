@@ -1,7 +1,7 @@
 {
   "name": "gta-helper",
   "productName": "GTA Helper",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "private": true,
   "description": "Auxiliar de GTA Online: timers de negócios e calculadoras de golpes",
   "main": "main.cjs",
@@ -9,12 +9,79 @@
     "start": "electron .",
     "test": "node --test test/*.test.cjs",
     "capture": "electron tools/capture.cjs",
-    "package": "node package.cjs"
+    "package": "node package.cjs",
+    "dist": "electron-builder --win nsis --x64"
   },
   "devDependencies": {
     "electron": "44.4.3",
+    "electron-builder": "26.15.3",
     "extract-zip": "^2.0.1",
     "pe-library": "^1.0.1",
     "resedit": "^2.0.3"
+  },
+  "dependencies": {
+    "electron-updater": "6.8.9"
+  },
+  "author": "vbauermann",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vbauermann/gta-v-helper.git"
+  },
+  "build": {
+    "appId": "local.gtahelper",
+    "productName": "GTA Helper",
+    "copyright": "vbauermann",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.cjs",
+      "preload*.cjs",
+      "overlay.cjs",
+      "fp-scanner.cjs",
+      "store.cjs",
+      "timers.cjs",
+      "game-watcher.cjs",
+      "updater.cjs",
+      "weekly-feed.cjs",
+      "app/**",
+      "lib/**",
+      "data/**",
+      "assets/**",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "artifactName": "GTA-Helper-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "GTA Helper",
+      "deleteAppDataOnUninstall": false,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "vbauermann",
+        "repo": "gta-v-helper",
+        "releaseType": "release"
+      }
+    ],
+    "asarUnpack": [
+      "lib/**"
+    ]
   }
 }

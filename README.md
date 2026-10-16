@@ -4,6 +4,12 @@ App desktop (Electron) de apoio ao GTA Online: timers de ressuprimento dos negó
 
 O app nunca lê nem escreve na memória do jogo, não injeta nada e não envia teclas. Para saber se o GTA está aberto ele só consulta a lista de processos do Windows (`tasklist`).
 
+## Instalar
+
+Baixe o `GTA-Helper-Setup-x.y.z.exe` da última versão em [Releases](https://github.com/vbauermann/gta-v-helper/releases/latest) e execute. Como o instalador não tem assinatura digital, o Windows pode mostrar "O Windows protegeu o computador": clique em **Mais informações** e depois em **Executar assim mesmo**.
+
+Depois de instalado, o app procura versões novas sozinho e avisa quando uma estiver pronta. Os bônus da semana vêm de [data/weekly.json](data/weekly.json) neste repositório, então chegam sem precisar de versão nova. Fora isso, o app só acessa o GitHub; as telas não têm acesso à internet.
+
 ## O que tem
 
 - **Negócios:** marque o que você tem e os upgrades (Cocaína, Meth, Dinheiro, Maconha, Documentos, Bunker, Acid Lab). Ao ressuprir ou vender no jogo, aperte o botão correspondente.
@@ -57,3 +63,11 @@ O script baixa o runtime do Electron para Windows na mesma versão do `package.j
 - Duração da barra de suprimentos: estimada a partir de [drifted.com](https://www.drifted.com/gta-online-bunker-guide/) (Bunker 1h40 sem upgrades, 2h20 com tudo) e de [gtaboss.gg](https://www.gtaboss.gg/gta-5-online/guides/everything-you-need-to-know-about-the-cocaine-lockup-in-gta-v-online) (2,5 barras para encher a Cocaína). Precisa ser confirmada no jogo.
 - Cayo Perico pós Title Update 1.73: [gtaboom.com](https://www.gtaboom.com/cayo-perico-heist-payout-list-cooldowns-bonus-payouts-and-all-targets-035d) e [timesaver.gg](https://timesaver.gg/blog/gta-online-cayo-perico-loot-values-2026).
 - Golpes: tabela GTASeriesVideos da atualização de economia.
+
+## Publicar uma versão
+
+1. Suba `version` em `package.json` e faça o commit.
+2. Crie e envie a tag: `git tag v1.2.3 && git push origin v1.2.3`.
+3. O workflow [Release](.github/workflows/release.yml) roda os testes no Windows, gera o instalador e publica o release. Os apps instalados atualizam a partir dele.
+
+Bônus da semana novos: basta editar `data/weekly.json` na `main`. Os apps buscam o arquivo ao abrir e a cada 3 horas.
