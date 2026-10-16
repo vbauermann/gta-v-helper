@@ -9,6 +9,7 @@ contextBridge.exposeInMainWorld('gta', Object.freeze({
   setStock: (id, units) => ipcRenderer.invoke('gta:set-stock', id, units),
   setCalibration: (id, cal) => ipcRenderer.invoke('gta:set-calibration', id, cal),
   setSettings: patch => ipcRenderer.invoke('gta:set-settings', patch),
+  todo: (action, value) => ipcRenderer.invoke('gta:todo', action, value),
   cayoCooldown: minutes => ipcRenderer.invoke('gta:cayo-cooldown', minutes),
   overlay: (action, value) => ipcRenderer.invoke('gta:overlay', action, value),
   onState: callback => {

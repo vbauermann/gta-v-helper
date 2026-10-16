@@ -4,77 +4,226 @@
   "resetUtc": "2026-10-22T10:00:00Z",
   "theme": "Halloween",
   "sources": [
-    { "name": "Rockstar Newswire", "url": "https://www.rockstargames.com/newswire" },
-    { "name": "Power Up Gaming", "url": "https://powerupgaming.co.uk/2026/10/14/gta-online-weekly-update-october-15-21/" },
-    { "name": "GTA Boss", "url": "https://www.gtaboss.gg/gta-5-online/gta-online-weekly-updates" }
+    {
+      "name": "Rockstar Newswire",
+      "url": "https://www.rockstargames.com/newswire"
+    },
+    {
+      "name": "Power Up Gaming",
+      "url": "https://powerupgaming.co.uk/2026/10/14/gta-online-weekly-update-october-15-21/"
+    },
+    {
+      "name": "GTA Boss",
+      "url": "https://www.gtaboss.gg/gta-5-online/gta-online-weekly-updates"
+    }
   ],
   "bonuses": [
-    { "mult": "4x", "items": [
-      { "name": "Jack O' Lanterns", "note": "GTA$ e RP. Com GTA+ também 4x" }
-    ] },
-    { "mult": "3x", "items": [
-      { "name": "Survivals de Halloween", "note": "Alien, Cayo Perico e Ludendorff Cemetery. Com GTA+: 6x" },
-      { "name": "Halloween Featured Series: Slasher", "note": "Inclui Slasher & Ramius" },
-      { "name": "Community Race Series" },
-      { "name": "Hotring Races" },
-      { "name": "Random Transform Races" }
-    ] },
-    { "mult": "2x", "items": [
-      { "name": "Bail Office", "note": "Alvos comuns e Most Wanted" },
-      { "name": "Dispatch Work" },
-      { "name": "UFO Business Battles" },
-      { "name": "Ghosts Exposed", "note": "Com GTA+: 4x" }
-    ] }
+    {
+      "mult": "4x",
+      "items": [
+        {
+          "name": "Jack O' Lanterns",
+          "note": "GTA$ e RP. Com GTA+ também 4x"
+        }
+      ]
+    },
+    {
+      "mult": "3x",
+      "items": [
+        {
+          "name": "Survivals de Halloween",
+          "note": "Alien, Cayo Perico e Ludendorff Cemetery. Com GTA+: 6x"
+        },
+        {
+          "name": "Halloween Featured Series: Slasher",
+          "note": "Inclui Slasher & Ramius"
+        },
+        {
+          "name": "Community Race Series"
+        },
+        {
+          "name": "Hotring Races"
+        },
+        {
+          "name": "Random Transform Races"
+        }
+      ]
+    },
+    {
+      "mult": "2x",
+      "items": [
+        {
+          "name": "Bail Office",
+          "note": "Alvos comuns e Most Wanted"
+        },
+        {
+          "name": "Dispatch Work"
+        },
+        {
+          "name": "UFO Business Battles"
+        },
+        {
+          "name": "Ghosts Exposed",
+          "note": "Com GTA+: 4x"
+        }
+      ]
+    }
   ],
   "rewards": [
-    { "name": "GTA$ 500.000", "note": "Complete Don't F*** With Dre até 21/10" },
-    { "name": "Desafio semanal: vencer 3 corridas", "note": "GTA$ 100.000 e o Orange Glow Skeletal Onesie" },
-    { "name": "GTA$ 2.000.000", "note": "Complete todos os desafios semanais até 04/11" },
-    { "name": "Camiseta Butchery and Other Hobbies", "note": "Grátis jogando até 21/10" }
+    {
+      "name": "GTA$ 500.000",
+      "note": "Complete Don't F*** With Dre até 21/10"
+    },
+    {
+      "name": "Desafio semanal: vencer 3 corridas",
+      "note": "GTA$ 100.000 e o Orange Glow Skeletal Onesie"
+    },
+    {
+      "name": "GTA$ 2.000.000",
+      "note": "Complete todos os desafios semanais até 04/11"
+    },
+    {
+      "name": "Camiseta Butchery and Other Hobbies",
+      "note": "Grátis jogando até 21/10"
+    }
   ],
   "rotations": [
-    { "label": "FIB Priority File", "value": "The Brute Force File" },
-    { "label": "Kortz Center Heist (alvos)", "value": "Twindifference, Teckels e A Cast of Characters" },
-    { "label": "Salvage Yard (roubos)", "value": "Grotti Itali RSX, Albany Fränken Stange e BF Weevil" }
+    {
+      "label": "FIB Priority File",
+      "value": "The Brute Force File"
+    },
+    {
+      "label": "Kortz Center Heist (alvos)",
+      "value": "Twindifference, Teckels e A Cast of Characters"
+    },
+    {
+      "label": "Salvage Yard (roubos)",
+      "value": "Grotti Itali RSX, Albany Fränken Stange e BF Weevil"
+    }
   ],
   "discounts": [
-    { "pct": 40, "items": [
-      { "name": "Agency", "note": "Inclui os upgrades Imani Tech", "kind": "property" },
-      { "name": "Albany Brigham", "price": 1499000, "sale": 899400 },
-      { "name": "Albany Fränken Stange", "price": 550000, "sale": 330000 },
-      { "name": "Albany Lurcher", "price": 650000, "sale": 390000 },
-      { "name": "Declasse Tornado Rat Rod", "price": 378000, "sale": 226800 },
-      { "name": "LCC Sanctus", "price": 1995000, "sale": 1197000 }
-    ] },
-    { "pct": 30, "items": [
-      { "name": "Annis Hardy" },
-      { "name": "BF Raptor" },
-      { "name": "Buckingham Miljet" },
-      { "name": "Buckingham Tug" },
-      { "name": "Dinka Sugoi" },
-      { "name": "Karin Calico GTF" },
-      { "name": "Nagasaki Weaponized Dinghy" },
-      { "name": "Vapid Winky" },
-      { "name": "Western Company Annihilator" }
-    ] }
+    {
+      "pct": 40,
+      "items": [
+        {
+          "name": "Agency",
+          "note": "Inclui os upgrades Imani Tech",
+          "kind": "property"
+        },
+        {
+          "name": "Albany Brigham",
+          "price": 1499000,
+          "sale": 899400
+        },
+        {
+          "name": "Albany Fränken Stange",
+          "price": 550000,
+          "sale": 330000
+        },
+        {
+          "name": "Albany Lurcher",
+          "price": 650000,
+          "sale": 390000
+        },
+        {
+          "name": "Declasse Tornado Rat Rod",
+          "price": 378000,
+          "sale": 226800
+        },
+        {
+          "name": "LCC Sanctus",
+          "price": 1995000,
+          "sale": 1197000
+        }
+      ]
+    },
+    {
+      "pct": 30,
+      "items": [
+        {
+          "name": "Annis Hardy"
+        },
+        {
+          "name": "BF Raptor"
+        },
+        {
+          "name": "Buckingham Miljet"
+        },
+        {
+          "name": "Buckingham Tug"
+        },
+        {
+          "name": "Dinka Sugoi"
+        },
+        {
+          "name": "Karin Calico GTF"
+        },
+        {
+          "name": "Nagasaki Weaponized Dinghy"
+        },
+        {
+          "name": "Vapid Winky"
+        },
+        {
+          "name": "Western Company Annihilator"
+        }
+      ]
+    }
   ],
   "vehicles": {
-    "podium": { "name": "Grotti LSCM Cheetah Classic", "price": 1952500, "note": "Roda da sorte do Diamond Casino" },
-    "prize": { "name": "Dinka Kanjo SJ", "note": "Top 5 na LS Car Meet Series" },
+    "podium": {
+      "name": "Grotti LSCM Cheetah Classic",
+      "price": 1952500,
+      "note": "Roda da sorte do Diamond Casino"
+    },
+    "prize": {
+      "name": "Dinka Kanjo SJ",
+      "note": "Top 5 na LS Car Meet Series"
+    },
     "testRides": [
-      { "name": "Maibatsu MonstroCiti", "price": 1485000, "note": "Premium Test Ride do Hao (HSW: GTA$ 2.594.000)" },
-      { "name": "Declasse Vamos", "price": 596000, "note": "Test ride do LS Car Meet" },
-      { "name": "Dewbauchee Seven-70", "price": 695000, "note": "Test ride do LS Car Meet" },
-      { "name": "Ocelot Locust", "price": 978000, "note": "Test ride do LS Car Meet" }
+      {
+        "name": "Maibatsu MonstroCiti",
+        "price": 1485000,
+        "note": "Premium Test Ride do Hao (HSW: GTA$ 2.594.000)"
+      },
+      {
+        "name": "Declasse Vamos",
+        "price": 596000,
+        "note": "Test ride do LS Car Meet"
+      },
+      {
+        "name": "Dewbauchee Seven-70",
+        "price": 695000,
+        "note": "Test ride do LS Car Meet"
+      },
+      {
+        "name": "Ocelot Locust",
+        "price": 978000,
+        "note": "Test ride do LS Car Meet"
+      }
     ],
     "showroom": [
-      { "name": "Dewbauchee Rapid GT X", "price": 2705500, "note": "Luxury Autos" },
-      { "name": "Übermacht Sentinel XS4", "price": 1429000, "note": "Luxury Autos" }
+      {
+        "name": "Dewbauchee Rapid GT X",
+        "price": 2705500,
+        "note": "Luxury Autos"
+      },
+      {
+        "name": "Übermacht Sentinel XS4",
+        "price": 1429000,
+        "note": "Luxury Autos"
+      }
     ]
   },
   "gunVan": [
-    { "name": "Service Carbine", "note": "30% off" },
-    { "name": "Unholy Hellbringer, Up-n-Atomizer e Widowmaker", "note": "50% off só com GTA+" }
+    {
+      "name": "Service Carbine",
+      "note": "30% off"
+    },
+    {
+      "name": "Unholy Hellbringer, Up-n-Atomizer e Widowmaker",
+      "note": "50% off só com GTA+"
+    }
   ],
   "gtaPlus": {
     "until": "2026-11-04",
@@ -83,6 +232,29 @@
       "Grátis: MTL Brickade 6×6, Pegassi Oppressor, pintura Red/Orange Flip, roupas Ride or Die, Skeleton Bodysuit e Mummy Costume",
       "Suprimentos grátis no Acid Lab",
       "Armas alienígenas com 50% off"
+    ]
+  },
+  "todo": {
+    "boosts": {
+      "dre": "Bônus: GTA$ 500.000 por completar Don't F*** With Dre até 21/10",
+      "weekly-challenge": "Vencer 3 corridas: GTA$ 100.000 e o Orange Glow Skeletal Onesie"
+    },
+    "extra": [
+      {
+        "key": "wk-jack",
+        "title": "Jack O' Lanterns",
+        "note": "4x GTA$ e RP só nesta semana"
+      },
+      {
+        "key": "wk-survival",
+        "title": "Survivals de Halloween",
+        "note": "3x GTA$ e RP só nesta semana"
+      },
+      {
+        "key": "wk-all-challenges",
+        "title": "Todos os desafios semanais",
+        "note": "GTA$ 2.000.000 até 04/11"
+      }
     ]
   }
 }

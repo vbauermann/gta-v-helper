@@ -31,12 +31,31 @@ app.whenReady().then(async () => {
   const errors = [];
   win.webContents.on('console-message', e => { if (e.level === 'error') errors.push(e.message); });
   await wait(1200);
-  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'payouts', 'weekly', 'settings']) {
+  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'payouts', 'weekly', 'todos', 'settings']) {
     await win.webContents.executeJavaScript(`document.querySelector('[data-page=${page}]').click();
       ${page === 'cayo' ? "const rows = document.querySelectorAll('.loot-row'); for (const [r, n] of [[0, 2], [1, 3], [2, 1], [3, 1]]) { const b = rows[r].querySelectorAll('.qty button')[n - 1]; if (!b.classList.contains('active')) b.click(); }" : ''}`);
     await wait(700);
     fs.writeFileSync(path.join(out, `${page}.png`), (await win.webContents.capturePage()).toPNG());
   }
+  // Tasks: check two, add a custom one and a week-only suggestion.
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=todos]').click();`);
+  await wait(400);
+  await win.webContents.executeJavaScript(`(async () => {
+    await window.gta.todo('toggle', 'supply-acid');
+    await window.gta.todo('toggle', 'dre');
+    const input = document.querySelector('.todo-card .todo-add input');
+    input.value = 'Vender o estoque do bunker';
+    input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+    await new Promise(r => setTimeout(r, 300));
+    document.querySelector('.todo-chip.boost').click();
+  })()`);
+  await wait(900);
+  fs.writeFileSync(path.join(out, 'todos-marcadas.png'), (await win.webContents.capturePage()).toPNG());
+  const todoCheck = await win.webContents.executeJavaScript(`({
+    rows: document.querySelectorAll('.todo-row').length, done: document.querySelectorAll('.todo-row.done').length,
+    badge: document.querySelector('[data-page=todos] .badge').textContent, boost: document.querySelectorAll('.todo-title .pill.ok').length })`);
+  if (todoCheck.rows !== 12 || todoCheck.done !== 2 || todoCheck.badge !== '10' || todoCheck.boost < 1) errors.push(`tarefas: ${JSON.stringify(todoCheck)}`);
+  console.log('tarefas', JSON.stringify(todoCheck));
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=cayo]').click(); document.querySelector('.loot-rows').scrollIntoView({ block: 'center' });`);
   await wait(600);
   fs.writeFileSync(path.join(out, 'cayo-alvos.png'), (await win.webContents.capturePage()).toPNG());

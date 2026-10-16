@@ -2,6 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { project } = require('./lib/production.js');
+const todos = require('./lib/todos.js');
 
 const DEFAULT_SETTINGS = Object.freeze({
   detection: 'auto', // 'auto': counts only while GTA is open; 'always': counts whenever the app is open
@@ -51,8 +52,18 @@ function createStore(file, catalog) {
         overlay: { ...DEFAULT_SETTINGS.overlay, ...(raw.settings && raw.settings.overlay) }
       },
       businesses,
-      cayoCooldownEndsAt: typeof raw.cayoCooldownEndsAt === 'number' ? raw.cayoCooldownEndsAt : null
+      cayoCooldownEndsAt: typeof raw.cayoCooldownEndsAt === 'number' ? raw.cayoCooldownEndsAt : null,
+      todos: loadTodos(raw.todos)
     };
+  }
+
+  // Daily/weekly tasks. First run gets the starter list; week-only tasks drop once their week ends.
+  function loadTodos(saved) {
+    if (!saved || !Array.isArray(saved.items)) return { dailyHour: 6, items: todos.firstRun() };
+    const now = Date.now();
+    const items = saved.items.filter(i => i && typeof i.id === 'string' && typeof i.title === 'string' && !todos.isExpired(i, now));
+    const hour = Number.isInteger(saved.dailyHour) && saved.dailyHour >= 0 && saved.dailyHour < 24 ? saved.dailyHour : 6;
+    return { dailyHour: hour, items };
   }
 
   function save() {

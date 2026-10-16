@@ -347,3 +347,38 @@ td:last-child, th:last-child { text-align: right; }
 .wk-plus ul { margin: 12px 0 0 18px; padding: 0; font-size: 13px; color: var(--text-2); display: flex; flex-direction: column; gap: 6px; }
 .wk-top { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin-bottom: 16px; }
 .wk-tile { min-height: 104px; gap: 14px; }
+
+/* Tarefas */
+.todo-hour { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
+.todo-cols { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); align-items: start; margin-bottom: 16px; }
+.todo-card .card-head { margin-bottom: 10px; }
+.todo-bar { margin-bottom: 6px; }
+.todo-reset { display: block; font-size: 12px; color: var(--faint); margin-bottom: 10px; }
+.todo-list { display: flex; flex-direction: column; gap: 2px; margin-bottom: 12px; }
+.todo-row { display: flex; align-items: center; gap: 12px; padding: 7px 8px; border-radius: 8px; transition: background 0.15s; }
+.todo-row:hover { background: var(--card-2); }
+.todo-check {
+  width: 22px; height: 22px; flex: none; border-radius: 50%; display: grid; place-items: center;
+  border: 1.5px solid var(--border-3); background: transparent; color: transparent; transition: all 0.15s;
+}
+.todo-check:hover { border-color: var(--ok); color: var(--ok-line); }
+.todo-row.done .todo-check { background: var(--ok); border-color: var(--ok); color: #0d0f15; }
+.todo-text { cursor: pointer; min-width: 0; }
+.todo-title { font-size: 13.5px; font-weight: 550; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.todo-note { font-size: 12px; color: var(--muted); margin-top: 1px; }
+.todo-row.done .todo-title { color: var(--faint); text-decoration: line-through; }
+.todo-row.done .todo-note { color: var(--faint); }
+.todo-del {
+  width: 28px; height: 28px; border-radius: 7px; display: grid; place-items: center; flex: none;
+  border: 0; background: transparent; color: var(--faint); opacity: 0; transition: opacity 0.15s, color 0.15s;
+}
+.todo-row:hover .todo-del { opacity: 1; }
+.todo-del:hover { color: var(--danger); }
+.todo-empty { margin: 4px 0 14px; }
+.todo-add { display: flex; gap: 8px; padding-top: 12px; border-top: 1px solid var(--border); }
+.todo-add .input { flex: 1; min-width: 0; }
+.todo-group + .todo-group { margin-top: 14px; }
+.todo-group-label { font-size: 12px; color: var(--faint); margin-bottom: 8px; }
+.todo-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.todo-chip { display: inline-flex; align-items: center; gap: 5px; }
+.todo-chip.boost { color: var(--ok); border-color: var(--ok-line); background: var(--ok-soft); }

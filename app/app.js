@@ -87,6 +87,8 @@
 
     const attention = App.owned().filter(d => App.business(d).tone !== 'ok').length;
     document.querySelector('[data-page=businesses] .badge').textContent = attention ? String(attention) : '';
+    const open = App.pages.todos.pending(s);
+    document.querySelector('[data-page=todos] .badge').textContent = open ? String(open) : '';
     const cd = s.cayoCooldownEndsAt;
     document.querySelector('[data-page=cayo] .badge').textContent = cd && cd > Date.now() ? P.formatMinutes((cd - Date.now()) / 60000) : '';
   }

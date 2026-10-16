@@ -6,6 +6,7 @@ const { advance } = require('./timers.cjs');
 const { createGameWatcher } = require('./game-watcher.cjs');
 const { createOverlay } = require('./overlay.cjs');
 const { createScanner } = require('./fp-scanner.cjs');
+const todos = require('./lib/todos.js');
 
 const TICK_MS = 5000;
 // Window controls drawn by Windows over the 44px title bar, matching Nexo's colours per theme.
@@ -101,6 +102,8 @@ const num = (v, lo, hi) => {
   return Math.min(hi, Math.max(lo, n));
 };
 
+const todoOpts = s => ({ dailyHour: s.todos.dailyHour, weekly: todos.weeklyAnchor(weekly.resetUtc) });
+
 function business(id) {
   const def = catalog.businesses.find(b => b.id === id);
   if (!def) throw new TypeError('negócio desconhecido');
@@ -183,6 +186,28 @@ function registerIpc() {
     if (patch.hide) overlay.hide();
     return overlay.state();
   });
+
+  // To-do list: add, check/uncheck, remove, daily reset hour.
+  ipcMain.handle('gta:todo', (_e, action, value) => mutate(s => {
+    const list = s.todos.items;
+    const find = () => {
+      const item = list.find(i => i.id === value);
+      if (!item) throw new TypeError('tarefa não encontrada');
+      return item;
+    };
+    if (action === 'add') {
+      const item = todos.sanitize(value, Date.now());
+      if (list.length >= 100) throw new TypeError('lista cheia');
+      if (!list.some(i => i.id === item.id)) list.push(item);
+    } else if (action === 'toggle') {
+      const item = find();
+      item.doneAt = typeof item.doneAt === 'number' && todos.isDone(item, Date.now(), todoOpts(s)) ? null : Date.now();
+    } else if (action === 'remove') {
+      list.splice(list.indexOf(find()), 1);
+    } else if (action === 'daily-hour') {
+      s.todos.dailyHour = Math.round(num(value, 0, 23));
+    } else throw new TypeError('ação desconhecida');
+  }));
 
   ipcMain.handle('gta:cayo-cooldown', (_e, minutes) => mutate(s => {
     s.cayoCooldownEndsAt = minutes ? Date.now() + num(minutes, 1, 24 * 60) * 60000 : null;
