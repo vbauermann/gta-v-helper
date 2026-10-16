@@ -100,16 +100,13 @@ app.whenReady().then(async () => {
     return b && b.isVisible() ? b.webContents.executeJavaScript(`document.getElementById('text').textContent`) : null;
   };
   const onText = await badgeText();
-  if (!onText || !onText.startsWith('Detecção de digitais ON')) errors.push(`aviso ON: ${onText}`);
+  if (onText !== 'Detecção de digitais') errors.push(`aviso: ${onText}`);
   const badgeWin = BrowserWindow.getAllWindows().find(w => w.getTitle() === 'GTA Helper detecção');
   if (badgeWin) fs.writeFileSync(path.join(out, 'aviso-deteccao.png'), (await badgeWin.webContents.capturePage()).toPNG());
   await win.webContents.executeJavaScript(`window.gta.overlay('configure', { auto: false })`);
-  await wait(600);
-  const offText = await badgeText();
-  if (offText !== 'Detecção de digitais OFF') errors.push(`aviso OFF: ${offText}`);
+  await wait(800);
+  if (await badgeText()) errors.push('aviso continuou com a detecção desligada');
   if (marker && marker.isVisible()) errors.push('marcador continuou com a marcação desligada');
-  await wait(3000);
-  if (await badgeText()) errors.push('aviso OFF não sumiu');
   await win.webContents.executeJavaScript(`window.gta.overlay('configure', { auto: true })`);
   delete process.env.GTA_HELPER_FAKE_SCREEN; // back to "GTA fechado": the marker hides
   await wait(2500);

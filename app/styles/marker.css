@@ -13,6 +13,4 @@ html, body { margin: 0; height: 100%; background: transparent; overflow: hidden;
   color: #eef0f6; font: 600 12.5px/1 Inter, 'Segoe UI', sans-serif; white-space: nowrap;
 }
 .badge[hidden] { display: none; }
-.badge i { width: 8px; height: 8px; border-radius: 50%; background: #f4c542; }
-.badge.found i { background: #3ddc97; box-shadow: 0 0 8px #3ddc97; }
-.badge.off i { background: #ff6b6b; }
+.badge i { width: 8px; height: 8px; border-radius: 50%; background: #3ddc97; box-shadow: 0 0 8px #3ddc97; }

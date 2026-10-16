@@ -101,7 +101,7 @@
           h('div', { class: 'toggle-label' }, 'Marcar as peças automaticamente', h('span', { class: 'kbd fp-auto-key' }, (App.state.overlay && App.state.overlay.keys.auto) || '')),
           h('small', null, TEXT[state] || TEXT.off)),
         h('input', { type: 'checkbox', class: 'switch', checked: on, onchange: e => ov('configure', { auto: e.target.checked }) })),
-      h('p', { class: 'muted small' }, 'Enquanto o GTA está aberto, o app tira um print pequeno da tela 1 vez por segundo, acha a digital grande e põe uma borda verde nas 4 peças certas. Ligada, aparece "Detecção de digitais ON" no canto de cima da tela. Só olha a imagem da tela: não mexe no jogo nem aperta teclas. Funciona em Janela sem bordas.'));
+      h('p', { class: 'muted small' }, 'Enquanto o GTA está aberto, o app tira um print pequeno da tela 1 vez por segundo, acha a digital grande e põe uma borda verde nas 4 peças certas. Ligada, aparece "Detecção de digitais" no canto de cima da tela. Só olha a imagem da tela: não mexe no jogo nem aperta teclas. Funciona em Janela sem bordas.'));
   }
 
   function tile(p, key, active) {

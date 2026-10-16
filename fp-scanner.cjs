@@ -32,8 +32,7 @@ function createScanner({ isAuto, isActive, onChange }) {
   let worker = null;
   let marker = null;
   let badge = null;
-  let badgeState = null; // { on, found } last sent, or null when hidden
-  let offUntil = 0; // shows "OFF" briefly after turning it off with the shortcut
+  let badgeState = null; // { on: true } while shown, null when hidden
   let timer = null;
   let busy = false;
   let misses = 0;
@@ -80,10 +79,9 @@ function createScanner({ isAuto, isActive, onChange }) {
     return w;
   }
 
-  // Small "Detecção de digitais ON" pill at the top right while it runs.
+  // Small "Detecção de digitais" pill (green dot) at the top right while it runs.
   function updateBadge() {
-    const flashOff = Date.now() < offUntil && isActive();
-    const next = isEnabled() ? { on: true, found: status.state === 'found' } : flashOff ? { on: false, found: false } : null;
+    const next = isEnabled() ? { on: true } : null;
     if (JSON.stringify(next) === JSON.stringify(badgeState)) return;
     badgeState = next;
     if (!next) { if (badge && !badge.isDestroyed()) badge.hide(); return; }
@@ -99,9 +97,7 @@ function createScanner({ isAuto, isActive, onChange }) {
   }
 
   // Called when the setting changes (shortcut or switch in the app).
-  function toggled(on) {
-    offUntil = on ? 0 : Date.now() + 2500;
-    if (!on) setTimeout(updateBadge, 2600);
+  function toggled() {
     updateBadge();
     scan();
   }
