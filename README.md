@@ -21,6 +21,12 @@ Depois de instalado, o app procura versões novas sozinho e avisa quando uma est
 - **Tabela de payouts** da atualização de economia.
 - Ícone na bandeja: fechar a janela mantém o app rodando para os timers continuarem.
 
+## Para quem vai contribuir
+
+- [CLAUDE.md](CLAUDE.md): regras do projeto, mapa do código e comandos (lido automaticamente pelo Claude Code).
+- [docs/adr](docs/adr/README.md): decisões de arquitetura e por quê.
+- [.claude/skills](.claude/skills): skills do projeto (desenvolver, publicar versão, atualizar a semana, digitais do Casino).
+
 ## Rodar
 
 ```bash

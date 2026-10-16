@@ -1,6 +1,6 @@
 # GTA Online Helper: análise e plano
 
-> Status: proposta para discussão. Nada foi implementado ainda.
+> Status: análise inicial (2026-10-16), mantida como histórico. O que foi decidido e implementado está em [docs/adr](adr/README.md) e no [CLAUDE.md](../CLAUDE.md).
 > Plataforma assumida: Windows PC (GTA V Legacy ou Enhanced).
 
 ## 1. Faz sentido?
