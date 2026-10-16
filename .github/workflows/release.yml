@@ -50,7 +50,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ steps.version.outputs.tag }}
         run: |
-          files=(release/*.exe release/*.exe.blockmap release/latest.yml)
+          files=(release/GTA-Helper-Setup-*.exe release/GTA-Helper-Setup-*.exe.blockmap release/latest.yml)
           if gh release view "$TAG" > /dev/null 2>&1; then
             gh release upload "$TAG" "${files[@]}" --clobber
           else
