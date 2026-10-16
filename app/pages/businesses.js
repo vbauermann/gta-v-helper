@@ -13,8 +13,6 @@
     const gta = window.gta;
     const { biz, p, tone, text, pill } = App.business(def);
     const r = p.rates;
-    const supplyInput = numberInput(Math.round(p.supplyPct), { min: 0, max: 100, step: 1, class: 'small' });
-    const stockInput = numberInput(Math.floor(p.stock), { min: 0, max: def.capacity, step: 1, class: 'small' });
     const barInput = numberInput(biz.calibration.barMinutes || '', { min: 1, step: 1, placeholder: Math.round(r.barMinutes), class: 'small' });
     const mpuInput = numberInput(biz.calibration.minutesPerUnit || '', { min: 0.1, step: 0.1, placeholder: number(r.minutesPerUnit), class: 'small' });
     const supplyRing = ring(p.supplyPct, { size: 92, stroke: 9, label: 'suprimento', color: supplyColor(p.supplyPct) });
@@ -45,14 +43,12 @@
       h('div', { class: 'biz-actions' },
         h('button', { class: 'btn primary sm', onclick: () => App.act(gta.setSupply(def.id, 100)) }, icon('box', 15), 'Ressupri'),
         h('button', { class: 'btn secondary sm', onclick: () => App.act(gta.setStock(def.id, 0)) }, icon('dollar', 15), 'Vendi tudo'),
+        h('button', { class: `btn ${reporting.has(def.id) ? 'secondary' : 'ghost'} sm`, onclick: () => toggleReport(def.id) }, icon('edit', 15), 'Informar níveis'),
         calibrated ? h('span', { class: 'pill sm info', title: 'Usando tempos medidos por você' }, 'calibrado') : null),
+      reporting.has(def.id) ? reportPanel(def, p) : null,
       h('details', { class: 'adjust-box' },
         h('summary', null, icon('settings', 15), 'Ajustar e calibrar'),
         h('div', { class: 'adjust' },
-          h('div', { class: 'row' }, h('span', null, 'Suprimento atual (%)'), supplyInput,
-            h('button', { class: 'btn secondary sm', onclick: () => App.act(gta.setSupply(def.id, supplyInput.value)) }, 'Salvar')),
-          h('div', { class: 'row' }, h('span', null, 'Estoque atual (unidades)'), stockInput,
-            h('button', { class: 'btn secondary sm', onclick: () => App.act(gta.setStock(def.id, stockInput.value)) }, 'Salvar')),
           h('p', { class: 'muted small' },
             `Estimativa: 1 unidade a cada ${number(r.minutesPerUnit)} min, barra cheia dura ${P.formatMinutes(r.barMinutes)}, estoque vazio até cheio em ${P.formatMinutes(r.fullStockMinutes)}. Se medir diferente no jogo, informe abaixo.`),
           h('div', { class: 'row' }, h('span', null, 'Barra cheia dura (min)'), barInput),
@@ -62,6 +58,48 @@
             h('button', { class: 'btn ghost sm', onclick: () => App.act(gta.setCalibration(def.id, {})) }, 'Voltar ao padrão'),
             h('span', { class: 'grow' }),
             h('button', { class: 'btn danger sm', onclick: () => App.act(gta.setOwned(def.id, false)) }, 'Não tenho mais')))));
+  }
+
+  // Panel to type the supply and stock bars as seen in the game (laptop or business computer).
+  const reporting = new Set();
+  const drafts = new Map(); // typed values survive re-renders while the panel is open
+  function toggleReport(id) {
+    if (reporting.has(id)) { reporting.delete(id); drafts.delete(id); } else reporting.add(id);
+    render();
+  }
+
+  function reportPanel(def, p) {
+    const stockPct = (p.stock / def.capacity) * 100;
+    const draft = drafts.get(def.id) || {};
+    const supply = numberInput(draft.supply != null ? draft.supply : Math.round(p.supplyPct), { min: 0, max: 100, step: 1 });
+    const stock = numberInput(draft.stock != null ? draft.stock : Math.round(stockPct), { min: 0, max: 100, step: 1 });
+    const keep = () => drafts.set(def.id, { supply: supply.value, stock: stock.value });
+    supply.addEventListener('input', keep);
+    stock.addEventListener('input', keep);
+    const hint = h('small', null);
+    const units = () => Math.min(def.capacity, Math.max(0, (Number(stock.value) || 0) / 100 * def.capacity));
+    const updateHint = () => {
+      const u = units();
+      hint.textContent = `${number(u)} de ${def.capacity} unidades · ${money(u * p.rates.unitValue)}`;
+    };
+    stock.addEventListener('input', updateHint);
+    updateHint();
+    const save = async () => {
+      await App.act(window.gta.setSupply(def.id, Math.min(100, Math.max(0, Number(supply.value) || 0))));
+      await App.act(window.gta.setStock(def.id, units()));
+      reporting.delete(def.id);
+      drafts.delete(def.id);
+      render();
+    };
+    for (const input of [supply, stock]) input.addEventListener('keydown', e => { if (e.key === 'Enter') save(); });
+    return h('div', { class: 'report-box' },
+      h('div', { class: 'report-title' }, 'Como está no jogo agora?'),
+      h('div', { class: 'report-fields' },
+        h('label', { class: 'field' }, h('span', null, 'Suprimentos (%)'), supply, h('small', null, 'A barra de suprimentos')),
+        h('label', { class: 'field' }, h('span', null, 'Estoque (%)'), stock, hint)),
+      h('div', { class: 'report-actions' },
+        h('button', { class: 'btn primary sm', onclick: save }, 'Salvar'),
+        h('button', { class: 'btn ghost sm', onclick: () => toggleReport(def.id) }, 'Cancelar')));
   }
 
   function otherRow(def) {
