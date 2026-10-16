@@ -21,6 +21,7 @@ app.setAppUserModelId('local.gtahelper');
 const catalog = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/businesses.json'), 'utf8'));
 const heists = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/heists.json'), 'utf8'));
 heists.cayo.map = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/cayo-map.json'), 'utf8'));
+const weekly = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/weekly.json'), 'utf8'));
 const dataFile = process.env.GTA_HELPER_DATA || path.join(app.getPath('userData'), 'gta-helper.json');
 
 let mainWindow = null;
@@ -107,7 +108,7 @@ function business(id) {
 }
 
 function registerIpc() {
-  ipcMain.handle('gta:data', () => ({ catalog, heists }));
+  ipcMain.handle('gta:data', () => ({ catalog, heists, weekly }));
   ipcMain.handle('gta:state', () => snapshot());
 
   ipcMain.handle('gta:set-owned', (_e, id, owned) => mutate(s => {

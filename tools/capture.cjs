@@ -31,7 +31,7 @@ app.whenReady().then(async () => {
   const errors = [];
   win.webContents.on('console-message', e => { if (e.level === 'error') errors.push(e.message); });
   await wait(1200);
-  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'payouts', 'settings']) {
+  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'payouts', 'weekly', 'settings']) {
     await win.webContents.executeJavaScript(`document.querySelector('[data-page=${page}]').click();
       ${page === 'cayo' ? "const rows = document.querySelectorAll('.loot-row'); for (const [r, n] of [[0, 2], [1, 3], [2, 1], [3, 1]]) { const b = rows[r].querySelectorAll('.qty button')[n - 1]; if (!b.classList.contains('active')) b.click(); }" : ''}`);
     await wait(700);
