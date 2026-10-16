@@ -145,15 +145,29 @@ td:last-child, th:last-child { text-align: right; }
 .map-card .card-head { margin-bottom: 6px; }
 .scout { position: relative; display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap; margin-top: 14px; }
 .map { position: relative; user-select: none; }
-.scout > .map { flex: 1 1 520px; max-width: 780px; }
+.scout > .map-viewport { flex: 1 1 520px; max-width: 780px; }
+.map-viewport { position: relative; overflow: hidden; border-radius: 10px; cursor: zoom-in; touch-action: none; }
+.map-viewport.zoomed { cursor: grab; }
+.map-viewport.panning { cursor: grabbing; }
+.map-viewport > .map { transform-origin: 0 0; will-change: transform; }
+.map-viewport > .map img { border-radius: 0; }
+.map-viewport .spot { transform: translate(-50%, -50%) scale(calc(1 / var(--z, 1))); }
+.zoom-tools {
+  position: absolute; right: 10px; bottom: 10px; display: flex; align-items: center; gap: 2px; padding: 3px;
+  border-radius: 9px; background: rgba(13, 15, 21, 0.85); border: 1px solid var(--border-2); cursor: default;
+}
+.zoom-tools button { min-width: 28px; height: 26px; border-radius: 6px; color: #eef0f6; font-size: 15px; font-weight: 650; }
+.zoom-tools button.reset { font-size: 12px; padding: 0 8px; }
+.zoom-tools button:hover { background: rgba(255, 255, 255, 0.12); }
+.zoom-level { min-width: 34px; text-align: center; font-size: 12px; color: #c3c7d4; font-variant-numeric: tabular-nums; }
 .map img { display: block; width: 100%; height: auto; border-radius: 10px; }
 .map.zoom { overflow: hidden; border-radius: 10px; border: 2px solid var(--accent-line); }
 .map.zoom img { position: absolute; max-width: none; height: auto; border-radius: 0; }
 .zoom-col { display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; }
 .map-area { position: absolute; border: 2px solid var(--accent); border-radius: 4px; pointer-events: none; }
 .spot {
-  position: absolute; transform: translate(-50%, -50%); width: 22px; height: 22px; padding: 0;
-  border-radius: 50%; font-size: 12px; font-weight: 800; line-height: 1;
+  position: absolute; transform: translate(-50%, -50%); width: 26px; height: 26px; padding: 0;
+  border-radius: 50%; font-size: 13px; font-weight: 800; line-height: 1;
   background: rgba(13, 15, 21, 0.85); color: #eef0f6; border: 2px solid #fff;
 }
 .spot.locked { border-style: dashed; }

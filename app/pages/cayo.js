@@ -50,6 +50,7 @@
           field('Alvo principal', select(data.primaries.map(p => ({ value: p.id, label: `${p.name} · ${money(p.value)}` })), form.primaryId,
             { onchange: e => update({ primaryId: e.target.value }) })),
           checkbox('Modo difícil (+10% no alvo principal)', form.hard, e => update({ hard: e.target.checked })),
+          checkbox('Elite Challenge', form.elite, e => update({ elite: e.target.checked }), 'Menos de 15 min, bolsas cheias e sem falhar hack.'),
           field('Jogadores', segmented([1, 2, 3, 4].map(n => ({ value: n, label: n === 1 ? 'Solo' : String(n) })), form.crewSize, n => {
             form.cuts = DEFAULT_CUTS[n].slice();
             update({ crewSize: n });
@@ -59,8 +60,7 @@
           h('div', { class: 'divider' }),
           h('div', { class: 'form-title' }, 'Alvos secundários encontrados (pilhas)'),
           stacksBox,
-          field('Cofre do El Rubio', numberInput(form.safe, { min: 0, step: 1000, oninput: e => update({ safe: Number(e.target.value) || 0 }) }), 'Entre GTA$ 18 mil e 99 mil, não ocupa bolsa.'),
-          checkbox('Elite Challenge (menos de 15 min, bolsas cheias, sem falhar hack)', form.elite, e => update({ elite: e.target.checked }))),
+          field('Cofre do El Rubio', numberInput(form.safe, { min: 0, step: 1000, oninput: e => update({ safe: Number(e.target.value) || 0 }) }), 'Entre GTA$ 18 mil e 99 mil, não ocupa bolsa.')),
         results));
     renderResults();
   }
@@ -141,8 +141,9 @@
       }
     }
 
+    const viewport = h('div', { class: 'map-viewport' }, main, zoomControls(main, () => { if (!menu.hidden) closeMenu(); }));
     const scout = h('div', { class: 'scout' },
-      main,
+      viewport,
       h('div', { class: 'zoom-col' }, h('div', { class: 'muted small' }, inset.label), zoom),
       menu);
     scout.addEventListener('click', () => { if (!menu.hidden) closeMenu(); });
@@ -150,9 +151,74 @@
     return h('div', { class: 'card pad map-card' },
       head('cayo', 'Mapa do scout', h('span', { class: 'grow' }),
         h('button', { class: 'btn secondary sm', onclick: () => { form.markers = {}; form.found = {}; save(); render(); } }, icon('eraser', 15), 'Limpar mapa')),
-      h('p', { class: 'muted small' }, `${map.note} Clique no ponto e escolha o que tinha lá. Se preferir, preencha só as quantidades no formulário.`),
+      h('p', { class: 'muted small' }, `${map.note} Clique no ponto e escolha o que tinha lá. Use a roda do mouse pra dar zoom e arraste pra mover o mapa. Se preferir, preencha só as quantidades no formulário.`),
       scout,
       h('div', { class: 'legend' }, data.secondaries.map(s => h('span', { class: `legend-item loot-${s.id}` }, h('i', null, LOOT_SHORT[s.id]), s.name))));
+  }
+
+  // Wheel/buttons zoom (1x to 5x) and drag-to-pan for the main map. Spots keep their screen size.
+  function zoomControls(inner, onMove) {
+    const MAX = 5;
+    let z = 1, tx = 0, ty = 0;
+    const label = h('span', { class: 'zoom-level' }, '1x');
+    function apply() {
+      const w = inner.offsetWidth, hgt = inner.offsetHeight;
+      z = Math.min(MAX, Math.max(1, z));
+      tx = Math.min(0, Math.max(w - w * z, tx));
+      ty = Math.min(0, Math.max(hgt - hgt * z, ty));
+      inner.style.transform = `translate(${tx}px, ${ty}px) scale(${z})`;
+      inner.style.setProperty('--z', String(z));
+      label.textContent = `${Math.round(z * 10) / 10}x`.replace('.', ',');
+      inner.parentElement.classList.toggle('zoomed', z > 1);
+    }
+    // Zoom keeping the map point under (cx, cy) fixed, in viewport coordinates.
+    function zoomAt(next, cx, cy) {
+      const px = (cx - tx) / z, py = (cy - ty) / z;
+      z = Math.min(MAX, Math.max(1, next));
+      tx = cx - px * z;
+      ty = cy - py * z;
+      apply();
+      onMove();
+    }
+    const center = () => [inner.offsetWidth / 2, inner.offsetHeight / 2];
+    const local = e => { const r = inner.parentElement.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+
+    requestAnimationFrame(() => {
+      const vp = inner.parentElement;
+      vp.addEventListener('wheel', e => { e.preventDefault(); zoomAt(z * (e.deltaY < 0 ? 1.25 : 0.8), ...local(e)); }, { passive: false });
+      vp.addEventListener('dblclick', e => { if (!e.target.closest('.spot, .zoom-tools')) zoomAt(z * 1.6, ...local(e)); });
+      let drag = null;
+      vp.addEventListener('pointerdown', e => {
+        if (e.button !== 0 || e.target.closest('.zoom-tools')) return;
+        drag = { x: e.clientX, y: e.clientY, tx, ty, moved: false, id: e.pointerId };
+      });
+      vp.addEventListener('pointermove', e => {
+        if (!drag || drag.id !== e.pointerId) return;
+        const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+        if (!drag.moved && Math.hypot(dx, dy) < 5) return;
+        if (!drag.moved) { drag.moved = true; vp.setPointerCapture(e.pointerId); vp.classList.add('panning'); onMove(); }
+        tx = drag.tx + dx;
+        ty = drag.ty + dy;
+        apply();
+      });
+      const end = () => {
+        if (drag && drag.moved) {
+          // Swallow the click that ends a drag so it doesn't open a spot menu.
+          vp.addEventListener('click', ev => { ev.stopPropagation(); ev.preventDefault(); }, { capture: true, once: true });
+          setTimeout(() => vp.classList.remove('panning'), 0);
+        }
+        drag = null;
+      };
+      vp.addEventListener('pointerup', end);
+      vp.addEventListener('pointercancel', end);
+      new ResizeObserver(apply).observe(inner);
+    });
+
+    return h('div', { class: 'zoom-tools' },
+      h('button', { title: 'Aproximar (ou roda do mouse)', onclick: () => zoomAt(z * 1.5, ...center()) }, '+'),
+      label,
+      h('button', { title: 'Afastar', onclick: () => zoomAt(z / 1.5, ...center()) }, '−'),
+      h('button', { class: 'reset', title: 'Ver o mapa todo', onclick: () => { z = 1; tx = 0; ty = 0; apply(); onMove(); } }, 'Todo'));
   }
 
   function renderResults() {
