@@ -43,8 +43,10 @@
       h('div', { class: 'biz-actions' },
         h('button', { class: 'btn primary sm', onclick: () => App.act(gta.setSupply(def.id, 100)) }, icon('box', 15), 'Ressupri'),
         h('button', { class: 'btn secondary sm', onclick: () => App.act(gta.setStock(def.id, 0)) }, icon('dollar', 15), 'Vendi tudo'),
+        def.boost ? boostButton(def, biz, p) : null,
         h('button', { class: `btn ${reporting.has(def.id) ? 'secondary' : 'ghost'} sm`, onclick: () => toggleReport(def.id) }, icon('edit', 15), 'Informar níveis'),
         calibrated ? h('span', { class: 'pill sm info', title: 'Usando tempos medidos por você' }, 'calibrado') : null),
+      def.boost ? boostLine(def, biz, p) : null,
       reporting.has(def.id) ? reportPanel(def, p) : null,
       h('details', { class: 'adjust-box' },
         h('summary', null, icon('settings', 15), 'Ajustar e calibrar'),
@@ -58,6 +60,28 @@
             h('button', { class: 'btn ghost sm', onclick: () => App.act(gta.setCalibration(def.id, {})) }, 'Voltar ao padrão'),
             h('span', { class: 'grow' }),
             h('button', { class: 'btn danger sm', onclick: () => App.act(gta.setOwned(def.id, false)) }, 'Não tenho mais')))));
+  }
+
+  // Daily boost (Acid Lab): the next units come out faster until they are made or 24 h pass.
+  const dayFmt = new Intl.DateTimeFormat('pt-BR', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+  const boostActive = (biz, p) => !!(biz.boost && p.boostLeft > 0.01 && Date.now() < biz.boost.endsAt);
+
+  function boostButton(def, biz, p) {
+    return boostActive(biz, p)
+      ? h('button', { class: 'btn ghost sm', title: 'Marquei sem querer', onclick: () => App.act(window.gta.boost(def.id, false)) }, icon('x', 15), 'Desfazer boost')
+      : h('button', { class: 'btn secondary sm boost-btn', title: `Produção ${def.boost.speed}x mais rápida nas próximas ${def.boost.units} unidades`, onclick: () => App.act(window.gta.boost(def.id, true)) }, icon('star', 15), 'Dei boost');
+  }
+
+  function boostLine(def, biz, p) {
+    if (boostActive(biz, p)) {
+      return h('div', { class: 'boost-line on' }, icon('star', 14),
+        h('span', null, h('b', null, `Boost ativo: faltam ${Math.ceil(p.boostLeft)} un. em ${def.boost.speed}x`),
+          ` · vale até ${dayFmt.format(new Date(biz.boost.endsAt))} ou até acabar`));
+    }
+    if (biz.boost && biz.boost.startedAt) {
+      return h('div', { class: 'boost-line' }, icon('star', 14), `Último boost: ${dayFmt.format(new Date(biz.boost.startedAt))}. Dá pra usar 1 vez por dia, na mesa das tintas.`);
+    }
+    return h('div', { class: 'boost-line' }, icon('star', 14), `Boost diário: ${def.boost.speed}x mais rápido nas próximas ${def.boost.units} unidades. Use na mesa das tintas e aperte "Dei boost".`);
   }
 
   // Panel to type the supply and stock bars as seen in the game (laptop or business computer).

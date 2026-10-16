@@ -123,3 +123,33 @@ test('Casino payout applies weekly bonus and all fees', () => {
   close(r.net, 2303000 * 1.86 * (1 - 0.35));
   close(r.players[1].value, r.net * 0.15);
 });
+
+test('Acid Lab boost: next 80 units at 2x, same supply per unit', () => {
+  const acid = def('acid');
+  const eq = { equipment: true };
+  // Calibrated to never run out of supply: a full lab (160) goes 4 h -> 3 h with the boost.
+  const lots = { barMinutes: 100000 };
+  const full = b => P.project(acid, biz({ upgrades: eq, calibration: lots, boost: b }), 0).minutesToStop;
+  close(full(null), 240);
+  close(full({ units: 80 }), 180);
+  close(P.project(acid, biz({ calibration: { barMinutes: 100000 }, boost: { units: 80 } }), 0).minutesToStop, 270); // 6 h -> 4h30 sem upgrade
+  // 30 min boosted = 40 units, 40 boosted units left.
+  const p = P.project(acid, biz({ upgrades: eq, calibration: lots, boost: { units: 80 } }), 30);
+  close(p.stock, 40);
+  close(p.boostLeft, 40);
+  // A full supply bar (50 units) lasts half as long while boosted.
+  close(P.project(acid, biz({ upgrades: eq, boost: { units: 80 } }), 0).minutesToSupplyEmpty, 37.5);
+  close(P.project(acid, biz({ upgrades: eq }), 0).minutesToSupplyEmpty, 75);
+  // Past the boosted units the normal pace resumes: 80 boosted (60 min) + 20 normal (30 min).
+  close(P.project(acid, biz({ upgrades: eq, calibration: lots, boost: { units: 80 } }), 90).stock, 100);
+});
+
+test('store rebase keeps the boost units that were not used yet', () => {
+  const file = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'gta-boost-')), 'data.json');
+  const store = createStore(file, catalog);
+  const b = store.get().businesses.acid;
+  Object.assign(b, { owned: true, upgrades: { equipment: true }, supplyPct: 100, stock: 0, activeMinutes: 15, boost: { units: 80, startedAt: 0, endsAt: Infinity } });
+  store.rebase('acid');
+  close(b.stock, 20);
+  close(b.boost.units, 60);
+});

@@ -77,6 +77,17 @@ function tick() {
       for (const a of alerts) new Notification({ title: a.title, body: a.body, silent: false }).show();
     }
   }
+  // A daily boost that reached its 24 h ends even with units left.
+  for (const def of catalog.businesses) {
+    const biz = store.get().businesses[def.id];
+    if (biz.boost && biz.boost.units > 0 && now >= biz.boost.endsAt) {
+      const alerts = { ...biz.alerts };
+      store.rebase(def.id);
+      biz.alerts = alerts;
+      biz.boost.units = 0;
+      dirty = true;
+    }
+  }
   const cd = store.get().cayoCooldownEndsAt;
   if (cd && now >= cd) {
     store.get().cayoCooldownEndsAt = null;
@@ -145,6 +156,18 @@ function registerIpc() {
     const def = business(id);
     store.rebase(id);
     s.businesses[id].stock = num(units, 0, def.capacity);
+  }));
+
+  // "Dei boost" on the business card (Acid Lab), or undo it.
+  ipcMain.handle('gta:boost', (_e, id, on) => mutate(s => {
+    const def = business(id);
+    if (!def.boost) throw new TypeError('esse negócio não tem boost');
+    store.rebase(id);
+    const now = Date.now();
+    s.businesses[id].boost = on ? { units: def.boost.units, startedAt: now, endsAt: now + def.boost.hours * 3600000 } : null;
+    // Ticks the matching daily task, if the player keeps one.
+    const task = s.todos.items.find(i => i.key === `${id}-boost`);
+    if (task) task.doneAt = on ? now : null;
   }));
 
   ipcMain.handle('gta:set-calibration', (_e, id, cal) => mutate(s => {

@@ -11,6 +11,7 @@ Os negócios do GTA Online só produzem e consomem suprimentos com o jogador num
 - O tempo só avança enquanto `GTA5.exe` ou `GTA5_Enhanced.exe` estão abertos (modo padrão) ou sempre com o app aberto (modo "sempre"), e nunca com os timers pausados (menu, modo história, loading).
 - Cada tick avança no máximo 30 s, para que um PC suspenso não conte horas de produção.
 - Tempos por combinação de upgrades vêm de `data/businesses.json` com a fonte de cada valor; o jogador pode calibrar cada negócio medindo no jogo.
+- **Boost diário do Acid Lab** (2026-10-16): o botão "Dei boost" grava `biz.boost = { units: 80, startedAt, endsAt: +24 h }`. A projeção produz essas 80 unidades 2x mais rápido, com o mesmo suprimento por unidade (o suprimento acaba na metade do tempo enquanto dura); depois volta ao ritmo normal. Se as 24 h passarem antes, o tick do processo principal rebaseia e zera o que sobrou. Fonte: gtaboss.gg (lote cheio de 4 h para 3 h com upgrade, de 6 h para 4h30 sem), em `data/businesses.json`.
 - Alertas viram notificações do Windows (suprimento acabando, acabou, estoque cheio).
 
 ## Consequências

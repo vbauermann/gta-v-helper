@@ -12,7 +12,7 @@ Leia antes o [CLAUDE.md](../../../CLAUDE.md) e as ADRs em `docs/adr/`. Regra nú
 | Tela (`data-page`) | Arquivo | O que faz |
 |---|---|---|
 | Visão geral (`overview`) | `app/pages/overview.js` | Resumo dos negócios (valor em estoque, suprimento mais baixo, próximo a parar) e pausa dos timers |
-| Negócios (`businesses`) | `app/pages/businesses.js` | Negócios que o jogador tem, upgrades, ressuprir/vender, calibração |
+| Negócios (`businesses`) | `app/pages/businesses.js` | Negócios que o jogador tem, upgrades, ressuprir/vender, informar níveis, calibração, boost diário do Acid Lab |
 | Semana (`weekly`) | `app/pages/weekly.js` | Bônus, descontos, veículos, Gun Van, GTA+, contagem até quinta, marca "pra você" |
 | Tarefas (`todos`) | `app/pages/todos.js` | Listas diária e semanal, sugestões, horário do reset |
 | Cayo Perico (`cayo`) | `app/pages/cayo.js`, `cayo-map.js` | Calculadora (alvo primário, secundários com slider, bolsas, cortes, modo difícil, Elite), cooldown, aba Mapa |

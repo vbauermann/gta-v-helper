@@ -22,7 +22,8 @@ function emptyBusiness() {
     stock: 0,
     activeMinutes: 0,
     calibration: {},
-    alerts: { warned: false, empty: false, full: false }
+    alerts: { warned: false, empty: false, full: false },
+    boost: null // Acid Lab daily boost: { units left, startedAt, endsAt }
   };
 }
 
@@ -82,6 +83,7 @@ function createStore(file, catalog) {
     const p = project(def, biz, biz.activeMinutes);
     biz.supplyPct = p.supplyPct;
     biz.stock = p.stock;
+    if (biz.boost) biz.boost.units = p.boostLeft;
     biz.activeMinutes = 0;
     biz.alerts = { warned: false, empty: false, full: false };
     return { def, biz };

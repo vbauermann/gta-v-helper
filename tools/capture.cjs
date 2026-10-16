@@ -37,6 +37,18 @@ app.whenReady().then(async () => {
     await wait(700);
     fs.writeFileSync(path.join(out, `${page}.png`), (await win.webContents.capturePage()).toPNG());
   }
+  // Acid Lab daily boost.
+  await win.webContents.executeJavaScript(`(async () => {
+    await App.act(window.gta.setStock('acid', 40));
+    await App.act(window.gta.boost('acid', true));
+    document.querySelector('[data-page=businesses]').click();
+    await new Promise(r => setTimeout(r, 300));
+    document.querySelector('.biz-acid').scrollIntoView({ block: 'center' });
+  })()`);
+  await wait(800);
+  fs.writeFileSync(path.join(out, 'acid-boost.png'), (await win.webContents.capturePage()).toPNG());
+  const boostCheck = await win.webContents.executeJavaScript(`document.querySelector('.biz-acid .boost-line.on') ? document.querySelector('.biz-acid .boost-line').textContent : null`);
+  if (!boostCheck || !boostCheck.includes('faltam 80 un.')) errors.push(`boost: ${boostCheck}`);
   // Tasks: check two, add a custom one and a week-only suggestion.
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=todos]').click();`);
   await wait(400);

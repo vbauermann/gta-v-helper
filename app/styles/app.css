@@ -394,3 +394,9 @@ td:last-child, th:last-child { text-align: right; }
 .update-card .row { display: flex; align-items: center; gap: 8px; color: var(--accent); }
 .update-card .btn { width: 100%; justify-content: center; }
 .update-card:not([hidden]) + .watch-card { margin-top: 0; }
+
+/* Acid Lab daily boost */
+.boost-line { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 12.5px; color: var(--muted); }
+.boost-line.on { color: var(--text); }
+.boost-line.on svg, .boost-line.on b { color: var(--warn); }
+.boost-btn svg { color: var(--warn); }
