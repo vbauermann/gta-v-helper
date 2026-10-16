@@ -205,7 +205,8 @@ function registerIpc() {
     } else if (action === 'remove') {
       list.splice(list.indexOf(find()), 1);
     } else if (action === 'daily-hour') {
-      s.todos.dailyHour = Math.round(num(value, 0, 23));
+      if (value === 'game') Object.assign(s.todos, { dailyHour: todos.defaultDailyHour(), dailyHourSet: false });
+      else Object.assign(s.todos, { dailyHour: Math.round(num(value, 0, 23)), dailyHourSet: true });
     } else throw new TypeError('ação desconhecida');
   }));
 

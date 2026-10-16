@@ -107,13 +107,17 @@
     const now = Date.now();
     const items = visible();
     clocks = [];
-    const hour = UI.select(Array.from({ length: 24 }, (_, i) => ({ value: String(i), label: `${String(i).padStart(2, '0')}:00` })),
-      String(App.state.todos.dailyHour), { class: 'small', onchange: e => todo('daily-hour', Number(e.target.value)) });
+    const t = App.state.todos;
+    const hh = i => `${String(i).padStart(2, '0')}:00`;
+    const hour = UI.select([{ value: 'game', label: `Com o jogo (${hh(T.defaultDailyHour())})` },
+      ...Array.from({ length: 24 }, (_, i) => ({ value: String(i), label: hh(i) }))],
+      t.dailyHourSet ? String(t.dailyHour) : 'game',
+      { class: 'small', onchange: e => todo('daily-hour', e.target.value === 'game' ? 'game' : Number(e.target.value)) });
     UI.fill(root,
       h('div', { class: 'page-head' },
         h('div', null,
           h('h1', null, 'Tarefas'),
-          h('div', { class: 'sub' }, 'Marque o que já fez. As diárias zeram no horário que você escolher, as semanais junto com a atualização de quinta.')),
+          h('div', { class: 'sub' }, 'Marque o que já fez. As diárias zeram junto com o diário do jogo, as semanais com a atualização de quinta.')),
         h('label', { class: 'todo-hour' }, h('span', null, 'Diárias zeram às'), hour)),
       h('div', { class: 'grid todo-cols' }, PERIODS.map(p => card(p, items.filter(i => i.period === p.id), now))),
       suggestions());

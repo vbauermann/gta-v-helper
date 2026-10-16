@@ -98,6 +98,8 @@ function createScanner({ isAuto, isActive, onChange }) {
 
   // Called when the setting changes (shortcut or switch in the app).
   function toggled() {
+    // Switching off hides the borders at once, even with a capture still in flight.
+    if (!isEnabled()) { misses = 0; setStatus({ state: 'off', picks: [], at: Date.now(), ms: 0 }); }
     updateBadge();
     scan();
   }
@@ -153,6 +155,7 @@ function createScanner({ isAuto, isActive, onChange }) {
     try {
       const img = await grab();
       const r = img ? await analyze(img) : { found: false, picks: [] };
+      if (!isEnabled()) { setStatus({ state: 'off', picks: [], at: Date.now(), ms: 0 }); return; }
       if (r.found) { misses = 0; setStatus({ state: 'found', picks: r.picks, at: Date.now(), ms: Date.now() - t }); }
       else if (++misses >= LOST_AFTER || status.state !== 'found') setStatus({ state: 'searching', picks: [], at: Date.now(), ms: Date.now() - t });
     } catch (err) {

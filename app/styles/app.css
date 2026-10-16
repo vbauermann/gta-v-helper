@@ -382,3 +382,4 @@ td:last-child, th:last-child { text-align: right; }
 .todo-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .todo-chip { display: inline-flex; align-items: center; gap: 5px; }
 .todo-chip.boost { color: var(--ok); border-color: var(--ok-line); background: var(--ok-soft); }
+.todo-hour .input { width: auto; min-width: 170px; }

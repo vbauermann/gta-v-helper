@@ -59,11 +59,13 @@ function createStore(file, catalog) {
 
   // Daily/weekly tasks. First run gets the starter list; week-only tasks drop once their week ends.
   function loadTodos(saved) {
-    if (!saved || !Array.isArray(saved.items)) return { dailyHour: 6, items: todos.firstRun() };
+    // dailyHour follows the game's reset (local time) until the player picks one (dailyHourSet).
+    const auto = { dailyHour: todos.defaultDailyHour(), dailyHourSet: false };
+    if (!saved || !Array.isArray(saved.items)) return { ...auto, items: todos.firstRun() };
     const now = Date.now();
     const items = saved.items.filter(i => i && typeof i.id === 'string' && typeof i.title === 'string' && !todos.isExpired(i, now));
-    const hour = Number.isInteger(saved.dailyHour) && saved.dailyHour >= 0 && saved.dailyHour < 24 ? saved.dailyHour : 6;
-    return { dailyHour: hour, items };
+    const picked = saved.dailyHourSet === true && Number.isInteger(saved.dailyHour) && saved.dailyHour >= 0 && saved.dailyHour < 24;
+    return { ...(picked ? { dailyHour: saved.dailyHour, dailyHourSet: true } : auto), items };
   }
 
   function save() {

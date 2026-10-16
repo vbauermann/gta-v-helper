@@ -48,3 +48,7 @@ test('first run has the starter tasks, all from the catalog', () => {
   assert.ok(list.every(i => T.suggestion(i.key)));
   assert.deepStrictEqual(list.filter(i => i.period === 'weekly').map(i => i.key), ['casino', 'clucking', 'dre', 'fib']);
 });
+
+test('default daily hour is the game reset, 06:00 UTC, in local time', () => {
+  assert.strictEqual(new Date(Date.UTC(2026, 9, 16, 6)).getHours(), T.defaultDailyHour());
+});
