@@ -11,7 +11,8 @@ Contexto em [ADR 0005](../../../docs/adr/0005-deteccao-digitais-por-captura.md).
 
 - `lib/fp-match.js` (UMD): `GEOMETRY` (posições em unidades da altura da tela, x a partir do centro), `tileRect(i, w, h)` e `analyze(img)` → `{ found, picks, scores }`.
 - `lib/fp-worker.cjs`: roda `analyze` numa worker thread.
-- `fp-scanner.cjs`: captura (`desktopCapturer`, 360 px de altura, cinza) a cada 900 ms enquanto o GTA está aberto e a marcação está ligada; janelas do marcador e do aviso; some com as bordas após 2 leituras sem achar.
+- `game-window.cjs`: retângulo da área cliente da janela do GTA (modo janela), em pixels físicos, via loop PowerShell com user32; `parseRect` é testado.
+- `fp-scanner.cjs`: captura (`desktopCapturer`, cinza, área do jogo com ~360 px de altura) a cada 900 ms enquanto o GTA está aberto e a marcação está ligada; janelas do marcador e do aviso; some com as bordas após 2 leituras sem achar.
 - `app/marker.*`, `app/badge.*`, `preload-marker.cjs`: desenho das bordas e do aviso.
 
 ## Fixtures e testes

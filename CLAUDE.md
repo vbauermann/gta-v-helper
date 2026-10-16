@@ -21,6 +21,7 @@ App desktop Windows (Electron, JS puro, sem bundler) de apoio ao GTA Online. Don
 | `game-watcher.cjs` | Detecta `GTA5.exe`/`GTA5_Enhanced.exe` pela lista de processos |
 | `overlay.cjs`, `lib/hotkeys.js` | Overlay de referência das digitais e atalhos globais |
 | `fp-scanner.cjs`, `lib/fp-match.js`, `lib/fp-worker.cjs` | Detecção automática das digitais do Casino por captura de tela |
+| `game-window.cjs` | Posição da janela do GTA na tela (modo janela), via user32 em um loop PowerShell |
 | `lib/heists.js`, `data/heists.json` | Cálculos de Cayo Perico e Diamond Casino |
 | `data/cayo-map.json`, `app/pages/cayo-map.js` | Mapa do Cayo (pontos de alvos, guardas, entradas) |
 | `lib/todos.js`, `app/pages/todos.js` | Tarefas diárias e semanais |

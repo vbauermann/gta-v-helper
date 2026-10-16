@@ -8,7 +8,7 @@ Desenhar dentro do jogo exige hook de DirectX, que a [ADR 0002](0002-nunca-tocar
 
 ## Decisão
 - Overlays são `BrowserWindow` próprias: transparentes, sem moldura, `alwaysOnTop` no nível `screen-saver`, sem foco e com `setIgnoreMouseEvents(true)` (os cliques passam para o jogo).
-- O jogo precisa estar em **Janela sem bordas (Borderless Windowed)**; o app avisa isso.
+- O jogo precisa estar em **Janela** ou **Janela sem bordas**; em tela cheia exclusiva nenhuma janela fica por cima. O app avisa isso.
 - Três janelas: o overlay de referência das digitais (`overlay.cjs`, com "modo mover" para arrastar), o marcador de peças da detecção automática e o aviso "Detecção de digitais" no canto superior direito (`fp-scanner.cjs`).
 - As janelas do app que ficam por cima do jogo usam `setContentProtection(true)`, para não aparecerem na própria captura de tela.
 

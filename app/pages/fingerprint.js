@@ -45,8 +45,8 @@
             icon(o.visible ? 'eyeOff' : 'eye', 16), o.visible ? 'Esconder overlay' : 'Mostrar overlay'))),
       h('div', { class: 'banner info' }, icon('info', 20),
         h('div', { class: 'grow' },
-          h('div', { class: 'title' }, 'Use o GTA em Janela sem bordas'),
-          h('div', { class: 'text' }, 'Em Configurações > Gráficos, deixe o modo de tela como Janela sem bordas. Em tela cheia exclusiva o Windows não deixa nenhuma janela ficar por cima do jogo.'))),
+          h('div', { class: 'title' }, 'Use o GTA em janela ou janela sem bordas'),
+          h('div', { class: 'text' }, 'Em Configurações > Gráficos, use Janela sem bordas ou Janela. Em tela cheia exclusiva o Windows não deixa nenhuma janela ficar por cima do jogo. No modo janela o app acha a janela do GTA sozinho, pode mover e redimensionar.'))),
       o.hotkeysFailed.length
         ? h('div', { class: 'banner warn' }, icon('alert', 20), h('div', { class: 'grow' },
           h('div', { class: 'title' }, 'Alguns atalhos não foram registrados'),
@@ -101,7 +101,7 @@
           h('div', { class: 'toggle-label' }, 'Marcar as peças automaticamente', h('span', { class: 'kbd fp-auto-key' }, (App.state.overlay && App.state.overlay.keys.auto) || '')),
           h('small', null, TEXT[state] || TEXT.off)),
         h('input', { type: 'checkbox', class: 'switch', checked: on, onchange: e => ov('configure', { auto: e.target.checked }) })),
-      h('p', { class: 'muted small' }, 'Enquanto o GTA está aberto, o app tira um print pequeno da tela 1 vez por segundo, acha a digital grande e põe uma borda verde nas 4 peças certas. Ligada, aparece "Detecção de digitais" no canto de cima da tela. Só olha a imagem da tela: não mexe no jogo nem aperta teclas. Funciona em Janela sem bordas.'));
+      h('p', { class: 'muted small' }, 'Enquanto o GTA está aberto, o app tira um print pequeno da tela 1 vez por segundo, acha a digital grande e põe uma borda verde nas 4 peças certas. Ligada, aparece "Detecção de digitais" no canto de cima da tela. Só olha a imagem da tela: não mexe no jogo nem aperta teclas. Funciona em janela e em janela sem bordas.'));
   }
 
   function tile(p, key, active) {

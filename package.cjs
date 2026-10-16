@@ -18,7 +18,7 @@ async function main() {
   const appDir = path.join(output, 'resources/app');
   fs.rmSync(path.join(output, 'resources/default_app.asar'), { force: true });
   fs.mkdirSync(appDir, { recursive: true });
-  for (const name of ['main.cjs', 'preload.cjs', 'preload-overlay.cjs', 'preload-marker.cjs', 'overlay.cjs', 'fp-scanner.cjs', 'updater.cjs', 'weekly-feed.cjs', 'store.cjs', 'timers.cjs', 'game-watcher.cjs']) {
+  for (const name of ['main.cjs', 'preload.cjs', 'preload-overlay.cjs', 'preload-marker.cjs', 'overlay.cjs', 'fp-scanner.cjs', 'updater.cjs', 'weekly-feed.cjs', 'game-window.cjs', 'store.cjs', 'timers.cjs', 'game-watcher.cjs']) {
     fs.copyFileSync(path.join(__dirname, name), path.join(appDir, name));
   }
   const { devDependencies, scripts, ...runtimePkg } = pkg;

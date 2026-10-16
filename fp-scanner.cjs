@@ -1,5 +1,5 @@
 // Real-time fingerprint helper: while GTA is running, takes a small grayscale screenshot of the
-// primary screen about once a second, finds the 4 right components of the Casino hack
+// game's screen about once a second (only the game window in windowed mode), finds the 4 right components of the Casino hack
 // (lib/fp-match.js, in a worker thread) and draws a border around them in a transparent,
 // click-through window on top of the game. Read-only on the screen like any capture tool: it
 // never reads game memory, never injects and never sends input to GTA.
@@ -8,9 +8,11 @@ const fs = require('node:fs');
 const zlib = require('node:zlib');
 const { Worker } = require('node:worker_threads');
 const { BrowserWindow, desktopCapturer, screen, ipcMain } = require('electron');
-const { tileRect } = require('./lib/fp-match.js');
+const { tileRect, region } = require('./lib/fp-match.js');
+const { createGameWindow } = require('./game-window.cjs');
 
-const SAMPLE_HEIGHT = 360; // screenshot height used for matching
+const SAMPLE_HEIGHT = 360; // height of the game area used for matching
+const MAX_CAPTURE_HEIGHT = 1440; // cap when the game window is small
 const INTERVAL_MS = 900;
 const LOST_AFTER = 2; // misses in a row before the borders go away
 
@@ -38,6 +40,8 @@ function createScanner({ isAuto, isActive, onChange }) {
   let misses = 0;
   let status = { state: 'off', picks: [], at: 0, ms: 0 };
   let boxes = [];
+  let where = null; // { display, area } of the last capture, in DIPs
+  const gameWindow = createGameWindow();
   const send = () => { if (marker && !marker.isDestroyed()) marker.webContents.send('marker:boxes', boxes); };
   const sendBadge = () => { if (badge && !badge.isDestroyed() && badgeState) badge.webContents.send('marker:badge', badgeState); };
   // Each page asks for its data once its listener is in place.
@@ -54,6 +58,22 @@ function createScanner({ isAuto, isActive, onChange }) {
   }
 
   function display() { return screen.getPrimaryDisplay(); }
+
+  // The game's display and its area on it, in DIPs: the window's client area in windowed mode,
+  // the whole display in fullscreen/borderless or when the window can't be found.
+  function gameArea() {
+    const phys = gameWindow.rect();
+    if (phys && process.platform === 'win32') {
+      const dip = screen.screenToDipRect(null, phys);
+      const d = screen.getDisplayMatching(dip);
+      const b = d.bounds;
+      const x = Math.max(b.x, dip.x), y = Math.max(b.y, dip.y);
+      const area = { x, y, width: Math.min(b.x + b.width, dip.x + dip.width) - x, height: Math.min(b.y + b.height, dip.y + dip.height) - y };
+      if (area.width > 100 && area.height > 100) return { display: d, area };
+    }
+    const d = display();
+    return { display: d, area: { ...d.bounds } };
+  }
 
   function ensureMarker() {
     if (marker && !marker.isDestroyed()) return marker;
@@ -110,27 +130,36 @@ function createScanner({ isAuto, isActive, onChange }) {
       return;
     }
     const w = ensureMarker();
-    const { bounds } = display();
-    w.setBounds(bounds);
-    boxes = status.picks.map(i => tileRect(i, bounds.width, bounds.height));
+    const { display: d, area } = where || { display: display(), area: display().bounds };
+    w.setBounds(d.bounds);
+    // Boxes are relative to the marker window, which covers the game's display.
+    boxes = status.picks.map(i => {
+      const r = tileRect(i, area.width, area.height);
+      return { ...r, x: r.x + area.x - d.bounds.x, y: r.y + area.y - d.bounds.y };
+    });
     send();
     if (!w.isVisible()) w.showInactive();
     w.moveTop();
   }
 
+  // Grayscale image of the game area, about SAMPLE_HEIGHT tall, plus where it is (for the boxes).
   async function grab() {
     const fake = fakeScreen();
-    if (fake) return fake;
-    const d = display();
-    const width = Math.round(SAMPLE_HEIGHT * d.size.width / d.size.height);
-    const sources = await desktopCapturer.getSources({ types: ['screen'], thumbnailSize: { width, height: SAMPLE_HEIGHT } });
+    if (fake) return { img: fake, at: { display: display(), area: { ...display().bounds } } };
+    const at = gameArea();
+    const d = at.display;
+    const height = Math.round(Math.min(MAX_CAPTURE_HEIGHT, d.size.height * d.scaleFactor, SAMPLE_HEIGHT * d.size.height / at.area.height));
+    const width = Math.round(height * d.size.width / d.size.height);
+    const sources = await desktopCapturer.getSources({ types: ['screen'], thumbnailSize: { width, height } });
     const src = sources.find(s => s.display_id === String(d.id)) || sources[0];
     if (!src || src.thumbnail.isEmpty()) return null;
     const { width: w, height: h } = src.thumbnail.getSize();
     const bgra = src.thumbnail.toBitmap();
     const gray = new Uint8Array(w * h);
     for (let i = 0, p = 0; i < gray.length; i++, p += 4) gray[i] = (bgra[p] * 29 + bgra[p + 1] * 150 + bgra[p + 2] * 77) >> 8;
-    return { data: gray, width: w, height: h };
+    const k = w / d.bounds.width;
+    const area = { x: (at.area.x - d.bounds.x) * k, y: (at.area.y - d.bounds.y) * k, width: at.area.width * k, height: at.area.height * k };
+    return { img: region({ data: gray, width: w, height: h }, area), at };
   }
 
   function analyze(img) {
@@ -151,12 +180,17 @@ function createScanner({ isAuto, isActive, onChange }) {
 
   async function scan() {
     if (busy) return;
-    if (!isEnabled()) { misses = 0; setStatus({ state: 'off', picks: [], at: Date.now(), ms: 0 }); updateBadge(); return; }
+    if (!isEnabled()) { gameWindow.stop(); misses = 0; setStatus({ state: 'off', picks: [], at: Date.now(), ms: 0 }); updateBadge(); return; }
+    gameWindow.start();
     busy = true;
     const t = Date.now();
     try {
-      const img = await grab();
-      const r = img ? await analyze(img) : { found: false, picks: [] };
+      const shot = await grab();
+      const r = shot ? await analyze(shot.img) : { found: false, picks: [] };
+      // The window moved or resized while the same pieces are shown: move the boxes with it.
+      const moved = shot && JSON.stringify(shot.at.area) !== JSON.stringify(where && where.area);
+      if (shot) where = shot.at;
+      if (moved && r.found && status.state === 'found') draw();
       if (!isEnabled()) { setStatus({ state: 'off', picks: [], at: Date.now(), ms: 0 }); return; }
       if (r.found) { misses = 0; setStatus({ state: 'found', picks: r.picks, at: Date.now(), ms: Date.now() - t }); }
       else if (++misses >= LOST_AFTER || status.state !== 'found') setStatus({ state: 'searching', picks: [], at: Date.now(), ms: Date.now() - t });
@@ -175,6 +209,7 @@ function createScanner({ isAuto, isActive, onChange }) {
   function destroy() {
     clearInterval(timer);
     timer = null;
+    gameWindow.stop();
     if (worker) worker.terminate();
     if (marker && !marker.isDestroyed()) marker.destroy();
     if (badge && !badge.isDestroyed()) badge.destroy();

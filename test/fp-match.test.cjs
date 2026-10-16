@@ -38,3 +38,14 @@ test('posição das peças acompanha a altura da tela', () => {
   const last = tileRect(7, 3440, 1440);
   assert.ok(Math.abs(last.x - 1262) < 2 && Math.abs(last.y - 934) < 2);
 });
+
+test('modo janela: acha o hack dentro da área da janela do jogo numa tela maior', () => {
+  const { region } = require('../lib/fp-match.js');
+  const win = load('hack-1.pgm.gz');
+  // Paste the "game window" into a bright desktop at an offset.
+  const screen = { width: win.width + 300, height: win.height + 200, data: new Uint8Array((win.width + 300) * (win.height + 200)).fill(200) };
+  for (let y = 0; y < win.height; y++) screen.data.set(win.data.subarray(y * win.width, (y + 1) * win.width), (y + 120) * screen.width + 170);
+  assert.equal(analyze(screen).found, false, 'a tela inteira não bate com a geometria de tela cheia');
+  const r = analyze(region(screen, { x: 170, y: 120, width: win.width, height: win.height }));
+  assert.deepEqual(r.picks, [0, 1, 3, 4]);
+});
