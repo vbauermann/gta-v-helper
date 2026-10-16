@@ -66,8 +66,7 @@ O script baixa o runtime do Electron para Windows na mesma versão do `package.j
 
 ## Publicar uma versão
 
-1. Suba `version` em `package.json` e faça o commit.
-2. Crie e envie a tag: `git tag v1.2.3 && git push origin v1.2.3`.
-3. O workflow [Release](.github/workflows/release.yml) roda os testes no Windows, gera o instalador e publica o release. Os apps instalados atualizam a partir dele.
+1. Suba `version` em `package.json` e envie para a `main`.
+2. O workflow [Release](.github/workflows/release.yml) roda os testes no Windows, gera o instalador e publica o release `vX.Y.Z`. Os apps instalados atualizam a partir dele. Versões que já têm release são ignoradas; dá pra rodar o workflow na mão pela aba Actions.
 
 Bônus da semana novos: basta editar `data/weekly.json` na `main`. Os apps buscam o arquivo ao abrir e a cada 3 horas.
