@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>GTA Helper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">GTA <span>Helper</span></div>
+    <nav id="nav">
+      <button data-page="businesses" class="active">Negócios</button>
+      <button data-page="cayo">Cayo Perico</button>
+      <button data-page="casino">Diamond Casino</button>
+      <button data-page="payouts">Tabela de payouts</button>
+      <button data-page="settings">Configurações</button>
+    </nav>
+    <div class="clock" id="clock"></div>
+  </aside>
+  <main>
+    <header class="statusbar" id="statusbar"></header>
+    <section id="page"></section>
+  </main>
+  <script src="../lib/production.js"></script>
+  <script src="../lib/heists.js"></script>
+  <script src="ui.js"></script>
+  <script src="pages/businesses.js"></script>
+  <script src="pages/cayo.js"></script>
+  <script src="pages/casino.js"></script>
+  <script src="pages/payouts.js"></script>
+  <script src="pages/settings.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

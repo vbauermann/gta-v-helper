@@ -1,0 +1,57 @@
+# GTA Helper
+
+App desktop (Electron) de apoio ao GTA Online: timers de ressuprimento dos negócios e calculadoras de golpes. Fase 1 do plano em [docs/analise.md](docs/analise.md).
+
+O app nunca lê nem escreve na memória do jogo, não injeta nada e não envia teclas. Para saber se o GTA está aberto ele só consulta a lista de processos do Windows (`tasklist`).
+
+## O que tem
+
+- **Negócios:** marque o que você tem e os upgrades (Cocaína, Meth, Dinheiro, Maconha, Documentos, Bunker, Acid Lab). Ao ressuprir ou vender no jogo, aperte o botão correspondente.
+- **Timers:** contam só tempo de jogo online, porque os negócios só produzem com você numa sessão. Por padrão o timer roda apenas com `GTA5.exe` ou `GTA5_Enhanced.exe` aberto, e tem um botão de pausa para quando você estiver no modo história ou no menu. A produção para quando o suprimento acaba ou o estoque enche, igual ao jogo.
+- **Notificações do Windows** quando o suprimento está acabando (10 min de jogo antes, configurável), quando acaba e quando o estoque enche.
+- **Calibração:** os tempos de consumo são estimados. Se medir no jogo quanto uma barra cheia dura, informe em "Ajustar e calibrar" no card do negócio.
+- **Cayo Perico:** plano de bolsas a partir dos secundários encontrados no scout (ouro só com 2+ jogadores, pintura não se divide), pagamento líquido com Pavel e fence (12%), modo difícil, Elite Challenge, cortes por jogador e timer de cooldown (144 min solo, 48 min em grupo).
+- **Diamond Casino:** pagamento com Lester, comprador, atirador, motorista, hacker, multiplicador da primeira conclusão semanal e cortes.
+- **Tabela de payouts** da atualização de economia.
+- Ícone na bandeja: fechar a janela mantém o app rodando para os timers continuarem.
+
+## Rodar
+
+```bash
+npm install
+npm start
+```
+
+## Testes
+
+```bash
+npm test          # regras de produção, timers, cálculos de golpes, persistência
+npm run capture   # abre o app com dados de exemplo e salva prints das páginas em captures/
+```
+
+## Gerar o executável (no Windows)
+
+```bash
+npm run package   # gera dist/GTA Helper/GTA Helper.exe (pasta portátil)
+```
+
+## Estrutura
+
+| Arquivo | Papel |
+|---|---|
+| `main.cjs` | Processo principal: janela, bandeja, IPC, tick dos timers, notificações |
+| `preload.cjs` | API `window.gta` exposta à interface (contextIsolation + sandbox) |
+| `store.cjs` | Persistência em JSON na pasta de dados do usuário (`%APPDATA%/GTA Helper/gta-helper.json`) |
+| `timers.cjs` | Avança a produção e decide os alertas |
+| `game-watcher.cjs` | Detecta o GTA pela lista de processos |
+| `lib/production.js` | Modelo de produção e consumo (usado no main e na interface) |
+| `lib/heists.js` | Cálculos de Cayo e Casino |
+| `data/*.json` | Dados do jogo com fontes. Edite aqui quando a Rockstar mudar valores |
+| `app/` | Interface (HTML/CSS/JS puro, sem bundler) |
+
+## Dados e fontes
+
+- Tempos por unidade, capacidade e valores dos negócios: [gtamaxprofit.com](https://gtamaxprofit.com/more/profit-tables/) e [gtaboss.gg](https://www.gtaboss.gg/gta-5-online/businesses/acid-lab) (Acid Lab).
+- Duração da barra de suprimentos: estimada a partir de [drifted.com](https://www.drifted.com/gta-online-bunker-guide/) (Bunker 1h40 sem upgrades, 2h20 com tudo) e de [gtaboss.gg](https://www.gtaboss.gg/gta-5-online/guides/everything-you-need-to-know-about-the-cocaine-lockup-in-gta-v-online) (2,5 barras para encher a Cocaína). Precisa ser confirmada no jogo.
+- Cayo Perico pós Title Update 1.73: [gtaboom.com](https://www.gtaboom.com/cayo-perico-heist-payout-list-cooldowns-bonus-payouts-and-all-targets-035d) e [timesaver.gg](https://timesaver.gg/blog/gta-online-cayo-perico-loot-values-2026).
+- Golpes: tabela GTASeriesVideos da atualização de economia.

@@ -1,0 +1,18 @@
+{
+  "name": "gta-helper",
+  "productName": "GTA Helper",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Auxiliar de GTA Online: timers de negócios e calculadoras de golpes",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.cjs",
+    "capture": "electron tools/capture.cjs",
+    "package": "node package.cjs"
+  },
+  "devDependencies": {
+    "electron": "44.4.3",
+    "rcedit": "^5.0.2"
+  }
+}

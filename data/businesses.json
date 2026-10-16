@@ -1,0 +1,59 @@
+{
+  "version": "2026-10-16",
+  "notes": [
+    "Minutos por unidade e capacidade: gtamaxprofit.com/more/profit-tables e gtaboss.gg (Acid Lab).",
+    "Unidades por barra cheia de suprimento: estimadas. Com upgrade de equipamento, 2,5 barras enchem o estoque (5 no Bunker, 3,2 no Acid Lab); sem equipamento o consumo dobra. Bunker sem upgrades bate com 1h40 por barra (drifted.com).",
+    "A Rockstar muda esses números em updates. Use a calibração de cada negócio quando medir no jogo."
+  ],
+  "businesses": [
+    {
+      "id": "cocaine", "name": "Cocaína", "group": "MC", "capacity": 10,
+      "upgrades": ["equipment", "staff", "security"],
+      "minutesPerUnit": { "none": 50, "equipment": 40, "staff": 40, "both": 30 },
+      "unitsPerBar": { "noEquipment": 2, "equipment": 4 },
+      "unitValue": { "none": 20000, "equipment": 24000, "staff": 24000, "both": 28000 }
+    },
+    {
+      "id": "meth", "name": "Metanfetamina", "group": "MC", "capacity": 20,
+      "upgrades": ["equipment", "staff", "security"],
+      "minutesPerUnit": { "none": 30, "equipment": 24, "staff": 24, "both": 18 },
+      "unitsPerBar": { "noEquipment": 4, "equipment": 8 },
+      "unitValue": { "none": 8500, "equipment": 10200, "staff": 10200, "both": 11900 }
+    },
+    {
+      "id": "cash", "name": "Dinheiro Falso", "group": "MC", "capacity": 40,
+      "upgrades": ["equipment", "staff", "security"],
+      "minutesPerUnit": { "none": 12, "equipment": 10, "staff": 10, "both": 8 },
+      "unitsPerBar": { "noEquipment": 8, "equipment": 16 },
+      "unitValue": { "none": 3500, "equipment": 4200, "staff": 4200, "both": 4900 }
+    },
+    {
+      "id": "weed", "name": "Maconha", "group": "MC", "capacity": 80,
+      "upgrades": ["equipment", "staff", "security"],
+      "minutesPerUnit": { "none": 6, "equipment": 5, "staff": 5, "both": 4 },
+      "unitsPerBar": { "noEquipment": 16, "equipment": 32 },
+      "unitValue": { "none": 1500, "equipment": 1800, "staff": 1800, "both": 2100 }
+    },
+    {
+      "id": "documents", "name": "Documentos Falsos", "group": "MC", "capacity": 60,
+      "upgrades": ["equipment", "staff", "security"],
+      "minutesPerUnit": { "none": 5, "equipment": 4, "staff": 4, "both": 3 },
+      "unitsPerBar": { "noEquipment": 12, "equipment": 24 },
+      "unitValue": { "none": 1000, "equipment": 1200, "staff": 1200, "both": 1400 }
+    },
+    {
+      "id": "bunker", "name": "Bunker", "group": "Gunrunning", "capacity": 100,
+      "upgrades": ["equipment", "staff", "security"],
+      "minutesPerUnit": { "none": 10, "equipment": 8.5, "staff": 8.5, "both": 7 },
+      "unitsPerBar": { "noEquipment": 10, "equipment": 20 },
+      "unitValue": { "none": 5000, "equipment": 6000, "staff": 6000, "both": 7000 }
+    },
+    {
+      "id": "acid", "name": "Acid Lab", "group": "Drug Wars", "capacity": 160,
+      "upgrades": ["equipment"],
+      "minutesPerUnit": { "none": 2.25, "equipment": 1.5 },
+      "unitsPerBar": { "noEquipment": 50, "equipment": 50 },
+      "unitValue": { "none": 1485, "equipment": 2095 }
+    }
+  ]
+}
