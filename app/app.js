@@ -47,7 +47,7 @@
         this.setState(await promise, true);
       } catch (error) {
         console.error(error);
-        toast('Não deu certo', String(error.message || error).replace(/^Error invoking remote method '[^']+': (Error: )?/, ''));
+        toast('Não deu certo', String(error.message || error).replace(/^Error invoking remote method '[^']+': (\w*Error: )?/, ''));
       }
     },
     navigate(page) { navigate(page); },

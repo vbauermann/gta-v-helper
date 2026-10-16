@@ -24,11 +24,11 @@
           h('span', { class: 'ov-tools' }, h('button', { class: 'done', onclick: () => set({ interact: false }) }, 'Pronto'))),
         h('div', { class: 'ov-row' },
           h('span', { class: 'ov-tools left' },
-            [...PRINTS, 'all'].map((p, i) => h('button', { class: s.print === p ? 'on' : '', title: `Ctrl+Shift+${p === 'all' ? 0 : i + 1}`, onclick: () => set({ print: p }) }, p === 'all' ? 'Todas' : p))),
+            [...PRINTS, 'all'].map(p => h('button', { class: s.print === p ? 'on' : '', title: s.keys[p], onclick: () => set({ print: p }) }, p === 'all' ? 'Todas' : p))),
           h('span', { class: 'ov-tools' },
             SIZES.map(([v, l]) => h('button', { class: s.size === v ? 'on' : '', title: 'Tamanho', onclick: () => set({ size: v }) }, l)))));
     } else {
-      UI.fill(head, h('div', { class: 'ov-row' }, h('span', { class: 'ov-title' }, title), h('span', { class: 'ov-hint' }, 'Ctrl+Shift+F esconde')));
+      UI.fill(head, h('div', { class: 'ov-row' }, h('span', { class: 'ov-title' }, title), h('span', { class: 'ov-hint' }, `${s.keys.toggle} esconde`)));
     }
     // Only swap the images when the selection changes, so they never flicker.
     if (shown !== s.print) {

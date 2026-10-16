@@ -3,6 +3,7 @@
 // mode it is click-through and never takes focus; "move mode" lets the mouse drag it around.
 const path = require('node:path');
 const { BrowserWindow, screen, globalShortcut } = require('electron');
+const Hotkeys = require('./lib/hotkeys.js');
 
 const PRINTS = ['S', 'O', 'J', 'L'];
 const TILE = { sm: 200, md: 280, lg: 380 }; // width of one fingerprint, in DIPs
@@ -14,6 +15,7 @@ function createOverlay({ getSettings, saveSettings, onChange }) {
   let visible = false;
   let interact = false;
   let hotkeysFailed = [];
+  let registered = [];
 
   const settings = () => getSettings().overlay;
 
@@ -71,7 +73,7 @@ function createOverlay({ getSettings, saveSettings, onChange }) {
 
   function state() {
     const s = settings();
-    return { visible, interact, print: s.print, size: s.size, opacity: s.opacity, hotkeys: s.hotkeys, hotkeysFailed };
+    return { visible, interact, print: s.print, size: s.size, opacity: s.opacity, hotkeys: s.hotkeys, keys: Hotkeys.normalize(s.keys), hotkeysFailed };
   }
 
   function push() {
@@ -126,28 +128,51 @@ function createOverlay({ getSettings, saveSettings, onChange }) {
     if ('opacity' in patch) next.opacity = Math.min(1, Math.max(0.4, Number(patch.opacity) || 1));
     if ('hotkeys' in patch) next.hotkeys = !!patch.hotkeys;
     if (patch.resetPosition) next.pos = null;
+    if (patch.resetKeys) next.keys = { ...Hotkeys.DEFAULT_KEYS };
+    if (patch.key && typeof patch.key === 'object') {
+      const { id, accel } = patch.key;
+      if (!Hotkeys.ACTIONS.some(a => a.id === id)) throw new TypeError('atalho desconhecido');
+      if (!Hotkeys.isValid(accel)) throw new TypeError('combinação inválida: use Ctrl, Alt ou Shift com uma letra, número ou F1 a F24');
+      const keys = { ...Hotkeys.normalize(settings().keys), [id]: accel };
+      const clash = Hotkeys.ACTIONS.find(a => a.id !== id && keys[a.id] === accel);
+      if (clash) throw new TypeError(`${accel} já está em "${clash.label}"`);
+      next.keys = keys;
+    }
     saveSettings(next);
-    if ('hotkeys' in next) registerHotkeys();
+    if ('hotkeys' in next || 'keys' in next) registerHotkeys();
     relayout();
     onChange();
   }
 
-  const SHORTCUTS = [
-    ['CommandOrControl+Shift+F', () => (visible ? hide() : show())],
-    ['CommandOrControl+Shift+0', () => setPrint('all')],
-    ...PRINTS.map((p, i) => [`CommandOrControl+Shift+${i + 1}`, () => setPrint(p)]),
-    ['CommandOrControl+Shift+M', () => setInteract(!interact)]
-  ];
+  const HANDLERS = {
+    toggle: () => (visible ? hide() : show()),
+    all: () => setPrint('all'),
+    S: () => setPrint('S'), O: () => setPrint('O'), J: () => setPrint('J'), L: () => setPrint('L'),
+    move: () => setInteract(!interact)
+  };
 
-  function registerHotkeys() {
-    for (const [accel] of SHORTCUTS) globalShortcut.unregister(accel);
+  function unregisterAll() {
+    for (const accel of registered) globalShortcut.unregister(accel);
+    registered = [];
+  }
+
+  // suspended: the app is recording a new combo, so nothing may swallow the keys meanwhile.
+  function registerHotkeys(suspended = false) {
+    unregisterAll();
     hotkeysFailed = [];
-    if (!settings().hotkeys) return;
-    for (const [accel, fn] of SHORTCUTS) {
+    if (!settings().hotkeys || suspended) return;
+    const keys = Hotkeys.normalize(settings().keys);
+    for (const { id } of Hotkeys.ACTIONS) {
       let ok = false;
-      try { ok = globalShortcut.register(accel, fn); } catch { ok = false; }
-      if (!ok) hotkeysFailed.push(accel.replace('CommandOrControl', 'Ctrl'));
+      try { ok = globalShortcut.register(keys[id], HANDLERS[id]); } catch { ok = false; }
+      if (ok) registered.push(keys[id]);
+      else hotkeysFailed.push(keys[id]);
     }
+  }
+
+  function suspendHotkeys(on) {
+    registerHotkeys(!!on);
+    onChange();
   }
 
   function isOverlay(sender) {
@@ -155,11 +180,11 @@ function createOverlay({ getSettings, saveSettings, onChange }) {
   }
 
   function destroy() {
-    for (const [accel] of SHORTCUTS) globalShortcut.unregister(accel);
+    unregisterAll();
     if (win && !win.isDestroyed()) win.destroy();
   }
 
-  return { show, hide, setInteract, setPrint, configure, registerHotkeys, state, isOverlay, destroy, PRINTS };
+  return { show, hide, setInteract, setPrint, configure, registerHotkeys, suspendHotkeys, state, isOverlay, destroy, PRINTS };
 }
 
 module.exports = { createOverlay, PRINTS };

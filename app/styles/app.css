@@ -219,3 +219,8 @@ td:last-child, th:last-child { text-align: right; }
 .fp-top { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
 .fp-top p { flex: 1; }
 .fp-top .actions { display: flex; gap: 10px; flex: none; }
+.key-btn { cursor: pointer; background: var(--card-2); color: var(--text); transition: border-color 0.15s, background 0.15s; }
+.key-btn:hover { border-color: var(--accent-line); }
+.key-btn.recording { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.key-row.failed .key-btn { border-color: var(--danger-line); color: var(--danger); }
+.keys-note { margin-top: 14px; }

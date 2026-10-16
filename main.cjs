@@ -163,6 +163,7 @@ function registerIpc() {
     else if (action === 'hide') overlay.hide();
     else if (action === 'print') overlay.setPrint(String(value));
     else if (action === 'interact') overlay.setInteract(!!value);
+    else if (action === 'suspend-hotkeys') overlay.suspendHotkeys(!!value);
     else if (action === 'configure' && value && typeof value === 'object') overlay.configure(value);
     else throw new TypeError('ação desconhecida');
     return snapshot();
@@ -226,7 +227,7 @@ function createTray() {
   tray.setContextMenu(Menu.buildFromTemplate([
     { label: 'Abrir', click: showWindow },
     { label: 'Pausar/retomar timers', click: () => mutate(s => { s.settings.paused = !s.settings.paused; }) },
-    { label: 'Mostrar/esconder digitais (Ctrl+Shift+F)', click: () => (overlay.state().visible ? overlay.hide() : overlay.show()) },
+    { label: 'Mostrar/esconder digitais', click: () => (overlay.state().visible ? overlay.hide() : overlay.show()) },
     { type: 'separator' },
     { label: 'Sair', click: () => { quitting = true; app.quit(); } }
   ]));

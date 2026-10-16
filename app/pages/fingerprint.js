@@ -4,13 +4,32 @@
   const PRINTS = ['S', 'O', 'J', 'L'];
   const SIZES = [{ value: 'sm', label: 'Pequeno' }, { value: 'md', label: 'Médio' }, { value: 'lg', label: 'Grande' }];
   const OPACITY = [{ value: 0.7, label: '70%' }, { value: 0.85, label: '85%' }, { value: 1, label: '100%' }];
-  const KEYS = [
-    ['Ctrl+Shift+F', 'Mostra ou esconde o overlay'],
-    ['Ctrl+Shift+0', 'Mostra as 4 digitais pra comparar'],
-    ['Ctrl+Shift+1 a 4', 'Mostra só a S, O, J ou L, maior'],
-    ['Ctrl+Shift+M', 'Liga o modo mover (arrastar, trocar tamanho)']
-  ];
   let root = null;
+  let recording = null; // id of the shortcut being recorded
+
+  // Records the next key combo for one action. Global shortcuts are suspended meanwhile so the
+  // current combo reaches this window instead of firing the overlay.
+  function startRecording(id) {
+    stopRecording();
+    recording = id;
+    window.addEventListener('keydown', onKey, true);
+    App.act(window.gta.overlay('suspend-hotkeys', true));
+  }
+  async function stopRecording(accel) {
+    if (!recording) return;
+    const id = recording;
+    recording = null;
+    window.removeEventListener('keydown', onKey, true);
+    if (accel) await App.act(window.gta.overlay('configure', { key: { id, accel } }));
+    await App.act(window.gta.overlay('suspend-hotkeys', false));
+  }
+  function onKey(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.key === 'Escape') { stopRecording(); return; }
+    const accel = GtaHotkeys.fromEvent(e);
+    if (accel) stopRecording(accel);
+  }
 
   const ov = (action, value) => App.act(window.gta.overlay(action, value));
 
@@ -36,10 +55,10 @@
       h('div', { class: 'card pad' },
         h('div', { class: 'card-head' }, h('h3', null, icon('fingerprint', 18), 'As 4 digitais'),
           h('span', { class: 'hint' }, 'Clique numa pra mostrar ela no overlay')),
-        h('div', { class: 'fp-grid' }, [...PRINTS.map((p, i) => tile(p, `Ctrl+Shift+${i + 1}`, s.print === p)), allTile(s.print === 'all')]),
+        h('div', { class: 'fp-grid' }, [...PRINTS.map(p => tile(p, o.keys[p], s.print === p)), allTile(o.keys.all, s.print === 'all')]),
         h('div', { class: 'fp-how' },
           h('b', null, 'Como usar no hack: '),
-          'quando a digital grande aparecer, aperte Ctrl+Shift+0 e veja qual das 4 ela é. Aperte o número dela (1 a 4) e marque no jogo as peças iguais às 4 da coluna da esquerda do overlay. As posições das peças mudam a cada tentativa, então compare pelo desenho.')),
+          `quando a digital grande aparecer, aperte ${o.keys.all} e veja qual das 4 ela é. Aperte o atalho dela (${PRINTS.map(p => o.keys[p]).join(', ')}) e marque no jogo as peças iguais às 4 da coluna da esquerda do overlay. As posições das peças mudam a cada tentativa, então compare pelo desenho.`)),
       h('div', { class: 'grid fp-bottom' },
         h('div', { class: 'card pad' },
           h('div', { class: 'card-head' }, h('h3', null, icon('settings', 18), 'Overlay')),
@@ -52,8 +71,16 @@
                 h('button', { class: 'btn ghost sm', onclick: () => ov('configure', { resetPosition: true }) }, 'Voltar pro canto'))),
             checkbox('Atalhos de teclado', s.hotkeys, e => ov('configure', { hotkeys: e.target.checked }), 'Funcionam com o jogo em foco. O app não envia teclas pro jogo.'))),
         h('div', { class: 'card pad' },
-          h('div', { class: 'card-head' }, h('h3', null, icon('keyboard', 18), 'Atalhos')),
-          h('div', { class: 'keys' }, KEYS.map(([k, t]) => h('div', { class: 'key-row' }, h('span', { class: 'kbd' }, k), h('span', null, t)))))));
+          h('div', { class: 'card-head' }, h('h3', null, icon('keyboard', 18), 'Atalhos'), h('span', { class: 'grow' }),
+            h('button', { class: 'btn ghost sm', onclick: () => ov('configure', { resetKeys: true }) }, 'Restaurar padrão')),
+          h('div', { class: 'keys' }, GtaHotkeys.ACTIONS.map(a => h('div', { class: `key-row ${o.hotkeysFailed.includes(o.keys[a.id]) ? 'failed' : ''}` },
+            h('button', {
+              class: `kbd key-btn ${recording === a.id ? 'recording' : ''}`,
+              title: 'Clique e aperte a nova combinação (Esc cancela)',
+              onclick: () => (recording === a.id ? stopRecording() : startRecording(a.id))
+            }, recording === a.id ? 'Aperte as teclas…' : o.keys[a.id]),
+            h('span', null, a.label)))),
+          h('p', { class: 'muted small keys-note' }, 'Clique num atalho e aperte a nova combinação. Use Ctrl, Alt ou Shift com uma letra, número ou tecla do numpad, ou uma tecla F1 a F24 sozinha. Esc cancela.'))));
   }
 
   function tile(p, key, active) {
@@ -62,10 +89,10 @@
       h('span', { class: 'fp-label' }, h('b', null, p), h('span', { class: 'kbd' }, key)));
   }
 
-  function allTile(active) {
+  function allTile(key, active) {
     return h('button', { class: `fp-tile all ${active ? 'active' : ''}`, onclick: () => ov('print', 'all') },
       h('div', { class: 'fp-mini' }, PRINTS.map(p => h('img', { src: `assets/fingerprints/${p}.png`, alt: '', draggable: 'false' }))),
-      h('span', { class: 'fp-label' }, h('b', null, 'Todas'), h('span', { class: 'kbd' }, 'Ctrl+Shift+0')));
+      h('span', { class: 'fp-label' }, h('b', null, 'Todas'), h('span', { class: 'kbd' }, key)));
   }
 
   function setting(label, hint, control) {
@@ -76,7 +103,7 @@
 
   // Rendered as the "Digitais" tab of the Casino page.
   window.CasinoFingerprint = {
-    mount(el) { root = el; render(); },
+    mount(el) { stopRecording(); root = el; render(); },
     onState() { if (root && root.isConnected) render(); }
   };
 })();
