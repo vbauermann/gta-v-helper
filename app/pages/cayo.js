@@ -6,9 +6,11 @@
   let root = null;
   let results = null;
   let form = load();
+  let renderStacks = () => {};
+  const LOOT_SHORT = { gold: 'O', cocaine: 'C', weed: 'M', paintings: 'P', cash: '$' };
 
   function load() {
-    const base = { primaryId: 'diamond', hard: false, crewSize: 1, cuts: [100], found: {}, safe: 0, elite: false };
+    const base = { primaryId: 'diamond', hard: false, crewSize: 1, cuts: [100], found: {}, markers: {}, safe: 0, elite: false };
     try { return { ...base, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch { return base; }
   }
   function save() {
@@ -28,11 +30,18 @@
       numberInput(c, { min: 0, max: 100, step: 5, oninput: e => { form.cuts[i] = Number(e.target.value) || 0; update({}); } }))));
     renderCuts();
 
+    const stacksBox = h('div', { class: 'stacks' });
+    renderStacks = () => stacksBox.replaceChildren(...data.secondaries.map(s => field(
+      `${s.name} · ${money(s.stackValue)} · ${number(s.bagPct)}% da bolsa${s.needsTwo ? ' · precisa de 2 jogadores' : ''}`,
+      numberInput(form.found[s.id] || 0, { min: 0, max: 30, step: 1, oninput: e => { form.found[s.id] = Math.max(0, Number(e.target.value) || 0); update({}); } }))));
+    renderStacks();
+
     results = h('div', { class: 'results' });
     root.replaceChildren(
       h('div', { class: 'page-head' },
         h('h1', null, 'Cayo Perico'),
         h('p', { class: 'muted' }, 'Marque os alvos secundários que achou no scout. O plano enche as bolsas com o que vale mais por espaço.')),
+      mapCard(data),
       h('div', { class: 'two-col' },
         h('div', { class: 'card form' },
           h('h3', null, 'Golpe'),
@@ -49,13 +58,102 @@
           })),
           cutsBox,
           h('h3', null, 'Alvos secundários encontrados (pilhas)'),
-          h('div', { class: 'stacks' }, data.secondaries.map(s => field(
-            `${s.name} · ${money(s.stackValue)} · ${number(s.bagPct)}% da bolsa${s.needsTwo ? ' · precisa de 2 jogadores' : ''}`,
-            numberInput(form.found[s.id] || 0, { min: 0, max: 30, step: 1, oninput: e => { form.found[s.id] = Math.max(0, Number(e.target.value) || 0); update({}); } })))),
+          stacksBox,
           field('Cofre do El Rubio', numberInput(form.safe, { min: 0, step: 1000, oninput: e => update({ safe: Number(e.target.value) || 0 }) }), 'Entre GTA$ 18 mil e 99 mil, não ocupa bolsa.'),
           checkbox('Elite Challenge (menos de 15 min, bolsas cheias, sem falhar hack)', form.elite, e => update({ elite: e.target.checked }))),
         results));
     renderResults();
+  }
+
+  // Scout map: each spot holds one stack. Clicking a spot picks what was there and the
+  // stack counts are recalculated from the map. The compound spots sit too close together
+  // at this size, so they live in a zoomed inset next to the map.
+  function mapCard(data) {
+    const map = data.map;
+    const inset = map.inset;
+    const scale = 4;
+    const main = h('div', { class: 'map' }, h('img', { src: map.image, alt: 'Mapa de Cayo Perico', draggable: 'false' }));
+    const area = h('div', { class: 'map-area' });
+    area.style.left = `${(inset.x / map.width) * 100}%`;
+    area.style.top = `${(inset.y / map.height) * 100}%`;
+    area.style.width = `${(inset.w / map.width) * 100}%`;
+    area.style.height = `${(inset.h / map.height) * 100}%`;
+    main.append(area);
+    const zoomImg = h('img', { src: map.image, alt: '', draggable: 'false' });
+    zoomImg.style.width = `${map.width * scale}px`;
+    zoomImg.style.left = `${-inset.x * scale}px`;
+    zoomImg.style.top = `${-inset.y * scale}px`;
+    const zoom = h('div', { class: 'map zoom' }, zoomImg);
+    zoom.style.width = `${inset.w * scale}px`;
+    zoom.style.height = `${inset.h * scale}px`;
+    const menu = h('div', { class: 'map-menu', hidden: true });
+    let openSpot = null;
+
+    function setMarker(spotId, loot) {
+      if (loot) form.markers[spotId] = loot; else delete form.markers[spotId];
+      const found = {};
+      for (const id of Object.values(form.markers)) if (id !== 'empty') found[id] = (found[id] || 0) + 1;
+      form.found = found;
+      closeMenu();
+      renderStacks();
+      update({});
+    }
+
+    function closeMenu() {
+      menu.hidden = true;
+      openSpot = null;
+      drawSpots();
+    }
+
+    function openMenu(spot, btn) {
+      openSpot = spot.id;
+      menu.replaceChildren(
+        h('div', { class: 'map-menu-title' }, `${spot.area}${spot.locked ? ' · sala trancada' : ''}`),
+        ...data.secondaries.map(s => h('button', { class: `loot-${s.id}`, onclick: () => setMarker(spot.id, s.id) }, s.name)),
+        h('button', { onclick: () => setMarker(spot.id, 'empty') }, 'Vazio'),
+        h('button', { onclick: () => setMarker(spot.id, null) }, 'Desmarcar'));
+      const box = scout.getBoundingClientRect();
+      const r = btn.getBoundingClientRect();
+      menu.style.left = `${Math.min(r.left - box.left + 16, box.width - 170)}px`;
+      menu.style.top = `${Math.min(r.top - box.top + 16, box.height - 290)}px`;
+      menu.hidden = false;
+      drawSpots();
+    }
+
+    function drawSpots() {
+      for (const el of scout.querySelectorAll('.spot')) el.remove();
+      for (const spot of map.spots) {
+        const loot = form.markers[spot.id];
+        const btn = h('button', {
+          class: `spot ${loot ? `loot-${loot}` : ''} ${spot.locked ? 'locked' : ''} ${openSpot === spot.id ? 'active' : ''}`,
+          title: `${spot.area}${spot.locked ? ' (trancada)' : ''}`,
+          onclick: e => { e.stopPropagation(); openMenu(spot, btn); }
+        }, loot ? (loot === 'empty' ? '×' : LOOT_SHORT[loot]) : '?');
+        if (spot.inset) {
+          btn.style.left = `${((spot.x - inset.x) / inset.w) * 100}%`;
+          btn.style.top = `${((spot.y - inset.y) / inset.h) * 100}%`;
+          zoom.append(btn);
+        } else {
+          btn.style.left = `${(spot.x / map.width) * 100}%`;
+          btn.style.top = `${(spot.y / map.height) * 100}%`;
+          main.append(btn);
+        }
+      }
+    }
+
+    const scout = h('div', { class: 'scout' },
+      main,
+      h('div', { class: 'zoom-col' }, h('div', { class: 'muted small' }, inset.label), zoom),
+      menu);
+    scout.addEventListener('click', () => { if (!menu.hidden) closeMenu(); });
+    drawSpots();
+    return h('div', { class: 'card' },
+      h('div', { class: 'row space' },
+        h('h3', null, 'Mapa do scout'),
+        h('button', { onclick: () => { form.markers = {}; form.found = {}; save(); render(); } }, 'Limpar mapa')),
+      h('p', { class: 'muted' }, `${map.note} Clique no ponto e escolha o que tinha lá. Se preferir, preencha só as quantidades no formulário.`),
+      scout,
+      h('div', { class: 'legend' }, data.secondaries.map(s => h('span', { class: `legend-item loot-${s.id}` }, h('i', null, LOOT_SHORT[s.id]), s.name))));
   }
 
   function renderResults() {

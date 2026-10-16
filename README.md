@@ -10,7 +10,7 @@ O app nunca lê nem escreve na memória do jogo, não injeta nada e não envia t
 - **Timers:** contam só tempo de jogo online, porque os negócios só produzem com você numa sessão. Por padrão o timer roda apenas com `GTA5.exe` ou `GTA5_Enhanced.exe` aberto, e tem um botão de pausa para quando você estiver no modo história ou no menu. A produção para quando o suprimento acaba ou o estoque enche, igual ao jogo.
 - **Notificações do Windows** quando o suprimento está acabando (10 min de jogo antes, configurável), quando acaba e quando o estoque enche.
 - **Calibração:** os tempos de consumo são estimados. Se medir no jogo quanto uma barra cheia dura, informe em "Ajustar e calibrar" no card do negócio.
-- **Cayo Perico:** plano de bolsas a partir dos secundários encontrados no scout (ouro só com 2+ jogadores, pintura não se divide), pagamento líquido com Pavel e fence (12%), modo difícil, Elite Challenge, cortes por jogador e timer de cooldown (144 min solo, 48 min em grupo).
+- **Cayo Perico:** mapa do scout clicável (o complexo aparece ampliado ao lado) onde você marca o que tinha em cada ponto, plano de bolsas a partir dos secundários encontrados no scout (ouro só com 2+ jogadores, pintura não se divide), pagamento líquido com Pavel e fence (12%), modo difícil, Elite Challenge, cortes por jogador e timer de cooldown (144 min solo, 48 min em grupo).
 - **Diamond Casino:** pagamento com Lester, comprador, atirador, motorista, hacker, multiplicador da primeira conclusão semanal e cortes.
 - **Tabela de payouts** da atualização de economia.
 - Ícone na bandeja: fechar a janela mantém o app rodando para os timers continuarem.
@@ -29,11 +29,13 @@ npm test          # regras de produção, timers, cálculos de golpes, persistê
 npm run capture   # abre o app com dados de exemplo e salva prints das páginas em captures/
 ```
 
-## Gerar o executável (no Windows)
+## Gerar o executável
 
 ```bash
-npm run package   # gera dist/GTA Helper/GTA Helper.exe (pasta portátil)
+npm run package   # gera dist/GTA Helper/GTA Helper.exe (pasta portátil, roda de Windows ou Linux)
 ```
+
+O script baixa o runtime do Electron para Windows na mesma versão do `package.json` e grava ícone e nome no .exe. O .exe não é assinado, então o SmartScreen pode pedir "Mais informações > Executar assim mesmo" na primeira vez.
 
 ## Estrutura
 

@@ -33,7 +33,7 @@ app.whenReady().then(async () => {
   await wait(1200);
   for (const page of ['businesses', 'cayo', 'casino', 'payouts', 'settings']) {
     await win.webContents.executeJavaScript(`document.querySelector('[data-page=${page}]').click();
-      ${page === 'cayo' ? "for (const [i,v] of [[0,2],[1,3],[3,2]]) { const el=document.querySelectorAll('.stacks input')[i]; el.value=v; el.dispatchEvent(new Event('input')); }" : ''}`);
+      ${page === 'cayo' ? "for (const [i,loot] of [[11,0],[12,0],[13,3],[0,1],[3,1],[7,2],[9,1]]) { document.querySelectorAll('.map .spot')[i].click(); [...document.querySelectorAll('.map-menu button')][loot].click(); } document.querySelectorAll('.map .spot')[14].click();" : ''}`);
     await wait(700);
     fs.writeFileSync(path.join(out, `${page}.png`), (await win.webContents.capturePage()).toPNG());
   }

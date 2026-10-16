@@ -6,76 +6,461 @@
   ],
   "cayo": {
     "setupFee": 100000,
-    "feesPct": { "pavel": 2, "fencing": 10 },
+    "feesPct": {
+      "pavel": 2,
+      "fencing": 10
+    },
     "hardBonusPct": 10,
-    "eliteChallenge": { "normal": 50000, "hard": 100000 },
-    "cooldownMinutes": { "solo": 144, "crew": 48 },
+    "eliteChallenge": {
+      "normal": 50000,
+      "hard": 100000
+    },
+    "cooldownMinutes": {
+      "solo": 144,
+      "crew": 48
+    },
     "primaries": [
-      { "id": "tequila", "name": "Sinsimito Tequila", "value": 400000 },
-      { "id": "ruby", "name": "Colar de Rubi", "value": 560000 },
-      { "id": "bonds", "name": "Títulos ao Portador", "value": 616000 },
-      { "id": "diamond", "name": "Diamante Rosa", "value": 910000 },
-      { "id": "panther", "name": "Estátua da Pantera (evento)", "value": 1900000 },
-      { "id": "files", "name": "Arquivos do Madrazo (1ª vez)", "value": 1100000 }
+      {
+        "id": "tequila",
+        "name": "Sinsimito Tequila",
+        "value": 400000
+      },
+      {
+        "id": "ruby",
+        "name": "Colar de Rubi",
+        "value": 560000
+      },
+      {
+        "id": "bonds",
+        "name": "Títulos ao Portador",
+        "value": 616000
+      },
+      {
+        "id": "diamond",
+        "name": "Diamante Rosa",
+        "value": 910000
+      },
+      {
+        "id": "panther",
+        "name": "Estátua da Pantera (evento)",
+        "value": 1900000
+      },
+      {
+        "id": "files",
+        "name": "Arquivos do Madrazo (1ª vez)",
+        "value": 1100000
+      }
     ],
     "secondaries": [
-      { "id": "gold", "name": "Ouro", "stackValue": 297750, "bagPct": 66.67, "needsTwo": true, "divisible": true },
-      { "id": "cocaine", "name": "Cocaína", "stackValue": 180225, "bagPct": 50, "divisible": true },
-      { "id": "weed", "name": "Maconha", "stackValue": 119475, "bagPct": 37.5, "divisible": true },
-      { "id": "paintings", "name": "Pinturas", "stackValue": 151875, "bagPct": 50, "divisible": false },
-      { "id": "cash", "name": "Dinheiro", "stackValue": 72900, "bagPct": 25, "divisible": true }
-    ]
+      {
+        "id": "gold",
+        "name": "Ouro",
+        "stackValue": 297750,
+        "bagPct": 66.67,
+        "needsTwo": true,
+        "divisible": true
+      },
+      {
+        "id": "cocaine",
+        "name": "Cocaína",
+        "stackValue": 180225,
+        "bagPct": 50,
+        "divisible": true
+      },
+      {
+        "id": "weed",
+        "name": "Maconha",
+        "stackValue": 119475,
+        "bagPct": 37.5,
+        "divisible": true
+      },
+      {
+        "id": "paintings",
+        "name": "Pinturas",
+        "stackValue": 151875,
+        "bagPct": 50,
+        "divisible": false
+      },
+      {
+        "id": "cash",
+        "name": "Dinheiro",
+        "stackValue": 72900,
+        "bagPct": 25,
+        "divisible": true
+      }
+    ],
+    "map": {
+      "image": "assets/cayo-map.png",
+      "width": 956,
+      "height": 903,
+      "note": "Cada ponto é um local possível de alvo secundário (1 pilha). Borda tracejada indica sala trancada.",
+      "spots": [
+        {
+          "id": "airport-1",
+          "area": "Aeroporto",
+          "x": 345,
+          "y": 121,
+          "locked": false
+        },
+        {
+          "id": "airport-2",
+          "area": "Aeroporto",
+          "x": 352,
+          "y": 119,
+          "locked": false
+        },
+        {
+          "id": "airport-3",
+          "area": "Hangar do aeroporto",
+          "x": 377,
+          "y": 172,
+          "locked": false
+        },
+        {
+          "id": "north-1",
+          "area": "Cais norte",
+          "x": 641,
+          "y": 188,
+          "locked": false
+        },
+        {
+          "id": "north-2",
+          "area": "Cais norte",
+          "x": 672,
+          "y": 198,
+          "locked": false
+        },
+        {
+          "id": "north-3",
+          "area": "Cais norte",
+          "x": 651,
+          "y": 233,
+          "locked": true
+        },
+        {
+          "id": "docks-1",
+          "area": "Docas principais",
+          "x": 590,
+          "y": 430,
+          "locked": true
+        },
+        {
+          "id": "docks-2",
+          "area": "Docas principais",
+          "x": 610,
+          "y": 457,
+          "locked": false
+        },
+        {
+          "id": "docks-3",
+          "area": "Docas principais",
+          "x": 574,
+          "y": 495,
+          "locked": false
+        },
+        {
+          "id": "center-1",
+          "area": "Centro da ilha",
+          "x": 698,
+          "y": 442,
+          "locked": false
+        },
+        {
+          "id": "center-2",
+          "area": "Centro da ilha",
+          "x": 764,
+          "y": 508,
+          "locked": false
+        },
+        {
+          "id": "compound-1",
+          "area": "Complexo",
+          "x": 610,
+          "y": 731,
+          "locked": true,
+          "inset": true
+        },
+        {
+          "id": "compound-2",
+          "area": "Complexo",
+          "x": 623,
+          "y": 727,
+          "locked": true,
+          "inset": true
+        },
+        {
+          "id": "compound-3",
+          "area": "Complexo",
+          "x": 648,
+          "y": 735,
+          "locked": true,
+          "inset": true
+        },
+        {
+          "id": "compound-4",
+          "area": "Complexo",
+          "x": 613,
+          "y": 748,
+          "locked": true,
+          "inset": true
+        }
+      ],
+      "inset": {
+        "label": "Complexo (ampliado)",
+        "x": 585,
+        "y": 705,
+        "w": 90,
+        "h": 65
+      }
+    }
   },
   "casino": {
     "hardBonusPct": 10,
     "lesterPct": 5,
     "weeklyMultiplier": 1.86,
-    "buyerFeePct": { "low": 10, "mid": 5, "high": 0 },
+    "buyerFeePct": {
+      "low": 10,
+      "mid": 5,
+      "high": 0
+    },
     "targets": [
-      { "id": "cash", "name": "Dinheiro", "value": 1480500 },
-      { "id": "art", "name": "Obras de Arte", "value": 1645000 },
-      { "id": "gold", "name": "Ouro", "value": 1809500 },
-      { "id": "diamonds", "name": "Diamantes", "value": 2303000 }
+      {
+        "id": "cash",
+        "name": "Dinheiro",
+        "value": 1480500
+      },
+      {
+        "id": "art",
+        "name": "Obras de Arte",
+        "value": 1645000
+      },
+      {
+        "id": "gold",
+        "name": "Ouro",
+        "value": 1809500
+      },
+      {
+        "id": "diamonds",
+        "name": "Diamantes",
+        "value": 2303000
+      }
     ],
     "crew": {
       "gunman": [
-        { "name": "Karl Abolaji", "pct": 5 }, { "name": "Charlie Reed", "pct": 7 },
-        { "name": "Patrick McReary", "pct": 8 }, { "name": "Gustavo Mota", "pct": 9 },
-        { "name": "Chester McCoy", "pct": 10 }
+        {
+          "name": "Karl Abolaji",
+          "pct": 5
+        },
+        {
+          "name": "Charlie Reed",
+          "pct": 7
+        },
+        {
+          "name": "Patrick McReary",
+          "pct": 8
+        },
+        {
+          "name": "Gustavo Mota",
+          "pct": 9
+        },
+        {
+          "name": "Chester McCoy",
+          "pct": 10
+        }
       ],
       "driver": [
-        { "name": "Karim Denz", "pct": 5 }, { "name": "Zach Nelson", "pct": 6 },
-        { "name": "Taliana Martinez", "pct": 7 }, { "name": "Eddie Toh", "pct": 9 },
-        { "name": "Chester McCoy", "pct": 10 }
+        {
+          "name": "Karim Denz",
+          "pct": 5
+        },
+        {
+          "name": "Zach Nelson",
+          "pct": 6
+        },
+        {
+          "name": "Taliana Martinez",
+          "pct": 7
+        },
+        {
+          "name": "Eddie Toh",
+          "pct": 9
+        },
+        {
+          "name": "Chester McCoy",
+          "pct": 10
+        }
       ],
       "hacker": [
-        { "name": "Rickie Lukens", "pct": 3 }, { "name": "Yohan Blair", "pct": 5 },
-        { "name": "Christian Feltz", "pct": 7 }, { "name": "Page Harris", "pct": 9 },
-        { "name": "Avi Schwartzman", "pct": 10 }
+        {
+          "name": "Rickie Lukens",
+          "pct": 3
+        },
+        {
+          "name": "Yohan Blair",
+          "pct": 5
+        },
+        {
+          "name": "Christian Feltz",
+          "pct": 7
+        },
+        {
+          "name": "Page Harris",
+          "pct": 9
+        },
+        {
+          "name": "Avi Schwartzman",
+          "pct": 10
+        }
       ]
     }
   },
   "payoutTable": [
-    { "name": "Cluckin' Bell Farm Raid", "previous": 500000, "base": 400000, "weeklyMultiplier": "1.5x", "firstWeekly": "600.000" },
-    { "name": "KnoWay Out", "previous": 350000, "base": 245000, "weeklyMultiplier": "1.86x", "firstWeekly": "455.700" },
-    { "name": "Fleeca Job (final)", "previous": 201250, "base": 201250, "weeklyMultiplier": "1.5x", "firstWeekly": "301.875" },
-    { "name": "Prison Break (final)", "previous": 700000, "base": 700000, "weeklyMultiplier": "1.5x", "firstWeekly": "1.050.000" },
-    { "name": "Humane Labs Raid (final)", "previous": 945000, "base": 945000, "weeklyMultiplier": "1.5x", "firstWeekly": "1.417.500" },
-    { "name": "Series A Funding (final)", "previous": 707000, "base": 707000, "weeklyMultiplier": "1.5x", "firstWeekly": "1.060.500" },
-    { "name": "Pacific Standard Job (final)", "previous": 1500000, "base": 1500000, "weeklyMultiplier": "1.5x", "firstWeekly": "2.250.000" },
-    { "name": "Oscar Guzman Flies Again", "previous": 500000, "base": 500000, "weeklyMultiplier": "1.5x", "firstWeekly": "750.000" },
-    { "name": "The Data Leaks", "previous": 1000000, "base": 900000, "weeklyMultiplier": "~1.222x", "firstWeekly": "1.100.000" },
-    { "name": "Diamond Casino (Dinheiro)", "previous": 2115000, "base": 1480500, "weeklyMultiplier": "1.86x", "firstWeekly": "2.753.730" },
-    { "name": "Diamond Casino (Arte)", "previous": 2350000, "base": 1645000, "weeklyMultiplier": "1.86x", "firstWeekly": "3.059.700" },
-    { "name": "Diamond Casino (Ouro)", "previous": 2585000, "base": 1809500, "weeklyMultiplier": "1.86x", "firstWeekly": "3.365.670" },
-    { "name": "Diamond Casino (Diamantes)", "previous": 3290000, "base": 2303000, "weeklyMultiplier": "1.86x", "firstWeekly": "4.283.580" },
-    { "name": "Doomsday Ato I", "previous": 975000, "base": 585000, "weeklyMultiplier": "~1.222x", "firstWeekly": "715.000" },
-    { "name": "Doomsday Ato II", "previous": 1425000, "base": 855000, "weeklyMultiplier": "~1.222x", "firstWeekly": "1.045.000" },
-    { "name": "Doomsday Ato III", "previous": 1800000, "base": 1080000, "weeklyMultiplier": "~1.222x", "firstWeekly": "1.320.000" },
-    { "name": "Kortz Center (só alvo principal)", "previous": null, "base": "304.500 a 481.250", "weeklyMultiplier": "4x", "firstWeekly": "1.218.000 a 1.925.000" },
-    { "name": "Cayo Perico (Tequila)", "previous": 630000, "base": 400000, "weeklyMultiplier": "—", "firstWeekly": "—" },
-    { "name": "Cayo Perico (Colar de Rubi)", "previous": 700000, "base": 560000, "weeklyMultiplier": "—", "firstWeekly": "—" },
-    { "name": "Cayo Perico (Títulos)", "previous": 770000, "base": 616000, "weeklyMultiplier": "—", "firstWeekly": "—" },
-    { "name": "Cayo Perico (Diamante Rosa)", "previous": 1300000, "base": 910000, "weeklyMultiplier": "—", "firstWeekly": "—" }
+    {
+      "name": "Cluckin' Bell Farm Raid",
+      "previous": 500000,
+      "base": 400000,
+      "weeklyMultiplier": "1.5x",
+      "firstWeekly": "600.000"
+    },
+    {
+      "name": "KnoWay Out",
+      "previous": 350000,
+      "base": 245000,
+      "weeklyMultiplier": "1.86x",
+      "firstWeekly": "455.700"
+    },
+    {
+      "name": "Fleeca Job (final)",
+      "previous": 201250,
+      "base": 201250,
+      "weeklyMultiplier": "1.5x",
+      "firstWeekly": "301.875"
+    },
+    {
+      "name": "Prison Break (final)",
+      "previous": 700000,
+      "base": 700000,
+      "weeklyMultiplier": "1.5x",
+      "firstWeekly": "1.050.000"
+    },
+    {
+      "name": "Humane Labs Raid (final)",
+      "previous": 945000,
+      "base": 945000,
+      "weeklyMultiplier": "1.5x",
+      "firstWeekly": "1.417.500"
+    },
+    {
+      "name": "Series A Funding (final)",
+      "previous": 707000,
+      "base": 707000,
+      "weeklyMultiplier": "1.5x",
+      "firstWeekly": "1.060.500"
+    },
+    {
+      "name": "Pacific Standard Job (final)",
+      "previous": 1500000,
+      "base": 1500000,
+      "weeklyMultiplier": "1.5x",
+      "firstWeekly": "2.250.000"
+    },
+    {
+      "name": "Oscar Guzman Flies Again",
+      "previous": 500000,
+      "base": 500000,
+      "weeklyMultiplier": "1.5x",
+      "firstWeekly": "750.000"
+    },
+    {
+      "name": "The Data Leaks",
+      "previous": 1000000,
+      "base": 900000,
+      "weeklyMultiplier": "~1.222x",
+      "firstWeekly": "1.100.000"
+    },
+    {
+      "name": "Diamond Casino (Dinheiro)",
+      "previous": 2115000,
+      "base": 1480500,
+      "weeklyMultiplier": "1.86x",
+      "firstWeekly": "2.753.730"
+    },
+    {
+      "name": "Diamond Casino (Arte)",
+      "previous": 2350000,
+      "base": 1645000,
+      "weeklyMultiplier": "1.86x",
+      "firstWeekly": "3.059.700"
+    },
+    {
+      "name": "Diamond Casino (Ouro)",
+      "previous": 2585000,
+      "base": 1809500,
+      "weeklyMultiplier": "1.86x",
+      "firstWeekly": "3.365.670"
+    },
+    {
+      "name": "Diamond Casino (Diamantes)",
+      "previous": 3290000,
+      "base": 2303000,
+      "weeklyMultiplier": "1.86x",
+      "firstWeekly": "4.283.580"
+    },
+    {
+      "name": "Doomsday Ato I",
+      "previous": 975000,
+      "base": 585000,
+      "weeklyMultiplier": "~1.222x",
+      "firstWeekly": "715.000"
+    },
+    {
+      "name": "Doomsday Ato II",
+      "previous": 1425000,
+      "base": 855000,
+      "weeklyMultiplier": "~1.222x",
+      "firstWeekly": "1.045.000"
+    },
+    {
+      "name": "Doomsday Ato III",
+      "previous": 1800000,
+      "base": 1080000,
+      "weeklyMultiplier": "~1.222x",
+      "firstWeekly": "1.320.000"
+    },
+    {
+      "name": "Kortz Center (só alvo principal)",
+      "previous": null,
+      "base": "304.500 a 481.250",
+      "weeklyMultiplier": "4x",
+      "firstWeekly": "1.218.000 a 1.925.000"
+    },
+    {
+      "name": "Cayo Perico (Tequila)",
+      "previous": 630000,
+      "base": 400000,
+      "weeklyMultiplier": "—",
+      "firstWeekly": "—"
+    },
+    {
+      "name": "Cayo Perico (Colar de Rubi)",
+      "previous": 700000,
+      "base": 560000,
+      "weeklyMultiplier": "—",
+      "firstWeekly": "—"
+    },
+    {
+      "name": "Cayo Perico (Títulos)",
+      "previous": 770000,
+      "base": 616000,
+      "weeklyMultiplier": "—",
+      "firstWeekly": "—"
+    },
+    {
+      "name": "Cayo Perico (Diamante Rosa)",
+      "previous": 1300000,
+      "base": 910000,
+      "weeklyMultiplier": "—",
+      "firstWeekly": "—"
+    }
   ]
 }
