@@ -22,14 +22,18 @@
       let text;
       if (!p.producing) tone = 'stopped';
       else if (p.minutesToStop <= this.state.settings.warnMinutes) tone = 'warning';
-      if (p.producing) {
+      if (p.deliveryIn) {
+        if (!p.producing) tone = 'warning';
+        text = `Suprimentos chegando em ${P.formatMinutes(p.deliveryIn)}${p.producing ? '' : ' (parado até lá)'}`;
+      } else if (p.producing) {
         text = p.stopsOn === 'supply'
           ? `Suprimento acaba em ${P.formatMinutes(p.minutesToSupplyEmpty)}`
           : `Estoque enche em ${P.formatMinutes(p.minutesToFull)}`;
       } else {
         text = p.stock >= def.capacity - 1e-9 ? 'Parado: estoque cheio, hora de vender' : 'Parado: sem suprimentos';
       }
-      return { biz, p, tone, text, pill: { ok: 'Produzindo', warning: 'Acabando', stopped: 'Parado' }[tone] };
+      const pill = p.deliveryIn && !p.producing ? 'Aguardando' : { ok: 'Produzindo', warning: 'Acabando', stopped: 'Parado' }[tone];
+      return { biz, p, tone, text, pill };
     },
     owned() {
       return this.data.catalog.businesses.filter(d => this.state.businesses[d.id].owned);

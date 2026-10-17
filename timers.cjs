@@ -9,6 +9,7 @@ function advance(state, catalog, deltaMinutes) {
     biz.activeMinutes += deltaMinutes;
     const p = project(def, biz, biz.activeMinutes);
     const warnAt = state.settings.warnMinutes;
+    if (p.deliveryIn) continue; // supplies on the way: nothing to warn about yet
     if (p.stopsOn === 'supply') {
       if (!p.producing && biz.supplyPct > 0 && !biz.alerts.empty) {
         biz.alerts.empty = biz.alerts.warned = true;

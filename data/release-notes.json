@@ -1,6 +1,16 @@
 {
   "versions": [
     {
+      "version": "1.5.0",
+      "date": "2026-10-17",
+      "title": "Tempos dos negócios revisados",
+      "items": [
+        "Estoque agora fica em cima e suprimento embaixo, como no jogo.",
+        "O botão de comprar suprimentos considera os ~10 min até eles chegarem: o negócio mostra \"chega em\" e continua usando o que sobrou até lá. Se chegar antes, use \"Já chegou\".",
+        "Barra cheia de suprimento revisada com a tabela do MC: Cocaína 2h, Metanfetamina e Maconha 2h24, Dinheiro Falso 2h40, Documentos 2h30, Bunker 2h20, Acid Lab 4h."
+      ]
+    },
+    {
       "version": "1.4.0",
       "date": "2026-10-17",
       "title": "Negócios mais compactos",

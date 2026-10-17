@@ -174,10 +174,13 @@ app.whenReady().then(async () => {
     [...document.querySelectorAll('.card.biz[data-id=meth] .chip')].find(b => b.textContent === 'Funcionários').click();
     await new Promise(r => setTimeout(r, 300));
     const s = await window.gta.state();
-    return { supply: s.businesses.meth.supplyPct, staff: s.businesses.meth.upgrades.staff,
+    return { delivery: s.businesses.meth.delivery && s.businesses.meth.delivery.at, staff: s.businesses.meth.upgrades.staff,
       status: document.querySelector('.card.biz[data-id=meth] [data-live=status]').textContent };
   })()`);
-  if (after.supply < 99.9 || !after.staff) errors.push(`round trip falhou: ${JSON.stringify(after)}`);
+  await win.webContents.executeJavaScript(`document.querySelector('.card.biz[data-id=meth]').scrollIntoView({ block: 'center' })`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'businesses-delivery.png'), (await win.webContents.capturePage()).toPNG());
+  if (!(after.delivery > 9) || !after.staff || !after.status.startsWith('Suprimentos chegando')) errors.push(`round trip falhou: ${JSON.stringify(after)}`);
   console.log(JSON.stringify({ out, errors, after }));
   app.exit(errors.length ? 1 : 0);
 });

@@ -9,9 +9,11 @@
   const supplyColor = v => (v <= 15 ? 'var(--danger)' : v <= 35 ? 'var(--warn)' : 'var(--ok)');
   const stockText = (def, p) => `${Math.floor(p.stock)}/${def.capacity}`;
 
-  const supplyText = p => (p.supplyPct > 0.5 && p.minutesToSupplyEmpty > 0
-    ? `${Math.round(p.supplyPct)}% · acaba em ${P.formatMinutes(p.minutesToSupplyEmpty)}`
-    : `${Math.round(p.supplyPct)}%`);
+  const supplyText = p => {
+    const pct = `${Math.round(p.supplyPct)}%`;
+    if (p.deliveryIn) return `${pct} · chega em ${P.formatMinutes(p.deliveryIn)}`;
+    return p.supplyPct > 0.5 && p.minutesToSupplyEmpty > 0 ? `${pct} · acaba em ${P.formatMinutes(p.minutesToSupplyEmpty)}` : pct;
+  };
 
   // One line per business, like the bars in the game: supply and stock. The rest opens on click.
   const expanded = new Set();
@@ -48,17 +50,18 @@
           def.boost && boostActive(biz, p) ? h('span', { class: 'pill sm info' }, icon('star', 12), 'Boost') : null,
           calibrated ? h('span', { class: 'pill sm', title: 'Usando tempos medidos por você' }, 'calibrado') : null)),
       h('div', { class: 'biz-meters' },
-        meter('Suprimento', 'supply', p.supplyPct, supplyColor(p.supplyPct), supplyText(p)),
-        meter('Estoque', 'stock', (p.stock / def.capacity) * 100, 'var(--biz-c)', stockText(def, p))),
+        meter('Estoque', 'stock', (p.stock / def.capacity) * 100, 'var(--biz-c)', stockText(def, p)),
+        meter('Suprimento', 'supply', p.supplyPct, supplyColor(p.supplyPct), supplyText(p))),
       h('div', { class: 'biz-quick', onclick: stop },
-        h('button', { class: 'btn primary icon sm', title: 'Ressupri', 'aria-label': 'Ressupri', onclick: () => App.act(gta.setSupply(def.id, 100)) }, icon('box', 15)),
+        h('button', { class: 'btn primary icon sm', title: `Comprei suprimentos (chegam em ~${App.data.catalog.supplyDeliveryMinutes || 10} min de jogo)`, 'aria-label': 'Comprei suprimentos', onclick: () => App.act(gta.orderSupply(def.id)) }, icon('box', 15)),
         h('button', { class: 'btn secondary icon sm', title: 'Vendi tudo', 'aria-label': 'Vendi tudo', onclick: () => App.act(gta.setStock(def.id, 0)) }, icon('dollar', 15)),
         h('button', { class: `btn ghost icon sm biz-toggle ${open ? 'open' : ''}`, title: open ? 'Recolher' : 'Ver detalhes', 'aria-expanded': String(open), onclick: () => toggleRow(def.id) }, icon('chevron', 16))));
 
     const body = open ? h('div', { class: 'biz-more' },
       h('div', { class: 'biz-facts' },
         h('div', { class: 'stat-line' }, h('span', null, 'Valor do estoque'), h('b', { class: 'num', dataset: { live: 'value' } }, money(p.stockValue))),
-        h('div', { class: 'biz-status', dataset: { live: 'status' } }, text)),
+        h('div', { class: 'biz-status', dataset: { live: 'status' } }, text),
+        p.deliveryIn ? h('button', { class: 'btn ghost sm', title: 'Os suprimentos já estão no negócio', onclick: () => App.act(gta.setSupply(def.id, 100)) }, icon('check', 15), 'Já chegou') : null),
       h('div', { class: 'upgrades' },
         h('span', { class: 'upgrades-label' }, 'Upgrades'),
         def.upgrades.map(key => h('button', {

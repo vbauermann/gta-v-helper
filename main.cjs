@@ -151,6 +151,14 @@ function registerIpc() {
     business(id);
     store.rebase(id);
     s.businesses[id].supplyPct = num(pct, 0, 100);
+    s.businesses[id].delivery = null;
+  }));
+
+  // "Comprei suprimentos": they reach the business a few minutes of play later.
+  ipcMain.handle('gta:order-supply', (_e, id) => mutate(s => {
+    business(id);
+    store.rebase(id);
+    s.businesses[id].delivery = { at: catalog.supplyDeliveryMinutes || 10, orderedAt: Date.now() };
   }));
 
   ipcMain.handle('gta:set-stock', (_e, id, units) => mutate(s => {
