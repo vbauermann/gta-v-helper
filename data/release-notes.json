@@ -1,6 +1,18 @@
 {
   "versions": [
     {
+      "version": "1.6.0",
+      "date": "2026-10-17",
+      "title": "Mapa de Los Santos",
+      "items": [
+        "Nova aba Mapa com o mapa do GTA Online: negócios do MC, Bunker, escritório, clubhouse, agência, bail office, nightclub, fliperama, auto shop, hangar, facility, apartamentos, mansões e garagens.",
+        "Passe o mouse numa garagem para ver o nome que aparece no fast travel.",
+        "Clique num local e marque \"Tenho este\". Nos negócios do MC e no Bunker isso também marca o negócio na tela de Negócios.",
+        "\"Só os meus\" deixa no mapa só o que você tem, como o mapa do seu jogo.",
+        "Animais da fotografia: ligue os animais da sua lista do dia para ver onde aparecem e em que horário do jogo."
+      ]
+    },
+    {
       "version": "1.5.0",
       "date": "2026-10-17",
       "title": "Tempos dos negócios revisados",

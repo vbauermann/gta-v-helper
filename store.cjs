@@ -55,6 +55,8 @@ function createStore(file, catalog) {
       },
       businesses,
       cayoCooldownEndsAt: typeof raw.cayoCooldownEndsAt === 'number' ? raw.cayoCooldownEndsAt : null,
+      // Los Santos map: ids of the places the player marked as theirs (data/ls-map.json).
+      map: { owned: Array.isArray(raw.map && raw.map.owned) ? raw.map.owned.filter(id => typeof id === 'string') : [] },
       todos: loadTodos(raw.todos)
     };
   }

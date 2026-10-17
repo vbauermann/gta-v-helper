@@ -25,6 +25,7 @@ App desktop Windows (Electron, JS puro, sem bundler) de apoio ao GTA Online. Don
 | `game-window.cjs` | Posição da janela do GTA na tela (modo janela), via user32 em um loop PowerShell |
 | `lib/heists.js`, `data/heists.json` | Cálculos de Cayo Perico e Diamond Casino |
 | `data/cayo-map.json`, `app/pages/cayo-map.js` | Mapa do Cayo (pontos de alvos, guardas, entradas) |
+| `data/ls-map.json`, `lib/ls-map.js`, `app/pages/map.js` | Mapa de Los Santos (negócios, propriedades, garagens, animais), gerado por `tools/build-ls-map.cjs`; zoom em `app/map-zoom.js` |
 | `lib/todos.js`, `app/pages/todos.js` | Tarefas diárias e semanais |
 | `data/weekly.json`, `weekly-feed.cjs`, `app/pages/weekly.js` | Bônus da semana (baixados do repositório) |
 | `updater.cjs` | Atualização automática pelos releases do GitHub |

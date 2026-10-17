@@ -312,6 +312,17 @@ td:last-child, th:last-child { text-align: right; }
 .filters-notes { margin-top: 8px; font-size: 12px; color: var(--muted); line-height: 1.5; }
 @media (max-width: 1100px) { .map-layout { grid-template-columns: 1fr; } }
 
+/* ---------- Los Santos map ---------- */
+.map-viewport.ls { height: calc(100vh - 220px); min-height: 480px; max-width: 100%; background: #384950; }
+.map-viewport.ls .map img { height: 100%; }
+.pin.icon-pin { width: 26px; height: 26px; }
+.map-viewport.cayo .pin.icon-pin { width: 30px; height: 30px; }
+.pin.icon-pin.small { width: 20px; height: 20px; }
+.pin.icon-pin.owned { filter: drop-shadow(0 0 0 #fff) drop-shadow(0 0 3px var(--ok)) drop-shadow(0 0 3px var(--ok)); z-index: 1; }
+.map-pop .pop-actions + p, .map-pop p { margin: 0; }
+.mine-row { margin-bottom: 4px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.group-note { margin: 0 6px 4px; }
+
 /* ---------- fingerprint auto marking ---------- */
 .fp-auto { display: flex; flex-direction: column; gap: 8px; }
 .fp-auto-row { display: flex; align-items: center; gap: 12px; }

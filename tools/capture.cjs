@@ -16,7 +16,8 @@ fs.writeFileSync(file, JSON.stringify({
     acid: biz(60, 160, { equipment: true }),
     meth: biz(0, 7, { equipment: true })
   },
-  cayoCooldownEndsAt: Date.now() + 47 * 60000
+  cayoCooldownEndsAt: Date.now() + 47 * 60000,
+  map: { owned: ['mc-cocaine-2', 'bunker-1', 'garage-1', 'office-4', 'agency-2'] }
 }));
 process.env.GTA_HELPER_DATA = file;
 const out = path.join(__dirname, '../captures');
@@ -31,7 +32,7 @@ app.whenReady().then(async () => {
   const errors = [];
   win.webContents.on('console-message', e => { if (e.level === 'error') errors.push(e.message); });
   await wait(1200);
-  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'payouts', 'weekly', 'todos', 'settings', 'releases']) {
+  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'payouts', 'weekly', 'todos', 'map', 'settings', 'releases']) {
     await win.webContents.executeJavaScript(`document.querySelector('[data-page=${page}]').click();
       ${page === 'cayo' ? "const rows = document.querySelectorAll('.loot-row'); for (const [r, n] of [[0, 2], [1, 3], [2, 1], [3, 1]]) { const b = rows[r].querySelectorAll('.qty button')[n - 1]; if (!b.classList.contains('active')) b.click(); }" : ''}`);
     await wait(700);
@@ -108,6 +109,40 @@ app.whenReady().then(async () => {
   await win.webContents.executeJavaScript(`localStorage.removeItem('gta-helper.cayo-map.v2')`);
   const found = await win.webContents.executeJavaScript(`JSON.parse(localStorage.getItem('gta-helper.cayo')).found`);
   if (found.gold !== 2 || found.cocaine !== 3) errors.push(`cayo pilhas: ${JSON.stringify(found)}`);
+  // Los Santos map: garage name on hover, "Tenho este" links the business, animals, only mine.
+  await win.webContents.executeJavaScript(`localStorage.removeItem('gta-helper.ls-map.v1');
+    document.querySelector('[data-page=overview]').click(); document.querySelector('[data-page=map]').click();`);
+  await wait(1500);
+  const pin = label => `[...document.querySelectorAll('.map-viewport.ls .pin')].find(p => p.getAttribute('aria-label') === ${JSON.stringify(label)})`;
+  const lsCheck = await win.webContents.executeJavaScript(`(() => {
+    const p = ${pin('Unit 2 Popular St')};
+    p.dispatchEvent(new MouseEvent('mouseenter'));
+    const broken = [...document.querySelectorAll('.map-viewport.ls img, .map-filters img')].filter(i => i.complete && !i.naturalWidth).map(i => i.src);
+    return { pins: document.querySelectorAll('.map-viewport.ls .pin').length, owned: document.querySelectorAll('.map-viewport.ls .pin.owned').length,
+      tip: document.querySelector('.map-tip').textContent, broken };
+  })()`);
+  if (lsCheck.owned !== 5 || !lsCheck.tip.startsWith('Unit 2 Popular St') || lsCheck.broken.length || lsCheck.pins < 150) errors.push(`mapa ls: ${JSON.stringify(lsCheck)}`);
+  fs.writeFileSync(path.join(out, 'mapa-garagem.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`${pin('El Burro Heights')}.click()`);
+  await wait(300);
+  fs.writeFileSync(path.join(out, 'mapa-ponto.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`[...document.querySelectorAll('.map-pop button')].find(b => b.textContent === 'Tenho este').click()`);
+  await wait(500);
+  const own = await win.webContents.executeJavaScript(`[App.state.businesses.meth.owned, App.state.map.owned.includes('mc-meth-2'), document.querySelectorAll('.map-viewport.ls .pin.owned').length]`);
+  if (!own[0] || !own[1] || own[2] !== 6) errors.push(`mapa tenho este: ${JSON.stringify(own)}`);
+  await win.webContents.executeJavaScript(`(() => {
+    const g = [...document.querySelectorAll('.filter-group')].find(e => e.textContent.includes('Animais'));
+    g.querySelector('.group-row .switch').click();
+    const row = () => [...document.querySelectorAll('.filter-row')].find(e => e.textContent.startsWith('Cervo'));
+    row().querySelector('.check').click();
+    document.querySelector('.zoom-tools .reset').click();
+  })()`);
+  await wait(600);
+  fs.writeFileSync(path.join(out, 'mapa-animais.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('.mine-row .switch').click()`);
+  await wait(400);
+  fs.writeFileSync(path.join(out, 'mapa-meus.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`localStorage.removeItem('gta-helper.ls-map.v1')`);
   // Casino fingerprint tab and the overlay window itself (all four, then one in move mode).
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=casino]').click();
     [...document.querySelectorAll('.tabs button')].find(b => b.textContent === 'Digitais').click();`);

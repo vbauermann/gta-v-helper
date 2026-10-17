@@ -17,6 +17,7 @@ Depois de instalado, o app procura versões novas sozinho e avisa quando uma est
 - **Notificações do Windows** quando o suprimento está acabando (10 min de jogo antes, configurável), quando acaba e quando o estoque enche.
 - **Calibração:** os tempos de consumo são estimados. Se medir no jogo quanto uma barra cheia dura, informe em "Ajustar e calibrar" no card do negócio.
 - **Cayo Perico:** mapa do scout clicável (o complexo aparece ampliado ao lado) onde você marca o que tinha em cada ponto, plano de bolsas a partir dos secundários encontrados no scout (ouro só com 2+ jogadores, pintura não se divide), pagamento líquido com Pavel e fence (12%), modo difícil, Elite Challenge, cortes por jogador e timer de cooldown (144 min solo, 48 min em grupo).
+- **Mapa de Los Santos:** negócios, propriedades, garagens (nome no hover, para o fast travel), agência, bail office e animais da fotografia. Marque o que você tem e use "Só os meus" para ver o seu mapa.
 - **Diamond Casino:** pagamento com Lester, comprador, atirador, motorista, hacker, multiplicador da primeira conclusão semanal e cortes.
 - **Tabela de payouts** da atualização de economia.
 - Ícone na bandeja: fechar a janela mantém o app rodando para os timers continuarem.
@@ -68,6 +69,7 @@ O script baixa o runtime do Electron para Windows na mesma versão do `package.j
 - Tempos por unidade, capacidade e valores dos negócios: [gtamaxprofit.com](https://gtamaxprofit.com/more/profit-tables/) e [gtaboss.gg](https://www.gtaboss.gg/gta-5-online/businesses/acid-lab) (Acid Lab).
 - Duração da barra de suprimentos: estimada a partir de [drifted.com](https://www.drifted.com/gta-online-bunker-guide/) (Bunker 1h40 sem upgrades, 2h20 com tudo) e de [gtaboss.gg](https://www.gtaboss.gg/gta-5-online/guides/everything-you-need-to-know-about-the-cocaine-lockup-in-gta-v-online) (2,5 barras para encher a Cocaína). Precisa ser confirmada no jogo.
 - Cayo Perico pós Title Update 1.73: [gtaboom.com](https://www.gtaboom.com/cayo-perico-heist-payout-list-cooldowns-bonus-payouts-and-all-targets-035d) e [timesaver.gg](https://timesaver.gg/blog/gta-online-cayo-perico-loot-values-2026).
+- Mapa de Los Santos (posições, nomes e imagem): [gtaweb.eu](https://gtaweb.eu/gtao-map/ls).
 - Golpes: tabela GTASeriesVideos da atualização de economia.
 
 ## Publicar uma versão

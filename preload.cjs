@@ -19,6 +19,7 @@ contextBridge.exposeInMainWorld('gta', Object.freeze({
     ipcRenderer.on('gta:weekly', listener);
     return () => ipcRenderer.removeListener('gta:weekly', listener);
   },
+  mapOwn: (pointId, on) => ipcRenderer.invoke('gta:map-own', pointId, on),
   cayoCooldown: minutes => ipcRenderer.invoke('gta:cayo-cooldown', minutes),
   overlay: (action, value) => ipcRenderer.invoke('gta:overlay', action, value),
   onState: callback => {
