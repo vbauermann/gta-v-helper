@@ -87,6 +87,7 @@
 
     const attention = App.owned().filter(d => App.business(d).tone !== 'ok').length;
     document.querySelector('[data-page=businesses] .badge').textContent = attention ? String(attention) : '';
+    App.pages.releases.badge();
     const open = App.pages.todos.pending(s);
     document.querySelector('[data-page=todos] .badge').textContent = open ? String(open) : '';
     renderUpdate(s.updater);

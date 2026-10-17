@@ -9,6 +9,7 @@ App desktop Windows (Electron, JS puro, sem bundler) de apoio ao GTA Online. Don
 3. **Segurança do Electron:** `contextIsolation`, `sandbox`, sem `nodeIntegration`, CSP estrita no HTML (sem script ou estilo inline: estilos via CSSOM em JS). As telas não têm internet; só o processo principal fala com o GitHub. Ver [ADR 0007](docs/adr/0007-rede-so-github.md).
 4. **Entregar pronto.** O Vitor quer instalador/exe, nunca instruções de `npm`. Versão nova sai pelo fluxo de release ([skill gta-helper-release](.claude/skills/gta-helper-release/SKILL.md)).
 5. **Dados de exemplo nunca viram dado real.** Valores do jogo têm fonte em `data/*.json`; estimativas são marcadas como tal.
+6. **Toda versão nova tem release notes.** Subiu `version` no `package.json`? No mesmo commit, adicione a entrada no topo de `data/release-notes.json` (aparece na aba Novidades). Sem isso o teste falha e o release não sai. Ver [ADR 0013](docs/adr/0013-release-notes.md).
 
 ## Mapa do código
 
@@ -27,6 +28,7 @@ App desktop Windows (Electron, JS puro, sem bundler) de apoio ao GTA Online. Don
 | `lib/todos.js`, `app/pages/todos.js` | Tarefas diárias e semanais |
 | `data/weekly.json`, `weekly-feed.cjs`, `app/pages/weekly.js` | Bônus da semana (baixados do repositório) |
 | `updater.cjs` | Atualização automática pelos releases do GitHub |
+| `data/release-notes.json`, `app/pages/releases.js` | Release notes e aba Novidades |
 | `app/` | Telas (HTML/CSS/JS sem framework), `app/ui.js` tem os helpers de DOM |
 | `tools/capture.cjs` | Abre o app com dados de exemplo e salva prints em `captures/` |
 | `docs/adr/` | Decisões de arquitetura ([índice](docs/adr/README.md)) |

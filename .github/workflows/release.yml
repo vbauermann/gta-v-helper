@@ -54,5 +54,6 @@ jobs:
           if gh release view "$TAG" > /dev/null 2>&1; then
             gh release upload "$TAG" "${files[@]}" --clobber
           else
-            gh release create "$TAG" "${files[@]}" --title "GTA Helper ${TAG#v}" --notes "Instalador do GTA Helper ${TAG#v}." --target "$GITHUB_SHA"
+            notes=$(node -e "const r=require('./data/release-notes.json').versions[0]; console.log('## '+r.title+'\n\n'+r.items.map(i=>'- '+i).join('\n'))")
+            gh release create "$TAG" "${files[@]}" --title "GTA Helper ${TAG#v}" --notes "$notes" --target "$GITHUB_SHA"
           fi

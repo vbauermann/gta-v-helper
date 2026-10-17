@@ -1,0 +1,100 @@
+{
+  "versions": [
+    {
+      "version": "1.3.0",
+      "date": "2026-10-17",
+      "title": "Novidades no app",
+      "items": [
+        "Nova aba Novidades, abaixo de Ajustes, com o que mudou em cada versão.",
+        "Quando o app atualiza, a aba ganha a marca \"novo\" até você abrir."
+      ]
+    },
+    {
+      "version": "1.2.0",
+      "date": "2026-10-16",
+      "title": "Boost diário do Acid Lab",
+      "items": [
+        "Botão \"Dei boost\" no card do Acid Lab: as próximas 80 unidades saem 2x mais rápido (até 24 h).",
+        "Os timers de suprimento e estoque já contam o boost; o suprimento acaba na metade do tempo enquanto ele dura.",
+        "\"Desfazer boost\" se marcar sem querer.",
+        "Nova sugestão de tarefa diária \"Boost do Acid Lab\", marcada sozinha ao apertar o botão."
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-10-16",
+      "title": "Digitais no modo janela",
+      "items": [
+        "A marcação automática das digitais funciona com o GTA em modo janela: o app acha a janela do jogo e procura o hack só dentro dela.",
+        "As bordas acompanham a janela se ela for movida ou redimensionada."
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-10-16",
+      "title": "Instalador e atualização automática",
+      "items": [
+        "Instalador para Windows, com atalho na área de trabalho e no menu Iniciar.",
+        "O app procura versão nova sozinho e mostra \"Reiniciar e atualizar\" quando ela estiver pronta.",
+        "Os bônus da semana passam a vir do GitHub, sem precisar de versão nova."
+      ]
+    },
+    {
+      "version": "0.9.1",
+      "date": "2026-10-16",
+      "title": "Ajustes nas tarefas",
+      "items": [
+        "Tarefas diárias zeram junto com o diário do jogo (06:00 UTC, 03:00 em Brasília).",
+        "Sugestão do Most Wanted do Bail Office.",
+        "Desligar a detecção de digitais esconde as bordas na hora."
+      ]
+    },
+    {
+      "version": "0.9.0",
+      "date": "2026-10-16",
+      "title": "Tarefas diárias e semanais",
+      "items": [
+        "Nova aba Tarefas com listas diária e semanal, sugestões e tarefas próprias.",
+        "Golpes e arquivos com bônus na semana aparecem marcados."
+      ]
+    },
+    {
+      "version": "0.8.0",
+      "date": "2026-10-16",
+      "title": "Semana no GTA Online",
+      "items": [
+        "Nova aba Semana: bônus, descontos com preços, veículos, Gun Van e GTA+.",
+        "Contagem até a virada de quinta e marca \"pra você\" no que bate com seus negócios e golpes."
+      ]
+    },
+    {
+      "version": "0.7.0",
+      "date": "2026-10-16",
+      "title": "Digitais marcadas na tela",
+      "items": [
+        "Detecção automática das digitais do Casino: borda verde nas 4 peças certas.",
+        "Atalho Ctrl+Shift+D e aviso \"Detecção de digitais\" no canto da tela.",
+        "Alvos secundários do Cayo com ícone, slider e dica de valor por pilha."
+      ]
+    },
+    {
+      "version": "0.6.0",
+      "date": "2026-10-16",
+      "title": "Mapa do Cayo Perico",
+      "items": [
+        "Aba Mapa com todos os pontos do cayoperico.online, filtros, fotos e marcações de achado."
+      ]
+    },
+    {
+      "version": "0.5.0",
+      "date": "2026-10-16",
+      "title": "Primeiras versões",
+      "items": [
+        "Negócios com upgrades, timers de suprimento e estoque e notificações.",
+        "Calculadoras de Cayo Perico e Diamond Casino, tabela de payouts.",
+        "Overlay de referência das digitais com atalhos personalizáveis.",
+        "Visual no estilo do Nexo."
+      ]
+    }
+  ]
+}

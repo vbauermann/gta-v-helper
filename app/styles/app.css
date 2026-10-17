@@ -400,3 +400,10 @@ td:last-child, th:last-child { text-align: right; }
 .boost-line.on { color: var(--text); }
 .boost-line.on svg, .boost-line.on b { color: var(--warn); }
 .boost-btn svg { color: var(--warn); }
+
+/* Novidades */
+.release-list { display: flex; flex-direction: column; gap: 14px; max-width: 860px; }
+.release .card-head { margin-bottom: 6px; gap: 10px; }
+.release.current { border-color: var(--accent-line); }
+.release-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.release-items { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; font-size: 13.5px; color: var(--text-2, var(--muted)); }

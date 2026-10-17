@@ -16,5 +16,6 @@ Cada arquivo registra uma decisão: o contexto, o que foi decidido e o que isso 
 | [0010](0010-tarefas-diarias-e-semanais.md) | Tarefas diárias e semanais com reset do jogo | Aceita |
 | [0011](0011-interface-estilo-nexo.md) | Interface no estilo do app Nexo, em pt-BR | Aceita |
 | [0012](0012-mapa-do-cayo-offline.md) | Mapa do Cayo Perico com dados offline gerados por script | Aceita |
+| [0013](0013-release-notes.md) | Toda versão publicada tem release notes | Aceita |
 
 Modelo para uma nova ADR: copie o formato de qualquer arquivo (Status, Data, Contexto, Decisão, Consequências) e use o próximo número.

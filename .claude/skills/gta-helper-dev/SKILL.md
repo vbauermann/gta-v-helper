@@ -19,6 +19,7 @@ Leia antes o [CLAUDE.md](../../../CLAUDE.md) e as ADRs em `docs/adr/`. Regra nú
 | Diamond Casino (`casino`) | `app/pages/casino.js`, `fingerprint.js` | Abas Calculadora (abordagem, alvo, equipe, cortes) e Digitais (overlay de referência, detecção automática) |
 | Tabela de payouts (`payouts`) | `app/pages/payouts.js` | Payouts da atualização de economia |
 | Ajustes (`settings`) | `app/pages/settings.js` | Contagem de tempo, avisos, atualizações, tema |
+| Novidades (`releases`) | `app/pages/releases.js` | Release notes de `data/release-notes.json`; marca "novo" após atualizar |
 
 Fora da janela principal: bandeja (fechar mantém rodando), notificações do Windows, overlay das digitais com atalhos globais (`Ctrl+Shift+F`, `0`–`4`, `M`), marcador automático das peças e aviso "Detecção de digitais" (`Ctrl+Shift+D`).
 
