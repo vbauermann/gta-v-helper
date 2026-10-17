@@ -25,6 +25,7 @@ App desktop Windows (Electron, JS puro, sem bundler) de apoio ao GTA Online. Don
 | `game-window.cjs` | Posição da janela do GTA na tela (modo janela), via user32 em um loop PowerShell |
 | `lib/heists.js`, `data/heists.json` | Cálculos de Cayo Perico e Diamond Casino |
 | `data/cayo-map.json`, `app/pages/cayo-map.js` | Mapa do Cayo (pontos de alvos, guardas, entradas) |
+| `data/ls-map.json`, `lib/ls-map.js`, `app/pages/map.js` | Mapa de Los Santos (negócios, propriedades, garagens, animais), gerado por `tools/build-ls-map.cjs`; zoom em `app/map-zoom.js` |
 | `lib/todos.js`, `app/pages/todos.js` | Tarefas diárias e semanais |
 | `lib/features.js` | Recursos opcionais de colaboradores (desligados por padrão, chave em Ajustes) |
 | `data/weekly.json`, `weekly-feed.cjs`, `app/pages/weekly.js` | Bônus da semana (baixados do repositório) |
@@ -61,7 +62,7 @@ node package.cjs                # pasta portátil em dist/ (funciona no Linux, s
 
 ## Colaboração
 
-O Vinícius também contribui com o app ([ADR 0014](docs/adr/0014-recursos-opcionais.md)).
+O Vinícius também contribui com o app ([ADR 0015](docs/adr/0015-recursos-opcionais.md)).
 
 - Só o Vitor mexe direto na `main` e sobe `version`: publicar é decisão dele.
 - Colaboradores trabalham em branch e abrem PR. Não mexa na branch de outra pessoa nem dê push forçado nela.

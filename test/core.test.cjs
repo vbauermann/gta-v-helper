@@ -26,6 +26,49 @@ test('upgrades change speed and how long a supply bar lasts', () => {
   assert.equal(P.tier(def('acid'), { staff: true }), 'none'); // Acid Lab não tem upgrade de funcionários
 });
 
+test('full supply bar lasts what the MC table says (all upgrades)', () => {
+  const all = { equipment: true, staff: true };
+  const bar = id => P.rates(def(id), all).barMinutes;
+  close(bar('cocaine'), 120);
+  close(bar('meth'), 144);
+  close(bar('weed'), 144);
+  close(bar('cash'), 160);
+  close(bar('documents'), 150);
+  close(bar('bunker'), 140);
+  close(P.rates(def('acid'), { equipment: true }).barMinutes, 240);
+});
+
+test('bought supplies arrive after the delivery time and refill to 100%', () => {
+  const d = def('cocaine'); // 30 min/unit, 4 units per bar: 25% per unit
+  const all = { equipment: true, staff: true };
+  const ordered = biz({ upgrades: all, supplyPct: 0, stock: 0, delivery: { at: 10 } });
+  const waiting = P.project(d, ordered, 4);
+  close(waiting.deliveryIn, 6);
+  assert.equal(waiting.producing, false);
+  close(waiting.minutesToStop, 6 + 120); // waits, then a full bar
+  const after = P.project(d, ordered, 40); // arrived at 10, then 30 min = 1 unit
+  assert.equal(after.deliveryIn, null);
+  close(after.stock, 1);
+  close(after.supplyPct, 75);
+  // Still producing on the old supply while the truck is on the way.
+  const running = P.project(d, biz({ upgrades: all, supplyPct: 50, stock: 0, delivery: { at: 10 } }), 10);
+  close(running.supplyPct, 100);
+  close(running.stock, 1 / 3);
+});
+
+test('store rebase moves the delivery closer and drops it once it arrived', () => {
+  const file = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'gta-delivery-')), 'data.json');
+  const store = createStore(file, catalog);
+  const b = store.get().businesses.cocaine;
+  Object.assign(b, { owned: true, upgrades: { equipment: true, staff: true }, supplyPct: 0, stock: 0, activeMinutes: 4, delivery: { at: 10 } });
+  store.rebase('cocaine');
+  close(b.delivery.at, 6);
+  b.activeMinutes = 6;
+  store.rebase('cocaine');
+  assert.equal(b.delivery, null);
+  close(b.supplyPct, 100);
+});
+
 test('supply runs out before stock fills', () => {
   const d = def('cocaine');
   const b = biz({ upgrades: { equipment: true, staff: true } });
@@ -137,9 +180,9 @@ test('Acid Lab boost: next 80 units at 2x, same supply per unit', () => {
   const p = P.project(acid, biz({ upgrades: eq, calibration: lots, boost: { units: 80 } }), 30);
   close(p.stock, 40);
   close(p.boostLeft, 40);
-  // A full supply bar (50 units) lasts half as long while boosted.
-  close(P.project(acid, biz({ upgrades: eq, boost: { units: 80 } }), 0).minutesToSupplyEmpty, 37.5);
-  close(P.project(acid, biz({ upgrades: eq }), 0).minutesToSupplyEmpty, 75);
+  // A full supply bar (160 units) lasts ~4 h, 3 h with the boost on the first 80 units.
+  close(P.project(acid, biz({ upgrades: eq, boost: { units: 80 } }), 0).minutesToSupplyEmpty, 180);
+  close(P.project(acid, biz({ upgrades: eq }), 0).minutesToSupplyEmpty, 240);
   // Past the boosted units the normal pace resumes: 80 boosted (60 min) + 20 normal (30 min).
   close(P.project(acid, biz({ upgrades: eq, calibration: lots, boost: { units: 80 } }), 90).stock, 100);
 });

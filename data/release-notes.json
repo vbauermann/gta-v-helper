@@ -1,6 +1,39 @@
 {
   "versions": [
     {
+      "version": "1.6.0",
+      "date": "2026-10-17",
+      "title": "Mapa de Los Santos",
+      "items": [
+        "Nova aba Mapa com o mapa do GTA Online: negócios do MC, Bunker, escritório, clubhouse, agência, bail office, nightclub, fliperama, auto shop, hangar, facility, apartamentos, mansões e garagens.",
+        "Passe o mouse numa garagem para ver o nome que aparece no fast travel.",
+        "Clique num local e marque \"Tenho este\". Nos negócios do MC e no Bunker isso também marca o negócio na tela de Negócios.",
+        "\"Só os meus\" deixa no mapa só o que você tem, como o mapa do seu jogo.",
+        "Animais da fotografia: ligue os animais da sua lista do dia para ver onde aparecem e em que horário do jogo."
+      ]
+    },
+    {
+      "version": "1.5.0",
+      "date": "2026-10-17",
+      "title": "Tempos dos negócios revisados",
+      "items": [
+        "Estoque agora fica em cima e suprimento embaixo, como no jogo.",
+        "O botão de comprar suprimentos considera os ~10 min até eles chegarem: o negócio mostra \"chega em\" e continua usando o que sobrou até lá. Se chegar antes, use \"Já chegou\".",
+        "Barra cheia de suprimento revisada com a tabela do MC: Cocaína 2h, Metanfetamina e Maconha 2h24, Dinheiro Falso 2h40, Documentos 2h30, Bunker 2h20, Acid Lab 4h."
+      ]
+    },
+    {
+      "version": "1.4.0",
+      "date": "2026-10-17",
+      "title": "Negócios mais compactos",
+      "items": [
+        "Cada negócio virou uma linha compacta com suprimento e estoque em barras, como no jogo.",
+        "A lista fica ordenada pelo suprimento: quem está acabando fica embaixo.",
+        "Ressupri e Vendi tudo viraram botões de ícone à direita, sempre visíveis.",
+        "Clique no negócio para ver valor, upgrades, boost, Informar níveis e Ajustar e calibrar."
+      ]
+    },
+    {
       "version": "1.3.0",
       "date": "2026-10-17",
       "title": "Novidades no app",

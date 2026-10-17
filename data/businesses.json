@@ -1,8 +1,9 @@
 {
-  "version": "2026-10-16",
+  "version": "2026-10-17",
   "notes": [
     "Minutos por unidade e capacidade: gtamaxprofit.com/more/profit-tables e gtaboss.gg (Acid Lab).",
-    "Unidades por barra cheia de suprimento: estimadas. Com upgrade de equipamento, 2,5 barras enchem o estoque (5 no Bunker, 3,2 no Acid Lab); sem equipamento o consumo dobra. Bunker sem upgrades bate com 1h40 por barra (drifted.com).",
+    "Unidades por barra cheia de suprimento com Equipamento e Funcionários: tabela 'MC Business Production Rates' (echobox419) enviada pelo Vitor em 2026-10-17. Barra cheia dura 2h Cocaína, 2h24 Metanfetamina e Maconha, 2h40 Dinheiro Falso, 2h30 Documentos. Bunker 2h20 e Acid Lab ~4h medidos pelo Vitor. Sem upgrade de equipamento o consumo dobra (estimativa; no Acid Lab só a velocidade muda).",
+    "Suprimentos comprados chegam ao negócio cerca de 10 min de jogo depois da compra (supplyDeliveryMinutes).",
     "A Rockstar muda esses números em updates. Use a calibração de cada negócio quando medir no jogo."
   ],
   "businesses": [
@@ -77,8 +78,8 @@
         "both": 8
       },
       "unitsPerBar": {
-        "noEquipment": 8,
-        "equipment": 16
+        "noEquipment": 10,
+        "equipment": 20
       },
       "unitValue": {
         "none": 3500,
@@ -104,8 +105,8 @@
         "both": 4
       },
       "unitsPerBar": {
-        "noEquipment": 16,
-        "equipment": 32
+        "noEquipment": 18,
+        "equipment": 36
       },
       "unitValue": {
         "none": 1500,
@@ -131,8 +132,8 @@
         "both": 3
       },
       "unitsPerBar": {
-        "noEquipment": 12,
-        "equipment": 24
+        "noEquipment": 25,
+        "equipment": 50
       },
       "unitValue": {
         "none": 1000,
@@ -181,8 +182,8 @@
         "equipment": 1.5
       },
       "unitsPerBar": {
-        "noEquipment": 50,
-        "equipment": 50
+        "noEquipment": 160,
+        "equipment": 160
       },
       "unitValue": {
         "none": 1485,
@@ -195,5 +196,6 @@
         "source": "gtaboss.gg: o boost diário vale até 80 unidades ou 24 h; lote cheio cai de 4 h para 3 h (com upgrade) e de 6 h para 4h30 (sem), o que dá produção 2x nessas 80 unidades"
       }
     }
-  ]
+  ],
+  "supplyDeliveryMinutes": 10
 }

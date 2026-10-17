@@ -6,6 +6,7 @@ contextBridge.exposeInMainWorld('gta', Object.freeze({
   setOwned: (id, owned) => ipcRenderer.invoke('gta:set-owned', id, owned),
   setUpgrades: (id, upgrades) => ipcRenderer.invoke('gta:set-upgrades', id, upgrades),
   setSupply: (id, pct) => ipcRenderer.invoke('gta:set-supply', id, pct),
+  orderSupply: id => ipcRenderer.invoke('gta:order-supply', id),
   setStock: (id, units) => ipcRenderer.invoke('gta:set-stock', id, units),
   boost: (id, on) => ipcRenderer.invoke('gta:boost', id, on),
   setCalibration: (id, cal) => ipcRenderer.invoke('gta:set-calibration', id, cal),
@@ -18,6 +19,7 @@ contextBridge.exposeInMainWorld('gta', Object.freeze({
     ipcRenderer.on('gta:weekly', listener);
     return () => ipcRenderer.removeListener('gta:weekly', listener);
   },
+  mapOwn: (pointId, on) => ipcRenderer.invoke('gta:map-own', pointId, on),
   cayoCooldown: minutes => ipcRenderer.invoke('gta:cayo-cooldown', minutes),
   overlay: (action, value) => ipcRenderer.invoke('gta:overlay', action, value),
   onState: callback => {

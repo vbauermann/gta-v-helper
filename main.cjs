@@ -7,6 +7,7 @@ const { createGameWatcher } = require('./game-watcher.cjs');
 const { createOverlay } = require('./overlay.cjs');
 const { createScanner } = require('./fp-scanner.cjs');
 const todos = require('./lib/todos.js');
+const lsMapRules = require('./lib/ls-map.js');
 const features = require('./lib/features.js');
 const { createUpdater } = require('./updater.cjs');
 const { createWeeklyFeed } = require('./weekly-feed.cjs');
@@ -25,6 +26,7 @@ app.setAppUserModelId('local.gtahelper');
 const catalog = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/businesses.json'), 'utf8'));
 const heists = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/heists.json'), 'utf8'));
 heists.cayo.map = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/cayo-map.json'), 'utf8'));
+const lsMap = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/ls-map.json'), 'utf8'));
 const releaseNotes = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/release-notes.json'), 'utf8')).versions;
 const bundledWeekly = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/weekly.json'), 'utf8'));
 const dataFile = process.env.GTA_HELPER_DATA || path.join(app.getPath('userData'), 'gta-helper.json');
@@ -131,13 +133,23 @@ function business(id) {
 }
 
 function registerIpc() {
-  ipcMain.handle('gta:data', () => ({ catalog, heists, weekly: weeklyFeed.get(), releaseNotes, version: require('./package.json').version }));
+  ipcMain.handle('gta:data', () => ({ catalog, heists, lsMap, weekly: weeklyFeed.get(), releaseNotes, version: require('./package.json').version }));
   ipcMain.handle('gta:state', () => snapshot());
 
   ipcMain.handle('gta:set-owned', (_e, id, owned) => mutate(s => {
     business(id);
     store.rebase(id);
     s.businesses[id].owned = !!owned;
+    if (!owned) s.map.owned = lsMapRules.forgetBusiness(lsMap, s.map.owned, id);
+  }));
+
+  ipcMain.handle('gta:map-own', (_e, pointId, on) => mutate(s => {
+    const r = lsMapRules.setOwned(lsMap, s.map.owned, String(pointId), !!on);
+    s.map.owned = r.owned;
+    if (r.business && s.businesses[r.business.id].owned !== r.business.owned) {
+      store.rebase(r.business.id);
+      s.businesses[r.business.id].owned = r.business.owned;
+    }
   }));
 
   ipcMain.handle('gta:set-upgrades', (_e, id, upgrades) => mutate(s => {
@@ -152,6 +164,14 @@ function registerIpc() {
     business(id);
     store.rebase(id);
     s.businesses[id].supplyPct = num(pct, 0, 100);
+    s.businesses[id].delivery = null;
+  }));
+
+  // "Comprei suprimentos": they reach the business a few minutes of play later.
+  ipcMain.handle('gta:order-supply', (_e, id) => mutate(s => {
+    business(id);
+    store.rebase(id);
+    s.businesses[id].delivery = { at: catalog.supplyDeliveryMinutes || 10, orderedAt: Date.now() };
   }));
 
   ipcMain.handle('gta:set-stock', (_e, id, units) => mutate(s => {

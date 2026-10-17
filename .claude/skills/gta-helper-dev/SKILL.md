@@ -15,6 +15,7 @@ Leia antes o [CLAUDE.md](../../../CLAUDE.md) e as ADRs em `docs/adr/`. Regra nú
 | Negócios (`businesses`) | `app/pages/businesses.js` | Negócios que o jogador tem, upgrades, ressuprir/vender, informar níveis, calibração, boost diário do Acid Lab |
 | Semana (`weekly`) | `app/pages/weekly.js` | Bônus, descontos, veículos, Gun Van, GTA+, contagem até quinta, marca "pra você" |
 | Tarefas (`todos`) | `app/pages/todos.js` | Listas diária e semanal, sugestões, horário do reset |
+| Mapa (`map`) | `app/pages/map.js`, `lib/ls-map.js` | Mapa de Los Santos: negócios, propriedades e garagens com nome no hover, marcação "Tenho este" (liga com Negócios), "Só os meus", animais da fotografia |
 | Cayo Perico (`cayo`) | `app/pages/cayo.js`, `cayo-map.js` | Calculadora (alvo primário, secundários com slider, bolsas, cortes, modo difícil, Elite), cooldown, aba Mapa |
 | Diamond Casino (`casino`) | `app/pages/casino.js`, `fingerprint.js` | Abas Calculadora (abordagem, alvo, equipe, cortes) e Digitais (overlay de referência, detecção automática) |
 | Tabela de payouts (`payouts`) | `app/pages/payouts.js` | Payouts da atualização de economia |
@@ -41,7 +42,7 @@ Fora da janela principal: bandeja (fechar mantém rodando), notificações do Wi
 
 ## Recurso de colaborador (opcional)
 
-Ver [ADR 0014](../../../docs/adr/0014-recursos-opcionais.md). Recurso que não é do Vitor vem desligado:
+Ver [ADR 0015](../../../docs/adr/0015-recursos-opcionais.md). Recurso que não é do Vitor vem desligado:
 
 1. Adicione `{ id, title, description }` em `FEATURES` de `lib/features.js`. A chave aparece sozinha em Ajustes > Recursos extras.
 2. Antes de mostrar algo (menu, card, janela) ou rodar algo no processo principal, confira `GtaFeatures.isOn(App.state.settings, id)` na tela ou `features.isOn(store.get().settings, id)` no `main.cjs`.
@@ -53,6 +54,7 @@ Ver [ADR 0014](../../../docs/adr/0014-recursos-opcionais.md). Recurso que não �
 - `data/businesses.json`, `data/heists.json`: valores com fonte. Ao mudar um número, atualize `version`/`sources`.
 - `data/weekly.json`: ver a skill [gta-weekly-update](../gta-weekly-update/SKILL.md).
 - `data/cayo-map.json`: gerado por `tools/build-cayo-map.cjs`, não edite à mão.
+- `data/ls-map.json`: gerado por `tools/build-ls-map.cjs` (extração do gtaweb.eu), não edite à mão.
 
 ## Verificar
 

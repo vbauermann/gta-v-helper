@@ -25,7 +25,8 @@ function emptyBusiness() {
     activeMinutes: 0,
     calibration: {},
     alerts: { warned: false, empty: false, full: false },
-    boost: null // Acid Lab daily boost: { units left, startedAt, endsAt }
+    boost: null, // Acid Lab daily boost: { units left, startedAt, endsAt }
+    delivery: null // bought supplies on the way: { at: active minutes from the snapshot, orderedAt }
   };
 }
 
@@ -57,6 +58,8 @@ function createStore(file, catalog) {
       },
       businesses,
       cayoCooldownEndsAt: typeof raw.cayoCooldownEndsAt === 'number' ? raw.cayoCooldownEndsAt : null,
+      // Los Santos map: ids of the places the player marked as theirs (data/ls-map.json).
+      map: { owned: Array.isArray(raw.map && raw.map.owned) ? raw.map.owned.filter(id => typeof id === 'string') : [] },
       todos: loadTodos(raw.todos)
     };
   }
@@ -87,6 +90,7 @@ function createStore(file, catalog) {
     biz.supplyPct = p.supplyPct;
     biz.stock = p.stock;
     if (biz.boost) biz.boost.units = p.boostLeft;
+    if (biz.delivery) biz.delivery = p.deliveryIn ? { ...biz.delivery, at: p.deliveryIn } : null;
     biz.activeMinutes = 0;
     biz.alerts = { warned: false, empty: false, full: false };
     return { def, biz };

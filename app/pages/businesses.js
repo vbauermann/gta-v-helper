@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  const { h, money, number, numberInput, icon, bizIcon, ring, bar } = UI;
+  const { h, money, number, numberInput, icon, bizIcon, bar } = UI;
   const P = GtaProduction;
   const UPGRADE_LABELS = { equipment: 'Equipamento', staff: 'Funcionários', security: 'Segurança' };
   let root = null;
@@ -9,30 +9,59 @@
   const supplyColor = v => (v <= 15 ? 'var(--danger)' : v <= 35 ? 'var(--warn)' : 'var(--ok)');
   const stockText = (def, p) => `${Math.floor(p.stock)}/${def.capacity}`;
 
+  const supplyText = p => {
+    const pct = `${Math.round(p.supplyPct)}%`;
+    if (p.deliveryIn) return `${pct} · chega em ${P.formatMinutes(p.deliveryIn)}`;
+    return p.supplyPct > 0.5 && p.minutesToSupplyEmpty > 0 ? `${pct} · acaba em ${P.formatMinutes(p.minutesToSupplyEmpty)}` : pct;
+  };
+
+  // One line per business, like the bars in the game: supply and stock. The rest opens on click.
+  const expanded = new Set();
+  function toggleRow(id) {
+    if (expanded.has(id)) expanded.delete(id); else expanded.add(id);
+    render();
+  }
+
+  function meter(label, live, value, color, text) {
+    const b = bar(value, color, 'thin');
+    b.firstChild.dataset.live = live;
+    return h('div', { class: 'meter' },
+      h('span', { class: 'meter-label' }, label), b,
+      h('b', { class: 'num meter-text', dataset: { live: `${live}-text` } }, text));
+  }
+
   function card(def) {
     const gta = window.gta;
     const { biz, p, tone, text, pill } = App.business(def);
     const r = p.rates;
+    const open = expanded.has(def.id);
     const barInput = numberInput(biz.calibration.barMinutes || '', { min: 1, step: 1, placeholder: Math.round(r.barMinutes), class: 'small' });
     const mpuInput = numberInput(biz.calibration.minutesPerUnit || '', { min: 0.1, step: 0.1, placeholder: number(r.minutesPerUnit), class: 'small' });
-    const supplyRing = ring(p.supplyPct, { size: 92, stroke: 9, label: 'suprimento', color: supplyColor(p.supplyPct) });
-    supplyRing.dataset.live = 'ring';
-    const stockBar = bar((p.stock / def.capacity) * 100, `var(--biz-c)`);
-    stockBar.firstChild.dataset.live = 'stock';
     const calibrated = biz.calibration.barMinutes || biz.calibration.minutesPerUnit;
+    const stop = e => e.stopPropagation();
 
-    return h('article', { class: `card pad biz biz-${def.id} ${tone}`, dataset: { id: def.id } },
-      h('div', { class: 'card-head' },
-        bizIcon(def.id, 40),
-        h('div', { class: 'grow' }, h('h3', null, def.name), h('div', { class: 'meta' }, def.group)),
-        h('span', { class: `pill ${PILL[tone]}`, dataset: { live: 'pill' } }, pill)),
-      h('div', { class: 'biz-body' },
-        supplyRing,
-        h('div', { class: 'biz-stats grow' },
-          h('div', { class: 'stat-line' }, h('span', null, 'Estoque'), h('b', { class: 'num', dataset: { live: 'stock-text' } }, stockText(def, p))),
-          stockBar,
-          h('div', { class: 'stat-line' }, h('span', null, 'Valor'), h('b', { class: 'num', dataset: { live: 'value' } }, money(p.stockValue))),
-          h('div', { class: 'biz-status', dataset: { live: 'status' } }, text))),
+    const head = h('div', { class: 'biz-row', title: open ? 'Recolher' : 'Ver detalhes', onclick: () => toggleRow(def.id) },
+      bizIcon(def.id, 36),
+      h('div', { class: 'biz-name' },
+        h('h3', null, def.name),
+        h('div', { class: 'meta' }, def.group),
+        h('div', { class: 'biz-pills' },
+          h('span', { class: `pill sm ${PILL[tone]}`, dataset: { live: 'pill' } }, pill),
+          def.boost && boostActive(biz, p) ? h('span', { class: 'pill sm info' }, icon('star', 12), 'Boost') : null,
+          calibrated ? h('span', { class: 'pill sm', title: 'Usando tempos medidos por você' }, 'calibrado') : null)),
+      h('div', { class: 'biz-meters' },
+        meter('Estoque', 'stock', (p.stock / def.capacity) * 100, 'var(--biz-c)', stockText(def, p)),
+        meter('Suprimento', 'supply', p.supplyPct, supplyColor(p.supplyPct), supplyText(p))),
+      h('div', { class: 'biz-quick', onclick: stop },
+        h('button', { class: 'btn primary icon sm', title: `Comprei suprimentos (chegam em ~${App.data.catalog.supplyDeliveryMinutes || 10} min de jogo)`, 'aria-label': 'Comprei suprimentos', onclick: () => App.act(gta.orderSupply(def.id)) }, icon('box', 15)),
+        h('button', { class: 'btn secondary icon sm', title: 'Vendi tudo', 'aria-label': 'Vendi tudo', onclick: () => App.act(gta.setStock(def.id, 0)) }, icon('dollar', 15)),
+        h('button', { class: `btn ghost icon sm biz-toggle ${open ? 'open' : ''}`, title: open ? 'Recolher' : 'Ver detalhes', 'aria-expanded': String(open), onclick: () => toggleRow(def.id) }, icon('chevron', 16))));
+
+    const body = open ? h('div', { class: 'biz-more' },
+      h('div', { class: 'biz-facts' },
+        h('div', { class: 'stat-line' }, h('span', null, 'Valor do estoque'), h('b', { class: 'num', dataset: { live: 'value' } }, money(p.stockValue))),
+        h('div', { class: 'biz-status', dataset: { live: 'status' } }, text),
+        p.deliveryIn ? h('button', { class: 'btn ghost sm', title: 'Os suprimentos já estão no negócio', onclick: () => App.act(gta.setSupply(def.id, 100)) }, icon('check', 15), 'Já chegou') : null),
       h('div', { class: 'upgrades' },
         h('span', { class: 'upgrades-label' }, 'Upgrades'),
         def.upgrades.map(key => h('button', {
@@ -40,26 +69,29 @@
           title: key === 'security' ? 'Não muda a produção, só protege contra ataques' : '',
           onclick: () => App.act(gta.setUpgrades(def.id, { ...biz.upgrades, [key]: !biz.upgrades[key] }))
         }, UPGRADE_LABELS[key]))),
-      h('div', { class: 'biz-actions' },
-        h('button', { class: 'btn primary sm', onclick: () => App.act(gta.setSupply(def.id, 100)) }, icon('box', 15), 'Ressupri'),
-        h('button', { class: 'btn secondary sm', onclick: () => App.act(gta.setStock(def.id, 0)) }, icon('dollar', 15), 'Vendi tudo'),
-        def.boost ? boostButton(def, biz, p) : null,
+      def.boost ? h('div', { class: 'boost-row' }, boostLine(def, biz, p), boostButton(def, biz, p)) : null,
+      h('div', { class: 'biz-tools' },
         h('button', { class: `btn ${reporting.has(def.id) ? 'secondary' : 'ghost'} sm`, onclick: () => toggleReport(def.id) }, icon('edit', 15), 'Informar níveis'),
-        calibrated ? h('span', { class: 'pill sm info', title: 'Usando tempos medidos por você' }, 'calibrado') : null),
-      def.boost ? boostLine(def, biz, p) : null,
+        h('button', { class: `btn ${adjusting.has(def.id) ? 'secondary' : 'ghost'} sm`, onclick: () => toggleAdjust(def.id) }, icon('settings', 15), 'Ajustar e calibrar')),
       reporting.has(def.id) ? reportPanel(def, p) : null,
-      h('details', { class: 'adjust-box' },
-        h('summary', null, icon('settings', 15), 'Ajustar e calibrar'),
-        h('div', { class: 'adjust' },
-          h('p', { class: 'muted small' },
-            `Estimativa: 1 unidade a cada ${number(r.minutesPerUnit)} min, barra cheia dura ${P.formatMinutes(r.barMinutes)}, estoque vazio até cheio em ${P.formatMinutes(r.fullStockMinutes)}. Se medir diferente no jogo, informe abaixo.`),
-          h('div', { class: 'row' }, h('span', null, 'Barra cheia dura (min)'), barInput),
-          h('div', { class: 'row' }, h('span', null, 'Minutos por unidade'), mpuInput),
-          h('div', { class: 'row' },
-            h('button', { class: 'btn secondary sm', onclick: () => App.act(gta.setCalibration(def.id, { barMinutes: Number(barInput.value) || null, minutesPerUnit: Number(mpuInput.value) || null })) }, 'Aplicar calibração'),
-            h('button', { class: 'btn ghost sm', onclick: () => App.act(gta.setCalibration(def.id, {})) }, 'Voltar ao padrão'),
-            h('span', { class: 'grow' }),
-            h('button', { class: 'btn danger sm', onclick: () => App.act(gta.setOwned(def.id, false)) }, 'Não tenho mais')))));
+      adjusting.has(def.id) ? h('div', { class: 'adjust' },
+        h('p', { class: 'muted small' },
+          `Estimativa: 1 unidade a cada ${number(r.minutesPerUnit)} min, barra cheia dura ${P.formatMinutes(r.barMinutes)}, estoque vazio até cheio em ${P.formatMinutes(r.fullStockMinutes)}. Se medir diferente no jogo, informe abaixo.`),
+        h('div', { class: 'row' }, h('span', null, 'Barra cheia dura (min)'), barInput),
+        h('div', { class: 'row' }, h('span', null, 'Minutos por unidade'), mpuInput),
+        h('div', { class: 'row' },
+          h('button', { class: 'btn secondary sm', onclick: () => App.act(gta.setCalibration(def.id, { barMinutes: Number(barInput.value) || null, minutesPerUnit: Number(mpuInput.value) || null })) }, 'Aplicar calibração'),
+          h('button', { class: 'btn ghost sm', onclick: () => App.act(gta.setCalibration(def.id, {})) }, 'Voltar ao padrão'),
+          h('span', { class: 'grow' }),
+          h('button', { class: 'btn danger sm', onclick: () => App.act(gta.setOwned(def.id, false)) }, 'Não tenho mais'))) : null) : null;
+
+    return h('article', { class: `card biz biz-${def.id} ${tone} ${open ? 'open' : ''}`, dataset: { id: def.id } }, head, body);
+  }
+
+  const adjusting = new Set();
+  function toggleAdjust(id) {
+    if (adjusting.has(id)) adjusting.delete(id); else adjusting.add(id);
+    render();
   }
 
   // Daily boost (Acid Lab): the next units come out faster until they are made or 24 h pass.
@@ -135,9 +167,12 @@
 
   function render() {
     if (!root) return;
-    const open = new Set([...root.querySelectorAll('.card.biz[data-id] details[open]')].map(d => d.closest('.card').dataset.id));
     const defs = App.data.catalog.businesses;
-    const owned = defs.filter(d => App.state.businesses[d.id].owned);
+    // Most supply on top, the ones running dry at the bottom.
+    const owned = defs.filter(d => App.state.businesses[d.id].owned)
+      .map(d => ({ d, s: App.business(d).p.supplyPct }))
+      .sort((a, b) => b.s - a.s)
+      .map(x => x.d);
     const others = defs.filter(d => !App.state.businesses[d.id].owned);
     UI.fill(root, 
       h('div', { class: 'page-head' },
@@ -145,7 +180,7 @@
           h('h1', null, 'Negócios'),
           h('div', { class: 'sub' }, 'Os timers contam tempo de jogo online. Fechou o GTA, eles param. Ao ressuprir ou vender no jogo, marque aqui.'))),
       owned.length
-        ? h('div', { class: 'grid biz-grid' }, owned.map(card))
+        ? h('div', { class: 'biz-list' }, owned.map(card))
         : h('div', { class: 'card' }, h('div', { class: 'empty' }, h('div', { class: 'icon' }, icon('businesses', 24)),
           h('h3', null, 'Nenhum negócio marcado'), h('p', null, 'Marque abaixo os negócios que você tem.'))),
       others.length
@@ -153,26 +188,24 @@
           h('div', { class: 'card-head' }, h('h3', null, 'Outros negócios'), h('span', { class: 'hint' }, 'Marque os que você comprou')),
           h('div', { class: 'rows' }, others.map(otherRow)))
         : null);
-    for (const id of open) {
-      const details = root.querySelector(`.card.biz[data-id="${id}"] details`);
-      if (details) details.open = true;
-    }
   }
 
-  // Updates countdowns, ring and bars in place every second, without rebuilding inputs.
+  // Updates countdowns and bars in place every second, without rebuilding inputs.
   function onSecond() {
     if (!root) return;
     for (const el of root.querySelectorAll('.card.biz[data-id]')) {
       const def = App.data.catalog.businesses.find(d => d.id === el.dataset.id);
       const { p, tone, text, pill } = App.business(def);
-      el.querySelector('[data-live=status]').textContent = text;
-      el.querySelector('[data-live=ring]').set(p.supplyPct, null, supplyColor(p.supplyPct));
-      el.querySelector('[data-live=stock]').style.width = `${(p.stock / def.capacity) * 100}%`;
-      el.querySelector('[data-live=stock-text]').textContent = stockText(def, p);
-      el.querySelector('[data-live=value]').textContent = money(p.stockValue);
+      const set = (live, fn) => { const node = el.querySelector(`[data-live=${live}]`); if (node) fn(node); };
+      set('status', n => { n.textContent = text; });
+      set('supply', n => { n.style.width = `${p.supplyPct}%`; n.style.background = supplyColor(p.supplyPct); });
+      set('supply-text', n => { n.textContent = supplyText(p); });
+      set('stock', n => { n.style.width = `${(p.stock / def.capacity) * 100}%`; });
+      set('stock-text', n => { n.textContent = stockText(def, p); });
+      set('value', n => { n.textContent = money(p.stockValue); });
       const pillEl = el.querySelector('[data-live=pill]');
       pillEl.textContent = pill;
-      pillEl.className = `pill ${PILL[tone]}`;
+      pillEl.className = `pill sm ${PILL[tone]}`;
       el.classList.remove('ok', 'warning', 'stopped');
       el.classList.add(tone);
     }
