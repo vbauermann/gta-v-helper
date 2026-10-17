@@ -7,6 +7,7 @@ const { createGameWatcher } = require('./game-watcher.cjs');
 const { createOverlay } = require('./overlay.cjs');
 const { createScanner } = require('./fp-scanner.cjs');
 const todos = require('./lib/todos.js');
+const features = require('./lib/features.js');
 const { createUpdater } = require('./updater.cjs');
 const { createWeeklyFeed } = require('./weekly-feed.cjs');
 
@@ -187,6 +188,7 @@ function registerIpc() {
     if ('warnMinutes' in patch) s.settings.warnMinutes = num(patch.warnMinutes, 0, 120);
     if ('notify' in patch) s.settings.notify = !!patch.notify;
     if ('closeToTray' in patch) s.settings.closeToTray = !!patch.closeToTray;
+    if ('features' in patch) Object.assign(s.settings.features, features.sanitizePatch(patch.features));
     if ('theme' in patch && OVERLAY[patch.theme]) {
       s.settings.theme = patch.theme;
       if (mainWindow && !mainWindow.isDestroyed()) {
