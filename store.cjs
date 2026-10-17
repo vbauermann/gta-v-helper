@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { project } = require('./lib/production.js');
 const todos = require('./lib/todos.js');
+const features = require('./lib/features.js');
 
 const DEFAULT_SETTINGS = Object.freeze({
   detection: 'auto', // 'auto': counts only while GTA is open; 'always': counts whenever the app is open
@@ -11,7 +12,8 @@ const DEFAULT_SETTINGS = Object.freeze({
   notify: true,
   closeToTray: true,
   theme: 'dark',
-  overlay: Object.freeze({ print: 'all', size: 'md', opacity: 0.92, hotkeys: true, auto: true, pos: null, keys: null })
+  overlay: Object.freeze({ print: 'all', size: 'md', opacity: 0.92, hotkeys: true, auto: true, pos: null, keys: null }),
+  features: Object.freeze({}) // optional features the player turned on (lib/features.js), all off by default
 });
 
 function emptyBusiness() {
@@ -51,7 +53,8 @@ function createStore(file, catalog) {
       settings: {
         ...DEFAULT_SETTINGS,
         ...raw.settings,
-        overlay: { ...DEFAULT_SETTINGS.overlay, ...(raw.settings && raw.settings.overlay) }
+        overlay: { ...DEFAULT_SETTINGS.overlay, ...(raw.settings && raw.settings.overlay) },
+        features: features.normalize(raw.settings && raw.settings.features)
       },
       businesses,
       cayoCooldownEndsAt: typeof raw.cayoCooldownEndsAt === 'number' ? raw.cayoCooldownEndsAt : null,

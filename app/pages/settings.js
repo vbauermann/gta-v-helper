@@ -40,8 +40,18 @@
         updateSection(),
         section('palette', 'Aparência',
           setting('Tema', null, segmented([{ value: 'dark', label: 'Escuro' }, { value: 'light', label: 'Claro' }], s.theme || 'dark', v => set({ theme: v })))),
+        extrasSection(s, set),
         section('info', 'Sobre os números',
           App.data.catalog.notes.map(n => h('p', { class: 'muted small note' }, n)))));
+  }
+
+  // Optional features from collaborators (lib/features.js), all off until the player turns them on.
+  function extrasSection(s, set) {
+    const list = GtaFeatures.FEATURES;
+    if (!list.length) return null;
+    return section('plus', 'Recursos extras',
+      h('p', { class: 'muted small' }, 'Funções extras que vêm desligadas. Ligue as que quiser usar.'),
+      list.map(f => checkbox(f.title, GtaFeatures.isOn(s, f.id), e => set({ features: { [f.id]: e.target.checked } }), f.description)));
   }
 
   function updateSection() {
