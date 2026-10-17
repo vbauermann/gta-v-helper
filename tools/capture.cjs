@@ -43,6 +43,8 @@ app.whenReady().then(async () => {
     await App.act(window.gta.boost('acid', true));
     document.querySelector('[data-page=businesses]').click();
     await new Promise(r => setTimeout(r, 300));
+    document.querySelector('.biz-acid .biz-toggle').click();
+    await new Promise(r => setTimeout(r, 200));
     document.querySelector('.biz-acid').scrollIntoView({ block: 'center' });
   })()`);
   await wait(800);
@@ -167,6 +169,8 @@ app.whenReady().then(async () => {
     const card = document.querySelector('.card.biz[data-id=meth]');
     card.querySelector('button.primary').click();
     await new Promise(r => setTimeout(r, 300));
+    document.querySelector('.card.biz[data-id=meth] .biz-toggle').click();
+    await new Promise(r => setTimeout(r, 200));
     [...document.querySelectorAll('.card.biz[data-id=meth] .chip')].find(b => b.textContent === 'Funcionários').click();
     await new Promise(r => setTimeout(r, 300));
     const s = await window.gta.state();

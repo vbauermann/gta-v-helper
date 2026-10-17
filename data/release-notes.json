@@ -1,6 +1,17 @@
 {
   "versions": [
     {
+      "version": "1.4.0",
+      "date": "2026-10-17",
+      "title": "Negócios mais compactos",
+      "items": [
+        "Cada negócio virou uma linha compacta com suprimento e estoque em barras, como no jogo.",
+        "A lista fica ordenada pelo suprimento: quem está acabando fica embaixo.",
+        "Ressupri e Vendi tudo viraram botões de ícone à direita, sempre visíveis.",
+        "Clique no negócio para ver valor, upgrades, boost, Informar níveis e Ajustar e calibrar."
+      ]
+    },
+    {
       "version": "1.3.0",
       "date": "2026-10-17",
       "title": "Novidades no app",
