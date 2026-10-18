@@ -1,6 +1,16 @@
 {
   "versions": [
     {
+      "version": "1.8.0",
+      "date": "2026-10-18",
+      "title": "Todos os golpes",
+      "items": [
+        "Novos golpes no menu: Kortz Center, Doomsday, Pacific Standard, Series A Funding, Humane Labs e Prison Break, cada um com Visão geral, Setups e Final.",
+        "No Doomsday, os três atos funcionam como approaches: escolha o ato e veja as preps, os setups e o final dele.",
+        "Os setups de todos os golpes ficam agrupados como na tela de planejamento do jogo."
+      ]
+    },
+    {
       "version": "1.7.1",
       "date": "2026-10-18",
       "title": "Setups agrupados",

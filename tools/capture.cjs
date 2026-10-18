@@ -32,7 +32,7 @@ app.whenReady().then(async () => {
   const errors = [];
   win.webContents.on('console-message', e => { if (e.level === 'error') errors.push(e.message); });
   await wait(1200);
-  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'fleeca', 'payouts', 'weekly', 'todos', 'map', 'settings', 'releases']) {
+  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'kortz', 'doomsday', 'pacific', 'seriesa', 'humane', 'prison', 'fleeca', 'payouts', 'weekly', 'todos', 'map', 'settings', 'releases']) {
     await win.webContents.executeJavaScript(`document.querySelector('[data-page=${page}]').click();
       ${page === 'cayo' ? "const rows = document.querySelectorAll('.loot-row'); for (const [r, n] of [[0, 2], [1, 3], [2, 1], [3, 1]]) { const b = rows[r].querySelectorAll('.qty button')[n - 1]; if (!b.classList.contains('active')) b.click(); }" : ''}`);
     await wait(700);
@@ -215,6 +215,16 @@ app.whenReady().then(async () => {
   await win.webContents.executeJavaScript(`${tabOf('Final')}`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'wiki-final.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=doomsday]').click(); ${tabOf('Setups')}
+    [...document.querySelectorAll('.wiki-filter button')][1].click();`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-doomsday-setups.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=kortz]').click(); ${tabOf('Setups')}`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-kortz-setups.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=pacific]').click(); ${tabOf('Final')}`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-pacific-final.png'), (await win.webContents.capturePage()).toPNG());
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=fleeca]').click(); ${tabOf('Setups')}`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'wiki-fleeca-setups.png'), (await win.webContents.capturePage()).toPNG());

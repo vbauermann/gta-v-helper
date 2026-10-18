@@ -150,7 +150,7 @@
     });
     window.gta.onWiki(wiki => {
       App.data.wiki = wiki;
-      if (['fleeca', 'casino', 'cayo'].includes(App.page)) navigate(App.page);
+      if (['casino', 'cayo', ...window.HeistPages].includes(App.page)) navigate(App.page);
     });
     navigate('overview');
     setInterval(tick, 1000);

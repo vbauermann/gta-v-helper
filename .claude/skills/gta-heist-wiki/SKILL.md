@@ -26,6 +26,6 @@ Decisão em [ADR 0015](../../../docs/adr/0015-wiki-dos-golpes.md). Renderizaçã
 
 ## Golpe novo
 1. Adicione o golpe em `data/wiki.json` (passo acima).
-2. Crie `app/pages/<id>.js` copiando `app/pages/fleeca.js`, inclua o `<script>` em `app/index.html` e o botão no menu Golpes (`data-page="<id>"`, ícone em `app/icons.js`).
-3. Em `app/app.js`, inclua o id na lista do `onWiki` para a página recarregar quando a wiki mudar.
+2. Adicione o id e o título em `HEISTS` de `app/pages/heist-pages.js` e o botão no menu Golpes (`data-page="<id>"`, ícone em `app/icons.js`).
+3. (A página recarrega sozinha quando a wiki muda: `window.HeistPages` já entra no `onWiki` de `app/app.js`.)
 4. Rode `tools/capture.cjs`, olhe os prints e publique a versão com release notes (skill gta-helper-release).

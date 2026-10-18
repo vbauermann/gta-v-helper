@@ -15,5 +15,5 @@ O Vitor quer, em cada golpe do app, a visão geral, os setups (cada um com sua p
 - Para coletar o texto do Fandom: a API (`api.php?action=parse&prop=wikitext`) com User-Agent de navegador funciona; as páginas normais e o dump retornam 403. Isso só serve para escrever o resumo, não para o app.
 
 ## Consequências
-- Mais golpes são só conteúdo novo no JSON e uma página com as abas (veja `app/pages/fleeca.js`).
+- Mais golpes são só conteúdo novo no JSON e uma página com as abas (veja `app/pages/heist-pages.js`).
 - `test/wiki.test.cjs` garante o formato, os links de fonte e que um JSON quebrado ou vazio não substitui o atual.
