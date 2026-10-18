@@ -1,5 +1,5 @@
 {
- "version": "2026-10-18.2",
+ "version": "2026-10-18.3",
  "note": "Resumos próprios em português com base no GTA Wiki (gta.fandom.com, CC BY-SA). Cada golpe e setup tem o link do artigo original.",
  "heists": {
   "fleeca": {
@@ -3394,6 +3394,531 @@
      "Elite Challenges: Rashkovsky com 1% ou menos de dano, extração em menos de 4:40 e ninguém morrer. O tempo conta da cutscene com Rashkovsky até o avião chegar ao destino."
     ],
     "source": "https://gta.fandom.com/wiki/The_Prison_Break"
+   }
+  },
+  "cluckin": {
+   "id": "cluckin",
+   "name": "The Cluckin' Bell Farm Raid",
+   "source": "https://gta.fandom.com/wiki/The_Cluckin%27_Bell_Farm_Raid",
+   "facts": [
+    {
+     "label": "Jogadores",
+     "value": "1 a 4"
+    },
+    {
+     "label": "Quem inicia",
+     "value": "Vincent Effenburger (Vespucci Police Station)"
+    },
+    {
+     "label": "Requisito",
+     "value": "Nenhum (sem rank ou propriedade)"
+    },
+    {
+     "label": "Pagamento",
+     "value": "$400.000 (1,5x na 1a vez da semana: $600.000)"
+    },
+    {
+     "label": "Bônus 1a conclusão",
+     "value": "$250.000 (award, líder ou membro)"
+    }
+   ],
+   "overview": [
+    "Série de missões do update The Chop Shop em que você ajuda o policial Vincent Effenburger a derrubar um cartel que produz cocaína na fábrica da Cluckin' Bell em Paleto Bay. Funciona como um heist: cinco setups e um final, Scene of the Crime.",
+    "Não exige rank nem propriedade, então dá para fazer com personagem novo, solo ou com até 3 parceiros. A base de operações é o Abandoned FIB Lockup, de onde partem os setups depois do primeiro.",
+    "O que mais importa é o Disorganized Crime: o que você faz na garagem do cartel define se o final será Silent ou Aggressive. As armas e o veículo de fuga escolhidos nos setups (confirmados por SMS ao Vincent) são os que você usa no final.",
+    "No fim, o Jorge compra a cocaína no lockup e paga o valor fixo. O roubo pode ser repetido; nas repetições o Slush Fund começa no lockup."
+   ],
+   "start": [
+    "Atenda a ligação do Vincent Effenburger, que convida o jogador para a operação.",
+    "Vá até o marcador do Vincent na Vespucci Police Station para começar o Slush Fund.",
+    "Os próximos setups são escolhidos na Vespucci Police Station e começam no Abandoned FIB Lockup.",
+    "Não há requisito de rank nem de propriedade."
+   ],
+   "approaches": [
+    {
+     "id": "silent",
+     "name": "Silent Approach",
+     "summary": "No Disorganized Crime, sabote os caminhões sem alarde, apague o CCTV e entregue o Flatbed com as caixas. No final você entra na fábrica escondido numa caixa da Cluckin' Bell, sem o cartel alertado."
+    },
+    {
+     "id": "aggressive",
+     "name": "Aggressive Approach",
+     "summary": "Acontece se você explodir os caminhões, deixar alguém escapar a tempo ou sair sem apagar o CCTV. No final você chega de trem e a fábrica já está em alerta máximo."
+    }
+   ],
+   "sections": [
+    {
+     "id": "setups",
+     "title": "Setups",
+     "note": "Todos obrigatórios. Ordem: Slush Fund, Breaking and Entering, depois Concealed Weapons e Hit and Run em qualquer ordem, e por fim Disorganized Crime."
+    }
+   ],
+   "setups": [
+    {
+     "id": "slush-fund",
+     "name": "Slush Fund",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "goal": "Roubar dinheiro de lavanderias de dinheiro e levar ao lockup do Vincent para financiar o roubo.",
+     "steps": [
+      "Vá até uma das lavanderias de dinheiro marcadas pelo Vincent.",
+      "Limpe o local e pegue o dinheiro das máquinas de lavar Wiwang.",
+      "Saia e repita na próxima lavanderia indicada.",
+      "Entregue o dinheiro no lockup do Vincent (Abandoned FIB Lockup)."
+     ],
+     "tips": [
+      "Na primeira vez começa na Vespucci Police Station; nas repetições começa direto no lockup.",
+      "Concluir libera os veículos de polícia para compra, como o Gauntlet Interceptor."
+     ],
+     "source": "https://gta.fandom.com/wiki/Slush_Fund"
+    },
+    {
+     "id": "breaking-and-entering",
+     "name": "Breaking and Entering",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "goal": "Conseguir o laptop de um funcionário, o Hacking Device de um Terrorbyte e roubar o trem de carga do cartel.",
+     "steps": [
+      "Use a foto enviada pelo Vincent para achar o funcionário da Cluckin' Bell e roube o laptop.",
+      "Vá até o Terrorbyte preto e destrua todos os drones que o protegem.",
+      "Entre no Terrorbyte e pegue o Hacking Device.",
+      "Vá ao complexo do cartel em Elysian Island, elimine os capangas e pegue a chave do trem.",
+      "Fuja com o Freight Train usando o Hacking Device para trocar os sinais da linha.",
+      "Siga até o túnel longo que sai da cidade para concluir."
+     ],
+     "tips": [
+      "Se o Terrorbyte for destruído, a missão falha.",
+      "Nocauteie o funcionário antes de pegar o laptop, senão ele pode reagir.",
+      "Os drones têm torretas e bastante vida; ataque de cobertura.",
+      "Sinal não trocado aciona o freio de emergência do trem.",
+      "Technicals e Valkyries perseguem o trem; use drive-by para matar os atiradores."
+     ],
+     "source": "https://gta.fandom.com/wiki/Breaking_and_Entering"
+    },
+    {
+     "id": "concealed-weapons",
+     "name": "Concealed Weapons",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "group": "Qualquer ordem com Hit and Run",
+     "goal": "Roubar armas e equipamento de uma gangue para usar no final.",
+     "steps": [
+      "Escolha a gangue: Marabunta Grande (El Burro Heights), The Professionals (Del Perro) ou Unnamed Militia (Sandy Shores Airfield).",
+      "Procure as armas e o equipamento no esconderijo e nos porta-malas dos veículos da gangue.",
+      "Entregue tudo no lockup do Vincent.",
+      "Confirme por SMS ao Vincent qual conjunto será usado no final."
+     ],
+     "tips": [
+      "Marabunta: armadura leve e vem com Crowbar, que poupa uma busca no final. Professionals: armadura média. Militia: armadura pesada, mas reduz mais o fôlego.",
+      "Dá para roubar das três gangues; os extras ficam numa caçamba nos fundos da fábrica durante o final.",
+      "A escolha pode ser trocada depois, na preparação do Scene of the Crime.",
+      "Se já fez Hit and Run, as gangues roubadas antes estarão em alerta e mais agressivas."
+     ],
+     "source": "https://gta.fandom.com/wiki/Concealed_Weapons"
+    },
+    {
+     "id": "hit-and-run",
+     "name": "Hit and Run",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "group": "Qualquer ordem com Concealed Weapons",
+     "goal": "Roubar um veículo de fuga e deixá-lo na garagem ao lado da fábrica da Cluckin' Bell.",
+     "steps": [
+      "Escolha a gangue pela foto do Vincent: Marabunta Grande (Harmony), The Professionals (entre o RON Alternates Wind Farm e a Palmer-Taylor Power Station) ou Unnamed Militia (Chumash).",
+      "Roube o veículo de fuga no local.",
+      "Se ele estiver muito danificado, passe na Beeker's Garage para consertar de graça.",
+      "Entregue na garagem perto da Clucking Bell Farms.",
+      "Confirme por SMS ao Vincent qual veículo será usado no final."
+     ],
+     "tips": [
+      "A escolha do veículo não pode ser mudada depois.",
+      "Veículos extras entregues são vendidos pelo Vincent por $10.000 cada ($5.000 se você usar quick restart).",
+      "Se já fez Concealed Weapons, as gangues roubadas antes estarão em alerta e mais agressivas."
+     ],
+     "source": "https://gta.fandom.com/wiki/Hit_and_Run"
+    },
+    {
+     "id": "disorganized-crime",
+     "name": "Disorganized Crime",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "group": "Define o approach do final",
+     "goal": "Achar a garagem do cartel, sabotar os caminhões e pegar o keycard do depósito de cocaína.",
+     "steps": [
+      "Vá ao Cluckin' Bell Outlet e hackeie as vans do cartel com o Hacking Device para achar a garagem.",
+      "Vista o uniforme de motorista que a van derrubar para passar pelas câmeras.",
+      "Entre na garagem e sabote os 4 caminhões Benson sem explodi-los.",
+      "Ache uma furadeira e fure os armários até achar o keycard.",
+      "Apague as imagens do CCTV na sala de vigilância antes de sair.",
+      "No Silent, roube o Flatbed com as caixas da Cluckin' Bell e entregue no lockup do Vincent."
+     ],
+     "tips": [
+      "Os ocupantes das vans atiram quando você começa o hack.",
+      "Inimigos com cone de visão vermelho não caem no disfarce.",
+      "Explodir um caminhão, não eliminar todos a tempo após um alerta ou sair sem apagar o CCTV deixa o final no Aggressive, e você ainda precisa fugir do cartel.",
+      "Furar os armários restantes depois do keycard rende dinheiro extra.",
+      "Após várias repetições você pode pular o hack das vans e ir direto à garagem.",
+      "Concluir como líder libera o Benson (Cluckin' Bell) com preço de troca."
+     ],
+     "source": "https://gta.fandom.com/wiki/Disorganized_Crime"
+    }
+   ],
+   "finale": {
+    "name": "Scene of the Crime",
+    "summary": "Invada a fábrica da Clucking Bell Farms, roube a cocaína dos dois depósitos e o conteúdo do cofre, fuja no veículo escolhido e entregue tudo no lockup do Vincent.",
+    "steps": [
+     "Entre na fábrica (escondido na caixa no Silent, ou pelo trem já com o cartel em alerta no Aggressive).",
+     "Use o keycard no depósito do porão, elimine os guardas e pegue as quatro pilhas de cocaína.",
+     "Use o keycard no outro depósito e abra as caixas com um Crowbar para achar mais droga.",
+     "Entre no escritório com a chave achada pela fábrica ou atirando na fechadura.",
+     "Hackeie o computador do escritório, equipe o Hacking Device (slot de pistolas) e encontre os três sinais fortes nas mesas da fábrica para obter o código do cofre.",
+     "Abra o cofre, atire na caixa de força da entrada da frente e vá até a garagem do veículo de fuga.",
+     "Perca o nível de procurado e entregue o loot ao Jorge no lockup do Vincent."
+    ],
+    "tips": [
+     "Atirar na fechadura do escritório dispara o alarme; procurar a chave mantém o sigilo.",
+     "Ao pegar o cofre o alarme dispara de qualquer forma e policiais corruptos chegam.",
+     "Se o alarme não tiver soado antes do cofre, os guardas de fora não sabem onde você está e dá para eliminá-los em silêncio até a garagem.",
+     "Equipamentos extras do Concealed Weapons ficam numa caçamba nos fundos; quebre a caixa de força da porta e elimine o guarda que vem conferir sem barulho.",
+     "Com o equipamento da Marabunta Grande você já tem o Crowbar.",
+     "O Jorge só abre o lockup sem nível de procurado. Na primeira conclusão você ganha $250.000 extras do award e o Gauntlet Interceptor fica com preço de troca."
+    ],
+    "source": "https://gta.fandom.com/wiki/Scene_of_the_Crime",
+    "variants": [
+     {
+      "approach": "silent",
+      "name": "Silent Approach",
+      "summary": "O cartel não sabe que você vem. Você entra escondido numa caixa da Cluckin' Bell que é levada para dentro por empilhadeira.",
+      "steps": [
+       "Entre na caixa preparada pelo Vincent e espere ser descarregado na fábrica.",
+       "Elimine os guardas sem ser visto e pegue a chave do escritório em vez de atirar na fechadura.",
+       "Faça os depósitos e o cofre; a partir daí o alarme dispara e você foge."
+      ],
+      "tips": [
+       "Se for detectado, a missão continua como Aggressive, sem falhar."
+      ],
+      "source": "https://gta.fandom.com/wiki/Scene_of_the_Crime"
+     },
+     {
+      "approach": "aggressive",
+      "name": "Aggressive Approach",
+      "summary": "A fábrica está em alerta máximo desde o início. Você chega de trem e precisa abrir caminho na força.",
+      "steps": [
+       "Chegue de trem à fábrica e enfrente os guardas já alertados.",
+       "Faça os dois depósitos e o cofre normalmente; os objetivos são os mesmos.",
+       "Lute até a garagem do veículo de fuga e perca o nível de procurado."
+      ],
+      "tips": [],
+      "source": "https://gta.fandom.com/wiki/Scene_of_the_Crime"
+     }
+    ]
+   }
+  },
+  "drdre": {
+   "id": "drdre",
+   "name": "The Contract: Dr. Dre",
+   "source": "https://gta.fandom.com/wiki/The_Contract:_Dr._Dre",
+   "facts": [
+    {
+     "label": "Jogadores",
+     "value": "1 a 4"
+    },
+    {
+     "label": "Quem inicia",
+     "value": "Dono da Agency, pelo computador da Agency"
+    },
+    {
+     "label": "Requisito",
+     "value": "Ter uma Agency e concluir 1 Security Contract"
+    },
+    {
+     "label": "Pagamento",
+     "value": "$900.000 (líder, no final)"
+    },
+    {
+     "label": "Estrutura",
+     "value": "3 leaks + Studio Time + final"
+    }
+   ],
+   "overview": [
+    "Contrato VIP da Agency (também chamado de The Data Leaks): o celular de Dr. Dre foi roubado e cópias das músicas inéditas dele estão espalhadas por Los Santos. Você e Franklin precisam recuperar as três cópias e descobrir quem está por trás do vazamento.",
+    "Depois das missões de abertura, o contrato se divide em três linhas (Nightlife Leak, High Society Leak e South Central Leak). Cada uma tem duas investigações em Free Mode e uma missão final de leak, e as três linhas podem ser feitas em qualquer ordem.",
+    "Com as três cópias recuperadas, liberam-se Studio Time e, por fim, Don't Fuck With Dre, iniciadas na Agency. O pagamento grande sai só no final para quem hospeda; cada leak, Studio Time e o final também dão um bônus único de award ao líder na primeira vez."
+   ],
+   "start": [
+    "Compre uma Agency e conclua qualquer Security Contract pelo computador da Agency.",
+    "Franklin entra em contato e libera On Course: encontre Dr. Dre no Los Santos Golf Club e resolva o problema com os golfistas (só obrigatória na primeira vez).",
+    "No computador da Agency, inicie o VIP Contract e faça Setup: Data Recovery no FIB Headquarters (também só na primeira vez).",
+    "Depois disso, as três linhas de leak ficam disponíveis no computador; escolha por qual começar."
+   ],
+   "approaches": [],
+   "sections": [
+    {
+     "id": "nightlife-leak",
+     "title": "Nightlife Leak",
+     "note": "Obrigatório. Ordem: Investigation: The Nightclub, Investigation: The Marina, Nightlife Leak. As três linhas de leak podem ser feitas em qualquer ordem."
+    },
+    {
+     "id": "high-society-leak",
+     "title": "High Society Leak",
+     "note": "Obrigatório. Ordem: Investigation: The Country Club, Investigation: Guest List, High Society Leak. As três linhas de leak podem ser feitas em qualquer ordem."
+    },
+    {
+     "id": "south-central-leak",
+     "title": "South Central Leak",
+     "note": "Obrigatório. Ordem: Investigation: Davis, Investigation: The Ballas, South Central Leak. As três linhas de leak podem ser feitas em qualquer ordem."
+    },
+    {
+     "id": "studio",
+     "title": "Studio Time",
+     "note": "Obrigatório. Liberada só depois de concluir os três leaks; libera o final."
+    }
+   ],
+   "setups": [
+    {
+     "id": "investigation-the-nightclub",
+     "name": "Investigation: The Nightclub",
+     "kind": "scope",
+     "players": "1 a 4 jogadores",
+     "section": "nightlife-leak",
+     "goal": "Roubar a fita de segurança de uma boate dos Triads e levá-la à Agency.",
+     "steps": [
+      "Vá até a boate (Cypress Flats ou La Mesa).",
+      "Opcional: roube a van de limpeza Sunset Bleach no caminho e despiste a polícia se for visto.",
+      "Entre pela entrada de mercadorias e atravesse a área principal até o escritório.",
+      "Pegue a fita de segurança no computador da mesa do escritório.",
+      "Saia da boate e entregue a fita na Agency."
+     ],
+     "tips": [
+      "Com a van de limpeza você entra disfarçado; finja varrer e não fique muito tempo no campo de visão dos inimigos nem com arma na mão.",
+      "O disfarce só funciona se você ainda não tiver entrado na boate com roupa normal.",
+      "Sem disfarce, evite os cones de visão no radar e use armas com silenciador; ou entre atirando.",
+      "Na volta, até três ondas de Triads em Fugitive tentam te interceptar, mesmo se ninguém te viu.",
+      "Falha se o tempo acabar."
+     ],
+     "source": "https://gta.fandom.com/wiki/Investigation:_The_Nightclub"
+    },
+    {
+     "id": "investigation-the-marina",
+     "name": "Investigation: The Marina",
+     "kind": "scope",
+     "players": "1 a 4 jogadores",
+     "section": "nightlife-leak",
+     "goal": "Usar o GPS do barco do promoter para achar o iate dele e fotografar a pista da festa.",
+     "steps": [
+      "Vá à Puerto Del Sol Marina e procure o Toro verde entre os barcos.",
+      "Roube o barco e siga até a área de busca no mar.",
+      "Suba no iate e enfrente a segurança.",
+      "Vá até a ponte de comando e use os controles para destrancar a cabine principal.",
+      "Entre na cabine, ache a evidência e tire foto com o Snapmatic.",
+      "Saia do iate e deixe a área."
+     ],
+     "tips": [
+      "Os dois seguranças da marina atiram se você roubar o barco ou apontar uma arma.",
+      "O iate tem defesa antiaérea; dá para desligá-la nos controles da ponte de comando.",
+      "A evidência pode estar em um dos quartos de hóspedes, na mesinha com computador ou no bar.",
+      "Na saída, pares de Buzzard atacam; use um dos veículos do iate para voltar à costa.",
+      "Falha se o tempo acabar ou se o barco for destruído antes de revelar a localização do iate."
+     ],
+     "source": "https://gta.fandom.com/wiki/Investigation:_The_Marina"
+    },
+    {
+     "id": "nightlife-leak-finale",
+     "name": "Nightlife Leak",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "nightlife-leak",
+     "goal": "Recuperar a cópia da música de Dre na festa da cobertura do Diamond Casino.",
+     "steps": [
+      "Vá à garagem do cassino e suba de elevador até a cobertura.",
+      "Encontre o promoter e tente pegar o equipamento de música.",
+      "Persiga o promoter, chame o elevador pelo teclado e desça para a área VIP do Music Locker.",
+      "Elimine os guardas e pegue a mochila.",
+      "Decida se mata ou deixa o promoter ir.",
+      "Saia do cassino e entregue a mochila na Agency."
+     ],
+     "tips": [
+      "Guardas da Duggan atacam na cobertura e te seguem num Kamacho na saída; não os leve até a Agency.",
+      "Matar ou poupar o promoter é escolha sua."
+     ],
+     "source": "https://gta.fandom.com/wiki/Nightlife_Leak/Finale"
+    },
+    {
+     "id": "investigation-the-country-club",
+     "name": "Investigation: The Country Club",
+     "kind": "scope",
+     "players": "1 a 4 jogadores",
+     "section": "high-society-leak",
+     "goal": "Pegar dados da limusine nas câmeras do Pacific Bluffs Country Club e descobrir para onde ela vai.",
+     "steps": [
+      "Vá ao Pacific Bluffs Country Club.",
+      "Chegue à sala de vigilância sem ser visto pelas câmeras e hackeie o teclado.",
+      "Elimine os quatro seguranças e hackeie um terminal.",
+      "Procure a Patriot Stretch (preta ou branca) na área marcada.",
+      "Siga a limusine de longe até a Richman Mansion, fotografe o portão e envie a Franklin.",
+      "Alternativa: mate o motorista, pegue a carteira e leve à Agency."
+     ],
+     "tips": [
+      "Ser visto pelas câmeras ou destruí-las dispara o alarme; talvez seja preciso escalar o prédio para desviar delas.",
+      "Dois seguranças da sala têm Pump Shotgun.",
+      "Fique a uma distância segura ao seguir a limusine (barra no canto da tela); se for detectado, use a opção da carteira.",
+      "Falha se o tempo acabar."
+     ],
+     "source": "https://gta.fandom.com/wiki/Investigation:_The_Country_Club"
+    },
+    {
+     "id": "investigation-guest-list",
+     "name": "Investigation: Guest List",
+     "kind": "scope",
+     "players": "1 a 4 jogadores",
+     "section": "high-society-leak",
+     "goal": "Sequestrar o advogado de Ben Brooks e trazer o Super Diamond dele para a Agency.",
+     "steps": [
+      "Vá à casa do advogado em Vinewood Hills.",
+      "Com as armas guardadas, procure o advogado no jardim usando a foto enviada por Franklin.",
+      "Use a Stun Gun para incapacitá-lo.",
+      "Elimine os seguranças.",
+      "Coloque o advogado no porta-malas do Super Diamond e dirija até a Agency."
+     ],
+     "tips": [
+      "Você recebe uma Stun Gun se não tiver uma.",
+      "Alguns guardas têm Assault Shotgun e um usa colete.",
+      "Na volta, até três ondas de Schafter V12 blindados perseguem você.",
+      "Falha se o advogado morrer, se o Super Diamond for destruído ou se o tempo acabar.",
+      "O Super Diamond fica na garagem da Agency e é usado no final do leak."
+     ],
+     "source": "https://gta.fandom.com/wiki/Investigation:_Guest_List"
+    },
+    {
+     "id": "high-society-leak-finale",
+     "name": "High Society Leak",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "high-society-leak",
+     "goal": "Acabar com a festa na Richman Mansion e tirar o celular de Ben Brooks.",
+     "steps": [
+      "Leve o Super Diamond até a mansão e digite o código no portão.",
+      "Ache o DJ de onde a música está tocando.",
+      "Destrua a festa: mate os guardas e exploda os veículos até encher o medidor.",
+      "Persiga o SuperVolito de Ben Brooks e atire nele.",
+      "Mate Brooks, pegue o celular e leve até a Agency."
+     ],
+     "tips": [
+      "Não mostre nem dispare armas ao entrar, ou os seguranças ficam agressivos desde o começo.",
+      "O Super Diamond tem uma bomba remota que ajuda a encher o medidor de intimidação.",
+      "Para sair da mansão, atire no painel de controle do portão; use um carro que você não explodiu.",
+      "Se derrubar o helicóptero, ele cai na praia de Lago Zancudo; senão, siga até o iate HODL usando os Seashark da praia.",
+      "A milícia de Brooks persegue você sem parar até chegar perto da Agency."
+     ],
+     "source": "https://gta.fandom.com/wiki/High_Society_Leak/Finale"
+    },
+    {
+     "id": "investigation-davis",
+     "name": "Investigation: Davis",
+     "kind": "scope",
+     "players": "1 a 4 jogadores",
+     "section": "south-central-leak",
+     "goal": "Ajudar Vernon a melar o negócio entre Aztecas e Lost MC e roubar a van com o equipamento de meth.",
+     "steps": [
+      "Encontre Vernon e entre no Cavalcade dele.",
+      "Leve Vernon até o local do negócio.",
+      "Elimine todos os inimigos, inclusive os que estão em pontos altos.",
+      "Roube a Burrito com o equipamento de meth.",
+      "Fuja da Lost MC e despiste a polícia.",
+      "Entregue a van no ponto de entrega."
+     ],
+     "tips": [
+      "Se policiais e motoqueiros ficarem perto, eles brigam entre si, o que facilita a fuga.",
+      "Falha se Vernon morrer, se o equipamento for destruído ou se o tempo acabar."
+     ],
+     "source": "https://gta.fandom.com/wiki/Investigation:_Davis"
+    },
+    {
+     "id": "investigation-the-ballas",
+     "name": "Investigation: The Ballas",
+     "kind": "scope",
+     "players": "1 a 4 jogadores",
+     "section": "south-central-leak",
+     "goal": "Ajudar as Families contra os Ballas e encurralar P para descobrir quem tem a cópia.",
+     "steps": [
+      "Encontre Vernon e leve-o no Cavalcade até Davis.",
+      "Ajude as Families a derrubar os Ballas e os reforços em Baller.",
+      "Siga Vernon pela trilha de sangue até a garagem onde P está.",
+      "Espere o interrogatório terminar.",
+      "Saia da garagem e deixe a área."
+     ],
+     "tips": [
+      "Um Police Maverick aparece e você recebe 3 estrelas de procurado; prepare-se para fugir no final.",
+      "Falha se Vernon ou P morrerem ou se o tempo acabar."
+     ],
+     "source": "https://gta.fandom.com/wiki/Investigation:_The_Ballas"
+    },
+    {
+     "id": "south-central-leak-finale",
+     "name": "South Central Leak",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "south-central-leak",
+     "goal": "Atacar os Vagos em Rancho Projects com Families e Ballas e recuperar o lowrider com a música.",
+     "steps": [
+      "Encontre Vernon e P no Davis Mega Mall.",
+      "Siga o comboio até Rancho Projects.",
+      "Elimine os Vagos junto com os aliados.",
+      "Persiga o líder dos Vagos no Buccaneer Custom e mate-o.",
+      "Leve o lowrider até a Agency."
+     ],
+     "tips": [
+      "Não chegue a Rancho Projects antes do comboio: você tem 15 segundos para sair ou a missão falha.",
+      "Se não matar o líder no caminho, ele para no Go Loco Railroad em Cypress Flats, onde há reforços.",
+      "Falha se o lowrider for destruído."
+     ],
+     "source": "https://gta.fandom.com/wiki/South_Central_Leak/Finale"
+    },
+    {
+     "id": "studio-time",
+     "name": "Studio Time",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "studio",
+     "goal": "Defender a Record A Studios do ataque dos homens de Johnny Guns.",
+     "steps": [
+      "Entre no corona ao lado do escritório de Franklin na Agency.",
+      "Leve o Champion de Dr. Dre até a Record A Studios.",
+      "Elimine as ondas de atiradores do lado de fora.",
+      "Entre no estúdio e elimine os inimigos lá dentro.",
+      "Vá até a Control Room para ver Dre."
+     ],
+     "tips": [
+      "Você pode ir ao estúdio de qualquer jeito, sem o Champion, que a missão continua normalmente.",
+      "Falha se o Champion for destruído ou se as vidas acabarem."
+     ],
+     "source": "https://gta.fandom.com/wiki/Studio_Time"
+    }
+   ],
+   "finale": {
+    "name": "Don't Fuck With Dre",
+    "summary": "Encontrar Johnny Guns, eliminar os mercenários dele, capturá-lo no aeroporto e levar Dr. Dre de volta ao Pacific Bluffs Country Club.",
+    "steps": [
+     "Vá à última localização de Johnny Guns em Textile City e ache-o no Mirror Park Railyard.",
+     "Elimine as ondas de atiradores que chegam em Granger 3600LX depois que ele foge.",
+     "Vá ao LSIA e entre no hangar pela porta lateral.",
+     "Elimine os mercenários e fira Johnny Guns sem matá-lo.",
+     "Agarre Johnny (o líder faz isso) e leve-o para fora até Dre.",
+     "Leve Dr. Dre até o Pacific Bluffs Country Club."
+    ],
+    "tips": [
+     "Não mate Johnny Guns: a missão falha.",
+     "Também falha se Dr. Dre ou o guarda-costas dele morrerem, se o carro de Dre for destruído ou se as vidas acabarem.",
+     "O portão principal do hangar fica fechado; só dá para entrar pela porta lateral.",
+     "Um carro cheio de inimigos sai do Bombushka dentro do hangar.",
+     "O líder ganha também o Media Stick de Dr. Dre e o Marathon Hoodie; concluir libera Short Trips."
+    ],
+    "source": "https://gta.fandom.com/wiki/Don't_Fuck_With_Dre"
    }
   }
  }

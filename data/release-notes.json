@@ -1,6 +1,16 @@
 {
   "versions": [
     {
+      "version": "1.9.0",
+      "date": "2026-10-18",
+      "title": "Cluckin' Bell e Dr. Dre",
+      "items": [
+        "Novos no menu Golpes: The Cluckin' Bell Farm Raid e The Contract: Dr. Dre, com Visão geral, Setups e Final.",
+        "No Dr. Dre, as missões ficam agrupadas por vazamento (Nightlife, High Society e South Central) e depois Studio Time.",
+        "O filtro de approach só aparece nos setups quando ele muda a lista."
+      ]
+    },
+    {
       "version": "1.8.0",
       "date": "2026-10-18",
       "title": "Todos os golpes",

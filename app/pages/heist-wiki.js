@@ -57,7 +57,7 @@
           h('div', { class: 'grow' }, h('h3', null, 'Setups'), grouped ? null : h('div', { class: 'meta' }, `${count} de ${shown.length} feitos`)),
           count ? h('button', { class: 'btn ghost sm', type: 'button', title: 'Comecei um golpe novo', onclick: () => App.act(window.gta.heistReset(id)) }, icon('x', 14), 'Zerar') : null),
         grouped ? null : UI.bar(shown.length ? (count / shown.length) * 100 : 0, 'var(--accent)', 'thin'),
-        x.approaches && x.approaches.length
+        x.setups.some(t => t.approaches)
           ? h('div', { class: 'wiki-filter' }, UI.segmented(x.approaches.map(a => ({ value: a.id, label: a.name })), approach,
             v => { filters.set(id, v); rerender(); }))
           : null,
