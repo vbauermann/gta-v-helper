@@ -26,6 +26,7 @@ App desktop Windows (Electron, JS puro, sem bundler) de apoio ao GTA Online. Don
 | `lib/heists.js`, `data/heists.json` | Cálculos de Cayo Perico e Diamond Casino |
 | `data/cayo-map.json`, `app/pages/cayo-map.js` | Mapa do Cayo (pontos de alvos, guardas, entradas) |
 | `data/ls-map.json`, `lib/ls-map.js`, `app/pages/map.js` | Mapa de Los Santos (negócios, propriedades, garagens, animais), gerado por `tools/build-ls-map.cjs`; zoom em `app/map-zoom.js` |
+| `data/wiki.json`, `wiki-feed.cjs`, `app/pages/heist-wiki.js` | Wiki dos golpes (abas Visão geral, Setups, Final em cada golpe; baixada do repositório). Ver [ADR 0015](docs/adr/0015-wiki-dos-golpes.md) e a skill gta-heist-wiki |
 | `lib/todos.js`, `app/pages/todos.js` | Tarefas diárias e semanais |
 | `data/weekly.json`, `weekly-feed.cjs`, `app/pages/weekly.js` | Bônus da semana (baixados do repositório) |
 | `updater.cjs` | Atualização automática pelos releases do GitHub |
@@ -51,6 +52,7 @@ node package.cjs                # pasta portátil em dist/ (funciona no Linux, s
 - [gta-helper-dev](.claude/skills/gta-helper-dev/SKILL.md): como mexer no app (telas, IPC, estado, estilo, testes, prints).
 - [gta-helper-release](.claude/skills/gta-helper-release/SKILL.md): publicar uma versão nova.
 - [gta-weekly-update](.claude/skills/gta-weekly-update/SKILL.md): atualizar os bônus da semana toda quinta.
+- [gta-heist-wiki](.claude/skills/gta-heist-wiki/SKILL.md): escrever ou corrigir a wiki de um golpe e criar a página de um golpe novo.
 - [gta-fingerprint](.claude/skills/gta-fingerprint/SKILL.md): detecção das digitais do Casino (geometria, limiares, fixtures).
 
 ## Fluxo de trabalho

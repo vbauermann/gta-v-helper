@@ -135,16 +135,25 @@
     mount(el) {
       root = el;
       body = h('div', { class: 'tab-body' });
-      const show = () => { results = null; if (tab === 'map') window.CayoMap.mount(body); else render(); };
+      const W = window.HeistWiki;
+      const options = [...W.tabs('cayo'), { value: 'heist', label: 'Calculadora' }, { value: 'map', label: 'Mapa' }];
+      tab = W.savedTab('cayo', tab, options.map(o => o.value));
+      const show = () => {
+        results = null;
+        if (tab === 'map') window.CayoMap.mount(body);
+        else if (W.isWikiTab(tab)) W.mount(body, 'cayo', tab);
+        else render();
+      };
       UI.fill(root,
         h('div', { class: 'page-head' },
           h('div', null,
             h('h1', null, 'Cayo Perico'),
-            h('div', { class: 'tabs' }, segmented([{ value: 'heist', label: 'Golpe' }, { value: 'map', label: 'Mapa' }], tab, v => { tab = v; show(); })))),
+            h('div', { class: 'tabs' }, segmented(options, tab, v => { tab = v; W.saveTab('cayo', v); show(); })))),
         body);
       show();
     },
     onState(s, force) {
+      if (force && body && body.isConnected && window.HeistWiki.isWikiTab(tab)) return window.HeistWiki.mount(body, 'cayo', tab);
       if (!root || !root.isConnected || !results || !results.isConnected) return;
       const shown = !!results.querySelector('[data-live=cooldown]');
       if (force || shown !== !!s.cayoCooldownEndsAt) renderResults();

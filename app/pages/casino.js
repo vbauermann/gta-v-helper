@@ -78,28 +78,34 @@
   }
 
   window.Pages = window.Pages || {};
-  // The Casino page has two tabs: the payout calculator and the fingerprint overlay.
+  // The Casino page: wiki tabs, the payout calculator and the fingerprint overlay.
   let body = null;
   let tab = 'calc';
   function mountTab() {
     if (tab === 'fingerprint') window.CasinoFingerprint.mount(body);
+    else if (window.HeistWiki.isWikiTab(tab)) window.HeistWiki.mount(body, 'casino', tab);
     else render();
   }
   window.Pages.casino = {
     mount(el) {
       root = el;
       body = h('div', { class: 'tab-body' });
-      UI.fill(root, 
+      const W = window.HeistWiki;
+      const options = [...W.tabs('casino'), { value: 'calc', label: 'Calculadora' }, { value: 'fingerprint', label: 'Digitais' }];
+      tab = W.savedTab('casino', tab, options.map(o => o.value));
+      UI.fill(root,
         h('div', { class: 'page-head' },
           h('div', null,
             h('h1', null, 'Diamond Casino'),
-            h('div', { class: 'tabs' }, segmented([{ value: 'calc', label: 'Calculadora' }, { value: 'fingerprint', label: 'Digitais' }], tab,
-              v => { tab = v; results = null; mountTab(); })))),
+            h('div', { class: 'tabs' }, segmented(options, tab,
+              v => { tab = v; W.saveTab('casino', v); results = null; mountTab(); })))),
         body);
       mountTab();
     },
     onState(s, force) {
-      if (tab === 'fingerprint' && body && body.isConnected) window.CasinoFingerprint.onState(s, force);
+      if (!body || !body.isConnected) return;
+      if (tab === 'fingerprint') window.CasinoFingerprint.onState(s, force);
+      else if (force && window.HeistWiki.isWikiTab(tab)) window.HeistWiki.mount(body, 'casino', tab);
     }
   };
 })();

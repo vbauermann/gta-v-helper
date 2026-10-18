@@ -18,5 +18,6 @@ Cada arquivo registra uma decisão: o contexto, o que foi decidido e o que isso 
 | [0012](0012-mapa-do-cayo-offline.md) | Mapa do Cayo Perico com dados offline gerados por script | Aceita |
 | [0013](0013-release-notes.md) | Toda versão publicada tem release notes | Aceita |
 | [0014](0014-mapa-de-los-santos.md) | Mapa de Los Santos no app, com o que o jogador tem no estado | Aceita |
+| [0015](0015-wiki-dos-golpes.md) | Wiki dos golpes com resumos próprios, atualizada pelo GitHub | Aceita |
 
 Modelo para uma nova ADR: copie o formato de qualquer arquivo (Status, Data, Contexto, Decisão, Consequências) e use o próximo número.

@@ -1,6 +1,17 @@
 {
   "versions": [
     {
+      "version": "1.7.0",
+      "date": "2026-10-18",
+      "title": "Wiki dos golpes",
+      "items": [
+        "Cayo Perico, Diamond Casino e o novo Fleeca Job ganharam as abas Visão geral, Setups e Final, com resumos em português baseados no GTA Wiki.",
+        "Clique num setup para ver objetivo, passo a passo e dicas. Dá para marcar o que já fez e zerar ao começar um golpe novo.",
+        "No Casino, os setups e o final mudam conforme o approach (Silent & Sneaky, The Big Con ou Aggressive).",
+        "O conteúdo da wiki se atualiza sozinho pelo GitHub, sem precisar de versão nova."
+      ]
+    },
+    {
       "version": "1.6.0",
       "date": "2026-10-17",
       "title": "Mapa de Los Santos",

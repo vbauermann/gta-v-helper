@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, Tray, Notification, ipcMain, session, nativeImage } = require('electron');
+const { app, BrowserWindow, Menu, Tray, Notification, ipcMain, session, nativeImage, shell } = require('electron');
 const fs = require('node:fs');
 const path = require('node:path');
 const { createStore } = require('./store.cjs');
@@ -10,6 +10,7 @@ const todos = require('./lib/todos.js');
 const lsMapRules = require('./lib/ls-map.js');
 const { createUpdater } = require('./updater.cjs');
 const { createWeeklyFeed } = require('./weekly-feed.cjs');
+const { createWikiFeed } = require('./wiki-feed.cjs');
 
 const TICK_MS = 5000;
 // Window controls drawn by Windows over the 44px title bar, matching Nexo's colours per theme.
@@ -28,6 +29,7 @@ heists.cayo.map = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/cayo-map
 const lsMap = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/ls-map.json'), 'utf8'));
 const releaseNotes = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/release-notes.json'), 'utf8')).versions;
 const bundledWeekly = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/weekly.json'), 'utf8'));
+const bundledWiki = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/wiki.json'), 'utf8'));
 const dataFile = process.env.GTA_HELPER_DATA || path.join(app.getPath('userData'), 'gta-helper.json');
 
 let mainWindow = null;
@@ -39,6 +41,7 @@ let overlay = null;
 let scanner = null;
 let updater = null;
 let weeklyFeed = null;
+let wikiFeed = null;
 // Only the main process may go online, and only to GitHub (app updates and the weekly bonuses).
 const ONLINE_HOSTS = new Set(['github.com', 'api.github.com', 'objects.githubusercontent.com', 'release-assets.githubusercontent.com', 'raw.githubusercontent.com']);
 let lastTick = Date.now();
@@ -132,7 +135,7 @@ function business(id) {
 }
 
 function registerIpc() {
-  ipcMain.handle('gta:data', () => ({ catalog, heists, lsMap, weekly: weeklyFeed.get(), releaseNotes, version: require('./package.json').version }));
+  ipcMain.handle('gta:data', () => ({ catalog, heists, lsMap, weekly: weeklyFeed.get(), wiki: wikiFeed.get(), releaseNotes, version: require('./package.json').version }));
   ipcMain.handle('gta:state', () => snapshot());
 
   ipcMain.handle('gta:set-owned', (_e, id, owned) => mutate(s => {
@@ -141,6 +144,20 @@ function registerIpc() {
     s.businesses[id].owned = !!owned;
     if (!owned) s.map.owned = lsMapRules.forgetBusiness(lsMap, s.map.owned, id);
   }));
+
+  // Heist wiki: setups the player already did in the current run.
+  ipcMain.handle('gta:heist-step', (_e, heistId, stepId, done) => mutate(s => {
+    const heist = wikiFeed.get().heists[heistId];
+    if (!heist || !heist.setups.some(x => x.id === stepId)) throw new TypeError('setup desconhecido');
+    const list = new Set(s.heistProgress[heistId] || []);
+    if (done) list.add(stepId); else list.delete(stepId);
+    s.heistProgress[heistId] = [...list];
+  }));
+  ipcMain.handle('gta:heist-reset', (_e, heistId) => mutate(s => { delete s.heistProgress[String(heistId)]; }));
+  // "Ver no GTA Wiki": opens the article in the browser. Only wiki links, never anything else.
+  ipcMain.handle('gta:open-source', (_e, url) => {
+    if (typeof url === 'string' && /^https:\/\/gta\.fandom\.com\/wiki\/[^\s]+$/.test(url)) shell.openExternal(url);
+  });
 
   ipcMain.handle('gta:map-own', (_e, pointId, on) => mutate(s => {
     const r = lsMapRules.setOwned(lsMap, s.map.owned, String(pointId), !!on);
@@ -345,6 +362,11 @@ if (!app.requestSingleInstanceLock()) {
       cacheFile: path.join(path.dirname(dataFile), 'weekly-cache.json'),
       onChange: w => { if (mainWindow && !mainWindow.isDestroyed()) mainWindow.webContents.send('gta:weekly', w); }
     });
+    wikiFeed = createWikiFeed({
+      bundled: bundledWiki,
+      cacheFile: path.join(path.dirname(dataFile), 'wiki-cache.json'),
+      onChange: w => { if (mainWindow && !mainWindow.isDestroyed()) mainWindow.webContents.send('gta:wiki', w); }
+    });
     updater = createUpdater({ onChange: broadcast, beforeInstall: () => { quitting = true; } });
     watcher = createGameWatcher({ onChange: () => tick() });
     watcher.start();
@@ -364,7 +386,7 @@ if (!app.requestSingleInstanceLock()) {
     registerIpc();
     createTray();
     createWindow();
-    if (!process.env.GTA_HELPER_DATA) weeklyFeed.start();
+    if (!process.env.GTA_HELPER_DATA) { weeklyFeed.start(); wikiFeed.start(); }
     updater.start();
     lastTick = Date.now();
     setInterval(tick, TICK_MS);

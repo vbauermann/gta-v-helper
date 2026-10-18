@@ -32,7 +32,7 @@ app.whenReady().then(async () => {
   const errors = [];
   win.webContents.on('console-message', e => { if (e.level === 'error') errors.push(e.message); });
   await wait(1200);
-  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'payouts', 'weekly', 'todos', 'map', 'settings', 'releases']) {
+  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'fleeca', 'payouts', 'weekly', 'todos', 'map', 'settings', 'releases']) {
     await win.webContents.executeJavaScript(`document.querySelector('[data-page=${page}]').click();
       ${page === 'cayo' ? "const rows = document.querySelectorAll('.loot-row'); for (const [r, n] of [[0, 2], [1, 3], [2, 1], [3, 1]]) { const b = rows[r].querySelectorAll('.qty button')[n - 1]; if (!b.classList.contains('active')) b.click(); }" : ''}`);
     await wait(700);
@@ -192,6 +192,36 @@ app.whenReady().then(async () => {
     if (st.print !== 'J' || !st.interact || !st.visible) errors.push(`overlay estado: ${JSON.stringify(st)}`);
     await win.webContents.executeJavaScript(`window.gta.overlay('interact', false).then(() => window.gta.overlay('hide'))`);
   }
+  // Heist wiki: Casino setups filtered by approach, one setup page marked as done, the finale.
+  const tabOf = label => `[...document.querySelectorAll('.tabs button')].find(b => b.textContent === '${label}').click();`;
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=casino]').click(); ${tabOf('Setups')}
+    [...document.querySelectorAll('.wiki-filter button')].find(b => b.textContent === 'The Big Con').click();`);
+  await wait(600);
+  fs.writeFileSync(path.join(out, 'wiki-setups.png'), (await win.webContents.capturePage()).toPNG());
+  const wikiCheck = await win.webContents.executeJavaScript(`(async () => {
+    const rows = document.querySelectorAll('.wiki-step').length;
+    document.querySelectorAll('.wiki-step')[0].click();
+    await new Promise(r => setTimeout(r, 200));
+    const title = document.querySelector('.wiki-title').textContent;
+    [...document.querySelectorAll('.wiki button')].find(b => b.textContent.includes('Marcar como feito')).click();
+    await new Promise(r => setTimeout(r, 400));
+    const s = await window.gta.state();
+    return { rows, title, done: (s.heistProgress.casino || []).length, button: [...document.querySelectorAll('.wiki button')].some(b => b.textContent.includes('Feito')) };
+  })()`);
+  await wait(400);
+  fs.writeFileSync(path.join(out, 'wiki-setup.png'), (await win.webContents.capturePage()).toPNG());
+  if (wikiCheck.rows < 5 || wikiCheck.done !== 1 || !wikiCheck.button) errors.push(`wiki: ${JSON.stringify(wikiCheck)}`);
+  console.log('wiki', JSON.stringify(wikiCheck));
+  await win.webContents.executeJavaScript(`${tabOf('Final')}`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-final.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=fleeca]').click(); ${tabOf('Setups')}`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-fleeca-setups.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=cayo]').click(); ${tabOf('Visão geral')}`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-cayo.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`${tabOf('Calculadora')} document.querySelector('[data-page=casino]').click(); ${tabOf('Calculadora')}`);
   // Light theme check, then back to dark.
   await win.webContents.executeJavaScript(`window.gta.setSettings({ theme: 'light' }).then(s => App.setState(s, true)); document.querySelector('[data-page=overview]').click();`);
   await wait(900);
