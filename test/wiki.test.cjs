@@ -35,6 +35,9 @@ test('rejects broken wikis', () => {
   const dup = clone(bundled);
   dup.heists.fleeca.setups.push(dup.heists.fleeca.setups[0]);
   assert.ok(!validWiki(dup));
+  const badSection = clone(bundled);
+  badSection.heists.cayo.setups[0].section = 'nope';
+  assert.ok(!validWiki(badSection));
   const badApproach = clone(bundled);
   badApproach.heists.casino.setups[0].approaches = ['nope'];
   assert.ok(!validWiki(badApproach));

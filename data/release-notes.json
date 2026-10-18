@@ -1,6 +1,15 @@
 {
   "versions": [
     {
+      "version": "1.7.1",
+      "date": "2026-10-18",
+      "title": "Setups agrupados",
+      "items": [
+        "Os setups do Cayo Perico agora vêm agrupados como na tela do Kosatka: Reconhecimento, Approach Vehicle, Equipment, Weapon Loadout e Disruption, cada grupo com o que é obrigatório e a contagem do que já fez.",
+        "No Diamond Casino os setups ficam separados em Setup e reconhecimento, Preps obrigatórias e Preps opcionais."
+      ]
+    },
+    {
       "version": "1.7.0",
       "date": "2026-10-18",
       "title": "Wiki dos golpes",

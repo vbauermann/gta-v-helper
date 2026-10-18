@@ -218,6 +218,11 @@ app.whenReady().then(async () => {
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=fleeca]').click(); ${tabOf('Setups')}`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'wiki-fleeca-setups.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=cayo]').click(); ${tabOf('Setups')}`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-cayo-setups.png'), (await win.webContents.capturePage()).toPNG());
+  const cayoSections = await win.webContents.executeJavaScript(`[...document.querySelectorAll('.wiki-section-head h4')].map(e => e.textContent)`);
+  if (cayoSections.length !== 5) errors.push(`seções do cayo: ${JSON.stringify(cayoSections)}`);
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=cayo]').click(); ${tabOf('Visão geral')}`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'wiki-cayo.png'), (await win.webContents.capturePage()).toPNG());

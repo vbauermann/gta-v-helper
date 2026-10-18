@@ -1,5 +1,5 @@
 {
- "version": "2026-10-18",
+ "version": "2026-10-18.1",
  "note": "Resumos próprios em português com base no GTA Wiki (gta.fandom.com, CC BY-SA). Cada golpe e setup tem o link do artigo original.",
  "heists": {
   "fleeca": {
@@ -191,7 +191,8 @@
       "Feito só uma vez, logo depois de comprar o Arcade; libera o planejamento do golpe.",
       "Dois carros de Kkangpae aparecem na volta: dá para matar ou só fugir deles."
      ],
-     "source": "https://gta.fandom.com/wiki/Arcades/Setup:_Equipment"
+     "source": "https://gta.fandom.com/wiki/Arcades/Setup:_Equipment",
+     "section": "start"
     },
     {
      "id": "casino-scoping",
@@ -213,7 +214,8 @@
       "Com Master Penthouse, fotografe a planta do cofre na mesa de Agatha Baker para poder comprar a porta de treino ($900.000).",
       "Só é obrigatória uma vez; pode ser repetida para achar acessos que faltam."
      ],
-     "source": "https://gta.fandom.com/wiki/Setup:_Casino_Scoping"
+     "source": "https://gta.fandom.com/wiki/Setup:_Casino_Scoping",
+     "section": "start"
     },
     {
      "id": "vault-contents",
@@ -234,7 +236,8 @@
       "Você tem no máximo 2 minutos nas câmeras.",
       "O primeiro golpe sempre tem dinheiro; depois pode vir arte, ouro ou, em eventos, diamantes."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Contents"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Contents",
+     "section": "start"
     },
     {
      "id": "unmarked-weapons",
@@ -253,7 +256,8 @@
       "Atirador melhor dá armas melhores, mas fica com uma fatia maior.",
       "As armas mudam conforme a abordagem: na Big Con a secundária é a Ceramic Pistol, que passa pelo detector de metais."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Unmarked_Weapons_(The_Diamond_Casino_Heist)"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Unmarked_Weapons_(The_Diamond_Casino_Heist)",
+     "section": "required"
     },
     {
      "id": "getaway-vehicles",
@@ -273,7 +277,8 @@
       "No Illicit Importers dá para usar o Cargobob próximo e trazer os carros pelo ar.",
       "Depois de entregues, os carros podem ser melhorados na garagem do Arcade ($10.000 a $25.000 por nível)."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Getaway_Vehicles"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Getaway_Vehicles",
+     "section": "required"
     },
     {
      "id": "hacking-device",
@@ -294,7 +299,8 @@
       "Recomendado ao menos 2 jogadores.",
       "Hacker melhor dá mais tempo dentro do cofre."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Hacking_Device"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Hacking_Device",
+     "section": "required"
     },
     {
      "id": "vault-keycards",
@@ -314,7 +320,8 @@
       "Em Duggans' Goons, matar fazendo barulho dá 3 estrelas.",
       "Na prisão, use arma branca no guarda da torre; se alertar os guardas, são 4 estrelas."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Keycards"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Keycards",
+     "section": "required"
     },
     {
      "id": "nano-drones",
@@ -336,7 +343,8 @@
       "Há policiais perto dos drones; conte com nível de procurado.",
       "No final cada jogador tem um drone com dardos tranquilizantes limitados."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Nano_Drones"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Nano_Drones",
+     "section": "required"
     },
     {
      "id": "vault-lasers",
@@ -358,7 +366,8 @@
       "Na variante militar você ganha 4 estrelas na hora.",
       "A variante Cliffford não dá estrelas, mas tem um Juggernaut e perseguição de Dubsta 6x6 e Buzzard."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Lasers"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Lasers",
+     "section": "required"
     },
     {
      "id": "emp-device",
@@ -379,7 +388,8 @@
       "No final, apaga as luzes e desliga câmeras e detectores por cerca de um minuto, além de reduzir a visão dos guardas.",
       "Sem Infiltration Suits vocês ficam sem visão noturna durante o apagão."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_EMP_Device"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_EMP_Device",
+     "section": "optional"
     },
     {
      "id": "infiltration-suits",
@@ -400,7 +410,8 @@
       "Hackear o painel sempre alerta os inimigos.",
       "Libera a descida pelo poço do elevador a partir do heliponto e a visão noturna no final."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Infiltration_Suits"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Infiltration_Suits",
+     "section": "optional"
     },
     {
      "id": "bugstar-gear-1",
@@ -421,7 +432,8 @@
       "Primeira parte do disfarce Bugstars; precisa da Part 2 também.",
       "Os seguranças são fáceis de despistar."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Bugstar_Gear_Part_1"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Bugstar_Gear_Part_1",
+     "section": "required"
     },
     {
      "id": "bugstar-gear-2",
@@ -443,7 +455,8 @@
       "Exige a Part 1 concluída.",
       "No final, a entrada Bugstars leva ao escritório de Agatha e exige hackear um painel nível 3 (quatro hacks de impressão digital)."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Bugstar_Gear_Part_2"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Bugstar_Gear_Part_2",
+     "section": "required"
     },
     {
      "id": "maintenance-gear-1",
@@ -464,7 +477,8 @@
      "tips": [
       "Primeira parte do disfarce de manutenção (LSDWP); precisa da Part 2 também."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Maintenance_Gear_Part_1"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Maintenance_Gear_Part_1",
+     "section": "required"
     },
     {
      "id": "maintenance-gear-2",
@@ -486,7 +500,8 @@
       "Exige a Part 1 concluída.",
       "No final, a entrada de manutenção começa pela lavanderia, direto no subsolo."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Maintenance_Gear_Part_2"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Maintenance_Gear_Part_2",
+     "section": "required"
     },
     {
      "id": "gruppe-sechs-gear-1",
@@ -508,7 +523,8 @@
       "Só aparece se você fotografou o túnel de segurança no Casino Scoping.",
       "Os mecânicos atacam assim que você descobre que a van está trancada."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Gruppe_Sechs_Gear_Part_1"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Gruppe_Sechs_Gear_Part_1",
+     "section": "required"
     },
     {
      "id": "gruppe-sechs-gear-2",
@@ -531,7 +547,8 @@
       "Se a segurança de Duggan te vir, todos ficam hostis e você ganha 2 estrelas.",
       "No final, se ninguém notar o disfarce, o guarda do cofre abre a porta para vocês."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Gruppe_Sechs_Gear_Part_2"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Gruppe_Sechs_Gear_Part_2",
+     "section": "required"
     },
     {
      "id": "vault-drills",
@@ -553,13 +570,14 @@
       "Você ganha 3 estrelas nas duas variantes.",
       "Também permite treinar na porta de cofre de prática, se comprada."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Drills"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Drills",
+     "section": "required"
     },
     {
      "id": "firefighter-gear",
      "name": "Firefighter Gear",
      "kind": "optional",
-     "group": "Disfarce de saída (opcional)",
+     "group": "Disfarce de saída",
      "players": "Solo ou grupo (1 a 4)",
      "approaches": [
       "bigcon"
@@ -575,13 +593,14 @@
       "Só serve caminhão dos quartéis destacados no mapa.",
       "No final, se vocês não forem detectados, o uniforme fica na lavanderia para sair sem chamar atenção."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Firefighter_Gear"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Firefighter_Gear",
+     "section": "optional"
     },
     {
      "id": "noose-gear",
      "name": "NOOSE Gear",
      "kind": "optional",
-     "group": "Disfarce de saída (opcional)",
+     "group": "Disfarce de saída",
      "players": "Solo ou grupo (1 a 4)",
      "approaches": [
       "bigcon"
@@ -597,7 +616,8 @@
       "Os policiais atacam assim que você entra em outra sala.",
       "Alternativa sem missão: o disfarce High Roller fica disponível se você coletou as 54 Playing Cards."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_NOOSE_Gear"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_NOOSE_Gear",
+     "section": "optional"
     },
     {
      "id": "thermal-charges",
@@ -618,7 +638,8 @@
       "Obrigatória no Aggressive.",
       "No final, substituem os hacks das portas internas do cofre."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Thermal_Charges"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Thermal_Charges",
+     "section": "required"
     },
     {
      "id": "vault-explosives",
@@ -639,7 +660,8 @@
       "Obrigatória no Aggressive.",
       "Os Buzzards na volta têm atiradores com Combat MG; um parceiro ajuda."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Explosives"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Explosives",
+     "section": "required"
     },
     {
      "id": "reinforced-armor",
@@ -660,7 +682,8 @@
       "No final, a armadura aguenta mais dano, mas deixa você mais lento.",
       "No bunker dá para sair com o Insurgent que está lá dentro."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Reinforced_Armor"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Reinforced_Armor",
+     "section": "optional"
     },
     {
      "id": "tunnel-boring-machine",
@@ -681,7 +704,8 @@
       "Só aparece se você fotografou a entrada do esgoto no Casino Scoping.",
       "Libera a entrada pelo esgoto, que não pode ser usada como saída."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Tunnel_Boring_Machine"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Tunnel_Boring_Machine",
+     "section": "optional"
     },
     {
      "id": "guard-patrol-routes",
@@ -700,7 +724,8 @@
       "Mostra todos os guardas como pontos vermelhos no mapa durante o golpe.",
       "Se os guardas te virem, são 3 estrelas."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Guard_Patrol_Routes"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Guard_Patrol_Routes",
+     "section": "optional"
     },
     {
      "id": "duggan-shipments",
@@ -717,7 +742,8 @@
       "Os guardas enfraquecem ao destruir 3, 6 e todos os 10 alvos; com 10 eles ficam sem colete e com armas fracas.",
       "Helicópteros de escolta não precisam ser destruídos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Duggan_Shipments"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Duggan_Shipments",
+     "section": "optional"
     },
     {
      "id": "power-drills",
@@ -736,7 +762,8 @@
       "Matar trabalhadores ou o motorista gera estrelas; Lester pede para não matar ninguém.",
       "Explodir a van também solta as furadeiras."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Power_Drills"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Power_Drills",
+     "section": "optional"
     },
     {
      "id": "security-pass",
@@ -755,7 +782,8 @@
       "Quem tem Master Penthouse pode pegar o nível 1 no carrinho da faxineira, sem missão.",
       "Na festa, beba ou dance para não encher a barra de suspeita."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Security_Pass"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Security_Pass",
+     "section": "optional"
     },
     {
      "id": "security-intel",
@@ -773,7 +801,8 @@
       "Feita uma vez, mostra para sempre as câmeras e seus cones de visão no golpe.",
       "Dá o award Moving On."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Security_Intel"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Security_Intel",
+     "section": "optional"
     },
     {
      "id": "masks",
@@ -788,7 +817,8 @@
      "tips": [
       "Gratuito para o golpe e pode ser feito a qualquer momento."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Masks"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Masks",
+     "section": "optional"
     }
    ],
    "finale": {
@@ -882,7 +912,24 @@
       "source": "https://gta.fandom.com/wiki/Casino_Heist_-_Aggressive"
      }
     ]
-   }
+   },
+   "sections": [
+    {
+     "id": "start",
+     "title": "Setup e reconhecimento",
+     "note": "Obrigatório, antes das preps"
+    },
+    {
+     "id": "required",
+     "title": "Preps obrigatórias",
+     "note": "As do approach escolhido mais as comuns"
+    },
+    {
+     "id": "optional",
+     "title": "Preps opcionais",
+     "note": "Facilitam o final"
+    }
+   ]
   },
   "cayo": {
    "id": "cayo",
@@ -951,13 +998,13 @@
       "A missão é repetível até o final começar, então dá para voltar para buscar o que faltou.",
       "Os drop zones e o túnel de drenagem precisam ser achados aqui para liberar o Stealth helicopter e o Cutting Torch."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Gather_Intel"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Gather_Intel",
+     "section": "intel"
     },
     {
      "id": "kosatka",
      "name": "Kosatka",
-     "kind": "setup",
-     "group": "Veículo de entrada (escolha 1)",
+     "kind": "prep",
      "players": "Solo ou grupo",
      "goal": "Roubar o sonar jammer de um submarino da Merryweather para usar o próprio Kosatka (comprado antes de iniciar o golpe) como veículo de entrada.",
      "steps": [
@@ -973,53 +1020,13 @@
       "Basta um veículo de entrada para liberar o final; os outros viram opcionais.",
       "Limite de 30 minutos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Kosatka"
-    },
-    {
-     "id": "velum",
-     "name": "Velum",
-     "kind": "prep",
-     "group": "Veículo de entrada (escolha 1)",
-     "players": "Solo ou grupo",
-     "goal": "Roubar um Velum dos contrabandistas de El Rubio para pousar na pista da ilha disfarçado de contrabandista.",
-     "steps": [
-      "Vá até o Sandy Shores Airfield, onde os contrabandistas fazem um negócio.",
-      "Elimine todos os inimigos e pegue o Velum.",
-      "Voe até o hangar de Miguel Madrazo no LSIA e pare em frente às portas."
-     ],
-     "tips": [
-      "No final, desarmado, os guardas deixam você circular pela área da pista, mas atacam se te virem em outro lugar.",
-      "Contrate o Weapon Stash no apoio para ter armas na ilha sem ser detectado ao chegar.",
-      "Limite de 30 minutos."
-     ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Velum"
-    },
-    {
-     "id": "stealth-helicopter",
-     "name": "Stealth helicopter",
-     "kind": "prep",
-     "group": "Veículo de entrada (escolha 1)",
-     "players": "Solo ou grupo",
-     "goal": "Roubar um Annihilator Stealth para descer de rapel sem ser detectado em um dos drop zones da ilha.",
-     "steps": [
-      "Variante Yacht: suba no iate, vá até a ponte e hackeie o laptop para desligar a defesa antiaérea.",
-      "Variante Merryweather HQ: destrua as torres antiaéreas com explosivos, alguns exigem achar um ponto alto.",
-      "Pegue o helicóptero e derrube ou fuja dos helicópteros de reforço.",
-      "Pouse em frente ao hangar de Miguel Madrazo no LSIA."
-     ],
-     "tips": [
-      "Só libera depois de achar pelo menos um drop zone (North ou South Drop Zone) na Gather Intel.",
-      "Exige também a prep Pilot, a menos que ela já tenha sido feita para o Alkonost.",
-      "Se tentar sair antes de desligar as defesas, o helicóptero é abatido.",
-      "Limite de 30 minutos."
-     ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Stealth_helicopter"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Kosatka",
+     "section": "vehicle"
     },
     {
      "id": "alkonost",
      "name": "Alkonost",
      "kind": "prep",
-     "group": "Veículo de entrada (escolha 1)",
      "players": "Solo ou grupo",
      "goal": "Roubar o RO-86 Alkonost em Fort Zancudo para saltar de paraquedas (Halo Jump) sobre a ilha.",
      "steps": [
@@ -1034,13 +1041,13 @@
       "Exige também a prep Pilot, a menos que ela já tenha sido feita para o Stealth helicopter.",
       "Limite de 30 minutos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Alkonost"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Alkonost",
+     "section": "vehicle"
     },
     {
      "id": "pilot",
      "name": "Pilot",
      "kind": "prep",
-     "group": "Só com Alkonost ou Stealth helicopter",
      "players": "Solo ou grupo",
      "goal": "Fazer um favor para o piloto Pernell Moss, que é quem pilota o Alkonost ou o Annihilator Stealth no final.",
      "steps": [
@@ -1052,13 +1059,54 @@
       "Feita uma vez, vale para as duas aeronaves na mesma execução.",
       "Obrigatória só se você for usar o Alkonost ou o Stealth helicopter."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Pilot"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Pilot",
+     "section": "vehicle",
+     "group": "Para Alkonost ou Stealth helicopter"
+    },
+    {
+     "id": "velum",
+     "name": "Velum",
+     "kind": "prep",
+     "players": "Solo ou grupo",
+     "goal": "Roubar um Velum dos contrabandistas de El Rubio para pousar na pista da ilha disfarçado de contrabandista.",
+     "steps": [
+      "Vá até o Sandy Shores Airfield, onde os contrabandistas fazem um negócio.",
+      "Elimine todos os inimigos e pegue o Velum.",
+      "Voe até o hangar de Miguel Madrazo no LSIA e pare em frente às portas."
+     ],
+     "tips": [
+      "No final, desarmado, os guardas deixam você circular pela área da pista, mas atacam se te virem em outro lugar.",
+      "Contrate o Weapon Stash no apoio para ter armas na ilha sem ser detectado ao chegar.",
+      "Limite de 30 minutos."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Velum",
+     "section": "vehicle"
+    },
+    {
+     "id": "stealth-helicopter",
+     "name": "Stealth helicopter",
+     "kind": "prep",
+     "players": "Solo ou grupo",
+     "goal": "Roubar um Annihilator Stealth para descer de rapel sem ser detectado em um dos drop zones da ilha.",
+     "steps": [
+      "Variante Yacht: suba no iate, vá até a ponte e hackeie o laptop para desligar a defesa antiaérea.",
+      "Variante Merryweather HQ: destrua as torres antiaéreas com explosivos, alguns exigem achar um ponto alto.",
+      "Pegue o helicóptero e derrube ou fuja dos helicópteros de reforço.",
+      "Pouse em frente ao hangar de Miguel Madrazo no LSIA."
+     ],
+     "tips": [
+      "Só libera depois de achar pelo menos um drop zone (North ou South Drop Zone) na Gather Intel.",
+      "Exige também a prep Pilot, a menos que ela já tenha sido feita para o Alkonost.",
+      "Se tentar sair antes de desligar as defesas, o helicóptero é abatido.",
+      "Limite de 30 minutos."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Stealth_helicopter",
+     "section": "vehicle"
     },
     {
      "id": "patrol-boat",
      "name": "Patrol Boat",
      "kind": "prep",
-     "group": "Veículo de entrada (escolha 1)",
      "players": "Solo ou grupo",
      "goal": "Roubar um Kurtz 31 Patrol Boat armado para chegar às docas ou à praia da ilha atirando.",
      "steps": [
@@ -1071,13 +1119,13 @@
       "É a opção barulhenta: entra pelo North Dock, West Beach ou Main Dock.",
       "Limite de 30 minutos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Patrol_Boat"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Patrol_Boat",
+     "section": "vehicle"
     },
     {
      "id": "longfin",
      "name": "Longfin",
      "kind": "prep",
-     "group": "Veículo de entrada (escolha 1)",
      "players": "Solo ou grupo",
      "goal": "Roubar a lancha Longfin apreendida pela polícia para chegar às docas disfarçado de contrabandista.",
      "steps": [
@@ -1092,69 +1140,8 @@
       "Também é uma das opções de fuga pelo North Dock ou Main Dock.",
       "Limite de 30 minutos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Longfin"
-    },
-    {
-     "id": "unmarked-weapons",
-     "name": "Unmarked Weapons",
-     "kind": "prep",
-     "players": "Solo ou grupo",
-     "goal": "Roubar o kit de armas escolhido (Aggressor, Conspirator, Crack Shot, Saboteur ou Marksman) para usar no final.",
-     "steps": [
-      "Escolha o kit de armas na tela de preps.",
-      "Variante Office Assault: entre no prédio de escritórios (pelo térreo vigiado ou pelo telhado), elimine os guardas e hackeie o laptop para abrir o armário.",
-      "Variante Tail Helicopter: siga o Valkyrie a partir da Merryweather HQ, limpe a área e pegue as armas dentro do Avenger.",
-      "No Avenger, pegue um paraquedas e salte quando ele decolar.",
-      "Entregue as armas no Kosatka."
-     ],
-     "tips": [
-      "Obrigatória em toda execução.",
-      "Na volta há ondas de Buzzards (escritório) ou de Mesas (Avenger) atrás de você.",
-      "Supressores não têm prep, mas podem ser comprados por $5.000.",
-      "Limite de 30 minutos."
-     ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Unmarked_Weapons_(The_Cayo_Perico_Heist)"
-    },
-    {
-     "id": "safe-code",
-     "name": "Safe Code",
-     "kind": "prep",
-     "group": "Alvo principal",
-     "players": "Solo ou grupo",
-     "goal": "Pegar o código do cofre com o chefe de segurança de El Rubio na cobertura do Diamond Casino; obrigatória quando o alvo principal está no cofre.",
-     "steps": [
-      "Vá ao cassino. Sem Master Penthouse, pegue o cartão no porta-malas do carro de Tom Connors na garagem.",
-      "Suba ao andar das coberturas e elimine em silêncio os dois guardas da porta.",
-      "Ache o chefe de segurança pela foto que Pavel enviou (quarto extra, bar ou sala perto do lounge).",
-      "Elimine-o e reviste o corpo para pegar o código.",
-      "Saia do cassino e perca as 2 estrelas."
-     ],
-     "tips": [
-      "Só aparece se a Gather Intel mostrar o alvo dentro do cofre.",
-      "Sacar arma dentro da cobertura ou alertar os guardas da porta deixa todos hostis.",
-      "Há inimigos perto dos elevadores na saída."
-     ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Safe_Code"
-    },
-    {
-     "id": "plasma-cutter",
-     "name": "Plasma Cutter",
-     "kind": "prep",
-     "group": "Alvo principal",
-     "players": "Solo ou grupo",
-     "goal": "Roubar um plasma cutter de uma quadrilha para cortar a vitrine reforçada; obrigatória quando o alvo principal está na vitrine.",
-     "steps": [
-      "Vá ao esconderijo da quadrilha e procure pistas lá dentro.",
-      "Fotografe o quadro de planejamento e envie a Pavel.",
-      "Vá ao local do assalto em Rockford Hills ou Del Perro.",
-      "Pegue o plasma cutter (matar a quadrilha é opcional) e entregue no Kosatka."
-     ],
-     "tips": [
-      "Só aparece se a Gather Intel mostrar o alvo na vitrine.",
-      "Reforços chegam em Fugitives enquanto você está no local.",
-      "Limite de 30 minutos."
-     ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Plasma_Cutter"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Longfin",
+     "section": "vehicle"
     },
     {
      "id": "fingerprint-cloner",
@@ -1175,13 +1162,56 @@
       "Se as câmeras do arquivo te virem, Novaks perseguem na volta.",
       "Limite de 30 minutos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Fingerprint_Cloner"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Fingerprint_Cloner",
+     "section": "equipment"
+    },
+    {
+     "id": "safe-code",
+     "name": "Safe Code",
+     "kind": "prep",
+     "players": "Solo ou grupo",
+     "goal": "Pegar o código do cofre com o chefe de segurança de El Rubio na cobertura do Diamond Casino; obrigatória quando o alvo principal está no cofre.",
+     "steps": [
+      "Vá ao cassino. Sem Master Penthouse, pegue o cartão no porta-malas do carro de Tom Connors na garagem.",
+      "Suba ao andar das coberturas e elimine em silêncio os dois guardas da porta.",
+      "Ache o chefe de segurança pela foto que Pavel enviou (quarto extra, bar ou sala perto do lounge).",
+      "Elimine-o e reviste o corpo para pegar o código.",
+      "Saia do cassino e perca as 2 estrelas."
+     ],
+     "tips": [
+      "Só aparece se a Gather Intel mostrar o alvo dentro do cofre.",
+      "Sacar arma dentro da cobertura ou alertar os guardas da porta deixa todos hostis.",
+      "Há inimigos perto dos elevadores na saída."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Safe_Code",
+     "section": "equipment",
+     "group": "Se o alvo estiver no cofre"
+    },
+    {
+     "id": "plasma-cutter",
+     "name": "Plasma Cutter",
+     "kind": "prep",
+     "players": "Solo ou grupo",
+     "goal": "Roubar um plasma cutter de uma quadrilha para cortar a vitrine reforçada; obrigatória quando o alvo principal está na vitrine.",
+     "steps": [
+      "Vá ao esconderijo da quadrilha e procure pistas lá dentro.",
+      "Fotografe o quadro de planejamento e envie a Pavel.",
+      "Vá ao local do assalto em Rockford Hills ou Del Perro.",
+      "Pegue o plasma cutter (matar a quadrilha é opcional) e entregue no Kosatka."
+     ],
+     "tips": [
+      "Só aparece se a Gather Intel mostrar o alvo na vitrine.",
+      "Reforços chegam em Fugitives enquanto você está no local.",
+      "Limite de 30 minutos."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Plasma_Cutter",
+     "section": "equipment",
+     "group": "Se o alvo estiver na vitrine"
     },
     {
      "id": "cutting-torch",
      "name": "Cutting Torch",
      "kind": "prep",
-     "group": "Entrada no complexo (escolha 1)",
      "players": "Solo ou grupo",
      "goal": "Roubar um maçarico de uma obra para cortar a grade do túnel de drenagem e os cadeados dos depósitos.",
      "steps": [
@@ -1196,13 +1226,14 @@
       "Substitui os Bolt Cutters nos cadeados, inclusive na Power Station e na Control Tower.",
       "Os guardas armados notam se você ficar muito tempo na visão deles ou com arma na mão."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Cutting_Torch"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Cutting_Torch",
+     "section": "equipment",
+     "group": "Entrada: escolha 1"
     },
     {
      "id": "demolition-charges",
      "name": "Demolition Charges",
      "kind": "prep",
-     "group": "Entrada no complexo (escolha 1)",
      "players": "Solo ou grupo",
      "goal": "Roubar as cargas de demolição dos O'Neil Brothers para explodir o portão principal do complexo e os cadeados.",
      "steps": [
@@ -1218,13 +1249,36 @@
       "No porão há dois inimigos com faca.",
       "Limite de 30 minutos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Demolition_Charges"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Demolition_Charges",
+     "section": "equipment",
+     "group": "Entrada: escolha 1"
+    },
+    {
+     "id": "unmarked-weapons",
+     "name": "Unmarked Weapons",
+     "kind": "prep",
+     "players": "Solo ou grupo",
+     "goal": "Roubar o kit de armas escolhido (Aggressor, Conspirator, Crack Shot, Saboteur ou Marksman) para usar no final.",
+     "steps": [
+      "Escolha o kit de armas na tela de preps.",
+      "Variante Office Assault: entre no prédio de escritórios (pelo térreo vigiado ou pelo telhado), elimine os guardas e hackeie o laptop para abrir o armário.",
+      "Variante Tail Helicopter: siga o Valkyrie a partir da Merryweather HQ, limpe a área e pegue as armas dentro do Avenger.",
+      "No Avenger, pegue um paraquedas e salte quando ele decolar.",
+      "Entregue as armas no Kosatka."
+     ],
+     "tips": [
+      "Obrigatória em toda execução.",
+      "Na volta há ondas de Buzzards (escritório) ou de Mesas (Avenger) atrás de você.",
+      "Supressores não têm prep, mas podem ser comprados por $5.000.",
+      "Limite de 30 minutos."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Unmarked_Weapons_(The_Cayo_Perico_Heist)",
+     "section": "weapons"
     },
     {
      "id": "disrupt-weapons",
      "name": "Disrupt Weapons",
      "kind": "optional",
-     "group": "Disrupção",
      "players": "Solo ou grupo",
      "goal": "Matar os três fornecedores de armas de El Rubio para enfraquecer as armas dos guardas no final.",
      "steps": [
@@ -1239,13 +1293,13 @@
       "Mísseis teleguiados não travam nos alvos.",
       "Matar a escolta é opcional."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Disrupt_Weapons"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Disrupt_Weapons",
+     "section": "disruption"
     },
     {
      "id": "disrupt-armor",
      "name": "Disrupt Armor",
      "kind": "optional",
-     "group": "Disrupção",
      "players": "Solo ou grupo",
      "goal": "Destruir as 10 cargas de colete para que os guardas fiquem sem armadura no final.",
      "steps": [
@@ -1260,13 +1314,13 @@
       "As caixas explodem e podem te matar se estiver perto.",
       "Mísseis teleguiados não travam no Tug."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Disrupt_Armor"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Disrupt_Armor",
+     "section": "disruption"
     },
     {
      "id": "disrupt-air-support",
      "name": "Disrupt Air Support",
      "kind": "optional",
-     "group": "Disrupção",
      "players": "Solo ou grupo",
      "goal": "Destruir os 10 Buzzards de El Rubio para que não haja helicópteros atacando se o alarme tocar no final.",
      "steps": [
@@ -1281,7 +1335,8 @@
       "Os Buzzards não aceitam trava de míssil, mas veículos e inimigos ao lado aceitam, e a explosão costuma pegar os helicópteros.",
       "Depois do primeiro grupo chegam dois Froggers inimigos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Disrupt_Air_Support"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Disrupt_Air_Support",
+     "section": "disruption"
     }
    ],
    "finale": {
@@ -1308,7 +1363,34 @@
      "Dia vai das 12:00 e congela às 19:00; noite vai das 22:00 e congela às 5:00. À noite os guardas enxergam menos."
     ],
     "source": "https://gta.fandom.com/wiki/The_Cayo_Perico_Heist/Finale"
-   }
+   },
+   "sections": [
+    {
+     "id": "intel",
+     "title": "Reconhecimento",
+     "note": "Obrigatório"
+    },
+    {
+     "id": "vehicle",
+     "title": "Approach Vehicle",
+     "note": "Obrigatório: pelo menos 1. Alkonost e Stealth helicopter também pedem o Pilot"
+    },
+    {
+     "id": "equipment",
+     "title": "Equipment",
+     "note": "Fingerprint Cloner sempre; Safe Code ou Plasma Cutter conforme o alvo; Cutting Torch ou Demolition Charges para entrar no complexo"
+    },
+    {
+     "id": "weapons",
+     "title": "Weapon Loadout",
+     "note": "Obrigatório"
+    },
+    {
+     "id": "disruption",
+     "title": "Disruption",
+     "note": "Opcionais: enfraquecem os guardas no final"
+    }
+   ]
   }
  }
 }

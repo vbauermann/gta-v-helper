@@ -25,6 +25,9 @@ function validHeist(x) {
   const approaches = x.approaches || [];
   if (!Array.isArray(approaches) || !approaches.every(a => a && str(a.id) && str(a.name) && str(a.summary))) return false;
   const ids = new Set(approaches.map(a => a.id));
+  const sections = x.sections || [];
+  if (!Array.isArray(sections) || !sections.every(c => c && str(c.id) && str(c.title) && (c.note == null || str(c.note)))) return false;
+  const sectionIds = new Set(sections.map(c => c.id));
   if (!Array.isArray(x.setups) || !x.setups.length) return false;
   const seen = new Set();
   for (const s of x.setups) {
@@ -32,6 +35,7 @@ function validHeist(x) {
     if (s.source && !SOURCE.test(s.source)) return false;
     if (s.approaches && !(strs(s.approaches) && s.approaches.every(a => ids.has(a)))) return false;
     if (s.group != null && !str(s.group)) return false;
+    if (sections.length ? !sectionIds.has(s.section) : s.section != null) return false;
     seen.add(s.id);
   }
   const f = x.finale;

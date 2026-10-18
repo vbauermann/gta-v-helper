@@ -50,36 +50,48 @@
     const approach = chosen(id, x);
     const shown = x.setups.filter(s => !approach || !s.approaches || s.approaches.includes(approach));
     const count = shown.filter(s => ok.has(s.id)).length;
+    const grouped = !!(x.sections && x.sections.length); // each section shows its own count
     return h('div', { class: 'wiki' },
       h('div', { class: 'card pad' },
         h('div', { class: 'card-head' },
-          h('div', { class: 'grow' }, h('h3', null, 'Setups'), h('div', { class: 'meta' }, `${count} de ${shown.length} feitos`)),
+          h('div', { class: 'grow' }, h('h3', null, 'Setups'), grouped ? null : h('div', { class: 'meta' }, `${count} de ${shown.length} feitos`)),
           count ? h('button', { class: 'btn ghost sm', type: 'button', title: 'Comecei um golpe novo', onclick: () => App.act(window.gta.heistReset(id)) }, icon('x', 14), 'Zerar') : null),
-        UI.bar(shown.length ? (count / shown.length) * 100 : 0, 'var(--accent)', 'thin'),
+        grouped ? null : UI.bar(shown.length ? (count / shown.length) * 100 : 0, 'var(--accent)', 'thin'),
         x.approaches && x.approaches.length
           ? h('div', { class: 'wiki-filter' }, UI.segmented(x.approaches.map(a => ({ value: a.id, label: a.name })), approach,
             v => { filters.set(id, v); rerender(); }))
           : null,
-        h('div', { class: 'rows wiki-steps' }, shown.map((s, i) => {
-          const isDone = ok.has(s.id);
-          return h('div', { class: `row-item link wiki-step ${isDone ? 'done' : ''}`, role: 'button', tabindex: '0',
-            onclick: () => { opened.set(id, s.id); rerender(); } },
-          h('button', { class: `wiki-check ${isDone ? 'on' : ''}`, type: 'button', title: isDone ? 'Desmarcar' : 'Marcar como feito',
-            onclick: e => { e.stopPropagation(); App.act(window.gta.heistStep(id, s.id, !isDone)); } }, isDone ? icon('check', 16) : String(i + 1)),
-          h('div', { class: 'grow' },
-            h('div', { class: 'title' }, s.name),
-            h('div', { class: 'meta' }, s.goal)),
-          s.group ? h('span', { class: 'pill sm warn' }, s.group) : null,
-          h('span', { class: `pill sm ${s.kind === 'optional' ? '' : 'info'}` }, KINDS[s.kind] || s.kind),
-          icon('chevron', 16));
-        }))),
+        sections(x, shown).map(sec => h('div', { class: 'wiki-section' },
+          sec.title ? h('div', { class: 'wiki-section-head' },
+            h('div', { class: 'grow' }, h('h4', null, sec.title), sec.note ? h('div', { class: 'meta' }, sec.note) : null),
+            h('span', { class: 'meta num' }, `${sec.items.filter(s => ok.has(s.id)).length}/${sec.items.length}`)) : null,
+          h('div', { class: 'rows wiki-steps' }, sec.items.map((s, i) => row(id, s, i, ok.has(s.id), rerender)))))),
       footer(x));
+  }
+
+  // Setups grouped like the game's planning screen (data `sections`); one untitled group otherwise.
+  function sections(x, shown) {
+    if (!x.sections || !x.sections.length) return [{ items: shown }];
+    return x.sections.map(sec => ({ ...sec, items: shown.filter(s => s.section === sec.id) })).filter(sec => sec.items.length);
+  }
+
+  function row(id, s, i, isDone, rerender) {
+    return h('div', { class: `row-item link wiki-step ${isDone ? 'done' : ''}`, role: 'button', tabindex: '0',
+      onclick: () => { opened.set(id, s.id); rerender(); } },
+    h('button', { class: `wiki-check ${isDone ? 'on' : ''}`, type: 'button', title: isDone ? 'Desmarcar' : 'Marcar como feito',
+      onclick: e => { e.stopPropagation(); App.act(window.gta.heistStep(id, s.id, !isDone)); } }, isDone ? icon('check', 16) : String(i + 1)),
+    h('div', { class: 'grow' },
+      h('div', { class: 'title' }, s.name),
+      h('div', { class: 'meta' }, s.goal)),
+    s.group ? h('span', { class: 'pill sm warn' }, s.group) : null,
+    h('span', { class: `pill sm ${s.kind === 'optional' ? '' : 'info'}` }, KINDS[s.kind] || s.kind),
+    icon('chevron', 16));
   }
 
   function setupPage(id, x, s, rerender) {
     const isDone = done(id).has(s.id);
     const approach = chosen(id, x);
-    const shown = x.setups.filter(t => !approach || !t.approaches || t.approaches.includes(approach));
+    const shown = sections(x, x.setups.filter(t => !approach || !t.approaches || t.approaches.includes(approach))).flatMap(sec => sec.items);
     const index = shown.indexOf(s);
     const go = d => { const next = shown[index + d]; if (next) { opened.set(id, next.id); rerender(); } };
     return h('div', { class: 'wiki' },
@@ -93,6 +105,7 @@
           h('div', { class: 'grow' },
             h('h3', { class: 'wiki-title' }, s.name),
             h('div', { class: 'biz-pills' },
+              s.section && x.sections ? h('span', { class: 'pill sm' }, (x.sections.find(p => p.id === s.section) || {}).title) : null,
               h('span', { class: 'pill sm info' }, KINDS[s.kind] || s.kind),
               s.group ? h('span', { class: 'pill sm warn' }, s.group) : null,
               s.players ? h('span', { class: 'pill sm' }, s.players) : null,

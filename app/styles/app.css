@@ -443,7 +443,10 @@ td:last-child, th:last-child { text-align: right; }
 .wiki-approach b { font-size: 13.5px; }
 .wiki-approach p { margin: 6px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--muted); }
 .wiki-filter { margin: 14px 0 4px; }
-.wiki-steps { margin: 8px -8px 0; }
+.wiki-steps { margin: 4px -8px 0; }
+.wiki-section { margin-top: 18px; }
+.wiki-section-head { display: flex; align-items: flex-end; gap: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.wiki-section-head h4 { margin: 0; font-size: 13.5px; }
 .wiki-step { cursor: pointer; gap: 12px; }
 .wiki-step .meta { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 640px; }
 .wiki-step.done .title { color: var(--muted); text-decoration: line-through; }

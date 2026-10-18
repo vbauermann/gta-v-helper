@@ -10,6 +10,7 @@ Decisão em [ADR 0015](../../../docs/adr/0015-wiki-dos-golpes.md). Renderizaçã
 ## Formato de `data/wiki.json`
 `{ version: "AAAA-MM-DD[.n]", heists: { <id>: heist } }`. Cada golpe:
 - `id`, `name`, `source` (artigo do GTA Wiki), `facts` [{label, value}], `overview` [parágrafos], `start` [itens], `approaches` [{id, name, summary}] (ou []).
+- `sections` opcional [{id, title, note}]: grupos da tela de planejamento do jogo (ex. Cayo: Approach Vehicle, Equipment, Weapon Loadout, Disruption). Quando existe, todo setup tem `section`.
 - `setups` na ordem do jogo: `id`, `name` (sem "Heist Prep:"), `kind` (`scope`, `setup`, `prep`, `optional`), `group` opcional (pílula, ex. "Veículo de entrada (escolha 1)"), `players`, `approaches` opcional (ids), `goal` (1 frase), `steps` (3 a 8), `tips`, `source`.
 - `finale`: `name`, `summary`, `roles` opcional, `steps`, `tips`, `source`, `variants` opcional [{approach, name, summary, steps, tips, source}] quando o final muda por approach.
 
