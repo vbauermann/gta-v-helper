@@ -148,6 +148,10 @@
       App.data.weekly = weekly;
       if (App.page === 'weekly' || App.page === 'todos') navigate(App.page);
     });
+    window.gta.onWiki(wiki => {
+      App.data.wiki = wiki;
+      if (['fleeca', 'casino', 'cayo'].includes(App.page)) navigate(App.page);
+    });
     navigate('overview');
     setInterval(tick, 1000);
   }

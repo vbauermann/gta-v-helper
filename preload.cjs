@@ -19,6 +19,15 @@ contextBridge.exposeInMainWorld('gta', Object.freeze({
     ipcRenderer.on('gta:weekly', listener);
     return () => ipcRenderer.removeListener('gta:weekly', listener);
   },
+  onWiki: callback => {
+    if (typeof callback !== 'function') throw new TypeError('callback');
+    const listener = (_event, wiki) => callback(wiki);
+    ipcRenderer.on('gta:wiki', listener);
+    return () => ipcRenderer.removeListener('gta:wiki', listener);
+  },
+  heistStep: (heistId, stepId, done) => ipcRenderer.invoke('gta:heist-step', heistId, stepId, done),
+  heistReset: heistId => ipcRenderer.invoke('gta:heist-reset', heistId),
+  openSource: url => ipcRenderer.invoke('gta:open-source', url),
   mapOwn: (pointId, on) => ipcRenderer.invoke('gta:map-own', pointId, on),
   cayoCooldown: minutes => ipcRenderer.invoke('gta:cayo-cooldown', minutes),
   overlay: (action, value) => ipcRenderer.invoke('gta:overlay', action, value),

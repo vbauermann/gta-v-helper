@@ -59,6 +59,8 @@ function createStore(file, catalog) {
       businesses,
       cayoCooldownEndsAt: typeof raw.cayoCooldownEndsAt === 'number' ? raw.cayoCooldownEndsAt : null,
       // Los Santos map: ids of the places the player marked as theirs (data/ls-map.json).
+      // Heist wiki: setup ids done per heist ({ casino: ['scope', ...] }).
+      heistProgress: loadProgress(raw.heistProgress),
       map: { owned: Array.isArray(raw.map && raw.map.owned) ? raw.map.owned.filter(id => typeof id === 'string') : [] },
       todos: loadTodos(raw.todos)
     };
@@ -73,6 +75,15 @@ function createStore(file, catalog) {
     const items = saved.items.filter(i => i && typeof i.id === 'string' && typeof i.title === 'string' && !todos.isExpired(i, now));
     const picked = saved.dailyHourSet === true && Number.isInteger(saved.dailyHour) && saved.dailyHour >= 0 && saved.dailyHour < 24;
     return { ...(picked ? { dailyHour: saved.dailyHour, dailyHourSet: true } : auto), items };
+  }
+
+  function loadProgress(saved) {
+    const out = {};
+    if (!saved || typeof saved !== 'object') return out;
+    for (const [id, list] of Object.entries(saved)) {
+      if (Array.isArray(list)) out[id] = list.filter(x => typeof x === 'string');
+    }
+    return out;
   }
 
   function save() {

@@ -42,7 +42,7 @@ Fora da janela principal: bandeja (fechar mantém rodando), notificações do Wi
 
 ## Recurso de colaborador (opcional)
 
-Ver [ADR 0015](../../../docs/adr/0015-recursos-opcionais.md). Recurso que não é do Vitor vem desligado:
+Ver [ADR 0016](../../../docs/adr/0016-recursos-opcionais.md). Recurso que não é do Vitor vem desligado:
 
 1. Adicione `{ id, title, description }` em `FEATURES` de `lib/features.js`. A chave aparece sozinha em Ajustes > Recursos extras.
 2. Antes de mostrar algo (menu, card, janela) ou rodar algo no processo principal, confira `GtaFeatures.isOn(App.state.settings, id)` na tela ou `features.isOn(store.get().settings, id)` no `main.cjs`.
