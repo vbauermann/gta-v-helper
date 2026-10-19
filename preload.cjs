@@ -7,6 +7,7 @@ contextBridge.exposeInMainWorld('gta', Object.freeze({
   setUpgrades: (id, upgrades) => ipcRenderer.invoke('gta:set-upgrades', id, upgrades),
   setSupply: (id, pct) => ipcRenderer.invoke('gta:set-supply', id, pct),
   orderSupply: id => ipcRenderer.invoke('gta:order-supply', id),
+  setNightclub: (id, on) => ipcRenderer.invoke('gta:set-nightclub', id, on),
   setStock: (id, units) => ipcRenderer.invoke('gta:set-stock', id, units),
   boost: (id, on) => ipcRenderer.invoke('gta:boost', id, on),
   setCalibration: (id, cal) => ipcRenderer.invoke('gta:set-calibration', id, cal),

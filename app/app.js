@@ -20,9 +20,13 @@
       const p = P.project(def, biz, biz.activeMinutes + (biz.owned ? this.extraMinutes() : 0));
       let tone = 'ok';
       let text;
-      if (!p.producing) tone = 'stopped';
+      const full = !p.producing && p.stock >= def.capacity - 1e-9;
+      if (full) tone = 'ready';
+      else if (!p.producing) tone = 'stopped';
       else if (p.minutesToStop <= this.state.settings.warnMinutes) tone = 'warning';
-      if (p.deliveryIn) {
+      if (full) {
+        text = 'Estoque cheio, hora de vender';
+      } else if (p.deliveryIn) {
         if (!p.producing) tone = 'warning';
         text = `Suprimentos chegando em ${P.formatMinutes(p.deliveryIn)}${p.producing ? '' : ' (parado até lá)'}`;
       } else if (p.producing) {
@@ -30,9 +34,9 @@
           ? `Suprimento acaba em ${P.formatMinutes(p.minutesToSupplyEmpty)}`
           : `Estoque enche em ${P.formatMinutes(p.minutesToFull)}`;
       } else {
-        text = p.stock >= def.capacity - 1e-9 ? 'Parado: estoque cheio, hora de vender' : 'Parado: sem suprimentos';
+        text = 'Parado: sem suprimentos';
       }
-      const pill = p.deliveryIn && !p.producing ? 'Aguardando' : { ok: 'Produzindo', warning: 'Acabando', stopped: 'Parado' }[tone];
+      const pill = p.deliveryIn && tone === 'warning' && !p.producing ? 'Aguardando' : { ok: 'Produzindo', warning: 'Acabando', stopped: 'Parado', ready: 'Pronto para vender' }[tone];
       return { biz, p, tone, text, pill };
     },
     owned() {

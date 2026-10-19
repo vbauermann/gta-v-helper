@@ -24,7 +24,8 @@ function emptyBusiness() {
     calibration: {},
     alerts: { warned: false, empty: false, full: false },
     boost: null, // Acid Lab daily boost: { units left, startedAt, endsAt }
-    delivery: null // bought supplies on the way: { at: active minutes from the snapshot, orderedAt }
+    delivery: null, // bought supplies on the way: { at: active minutes from the snapshot, orderedAt }
+    nightclub: false // a Nightclub technician is assigned to this business's goods
   };
 }
 

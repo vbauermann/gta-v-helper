@@ -1,6 +1,16 @@
 {
   "versions": [
     {
+      "version": "1.10.0",
+      "date": "2026-10-19",
+      "title": "Nightclub e Pronto para vender",
+      "items": [
+        "Novo botão nos Negócios, ao lado de Ressupri e Vendi tudo, para marcar se o negócio está vinculado ao Nightclub. O Acid Lab não tem técnico no Nightclub, então fica sem o botão, e o limite é de 5 negócios vinculados, como os técnicos do jogo.",
+        "Negócio parado com estoque cheio agora fica com a borda verde e a badge verde \"Pronto para vender\". Na Visão geral aparece um aviso dos negócios prontos.",
+        "A badge \"Produzindo\" passou de verde para azul."
+      ]
+    },
+    {
       "version": "1.9.0",
       "date": "2026-10-18",
       "title": "Cluckin' Bell e Dr. Dre",

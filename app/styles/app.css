@@ -61,6 +61,9 @@
 .biz { transition: border-color 0.2s; overflow: hidden; }
 .biz.warning { border-color: var(--warn-line); }
 .biz.stopped { border-color: var(--danger-line); }
+.biz.ready { border-color: var(--ok); }
+.nightclub-toggle { color: var(--faint); }
+.nightclub-toggle.on { color: #e879f9; background: rgba(232, 121, 249, 0.14); border: 1px solid rgba(232, 121, 249, 0.4); }
 .biz .meta, .meta { color: var(--muted); font-size: 12px; margin-top: 1px; }
 .biz-row {
   display: grid; grid-template-columns: 36px minmax(150px, 220px) minmax(0, 1fr) auto;
@@ -89,6 +92,7 @@
 .biz-status { font-size: 12.5px; color: var(--text-2); margin-top: 2px; }
 .biz.warning .biz-status { color: var(--warn); }
 .biz.stopped .biz-status { color: var(--danger); }
+.biz.ready .biz-status { color: var(--ok); }
 .upgrades { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .upgrades-label { font-size: 12px; color: var(--faint); margin-right: 4px; }
 .chip {
@@ -463,3 +467,9 @@ td:last-child, th:last-child { text-align: right; }
 .wiki-actions { margin-top: 16px; }
 .wiki-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0; }
 .wiki-source { color: var(--muted); }
+
+/* ---------- business ready to sell ---------- */
+.banner.ok { background: color-mix(in srgb, var(--ok) 8%, var(--card)); border-color: var(--ok-line); }
+.banner.ok > svg { color: var(--ok); }
+.pill.blue { color: var(--info); background: var(--info-soft); border-color: color-mix(in srgb, var(--info) 34%, transparent); }
+.nightclub-spacer { width: 28px; flex: none; }

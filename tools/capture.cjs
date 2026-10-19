@@ -11,10 +11,11 @@ const all = { equipment: true, staff: true, security: true };
 fs.writeFileSync(file, JSON.stringify({
   settings: { detection: 'always', closeToTray: false },
   businesses: {
-    cocaine: biz(100, 3, all, 30),
+    cocaine: { ...biz(100, 3, all, 30), nightclub: true },
     bunker: biz(100, 40, all, 135),
     acid: biz(60, 160, { equipment: true }),
-    meth: biz(0, 7, { equipment: true })
+    meth: biz(0, 7, { equipment: true }),
+    cash: biz(55, 40, { equipment: true })
   },
   cayoCooldownEndsAt: Date.now() + 47 * 60000,
   map: { owned: ['mc-cocaine-2', 'bunker-1', 'garage-1', 'office-4', 'agency-2'] }
@@ -259,13 +260,19 @@ app.whenReady().then(async () => {
     await new Promise(r => setTimeout(r, 200));
     [...document.querySelectorAll('.card.biz[data-id=meth] .chip')].find(b => b.textContent === 'Funcionários').click();
     await new Promise(r => setTimeout(r, 300));
+    document.querySelector('.card.biz[data-id=bunker] .nightclub-toggle').click();
+    await new Promise(r => setTimeout(r, 300));
     const s = await window.gta.state();
-    return { delivery: s.businesses.meth.delivery && s.businesses.meth.delivery.at, staff: s.businesses.meth.upgrades.staff,
+    const acid = document.querySelector('.card.biz[data-id=acid]'), full = document.querySelector('.card.biz[data-id=cash]');
+    return { nightclub: s.businesses.bunker.nightclub && s.businesses.cocaine.nightclub, acidToggle: !!acid.querySelector('.nightclub-toggle'),
+      ready: full.classList.contains('ready') && full.querySelector('[data-live=pill]').textContent === 'Pronto para vender',
+      delivery: s.businesses.meth.delivery && s.businesses.meth.delivery.at, staff: s.businesses.meth.upgrades.staff,
       status: document.querySelector('.card.biz[data-id=meth] [data-live=status]').textContent };
   })()`);
   await win.webContents.executeJavaScript(`document.querySelector('.card.biz[data-id=meth]').scrollIntoView({ block: 'center' })`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'businesses-delivery.png'), (await win.webContents.capturePage()).toPNG());
+  if (!after.nightclub || after.acidToggle || !after.ready) errors.push(`nightclub/pronto falhou: ${JSON.stringify(after)}`);
   if (!(after.delivery > 9) || !after.staff || !after.status.startsWith('Suprimentos chegando')) errors.push(`round trip falhou: ${JSON.stringify(after)}`);
   console.log(JSON.stringify({ out, errors, after }));
   app.exit(errors.length ? 1 : 0);

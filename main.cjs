@@ -190,6 +190,16 @@ function registerIpc() {
     s.businesses[id].delivery = { at: catalog.supplyDeliveryMinutes || 10, orderedAt: Date.now() };
   }));
 
+  // Nightclub link: only businesses with a Nightclub good, at most as many as the technicians (5).
+  ipcMain.handle('gta:set-nightclub', (_e, id, on) => mutate(s => {
+    const def = business(id);
+    if (!def.nightclubGood) throw new Error(`${def.name} não pode ser vinculado ao Nightclub`);
+    const max = catalog.nightclubTechnicians || 5;
+    const linked = catalog.businesses.filter(d => d.id !== id && s.businesses[d.id].nightclub).length;
+    if (on && linked >= max) throw new Error(`O Nightclub tem só ${max} técnicos. Desvincule outro negócio antes.`);
+    s.businesses[id].nightclub = !!on;
+  }));
+
   ipcMain.handle('gta:set-stock', (_e, id, units) => mutate(s => {
     const def = business(id);
     store.rebase(id);

@@ -9,6 +9,7 @@
   "businesses": [
     {
       "id": "cocaine",
+      "nightclubGood": "South American Imports",
       "name": "Cocaína",
       "group": "MC",
       "capacity": 10,
@@ -36,6 +37,7 @@
     },
     {
       "id": "meth",
+      "nightclubGood": "Pharmaceutical Research",
       "name": "Metanfetamina",
       "group": "MC",
       "capacity": 20,
@@ -63,6 +65,7 @@
     },
     {
       "id": "cash",
+      "nightclubGood": "Cash Creation",
       "name": "Dinheiro Falso",
       "group": "MC",
       "capacity": 40,
@@ -90,6 +93,7 @@
     },
     {
       "id": "weed",
+      "nightclubGood": "Organic Produce",
       "name": "Maconha",
       "group": "MC",
       "capacity": 80,
@@ -117,6 +121,7 @@
     },
     {
       "id": "documents",
+      "nightclubGood": "Printing & Copying",
       "name": "Documentos Falsos",
       "group": "MC",
       "capacity": 60,
@@ -144,6 +149,7 @@
     },
     {
       "id": "bunker",
+      "nightclubGood": "Sporting Goods",
       "name": "Bunker",
       "group": "Gunrunning",
       "capacity": 100,
@@ -197,5 +203,6 @@
       }
     }
   ],
-  "supplyDeliveryMinutes": 10
+  "supplyDeliveryMinutes": 10,
+  "nightclubTechnicians": 5
 }

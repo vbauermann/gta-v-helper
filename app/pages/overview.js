@@ -3,8 +3,8 @@
   const { h, money, moneyShort, icon, bizIcon, ring, bar } = UI;
   const compact = new Intl.NumberFormat('pt-BR', { notation: 'compact', maximumFractionDigits: 1 });
   const P = GtaProduction;
-  const TONE_ORDER = { stopped: 0, warning: 1, ok: 2 };
-  const PILL = { ok: 'ok', warning: 'warn', stopped: 'danger' };
+  const TONE_ORDER = { stopped: 0, ready: 1, warning: 2, ok: 3 };
+  const PILL = { ok: 'blue', warning: 'warn', stopped: 'danger', ready: 'ok' };
   let root = null;
   let live = [];
   let signature = '';
@@ -37,6 +37,7 @@
     const s = App.state;
     const stopped = rows.filter(r => r.tone === 'stopped');
     const warning = rows.filter(r => r.tone === 'warning');
+    const ready = rows.filter(r => r.tone === 'ready');
 
     let banner = null;
     if (!rows.length) {
@@ -49,6 +50,12 @@
         h('div', { class: 'grow' },
           h('div', { class: 'title' }, stopped.length === 1 ? '1 negócio parado' : `${stopped.length} negócios parados`),
           h('div', { class: 'text' }, stopped.map(r => `${r.def.name}: ${r.text.replace(/^Parado: /, '')}`).join(' · '))),
+        h('div', { class: 'actions' }, h('button', { class: 'btn secondary sm', onclick: () => App.navigate('businesses') }, 'Ver negócios')));
+    } else if (ready.length) {
+      banner = h('div', { class: 'banner ok' }, icon('dollar', 20),
+        h('div', { class: 'grow' },
+          h('div', { class: 'title' }, ready.length === 1 ? '1 negócio pronto para vender' : `${ready.length} negócios prontos para vender`),
+          h('div', { class: 'text' }, `${ready.map(r => r.def.name).join(' · ')}: estoque cheio, a produção está parada até vender.`)),
         h('div', { class: 'actions' }, h('button', { class: 'btn secondary sm', onclick: () => App.navigate('businesses') }, 'Ver negócios')));
     } else if (warning.length) {
       banner = h('div', { class: 'banner warn' }, icon('clock', 20),

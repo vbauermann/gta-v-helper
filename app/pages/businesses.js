@@ -5,7 +5,7 @@
   const UPGRADE_LABELS = { equipment: 'Equipamento', staff: 'Funcionários', security: 'Segurança' };
   let root = null;
 
-  const PILL = { ok: 'ok', warning: 'warn', stopped: 'danger' };
+  const PILL = { ok: 'blue', warning: 'warn', stopped: 'danger', ready: 'ok' };
   const supplyColor = v => (v <= 15 ? 'var(--danger)' : v <= 35 ? 'var(--warn)' : 'var(--ok)');
   const stockText = (def, p) => `${Math.floor(p.stock)}/${def.capacity}`;
 
@@ -55,6 +55,7 @@
       h('div', { class: 'biz-quick', onclick: stop },
         h('button', { class: 'btn primary icon sm', title: `Comprei suprimentos (chegam em ~${App.data.catalog.supplyDeliveryMinutes || 10} min de jogo)`, 'aria-label': 'Comprei suprimentos', onclick: () => App.act(gta.orderSupply(def.id)) }, icon('box', 15)),
         h('button', { class: 'btn secondary icon sm', title: 'Vendi tudo', 'aria-label': 'Vendi tudo', onclick: () => App.act(gta.setStock(def.id, 0)) }, icon('dollar', 15)),
+        nightclubButton(def, biz),
         h('button', { class: `btn ghost icon sm biz-toggle ${open ? 'open' : ''}`, title: open ? 'Recolher' : 'Ver detalhes', 'aria-expanded': String(open), onclick: () => toggleRow(def.id) }, icon('chevron', 16))));
 
     const body = open ? h('div', { class: 'biz-more' },
@@ -86,6 +87,19 @@
           h('button', { class: 'btn danger sm', onclick: () => App.act(gta.setOwned(def.id, false)) }, 'Não tenho mais'))) : null) : null;
 
     return h('article', { class: `card biz biz-${def.id} ${tone} ${open ? 'open' : ''}`, dataset: { id: def.id } }, head, body);
+  }
+
+  // Toggle: a Nightclub technician also makes this business's goods. The Acid Lab has no Nightclub good.
+  function nightclubButton(def, biz) {
+    if (!def.nightclubGood) return h('span', { class: 'nightclub-spacer', title: 'O Acid Lab não tem técnico no Nightclub' });
+    const on = !!biz.nightclub;
+    const title = on
+      ? `Vinculado ao Nightclub (${def.nightclubGood}). Clique para desvincular`
+      : `Vincular ao Nightclub (${def.nightclubGood})`;
+    return h('button', {
+      class: `btn icon sm nightclub-toggle ${on ? 'on' : 'ghost'}`, title, 'aria-label': title, 'aria-pressed': String(on),
+      onclick: () => App.act(window.gta.setNightclub(def.id, !on))
+    }, icon('music', 15));
   }
 
   const adjusting = new Set();
@@ -206,7 +220,7 @@
       const pillEl = el.querySelector('[data-live=pill]');
       pillEl.textContent = pill;
       pillEl.className = `pill sm ${PILL[tone]}`;
-      el.classList.remove('ok', 'warning', 'stopped');
+      el.classList.remove('ok', 'warning', 'stopped', 'ready');
       el.classList.add(tone);
     }
   }
