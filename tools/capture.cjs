@@ -271,6 +271,10 @@ app.whenReady().then(async () => {
   await wait(500);
   fs.writeFileSync(path.join(out, 'wiki-cayo.png'), (await win.webContents.capturePage()).toPNG());
   await win.webContents.executeJavaScript(`${tabOf('Calculadora')} document.querySelector('[data-page=casino]').click(); ${tabOf('Calculadora')}`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'casino-calculadora.png'), (await win.webContents.capturePage()).toPNG());
+  const vault = await win.webContents.executeJavaScript(`[...document.querySelectorAll('.field small, .field .hint')].map(e => e.textContent).find(t => t.startsWith('Tempo no cofre')) || ''`);
+  if (!vault.includes('3:30')) errors.push(`tempo do cofre: ${vault}`);
   // Light theme check, then back to dark.
   await win.webContents.executeJavaScript(`window.gta.setSettings({ theme: 'light' }).then(s => App.setState(s, true)); document.querySelector('[data-page=overview]').click();`);
   await wait(900);

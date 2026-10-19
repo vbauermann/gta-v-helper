@@ -169,23 +169,43 @@
       "hacker": [
         {
           "name": "Rickie Lukens",
-          "pct": 3
+          "pct": 3,
+          "vaultSeconds": {
+            "undetected": 146,
+            "detected": 102
+          }
         },
         {
           "name": "Yohan Blair",
-          "pct": 5
+          "pct": 5,
+          "vaultSeconds": {
+            "undetected": 172,
+            "detected": 121
+          }
         },
         {
           "name": "Christian Feltz",
-          "pct": 7
+          "pct": 7,
+          "vaultSeconds": {
+            "undetected": 179,
+            "detected": 125
+          }
         },
         {
-          "name": "Page Harris",
-          "pct": 9
+          "name": "Paige Harris",
+          "pct": 9,
+          "vaultSeconds": {
+            "undetected": 206,
+            "detected": 143
+          }
         },
         {
           "name": "Avi Schwartzman",
-          "pct": 10
+          "pct": 10,
+          "vaultSeconds": {
+            "undetected": 210,
+            "detected": 146
+          }
         }
       ]
     }

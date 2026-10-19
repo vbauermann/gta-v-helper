@@ -1,6 +1,15 @@
 {
   "versions": [
     {
+      "version": "1.13.2",
+      "date": "2026-10-19",
+      "title": "Tempo do hacker no cofre",
+      "items": [
+        "Diamond Casino, Calculadora: embaixo do hacker escolhido aparece quanto tempo ele dá dentro do cofre, sem ser detectado e se for detectado (Avi 3:30/2:26, Paige 3:26/2:23, Christian 2:59/2:05, Yohan 2:52/2:01, Rickie 2:26/1:42).",
+        "Corrigido o nome da Paige Harris."
+      ]
+    },
+    {
       "version": "1.13.1",
       "date": "2026-10-19",
       "title": "Leitura da tela mais leve",

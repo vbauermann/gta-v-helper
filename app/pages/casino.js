@@ -33,7 +33,7 @@
     renderCuts();
     results = h('div', { class: 'results' });
     body.replaceChildren(
-      h('p', { class: 'muted small tab-note' }, 'Valores base da atualização de economia. Hacker melhor dá mais tempo no cofre, mas cobra mais.'),
+      h('p', { class: 'muted small tab-note' }, 'Valores base da atualização de economia. Hacker melhor dá mais tempo no cofre, mas cobra mais. Tempos do cofre: GTA Wiki.'),
       h('div', { class: 'two-col' },
         h('div', { class: 'card pad form' },
           h('div', { class: 'card-head' }, h('h3', null, icon('casino', 18), 'Golpe')),
@@ -49,7 +49,8 @@
           ], form.buyer, { onchange: e => update({ buyer: e.target.value }) })),
           Object.keys(ROLE_LABELS).map(role => field(ROLE_LABELS[role], select(
             data.crew[role].map(c => ({ value: String(c.pct), label: `${c.name} (${c.pct}%)` })), String(form.crewPct[role]),
-            { onchange: e => update({ crewPct: { ...form.crewPct, [role]: Number(e.target.value) } }) })))),
+            { onchange: e => { update({ crewPct: { ...form.crewPct, [role]: Number(e.target.value) } }); if (role === 'hacker') render(); } }),
+            role === 'hacker' ? vaultHint(data) : null))),
           field('Jogadores', segmented([2, 3, 4].map(n => ({ value: n, label: String(n) })), form.crewSize, n => {
             form.cuts = DEFAULT_CUTS[n].slice();
             update({ crewSize: n });
@@ -58,6 +59,14 @@
           cutsBox),
         results));
     renderResults();
+  }
+
+  const clock = sec => `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`;
+  // Time the chosen hacker gives inside the vault before the nerve agent (less if the crew was detected).
+  function vaultHint(data) {
+    const c = data.crew.hacker.find(x => x.pct === Number(form.crewPct.hacker));
+    if (!c || !c.vaultSeconds) return null;
+    return `Tempo no cofre: ${clock(c.vaultSeconds.undetected)} sem ser detectado, ${clock(c.vaultSeconds.detected)} se for detectado.`;
   }
 
   function renderResults() {
