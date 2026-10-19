@@ -65,6 +65,9 @@ function createStore(file, catalog) {
       heistProgress: loadProgress(raw.heistProgress),
       map: { owned: Array.isArray(raw.map && raw.map.owned) ? raw.map.owned.filter(id => typeof id === 'string') : [] },
       todos: loadTodos(raw.todos),
+      // Nightclub warehouse (technicians make goods) and the CEO / Import-Export warehouses.
+      nightclub: loadNightclub(raw.nightclub, raw.map),
+      warehouses: loadWarehouses(raw.warehouses),
       // Avisos: notice history (newest first) and the player's periodic reminders.
       notices: notices.load(raw.notices, Date.now())
     };
@@ -79,6 +82,33 @@ function createStore(file, catalog) {
     const items = saved.items.filter(i => i && typeof i.id === 'string' && typeof i.title === 'string' && !todos.isExpired(i, now));
     const picked = saved.dailyHourSet === true && Number.isInteger(saved.dailyHour) && saved.dailyHour >= 0 && saved.dailyHour < 24;
     return { ...(picked ? { dailyHour: saved.dailyHour, dailyHourSet: true } : auto), items };
+  }
+
+  function loadNightclub(saved, map) {
+    const n = saved && typeof saved === 'object' ? saved : {};
+    const stock = {};
+    for (const g of (catalog.nightclub && catalog.nightclub.goods) || []) stock[g.id] = Math.max(0, Number(n.stock && n.stock[g.id]) || 0);
+    // Before v1.12 the Nightclub was only a place on the map: marking it there means owning it.
+    const fromMap = !saved && map && Array.isArray(map.owned) && map.owned.some(id => typeof id === 'string' && id.startsWith('nightclub-'));
+    return {
+      owned: saved ? !!n.owned : !!fromMap,
+      floors: Number.isInteger(n.floors) && n.floors >= 1 && n.floors <= 5 ? n.floors : 1,
+      equipment: !!n.equipment,
+      cargo: !!n.cargo, // technician on Cargo and Shipments (needs a CEO warehouse)
+      stock,
+      activeMinutes: Math.max(0, Number(n.activeMinutes) || 0),
+      alerted: !!n.alerted
+    };
+  }
+
+  // Warehouses point at Los Santos map places (data/ls-map.json); the map marks are the ownership.
+  function loadWarehouses(saved) {
+    const w = saved && typeof saved === 'object' ? saved : {};
+    const cargo = (Array.isArray(w.cargo) ? w.cargo : [])
+      .filter(x => x && typeof x.point === 'string')
+      .map(x => ({ point: x.point, crates: Math.max(0, Math.floor(Number(x.crates) || 0)) }));
+    const v = w.vehicle && typeof w.vehicle === 'object' ? w.vehicle : {};
+    return { cargo, vehicle: { point: typeof v.point === 'string' ? v.point : null, cars: Math.max(0, Math.floor(Number(v.cars) || 0)) } };
   }
 
   function loadProgress(saved) {

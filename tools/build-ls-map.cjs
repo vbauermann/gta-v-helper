@@ -39,7 +39,9 @@ const groups = [
     id: 'businesses', title: 'Negócios', defaultVisible: true,
     categories: [
       ...Object.entries(MC).map(([biz, m]) => ({ id: `mc-${biz}`, title: m.title, icon: ico(m.icon), owns: 1, business: biz })),
-      { id: 'bunker', title: 'Bunker', icon: ico('bunk'), owns: 1, business: 'bunker' }
+      { id: 'bunker', title: 'Bunker', icon: ico('bunk'), owns: 1, business: 'bunker' },
+      { id: 'warehouse', title: 'Warehouse de cargo (CEO)', icon: ico('warehouse'), owns: 5, note: 'Marcar aqui coloca a warehouse no card Special Cargo dos Negócios.' },
+      { id: 'vehicle-warehouse', title: 'Vehicle Warehouse', icon: ico('vehicle_warehouse'), owns: 1, note: 'Import/Export. Marcar aqui coloca a warehouse nos Negócios.' }
     ]
   },
   {
@@ -49,7 +51,7 @@ const groups = [
       { id: 'clubhouse', title: 'Clubhouse (MC)', icon: ico('mc1'), owns: 1 },
       { id: 'agency', title: 'Agência', icon: ico('agency'), owns: 1 },
       { id: 'bail-office', title: 'Bail Office', icon: ico('bail_offices'), owns: 1 },
-      { id: 'nightclub', title: 'Nightclub', icon: ico('nc'), owns: 1 },
+      { id: 'nightclub', title: 'Nightclub', icon: ico('nc'), owns: 1, business: 'nightclub' },
       { id: 'arcade', title: 'Fliperama', icon: ico('arcade'), owns: 1 },
       { id: 'auto-shop', title: 'Auto Shop', icon: ico('autoshop'), owns: 1 },
       { id: 'salvage-yard', title: 'Ferro-velho (Salvage Yard)', icon: ico('salvage_yard'), owns: 1 },
@@ -69,6 +71,10 @@ const groups = [
 // Businesses
 for (const [biz, m] of Object.entries(MC)) list(`mc-${biz}`, C.mc_businesses[m.key], m.places);
 list('bunker', C.bunkers, numbered(txt.bunker));
+// Warehouses: names, sizes and game coordinates gathered from the same gtaweb.eu data (warehouses.json).
+const wh = JSON.parse(fs.readFileSync(path.join(src, 'warehouses.json'), 'utf8'));
+wh.special_cargo_warehouses.forEach(w => add('warehouse', w.index, w.game, { name: w.name, size: w.size }));
+wh.vehicle_warehouses.forEach(w => add('vehicle-warehouse', w.index, w.game, { name: w.name }));
 
 // Properties
 list('office', C.offices, txt.offices);

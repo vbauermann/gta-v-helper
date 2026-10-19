@@ -204,5 +204,168 @@
     }
   ],
   "supplyDeliveryMinutes": 10,
-  "nightclubTechnicians": 5
+  "nightclubTechnicians": 5,
+  "nightclub": {
+    "note": "Produção do depósito do Nightclub por técnico: valor por unidade (já com o aumento de 35% das mercadorias de MC), capacidade por andar (1 a 5 andares) e minutos por unidade com o upgrade de equipamento (sem ele leva o dobro). Cargo and Shipments precisa de uma warehouse de cargo (CEO) ou de um Hangar. Fonte: GTA Wiki, Nightclubs/Warehouse Management.",
+    "floorsMax": 5,
+    "technicians": 5,
+    "noEquipmentFactor": 2,
+    "goods": [
+      {
+        "id": "cargo",
+        "name": "Cargo and Shipments",
+        "source": "cargo",
+        "unitValue": 10000,
+        "perFloor": 10,
+        "minutes": 70
+      },
+      {
+        "id": "sporting",
+        "name": "Sporting Goods",
+        "source": "bunker",
+        "unitValue": 5000,
+        "perFloor": 20,
+        "minutes": 40
+      },
+      {
+        "id": "imports",
+        "name": "South American Imports",
+        "source": "cocaine",
+        "unitValue": 27000,
+        "perFloor": 2,
+        "minutes": 120
+      },
+      {
+        "id": "pharma",
+        "name": "Pharmaceutical Research",
+        "source": "meth",
+        "unitValue": 11475,
+        "perFloor": 4,
+        "minutes": 60
+      },
+      {
+        "id": "organic",
+        "name": "Organic Produce",
+        "source": "weed",
+        "unitValue": 2025,
+        "perFloor": 16,
+        "minutes": 20
+      },
+      {
+        "id": "printing",
+        "name": "Printing & Copying",
+        "source": "documents",
+        "unitValue": 1350,
+        "perFloor": 12,
+        "minutes": 15
+      },
+      {
+        "id": "cash",
+        "name": "Cash Creation",
+        "source": "cash",
+        "unitValue": 4725,
+        "perFloor": 8,
+        "minutes": 30
+      }
+    ]
+  },
+  "cargo": {
+    "note": "Special Cargo (CEO): até 5 warehouses. Caixas: pequena 16, média 42, grande 111. Preço por caixa conforme a quantidade vendida de uma vez (a partir de N caixas → preço). Fonte: GTA Wiki, Warehouses (tabela Value per crate).",
+    "max": 5,
+    "sizes": {
+      "small": 16,
+      "medium": 42,
+      "large": 111
+    },
+    "sale": [
+      [
+        1,
+        10000
+      ],
+      [
+        2,
+        11000
+      ],
+      [
+        3,
+        12000
+      ],
+      [
+        4,
+        13000
+      ],
+      [
+        6,
+        13500
+      ],
+      [
+        8,
+        14000
+      ],
+      [
+        10,
+        14500
+      ],
+      [
+        15,
+        15000
+      ],
+      [
+        20,
+        15500
+      ],
+      [
+        25,
+        16000
+      ],
+      [
+        30,
+        16500
+      ],
+      [
+        35,
+        17000
+      ],
+      [
+        40,
+        17500
+      ],
+      [
+        45,
+        17750
+      ],
+      [
+        50,
+        18000
+      ],
+      [
+        60,
+        18250
+      ],
+      [
+        70,
+        18500
+      ],
+      [
+        80,
+        18750
+      ],
+      [
+        90,
+        19000
+      ],
+      [
+        100,
+        19500
+      ],
+      [
+        111,
+        20000
+      ]
+    ]
+  },
+  "vehicles": {
+    "note": "Vehicle Warehouse (Import/Export): uma por jogador, até 40 carros.",
+    "capacity": 40
+  }
 }

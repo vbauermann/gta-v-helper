@@ -1,6 +1,18 @@
 {
   "versions": [
     {
+      "version": "1.12.0",
+      "date": "2026-10-19",
+      "title": "Nightclub e warehouses",
+      "items": [
+        "Nightclub nos Negócios: cada técnico produz a mercadoria do negócio vinculado enquanto você joga. Mostra o valor do depósito, quanto tem de cada mercadoria e quando enche. Dá para marcar os andares do depósito (1 a 5) e o upgrade de equipamento, e avisa quando enche.",
+        "Special Cargo (CEO): marque até 5 warehouses, some as caixas com +1, +2 ou +3 e zere quando vender. O valor segue o preço por caixa do jogo. Fica verde com \"Pronto para vender\" quando uma enche.",
+        "Vehicle Warehouse (Import/Export): conta os carros guardados, até 40.",
+        "No mapa de Los Santos: as 22 warehouses de cargo (com o tamanho) e as 10 Vehicle Warehouses. Marcar no mapa ou nos Negócios é a mesma coisa.",
+        "O técnico de Cargo and Shipments é liberado com uma warehouse de cargo ou um Hangar."
+      ]
+    },
+    {
       "version": "1.11.0",
       "date": "2026-10-19",
       "title": "Avisos e lembretes",

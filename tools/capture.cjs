@@ -13,11 +13,13 @@ fs.writeFileSync(file, JSON.stringify({
   businesses: {
     cocaine: { ...biz(100, 3, all, 30), nightclub: true },
     bunker: biz(100, 40, all, 135),
+    weed: { ...biz(80, 20, all), nightclub: true },
     acid: biz(60, 160, { equipment: true }),
     meth: biz(0, 7, { equipment: true }),
     cash: biz(55, 40, { equipment: true })
   },
   cayoCooldownEndsAt: Date.now() + 47 * 60000,
+  nightclub: { owned: true, floors: 3, equipment: true, cargo: false, stock: { imports: 3, sporting: 22, organic: 30 }, activeMinutes: 0 },
   notices: {
     items: [
       { id: 'n4', kind: 'reminder', title: 'Conferir o Terrorbyte', body: 'Lembrete a cada 2h.', at: Date.now() - 3 * 60000, read: false },
@@ -31,7 +33,8 @@ fs.writeFileSync(file, JSON.stringify({
     ],
     weekSeen: null, updateSeen: null
   },
-  map: { owned: ['mc-cocaine-2', 'bunker-1', 'garage-1', 'office-4', 'agency-2'] }
+  map: { owned: ['mc-cocaine-2', 'bunker-1', 'garage-1', 'office-4', 'agency-2', 'nightclub-2', 'warehouse-6', 'warehouse-7', 'vehicle-warehouse-3'] },
+  warehouses: { cargo: [{ point: 'warehouse-6', crates: 64 }, { point: 'warehouse-7', crates: 42 }], vehicle: { point: 'vehicle-warehouse-3', cars: 17 } }
 }));
 process.env.GTA_HELPER_DATA = file;
 const out = path.join(__dirname, '../captures');
@@ -47,6 +50,7 @@ app.whenReady().then(async () => {
   win.webContents.on('console-message', e => { if (e.level === 'error') errors.push(e.message); });
   await wait(1200);
   // Bell: unread count, popover, then everything read.
+  const bellUnread = await win.webContents.executeJavaScript(`GtaNotices.unread(App.state.notices.items)`);
   const bellBefore = await win.webContents.executeJavaScript(`document.querySelector('#bell .bell-count') ? document.querySelector('#bell .bell-count').textContent : ''`);
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=overview]').click()`);
   await wait(400);
@@ -55,7 +59,7 @@ app.whenReady().then(async () => {
   await wait(700);
   fs.writeFileSync(path.join(out, 'bell.png'), (await win.webContents.capturePage()).toPNG());
   const bellAfter = await win.webContents.executeJavaScript(`(async () => { document.body.click(); await window.gta.notices('reminder-add', { title: 'Teste', every: 30 }); const s = await window.gta.state(); return { unread: GtaNotices.unread(s.notices.items), pop: document.getElementById('bell-pop').hidden, reminders: s.notices.reminders.length, nav: document.querySelector('[data-page=notices] .badge').textContent }; })()`);
-  if (bellBefore !== '3' || bellAfter.unread !== 0 || !bellAfter.pop || bellAfter.reminders !== 3 || bellAfter.nav !== '') errors.push(`avisos falharam: ${bellBefore} ${JSON.stringify(bellAfter)}`);
+  if (bellBefore !== String(bellUnread) || bellAfter.unread !== 0 || !bellAfter.pop || bellAfter.reminders !== 3 || bellAfter.nav !== '') errors.push(`avisos falharam: ${bellBefore} ${JSON.stringify(bellAfter)}`);
   for (const page of ['overview', 'businesses', 'cayo', 'casino', 'kortz', 'cluckin', 'drdre', 'doomsday', 'pacific', 'seriesa', 'humane', 'prison', 'fleeca', 'payouts', 'weekly', 'todos', 'map', 'settings', 'releases', 'notices']) {
     await win.webContents.executeJavaScript(`document.querySelector('[data-page=${page}]').click();
       ${page === 'cayo' ? "const rows = document.querySelectorAll('.loot-row'); for (const [r, n] of [[0, 2], [1, 3], [2, 1], [3, 1]]) { const b = rows[r].querySelectorAll('.qty button')[n - 1]; if (!b.classList.contains('active')) b.click(); }" : ''}`);
@@ -145,7 +149,7 @@ app.whenReady().then(async () => {
     return { pins: document.querySelectorAll('.map-viewport.ls .pin').length, owned: document.querySelectorAll('.map-viewport.ls .pin.owned').length,
       tip: document.querySelector('.map-tip').textContent, broken };
   })()`);
-  if (lsCheck.owned !== 5 || !lsCheck.tip.startsWith('Unit 2 Popular St') || lsCheck.broken.length || lsCheck.pins < 150) errors.push(`mapa ls: ${JSON.stringify(lsCheck)}`);
+  if (lsCheck.owned !== 9 || !lsCheck.tip.startsWith('Unit 2 Popular St') || lsCheck.broken.length || lsCheck.pins < 150) errors.push(`mapa ls: ${JSON.stringify(lsCheck)}`);
   fs.writeFileSync(path.join(out, 'mapa-garagem.png'), (await win.webContents.capturePage()).toPNG());
   await win.webContents.executeJavaScript(`${pin('El Burro Heights')}.click()`);
   await wait(300);
@@ -153,7 +157,7 @@ app.whenReady().then(async () => {
   await win.webContents.executeJavaScript(`[...document.querySelectorAll('.map-pop button')].find(b => b.textContent === 'Tenho este').click()`);
   await wait(500);
   const own = await win.webContents.executeJavaScript(`[App.state.businesses.meth.owned, App.state.map.owned.includes('mc-meth-2'), document.querySelectorAll('.map-viewport.ls .pin.owned').length]`);
-  if (!own[0] || !own[1] || own[2] !== 6) errors.push(`mapa tenho este: ${JSON.stringify(own)}`);
+  if (!own[0] || !own[1] || own[2] !== 10) errors.push(`mapa tenho este: ${JSON.stringify(own)}`);
   await win.webContents.executeJavaScript(`(() => {
     const g = [...document.querySelectorAll('.filter-group')].find(e => e.textContent.includes('Animais'));
     g.querySelector('.group-row .switch').click();
@@ -295,6 +299,29 @@ app.whenReady().then(async () => {
   await win.webContents.executeJavaScript(`document.querySelector('.card.biz[data-id=meth]').scrollIntoView({ block: 'center' })`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'businesses-delivery.png'), (await win.webContents.capturePage()).toPNG());
+  // Nightclub and warehouses: link the cargo technician, add crates, expand both cards.
+  const wh = await win.webContents.executeJavaScript(`(async () => {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    document.querySelector('[data-extra=cargo] .nightclub-toggle').click();
+    await wait(300);
+    document.querySelector('[data-extra=cargo] .biz-toggle').click();
+    await wait(200);
+    [...document.querySelectorAll('[data-extra=cargo] .wh-row')][0].querySelectorAll('.wh-actions button')[2].click();
+    await wait(300);
+    document.querySelector('[data-extra=nightclub] .biz-toggle').click();
+    await wait(300);
+    const s = await window.gta.state();
+    return { cargo: s.nightclub.cargo, crates: s.warehouses.cargo.map(w => w.crates), goods: document.querySelectorAll('[data-extra=nightclub] .nc-good').length,
+      linked: document.querySelectorAll('[data-extra=nightclub] .nc-good:not(.idle)').length, vehicles: !!document.querySelector('[data-extra=vehicles]'),
+      ready: document.querySelector('[data-extra=cargo]').classList.contains('ready') };
+  })()`);
+  await win.webContents.executeJavaScript(`document.querySelector('[data-extra=nightclub]').scrollIntoView({ block: 'start' })`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'businesses-nightclub.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-extra=cargo]').scrollIntoView({ block: 'start' })`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'businesses-warehouses.png'), (await win.webContents.capturePage()).toPNG());
+  if (!wh.cargo || wh.crates[0] !== 67 || wh.goods !== 7 || wh.linked !== 4 || !wh.vehicles || !wh.ready) errors.push(`nightclub/warehouses falhou: ${JSON.stringify(wh)}`);
   // Narrow window (minimum width): the bars must keep a usable width.
   win.setSize(1000, 880);
   await win.webContents.executeJavaScript(`document.querySelector('.content, main') && window.scrollTo(0, 0); document.querySelector('.card.biz').scrollIntoView({ block: 'start' })`);
