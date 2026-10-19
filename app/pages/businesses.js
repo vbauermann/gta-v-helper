@@ -188,25 +188,28 @@
       .sort((a, b) => b.s - a.s)
       .map(x => x.d);
     const others = defs.filter(d => !App.state.businesses[d.id].owned);
+    const extra = BizExtra.cards(render);
+    const extraOthers = BizExtra.others();
     UI.fill(root, 
       h('div', { class: 'page-head' },
         h('div', null,
           h('h1', null, 'Negócios'),
           h('div', { class: 'sub' }, 'Os timers contam tempo de jogo online. Fechou o GTA, eles param. Ao ressuprir ou vender no jogo, marque aqui.'))),
-      owned.length
-        ? h('div', { class: 'biz-list' }, owned.map(card))
+      owned.length || extra.length
+        ? h('div', { class: 'biz-list' }, owned.map(card), extra)
         : h('div', { class: 'card' }, h('div', { class: 'empty' }, h('div', { class: 'icon' }, icon('businesses', 24)),
           h('h3', null, 'Nenhum negócio marcado'), h('p', null, 'Marque abaixo os negócios que você tem.'))),
-      others.length
+      others.length || extraOthers.length
         ? h('div', { class: 'card pad others' },
           h('div', { class: 'card-head' }, h('h3', null, 'Outros negócios'), h('span', { class: 'hint' }, 'Marque os que você comprou')),
-          h('div', { class: 'rows' }, others.map(otherRow)))
+          h('div', { class: 'rows' }, others.map(otherRow), extraOthers))
         : null);
   }
 
   // Updates countdowns and bars in place every second, without rebuilding inputs.
   function onSecond() {
     if (!root) return;
+    BizExtra.onSecond(root);
     for (const el of root.querySelectorAll('.card.biz[data-id]')) {
       const def = App.data.catalog.businesses.find(d => d.id === el.dataset.id);
       const { p, tone, text, pill } = App.business(def);

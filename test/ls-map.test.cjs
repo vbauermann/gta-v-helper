@@ -18,7 +18,7 @@ test('dados do mapa: pontos dentro da imagem, ids únicos, categorias e ícones 
   }
   for (const c of map.groups.flatMap(g => g.categories)) {
     assert.ok(fs.existsSync(path.join(__dirname, '../app', c.icon)), c.icon);
-    if (c.business) assert.ok(catalog.businesses.some(b => b.id === c.business), c.business);
+    if (c.business) assert.ok(c.business === 'nightclub' || catalog.businesses.some(b => b.id === c.business), c.business);
   }
   for (const img of map.images) assert.ok(fs.existsSync(path.join(__dirname, '../app', img.src)), img.src);
   // Every garage shows its name on hover.
@@ -47,4 +47,14 @@ test('recusa animais e ids desconhecidos; desmarcar na tela de Negócios limpa o
   assert.throws(() => setOwned(map, [], 'animal-deer-1', true));
   assert.throws(() => setOwned(map, [], 'nada', true));
   assert.deepStrictEqual(forgetBusiness(map, ['bunker-2', 'garage-1'], 'bunker'), ['garage-1']);
+});
+
+test('warehouses: 22 de cargo com tamanho (até 5) e 10 de veículos (1)', () => {
+  const cats = new Map(map.groups.flatMap(g => g.categories).map(c => [c.id, c]));
+  const cargo = map.points.filter(p => p.category === 'warehouse');
+  assert.strictEqual(cargo.length, 22);
+  assert.ok(cargo.every(p => ['small', 'medium', 'large'].includes(p.size)));
+  assert.strictEqual(map.points.filter(p => p.category === 'vehicle-warehouse').length, 10);
+  assert.strictEqual(cats.get('warehouse').owns, 5);
+  assert.strictEqual(cats.get('vehicle-warehouse').owns, 1);
 });

@@ -8,6 +8,7 @@ const { createOverlay } = require('./overlay.cjs');
 const { createScanner } = require('./fp-scanner.cjs');
 const todos = require('./lib/todos.js');
 const notices = require('./lib/notices.js');
+const nightclub = require('./lib/nightclub.js');
 const lsMapRules = require('./lib/ls-map.js');
 const { createUpdater } = require('./updater.cjs');
 const { createWeeklyFeed } = require('./weekly-feed.cjs');
@@ -82,6 +83,16 @@ function tick() {
     dirty = true;
     for (const a of alerts) notify({ kind: a.kind, title: a.title, body: a.body, page: 'businesses' });
   }
+  // Nightclub warehouse: technicians produce while the timers count.
+  const nc = store.get().nightclub;
+  if (nc.owned) {
+    if (counting && delta > 0) { nc.activeMinutes += delta; dirty = true; }
+    const p = nightclub.project(catalog.nightclub, store.get(), nc.activeMinutes);
+    if (p.full && !nc.alerted) {
+      nc.alerted = true;
+      notify({ kind: 'full', title: 'Nightclub: depósito cheio', body: 'Os técnicos pararam. Hora de vender as mercadorias.', page: 'businesses' });
+    } else if (!p.full && nc.alerted) nc.alerted = false;
+  }
   // Periodic reminders: in-game ones only advance while the timers count.
   const s0 = store.get();
   if (delta > 0 && s0.notices.reminders.some(r => r.enabled)) {
@@ -108,6 +119,17 @@ function tick() {
     notify({ kind: 'heist', title: 'Cayo Perico liberado', body: 'O cooldown do golpe terminou.', page: 'cayo' });
   }
   broadcast();
+}
+
+// CEO and vehicle warehouses follow the places marked on the Los Santos map (crates/cars kept).
+const pointCategory = id => { const p = lsMap.points.find(x => x.id === id); return p ? p.category : null; };
+function syncWarehouses(s) {
+  const marked = cat => s.map.owned.filter(id => pointCategory(id) === cat);
+  const crates = new Map(s.warehouses.cargo.map(w => [w.point, w.crates]));
+  s.warehouses.cargo = marked('warehouse').map(point => ({ point, crates: crates.get(point) || 0 }));
+  const [vehicle = null] = marked('vehicle-warehouse');
+  if (vehicle !== s.warehouses.vehicle.point) s.warehouses.vehicle = { point: vehicle, cars: vehicle && s.warehouses.vehicle.point ? s.warehouses.vehicle.cars : 0 };
+  if (!nightclub.cargoSource(s)) s.nightclub.cargo = false;
 }
 
 // Every notice goes to the Avisos list (bell and page) and, when enabled, to Windows.
@@ -152,7 +174,10 @@ function persist() {
 
 function mutate(fn) {
   tick(); // Fold production up to now before applying the change.
+  // Any change can alter the Nightclub's technicians (links, owned businesses, warehouses).
+  nightclub.rebase(catalog.nightclub, store.get());
   fn(store.get());
+  syncWarehouses(store.get());
   dirty = true;
   persist();
   broadcast();
@@ -201,10 +226,49 @@ function registerIpc() {
   ipcMain.handle('gta:map-own', (_e, pointId, on) => mutate(s => {
     const r = lsMapRules.setOwned(lsMap, s.map.owned, String(pointId), !!on);
     s.map.owned = r.owned;
-    if (r.business && s.businesses[r.business.id].owned !== r.business.owned) {
+    if (r.business && r.business.id === 'nightclub') s.nightclub.owned = r.business.owned;
+    else if (r.business && s.businesses[r.business.id].owned !== r.business.owned) {
       store.rebase(r.business.id);
       s.businesses[r.business.id].owned = r.business.owned;
     }
+  }));
+
+  // Nightclub as a business: ownership, warehouse floors, equipment upgrade, cargo technician, sales.
+  ipcMain.handle('gta:nightclub', (_e, action, value) => mutate(s => {
+    const nc = s.nightclub;
+    const cfg = catalog.nightclub;
+    if (action === 'own') {
+      nc.owned = !!value;
+      if (!nc.owned) s.map.owned = lsMapRules.forgetBusiness(lsMap, s.map.owned, 'nightclub');
+    } else if (action === 'floors') nc.floors = Math.round(num(value, 1, cfg.floorsMax));
+    else if (action === 'equipment') nc.equipment = !!value;
+    else if (action === 'cargo') {
+      if (value && !nightclub.cargoSource(s)) throw new Error('Marque uma warehouse de cargo (CEO) ou um Hangar antes de vincular.');
+      const others = catalog.businesses.filter(d => s.businesses[d.id].nightclub).length;
+      if (value && others >= (catalog.nightclubTechnicians || 5)) throw new Error(`O Nightclub tem só ${catalog.nightclubTechnicians || 5} técnicos. Desvincule outro negócio antes.`);
+      nc.cargo = !!value;
+    } else if (action === 'sell') for (const g of cfg.goods) nc.stock[g.id] = 0;
+    else if (action === 'stock') {
+      const g = cfg.goods.find(x => x.id === (value && value.id));
+      if (!g) throw new TypeError('mercadoria desconhecida');
+      nc.stock[g.id] = num(value.units, 0, nightclub.capacity(cfg, nc, g));
+    } else throw new TypeError('ação desconhecida');
+    for (const g of cfg.goods) nc.stock[g.id] = Math.min(nc.stock[g.id], nightclub.capacity(cfg, nc, g));
+  }));
+
+  // Crates in a CEO warehouse and cars in the vehicle warehouse.
+  ipcMain.handle('gta:warehouse', (_e, action, value) => mutate(s => {
+    const w = s.warehouses;
+    if (action === 'crates') {
+      const item = w.cargo.find(x => x.point === (value && value.point));
+      if (!item) throw new TypeError('warehouse não encontrada');
+      const point = lsMap.points.find(p => p.id === item.point);
+      const cap = catalog.cargo.sizes[point.size] || catalog.cargo.sizes.large;
+      item.crates = Math.round(num(value.crates, 0, cap));
+    } else if (action === 'cars') {
+      if (!w.vehicle.point) throw new TypeError('marque a Vehicle Warehouse antes');
+      w.vehicle.cars = Math.round(num(value, 0, catalog.vehicles.capacity));
+    } else throw new TypeError('ação desconhecida');
   }));
 
   ipcMain.handle('gta:set-upgrades', (_e, id, upgrades) => mutate(s => {
@@ -234,7 +298,7 @@ function registerIpc() {
     const def = business(id);
     if (!def.nightclubGood) throw new Error(`${def.name} não pode ser vinculado ao Nightclub`);
     const max = catalog.nightclubTechnicians || 5;
-    const linked = catalog.businesses.filter(d => d.id !== id && s.businesses[d.id].nightclub).length;
+    const linked = catalog.businesses.filter(d => d.id !== id && s.businesses[d.id].nightclub).length + (s.nightclub.cargo ? 1 : 0);
     if (on && linked >= max) throw new Error(`O Nightclub tem só ${max} técnicos. Desvincule outro negócio antes.`);
     s.businesses[id].nightclub = !!on;
   }));

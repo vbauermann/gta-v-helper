@@ -58,6 +58,20 @@
      "icon": "assets/ls/icons/bunk.png",
      "owns": 1,
      "business": "bunker"
+    },
+    {
+     "id": "warehouse",
+     "title": "Warehouse de cargo (CEO)",
+     "icon": "assets/ls/icons/warehouse.png",
+     "owns": 5,
+     "note": "Marcar aqui coloca a warehouse no card Special Cargo dos Negócios."
+    },
+    {
+     "id": "vehicle-warehouse",
+     "title": "Vehicle Warehouse",
+     "icon": "assets/ls/icons/vehicle_warehouse.png",
+     "owns": 1,
+     "note": "Import/Export. Marcar aqui coloca a warehouse nos Negócios."
     }
    ]
   },
@@ -94,7 +108,8 @@
      "id": "nightclub",
      "title": "Nightclub",
      "icon": "assets/ls/icons/nc.png",
-     "owns": 1
+     "owns": 1,
+     "business": "nightclub"
     },
     {
      "id": "arcade",
@@ -573,6 +588,252 @@
    "x": 0.05227,
    "y": 0.55653,
    "name": "Chumash"
+  },
+  {
+   "id": "warehouse-1",
+   "category": "warehouse",
+   "x": 0.45209,
+   "y": 0.89009,
+   "name": "Pacific Bait Storage",
+   "size": "small"
+  },
+  {
+   "id": "warehouse-2",
+   "category": "warehouse",
+   "x": 0.31052,
+   "y": 0.77958,
+   "name": "White Widow Garage",
+   "size": "small"
+  },
+  {
+   "id": "warehouse-3",
+   "category": "warehouse",
+   "x": 0.55692,
+   "y": 0.76046,
+   "name": "Celltowa Unit",
+   "size": "small"
+  },
+  {
+   "id": "warehouse-4",
+   "category": "warehouse",
+   "x": 0.47615,
+   "y": 0.83833,
+   "name": "Convenience Store Lockup",
+   "size": "small"
+  },
+  {
+   "id": "warehouse-5",
+   "category": "warehouse",
+   "x": 0.39246,
+   "y": 0.6572,
+   "name": "Foreclosed Garage",
+   "size": "small"
+  },
+  {
+   "id": "warehouse-6",
+   "category": "warehouse",
+   "x": 0.31557,
+   "y": 0.84396,
+   "name": "Xero Gas Factory",
+   "size": "large"
+  },
+  {
+   "id": "warehouse-7",
+   "category": "warehouse",
+   "x": 0.28748,
+   "y": 0.74157,
+   "name": "Derriere Lingerie Backlot",
+   "size": "medium"
+  },
+  {
+   "id": "warehouse-8",
+   "category": "warehouse",
+   "x": 0.33658,
+   "y": 0.90418,
+   "name": "Bilgeco Warehouse",
+   "size": "large"
+  },
+  {
+   "id": "warehouse-9",
+   "category": "warehouse",
+   "x": 0.47951,
+   "y": 0.9278,
+   "name": "Pier 400 Utility Building",
+   "size": "small"
+  },
+  {
+   "id": "warehouse-10",
+   "category": "warehouse",
+   "x": 0.64074,
+   "y": 0.85294,
+   "name": "GEE Warehouse",
+   "size": "medium"
+  },
+  {
+   "id": "warehouse-11",
+   "category": "warehouse",
+   "x": 0.40606,
+   "y": 0.90103,
+   "name": "LS Marine Building 3",
+   "size": "medium"
+  },
+  {
+   "id": "warehouse-12",
+   "category": "warehouse",
+   "x": 0.50756,
+   "y": 0.72802,
+   "name": "Railyard Warehouse",
+   "size": "medium"
+  },
+  {
+   "id": "warehouse-13",
+   "category": "warehouse",
+   "x": 0.37955,
+   "y": 0.82376,
+   "name": "Fridgit Annexe",
+   "size": "medium"
+  },
+  {
+   "id": "warehouse-14",
+   "category": "warehouse",
+   "x": 0.40851,
+   "y": 0.7873,
+   "name": "Disused Factory Outlet",
+   "size": "medium"
+  },
+  {
+   "id": "warehouse-15",
+   "category": "warehouse",
+   "x": 0.48889,
+   "y": 0.64511,
+   "name": "Discount Retail Unit",
+   "size": "medium"
+  },
+  {
+   "id": "warehouse-16",
+   "category": "warehouse",
+   "x": 0.56065,
+   "y": 0.8048,
+   "name": "Logistics Depot",
+   "size": "large"
+  },
+  {
+   "id": "warehouse-17",
+   "category": "warehouse",
+   "x": 0.53989,
+   "y": 0.74978,
+   "name": "Darnell Bros Warehouse",
+   "size": "large"
+  },
+  {
+   "id": "warehouse-18",
+   "category": "warehouse",
+   "x": 0.57453,
+   "y": 0.8566,
+   "name": "Wholesale Furniture",
+   "size": "large"
+  },
+  {
+   "id": "warehouse-19",
+   "category": "warehouse",
+   "x": 0.5722,
+   "y": 0.88522,
+   "name": "Cypress Warehouses",
+   "size": "large"
+  },
+  {
+   "id": "warehouse-20",
+   "category": "warehouse",
+   "x": 0.4148,
+   "y": 0.65572,
+   "name": "West Vinewood Backlot",
+   "size": "large"
+  },
+  {
+   "id": "warehouse-21",
+   "category": "warehouse",
+   "x": 0.51248,
+   "y": 0.83738,
+   "name": "Old Power Station",
+   "size": "medium"
+  },
+  {
+   "id": "warehouse-22",
+   "category": "warehouse",
+   "x": 0.45731,
+   "y": 0.86026,
+   "name": "Walker & Sons Warehouse",
+   "size": "large"
+  },
+  {
+   "id": "vehicle-warehouse-1",
+   "category": "vehicle-warehouse",
+   "x": 0.36667,
+   "y": 0.8233,
+   "name": "La Puerta"
+  },
+  {
+   "id": "vehicle-warehouse-2",
+   "category": "vehicle-warehouse",
+   "x": 0.57076,
+   "y": 0.82971,
+   "name": "La Mesa"
+  },
+  {
+   "id": "vehicle-warehouse-3",
+   "category": "vehicle-warehouse",
+   "x": 0.43633,
+   "y": 0.82684,
+   "name": "Davis"
+  },
+  {
+   "id": "vehicle-warehouse-4",
+   "category": "vehicle-warehouse",
+   "x": 0.44993,
+   "y": 0.78145,
+   "name": "Strawberry"
+  },
+  {
+   "id": "vehicle-warehouse-5",
+   "category": "vehicle-warehouse",
+   "x": 0.59637,
+   "y": 0.77868,
+   "name": "Murrieta Heights"
+  },
+  {
+   "id": "vehicle-warehouse-6",
+   "category": "vehicle-warehouse",
+   "x": 0.54602,
+   "y": 0.86078,
+   "name": "Cypress Flats"
+  },
+  {
+   "id": "vehicle-warehouse-7",
+   "category": "vehicle-warehouse",
+   "x": 0.66375,
+   "y": 0.81231,
+   "name": "El Burro Heights"
+  },
+  {
+   "id": "vehicle-warehouse-8",
+   "category": "vehicle-warehouse",
+   "x": 0.4633,
+   "y": 0.927,
+   "name": "Elysian Island"
+  },
+  {
+   "id": "vehicle-warehouse-9",
+   "category": "vehicle-warehouse",
+   "x": 0.38045,
+   "y": 0.85859,
+   "name": "LSIA"
+  },
+  {
+   "id": "vehicle-warehouse-10",
+   "category": "vehicle-warehouse",
+   "x": 0.30078,
+   "y": 0.85581,
+   "name": "LSIA"
   },
   {
    "id": "office-1",

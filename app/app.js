@@ -93,7 +93,7 @@
       h('div', { class: 'sub' }, g.sub));
     watch.title = s.settings.paused ? 'Retomar timers' : 'Pausar timers (modo história, menu, loading)';
 
-    const attention = App.owned().filter(d => App.business(d).tone !== 'ok').length;
+    const attention = App.owned().filter(d => App.business(d).tone !== 'ok').length + BizExtra.attention();
     document.querySelector('[data-page=businesses] .badge').textContent = attention ? String(attention) : '';
     App.pages.releases.badge();
     App.pages.notices.renderBell();

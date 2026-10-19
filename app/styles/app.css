@@ -29,6 +29,12 @@
 .biz-documents { --biz-c: #ffb84d; }
 .biz-bunker { --biz-c: #ff8a5c; }
 .biz-acid { --biz-c: #ff7fb1; }
+.biz-nightclub { --biz-c: #e879f9; }
+.biz-cargo { --biz-c: #d6b98c; }
+.biz-vehicles { --biz-c: #8fb3ff; }
+:root[data-theme='light'] .biz-nightclub { --biz-c: #b43fc9; }
+:root[data-theme='light'] .biz-cargo { --biz-c: #9a7642; }
+:root[data-theme='light'] .biz-vehicles { --biz-c: #3d6fd6; }
 :root[data-theme='light'] .biz-cocaine { --biz-c: #2f8fd6; }
 :root[data-theme='light'] .biz-meth { --biz-c: #12a594; }
 :root[data-theme='light'] .biz-cash { --biz-c: #12a46b; }
@@ -539,3 +545,24 @@ td:last-child, th:last-child { text-align: right; }
 .reminder-row select, .reminder-add select { width: 160px; flex: none; }
 .reminder-game { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); white-space: nowrap; }
 .reminder-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+
+/* ---------- nightclub and warehouses ---------- */
+.nc-goods, .wh-list { display: flex; flex-direction: column; gap: 6px; }
+.nc-good, .wh-row {
+  display: grid; align-items: center; gap: 12px; padding: 6px 0; font-size: 12.5px;
+  grid-template-columns: 28px minmax(170px, 230px) minmax(80px, 1fr) 60px 110px 120px;
+}
+.wh-row { grid-template-columns: minmax(170px, 230px) minmax(80px, 1fr) 80px 120px auto; }
+.wh-row .input { width: 80px; }
+.nc-good.idle { opacity: 0.6; }
+.nc-good-name { display: flex; flex-direction: column; min-width: 0; }
+.nc-good-name b { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nc-units, .nc-value { text-align: right; font-weight: 600; }
+.nc-state { text-align: right; white-space: nowrap; }
+.nc-gap { margin-left: 14px; }
+.nc-report { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+.wh-actions { display: flex; align-items: center; gap: 4px; }
+.wh-add { display: flex; align-items: center; gap: 8px; }
+.wh-add .input.wh-pick { width: 340px; max-width: 100%; }
+.wh-note { margin: 10px 0 0; }
+.wh-row.full .nc-value { color: var(--ok); }
