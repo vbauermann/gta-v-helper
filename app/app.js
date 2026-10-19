@@ -96,6 +96,7 @@
     const attention = App.owned().filter(d => App.business(d).tone !== 'ok').length;
     document.querySelector('[data-page=businesses] .badge').textContent = attention ? String(attention) : '';
     App.pages.releases.badge();
+    App.pages.notices.renderBell();
     const open = App.pages.todos.pending(s);
     document.querySelector('[data-page=todos] .badge').textContent = open ? String(open) : '';
     renderUpdate(s.updater);
@@ -119,6 +120,7 @@
 
   function navigate(page) {
     App.page = page;
+    App.pages.notices.closeBell();
     for (const b of document.querySelectorAll('#nav .nav-item')) b.classList.toggle('active', b.dataset.page === page);
     const root = document.getElementById('page');
     root.replaceChildren();
@@ -147,6 +149,9 @@
     App.data = await window.gta.data();
     App.setState(await window.gta.state());
     window.gta.onState(state => App.setState(state));
+    App.pages.notices.setupBell();
+    // Clicking a Windows notification opens the page it is about.
+    window.gta.onNavigate(page => { if (App.pages[page]) navigate(page); });
     // A new week arrived from GitHub: redraw the pages that show it.
     window.gta.onWeekly(weekly => {
       App.data.weekly = weekly;

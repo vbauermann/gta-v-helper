@@ -35,13 +35,53 @@
         section('bell', 'Avisos',
           setting('Avisar quando faltar', 'Minutos de jogo antes de parar. 0 desliga o aviso antecipado.',
             numberInput(s.warnMinutes, { min: 0, max: 120, step: 1, class: 'small', onchange: e => set({ warnMinutes: Number(e.target.value) || 0 }) })),
-          checkbox('Notificações do Windows', s.notify, e => set({ notify: e.target.checked })),
+          checkbox('Notificações do Windows', s.notify, e => set({ notify: e.target.checked }), 'Os avisos sempre ficam no sino e no menu Avisos. Isto liga também o pop-up do Windows.'),
+          setting('Testar', 'Manda um aviso de teste agora.',
+            h('button', { class: 'btn sm', type: 'button', onclick: () => App.act(window.gta.notices('test')) }, icon('bell', 15), 'Enviar teste')),
           checkbox('Fechar mantém na bandeja', s.closeToTray, e => set({ closeToTray: e.target.checked }), 'Os timers continuam com a janela fechada.')),
+        remindersSection(),
         updateSection(),
         section('palette', 'Aparência',
           setting('Tema', null, segmented([{ value: 'dark', label: 'Escuro' }, { value: 'light', label: 'Claro' }], s.theme || 'dark', v => set({ theme: v })))),
         section('info', 'Sobre os números',
           App.data.catalog.notes.map(n => h('p', { class: 'muted small note' }, n)))));
+  }
+
+  // Periodic reminders ("Conferir o Terrorbyte a cada 2h"). In-game ones count only while the timers count.
+  function remindersSection() {
+    const N = GtaNotices;
+    const list = App.state.notices.reminders;
+    const notices = (action, value) => App.act(window.gta.notices(action, value));
+    const intervals = every => {
+      const opts = N.INTERVALS.includes(every) ? N.INTERVALS : [...N.INTERVALS, every].sort((a, b) => a - b);
+      return opts.map(m => ({ value: String(m), label: `a cada ${N.formatEvery(m)}` }));
+    };
+    const rows = list.map(r => h('div', { class: `reminder-row${r.enabled ? '' : ' off'}` },
+      h('input', { type: 'checkbox', class: 'switch', checked: r.enabled, title: r.enabled ? 'Desligar' : 'Ligar', onchange: e => notices('reminder-update', { id: r.id, enabled: e.target.checked }) }),
+      h('input', { class: 'input grow', type: 'text', maxlength: 80, value: r.title, 'aria-label': 'Nome do lembrete',
+        onchange: e => e.target.value.trim() ? notices('reminder-update', { id: r.id, title: e.target.value }) : (e.target.value = r.title) }),
+      select(intervals(r.every), String(r.every), { class: 'small', onchange: e => notices('reminder-update', { id: r.id, every: Number(e.target.value) }) }),
+      h('label', { class: 'reminder-game', title: 'Só conta o tempo com o GTA aberto e os timers rodando' },
+        h('input', { type: 'checkbox', checked: r.inGame, onchange: e => notices('reminder-update', { id: r.id, inGame: e.target.checked }) }), 'só com o GTA aberto'),
+      h('button', { class: 'btn ghost icon sm', type: 'button', title: 'Apagar lembrete', onclick: () => notices('reminder-remove', { id: r.id }) }, icon('x', 15))));
+    const title = h('input', { class: 'input grow', type: 'text', maxlength: 80, placeholder: 'Novo lembrete, ex.: Conferir o Terrorbyte' });
+    const every = select(intervals(120), '120', { class: 'small' });
+    const add = () => {
+      if (!title.value.trim()) return title.focus();
+      notices('reminder-add', { title: title.value, every: Number(every.value) });
+    };
+    title.addEventListener('keydown', e => { if (e.key === 'Enter') add(); });
+    const have = new Set(list.map(r => r.title.toLowerCase()));
+    const chips = N.SUGGESTIONS.filter(x => !have.has(x.title.toLowerCase()));
+    return h('div', { class: 'card pad settings-card reminders-card' },
+      h('div', { class: 'card-head' }, h('h3', null, icon('clock', 18), 'Lembretes')),
+      h('p', { class: 'muted small' }, 'Avisos que se repetem de tempo em tempo. Aparecem no sino, no menu Avisos e no Windows.'),
+      rows.length ? h('div', { class: 'reminder-list' }, rows) : null,
+      h('div', { class: 'reminder-add' }, title, every,
+        h('button', { class: 'btn primary sm', type: 'button', onclick: add }, icon('plus', 15), 'Adicionar')),
+      chips.length ? h('div', { class: 'reminder-chips' },
+        h('span', { class: 'upgrades-label' }, 'Sugestões'),
+        chips.map(x => h('button', { class: 'chip', type: 'button', onclick: () => notices('reminder-add', x) }, `${x.title} · ${N.formatEvery(x.every)}`))) : null);
   }
 
   function updateSection() {

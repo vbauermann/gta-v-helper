@@ -12,6 +12,7 @@
     <header class="titlebar">
       <div class="brand" id="brand">GTA Helper</div>
       <div class="spacer"></div>
+      <button class="bell-btn" id="bell" type="button" title="Avisos" aria-label="Avisos" aria-haspopup="true"></button>
       <span class="game-pill" id="game-pill"></span>
     </header>
     <div class="body">
@@ -35,6 +36,7 @@
         <button class="nav-item" data-page="fleeca" data-icon="bank"><span class="label">Fleeca Job</span></button>
         <button class="nav-item" data-page="payouts" data-icon="payouts"><span class="label">Tabela de payouts</span></button>
         <div class="nav-section">App</div>
+        <button class="nav-item" data-page="notices" data-icon="bell"><span class="label">Avisos</span><span class="badge hot"></span></button>
         <button class="nav-item" data-page="settings" data-icon="settings"><span class="label">Ajustes</span></button>
         <button class="nav-item" data-page="releases" data-icon="notes"><span class="label">Novidades</span><span class="badge"></span></button>
         <div class="nav-fill"></div>
@@ -46,11 +48,13 @@
       </main>
     </div>
   </div>
+  <div class="bell-pop" id="bell-pop" hidden></div>
   <div class="toasts" id="toasts"></div>
   <script src="../lib/production.js"></script>
   <script src="../lib/heists.js"></script>
   <script src="../lib/hotkeys.js"></script>
   <script src="../lib/todos.js"></script>
+  <script src="../lib/notices.js"></script>
   <script src="icons.js"></script>
   <script src="ui.js"></script>
   <script src="pages/overview.js"></script>
@@ -66,6 +70,7 @@
   <script src="pages/payouts.js"></script>
   <script src="pages/weekly.js"></script>
   <script src="pages/todos.js"></script>
+  <script src="pages/notices.js"></script>
   <script src="pages/settings.js"></script>
   <script src="pages/releases.js"></script>
   <script src="app.js"></script>

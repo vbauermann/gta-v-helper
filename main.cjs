@@ -7,6 +7,7 @@ const { createGameWatcher } = require('./game-watcher.cjs');
 const { createOverlay } = require('./overlay.cjs');
 const { createScanner } = require('./fp-scanner.cjs');
 const todos = require('./lib/todos.js');
+const notices = require('./lib/notices.js');
 const lsMapRules = require('./lib/ls-map.js');
 const { createUpdater } = require('./updater.cjs');
 const { createWeeklyFeed } = require('./weekly-feed.cjs');
@@ -79,9 +80,15 @@ function tick() {
   if (counting && delta > 0) {
     const alerts = advance(store.get(), catalog, delta);
     dirty = true;
-    if (store.get().settings.notify && Notification.isSupported()) {
-      for (const a of alerts) new Notification({ title: a.title, body: a.body, silent: false }).show();
+    for (const a of alerts) notify({ kind: a.kind, title: a.title, body: a.body, page: 'businesses' });
+  }
+  // Periodic reminders: in-game ones only advance while the timers count.
+  const s0 = store.get();
+  if (delta > 0 && s0.notices.reminders.some(r => r.enabled)) {
+    for (const r of notices.advance(s0.notices.reminders, delta, counting)) {
+      notify({ kind: 'reminder', title: r.title, body: `Lembrete a cada ${notices.formatEvery(r.every)}.` });
     }
+    dirty = true;
   }
   // A daily boost that reached its 24 h ends even with units left.
   for (const def of catalog.businesses) {
@@ -98,11 +105,43 @@ function tick() {
   if (cd && now >= cd) {
     store.get().cayoCooldownEndsAt = null;
     dirty = true;
-    if (store.get().settings.notify && Notification.isSupported()) {
-      new Notification({ title: 'Cayo Perico liberado', body: 'O cooldown do golpe terminou.' }).show();
-    }
+    notify({ kind: 'heist', title: 'Cayo Perico liberado', body: 'O cooldown do golpe terminou.', page: 'cayo' });
   }
   broadcast();
+}
+
+// Every notice goes to the Avisos list (bell and page) and, when enabled, to Windows.
+function notify(notice) {
+  const s = store.get();
+  const item = notices.push(s.notices.items, notice, Date.now());
+  dirty = true;
+  if (s.settings.notify && Notification.isSupported()) {
+    const n = new Notification({ title: item.title, body: item.body, silent: false });
+    n.on('click', () => {
+      showWindow();
+      if (mainWindow && !mainWindow.isDestroyed()) mainWindow.webContents.send('gta:navigate', item.page || 'notices');
+    });
+    n.show();
+  }
+  return item;
+}
+
+// New week of bonuses: one notice per week (the first one seen only records it).
+function weekNotice(w) {
+  const n = store.get().notices;
+  if (!w || !w.resetUtc || n.weekSeen === w.resetUtc) return;
+  const first = n.weekSeen === null;
+  n.weekSeen = w.resetUtc;
+  dirty = true;
+  if (!first) notify({ kind: 'week', title: 'Bônus da semana novos', body: 'Confira os bônus e descontos desta semana.', page: 'weekly' });
+}
+
+function updateNotice() {
+  const u = updater && updater.state();
+  const n = store.get().notices;
+  if (!u || u.state !== 'ready' || n.updateSeen === u.version) return;
+  n.updateSeen = u.version;
+  notify({ kind: 'update', title: `Versão ${u.version} pronta`, body: 'Reinicie o app para usar a versão nova.', page: 'settings' });
 }
 
 function persist() {
@@ -288,6 +327,29 @@ function registerIpc() {
     } else throw new TypeError('ação desconhecida');
   }));
 
+  ipcMain.handle('gta:notices', (_e, action, value) => mutate(s => {
+    const n = s.notices;
+    const reminder = () => {
+      const r = n.reminders.find(x => x.id === (value && value.id));
+      if (!r) throw new TypeError('lembrete não encontrado');
+      return r;
+    };
+    if (action === 'read-all') for (const item of n.items) item.read = true;
+    else if (action === 'clear') n.items = [];
+    else if (action === 'test') notify({ kind: 'test', title: 'Teste de aviso', body: 'Se você está vendo isso, os avisos estão funcionando.', page: 'settings' });
+    else if (action === 'reminder-add') {
+      if (n.reminders.length >= notices.MAX_REMINDERS) throw new TypeError('limite de lembretes');
+      n.reminders.push(notices.sanitizeReminder({ title: value && value.title, every: value && value.every }, Date.now()));
+    } else if (action === 'reminder-update') {
+      const r = reminder();
+      const patch = value && typeof value === 'object' ? value : {};
+      const next = notices.sanitizeReminder({ ...r, ...patch, id: r.id, elapsed: 'every' in patch ? 0 : r.elapsed }, Date.now());
+      Object.assign(r, next);
+    } else if (action === 'reminder-reset') reminder().elapsed = 0;
+    else if (action === 'reminder-remove') n.reminders.splice(n.reminders.indexOf(reminder()), 1);
+    else throw new TypeError('ação desconhecida');
+  }));
+
   ipcMain.handle('gta:update', (_e, action) => {
     if (action === 'check') updater.check();
     else if (action === 'install') updater.install();
@@ -370,14 +432,18 @@ if (!app.requestSingleInstanceLock()) {
     weeklyFeed = createWeeklyFeed({
       bundled: bundledWeekly,
       cacheFile: path.join(path.dirname(dataFile), 'weekly-cache.json'),
-      onChange: w => { if (mainWindow && !mainWindow.isDestroyed()) mainWindow.webContents.send('gta:weekly', w); }
+      onChange: w => {
+        if (mainWindow && !mainWindow.isDestroyed()) mainWindow.webContents.send('gta:weekly', w);
+        weekNotice(w);
+      }
     });
     wikiFeed = createWikiFeed({
       bundled: bundledWiki,
       cacheFile: path.join(path.dirname(dataFile), 'wiki-cache.json'),
       onChange: w => { if (mainWindow && !mainWindow.isDestroyed()) mainWindow.webContents.send('gta:wiki', w); }
     });
-    updater = createUpdater({ onChange: broadcast, beforeInstall: () => { quitting = true; } });
+    weekNotice(weeklyFeed.get());
+    updater = createUpdater({ onChange: () => { updateNotice(); broadcast(); }, beforeInstall: () => { quitting = true; } });
     watcher = createGameWatcher({ onChange: () => tick() });
     watcher.start();
     overlay = createOverlay({

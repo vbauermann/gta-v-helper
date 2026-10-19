@@ -18,6 +18,19 @@ fs.writeFileSync(file, JSON.stringify({
     cash: biz(55, 40, { equipment: true })
   },
   cayoCooldownEndsAt: Date.now() + 47 * 60000,
+  notices: {
+    items: [
+      { id: 'n4', kind: 'reminder', title: 'Conferir o Terrorbyte', body: 'Lembrete a cada 2h.', at: Date.now() - 3 * 60000, read: false },
+      { id: 'n3', kind: 'full', title: 'Acid Lab: estoque cheio', body: 'A produção parou. Hora de vender.', page: 'businesses', at: Date.now() - 25 * 60000, read: false },
+      { id: 'n2', kind: 'warn', title: 'Bunker: suprimentos acabando', body: 'Acabam em 10min de jogo.', page: 'businesses', at: Date.now() - 70 * 60000, read: false },
+      { id: 'n1', kind: 'heist', title: 'Cayo Perico liberado', body: 'O cooldown do golpe terminou.', page: 'cayo', at: Date.now() - 26 * 3600000, read: true }
+    ],
+    reminders: [
+      { id: 'r1', title: 'Conferir o Terrorbyte', every: 120, enabled: true, inGame: true, elapsed: 47 },
+      { id: 'r2', title: 'Beber água e esticar as pernas', every: 60, enabled: false, inGame: false, elapsed: 0 }
+    ],
+    weekSeen: null, updateSeen: null
+  },
   map: { owned: ['mc-cocaine-2', 'bunker-1', 'garage-1', 'office-4', 'agency-2'] }
 }));
 process.env.GTA_HELPER_DATA = file;
@@ -33,7 +46,17 @@ app.whenReady().then(async () => {
   const errors = [];
   win.webContents.on('console-message', e => { if (e.level === 'error') errors.push(e.message); });
   await wait(1200);
-  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'kortz', 'cluckin', 'drdre', 'doomsday', 'pacific', 'seriesa', 'humane', 'prison', 'fleeca', 'payouts', 'weekly', 'todos', 'map', 'settings', 'releases']) {
+  // Bell: unread count, popover, then everything read.
+  const bellBefore = await win.webContents.executeJavaScript(`document.querySelector('#bell .bell-count') ? document.querySelector('#bell .bell-count').textContent : ''`);
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=overview]').click()`);
+  await wait(400);
+  fs.writeFileSync(path.join(out, 'bell-count.png'), (await win.webContents.capturePage({ x: 940, y: 0, width: 380, height: 44 })).toPNG());
+  await win.webContents.executeJavaScript(`document.getElementById('bell').click()`);
+  await wait(700);
+  fs.writeFileSync(path.join(out, 'bell.png'), (await win.webContents.capturePage()).toPNG());
+  const bellAfter = await win.webContents.executeJavaScript(`(async () => { document.body.click(); await window.gta.notices('reminder-add', { title: 'Teste', every: 30 }); const s = await window.gta.state(); return { unread: GtaNotices.unread(s.notices.items), pop: document.getElementById('bell-pop').hidden, reminders: s.notices.reminders.length, nav: document.querySelector('[data-page=notices] .badge').textContent }; })()`);
+  if (bellBefore !== '3' || bellAfter.unread !== 0 || !bellAfter.pop || bellAfter.reminders !== 3 || bellAfter.nav !== '') errors.push(`avisos falharam: ${bellBefore} ${JSON.stringify(bellAfter)}`);
+  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'kortz', 'cluckin', 'drdre', 'doomsday', 'pacific', 'seriesa', 'humane', 'prison', 'fleeca', 'payouts', 'weekly', 'todos', 'map', 'settings', 'releases', 'notices']) {
     await win.webContents.executeJavaScript(`document.querySelector('[data-page=${page}]').click();
       ${page === 'cayo' ? "const rows = document.querySelectorAll('.loot-row'); for (const [r, n] of [[0, 2], [1, 3], [2, 1], [3, 1]]) { const b = rows[r].querySelectorAll('.qty button')[n - 1]; if (!b.classList.contains('active')) b.click(); }" : ''}`);
     await wait(700);

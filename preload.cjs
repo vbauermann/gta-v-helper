@@ -14,6 +14,13 @@ contextBridge.exposeInMainWorld('gta', Object.freeze({
   setSettings: patch => ipcRenderer.invoke('gta:set-settings', patch),
   todo: (action, value) => ipcRenderer.invoke('gta:todo', action, value),
   update: action => ipcRenderer.invoke('gta:update', action),
+  notices: (action, value) => ipcRenderer.invoke('gta:notices', action, value),
+  onNavigate: callback => {
+    if (typeof callback !== 'function') throw new TypeError('callback');
+    const listener = (_event, page) => callback(String(page));
+    ipcRenderer.on('gta:navigate', listener);
+    return () => ipcRenderer.removeListener('gta:navigate', listener);
+  },
   onWeekly: callback => {
     if (typeof callback !== 'function') throw new TypeError('callback');
     const listener = (_event, weekly) => callback(weekly);

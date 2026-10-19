@@ -28,6 +28,7 @@ App desktop Windows (Electron, JS puro, sem bundler) de apoio ao GTA Online. Don
 | `data/ls-map.json`, `lib/ls-map.js`, `app/pages/map.js` | Mapa de Los Santos (negócios, propriedades, garagens, animais), gerado por `tools/build-ls-map.cjs`; zoom em `app/map-zoom.js` |
 | `data/wiki.json`, `wiki-feed.cjs`, `app/pages/heist-wiki.js` | Wiki dos golpes (abas Visão geral, Setups, Final em cada golpe; baixada do repositório). Ver [ADR 0015](docs/adr/0015-wiki-dos-golpes.md) e a skill gta-heist-wiki |
 | `lib/todos.js`, `app/pages/todos.js` | Tarefas diárias e semanais |
+| `lib/notices.js`, `app/pages/notices.js` | Avisos: sino no título, menu Avisos, lembretes periódicos (configurados nos Ajustes); todo aviso passa por `notify()` no `main.cjs`. Ver [ADR 0016](docs/adr/0016-avisos.md) |
 | `data/weekly.json`, `weekly-feed.cjs`, `app/pages/weekly.js` | Bônus da semana (baixados do repositório) |
 | `updater.cjs` | Atualização automática pelos releases do GitHub |
 | `data/release-notes.json`, `app/pages/releases.js` | Release notes e aba Novidades |
