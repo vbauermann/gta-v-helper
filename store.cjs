@@ -11,6 +11,7 @@ const DEFAULT_SETTINGS = Object.freeze({
   warnMinutes: 10,
   notify: true,
   closeToTray: true,
+  screenRead: true, // read the Terrorbyte / Nightclub screens (biz-scanner.cjs)
   theme: 'dark',
   overlay: Object.freeze({ print: 'all', size: 'md', opacity: 0.92, hotkeys: true, auto: true, pos: null, keys: null })
 });
