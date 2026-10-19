@@ -272,6 +272,13 @@ app.whenReady().then(async () => {
   await win.webContents.executeJavaScript(`document.querySelector('.card.biz[data-id=meth]').scrollIntoView({ block: 'center' })`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'businesses-delivery.png'), (await win.webContents.capturePage()).toPNG());
+  // Narrow window (minimum width): the bars must keep a usable width.
+  win.setSize(1000, 880);
+  await win.webContents.executeJavaScript(`document.querySelector('.content, main') && window.scrollTo(0, 0); document.querySelector('.card.biz').scrollIntoView({ block: 'start' })`);
+  await wait(600);
+  fs.writeFileSync(path.join(out, 'businesses-narrow.png'), (await win.webContents.capturePage()).toPNG());
+  const narrowBar = await win.webContents.executeJavaScript(`Math.min(...[...document.querySelectorAll('.card.biz .meter .bar')].map(b => b.getBoundingClientRect().width))`);
+  if (narrowBar < 150) errors.push(`barra espremida na janela estreita: ${narrowBar}px`);
   if (!after.nightclub || after.acidToggle || !after.ready) errors.push(`nightclub/pronto falhou: ${JSON.stringify(after)}`);
   if (!(after.delivery > 9) || !after.staff || !after.status.startsWith('Suprimentos chegando')) errors.push(`round trip falhou: ${JSON.stringify(after)}`);
   console.log(JSON.stringify({ out, errors, after }));

@@ -66,7 +66,7 @@
 .nightclub-toggle.on { color: #e879f9; background: rgba(232, 121, 249, 0.14); border: 1px solid rgba(232, 121, 249, 0.4); }
 .biz .meta, .meta { color: var(--muted); font-size: 12px; margin-top: 1px; }
 .biz-row {
-  display: grid; grid-template-columns: 36px minmax(150px, 220px) minmax(0, 1fr) auto;
+  display: grid; grid-template-columns: 36px minmax(140px, 200px) minmax(0, 1fr) auto;
   align-items: center; gap: 16px; padding: 14px 16px; cursor: pointer;
 }
 .biz-row:hover { background: var(--card-2); }
@@ -77,6 +77,13 @@
 .meter { display: grid; grid-template-columns: 78px minmax(0, 1fr) 170px; align-items: center; gap: 12px; font-size: 12.5px; }
 .meter-label { color: var(--muted); }
 .meter-text { font-weight: 600; text-align: right; white-space: nowrap; }
+/* Narrow window: label and value on one line, the bar below at full width, so the bar never gets squeezed. */
+@media (max-width: 1280px) {
+  .biz-meters { gap: 6px; }
+  .meter { grid-template-columns: auto minmax(0, 1fr); row-gap: 4px; column-gap: 8px; }
+  .meter .bar { grid-column: 1 / -1; grid-row: 2; }
+  .meter-text { overflow: hidden; text-overflow: ellipsis; }
+}
 .biz-quick { display: flex; align-items: center; gap: 6px; }
 .biz-toggle svg { transition: transform 0.2s; }
 .biz-toggle.open svg { transform: rotate(90deg); }

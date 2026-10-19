@@ -1,6 +1,14 @@
 {
   "versions": [
     {
+      "version": "1.10.1",
+      "date": "2026-10-19",
+      "title": "Barras dos negócios na janela estreita",
+      "items": [
+        "Com a janela mais estreita, as barras de estoque e suprimento ficavam espremidas. Agora o nome e o valor ficam numa linha e a barra embaixo, com a largura toda."
+      ]
+    },
+    {
       "version": "1.10.0",
       "date": "2026-10-19",
       "title": "Nightclub e Pronto para vender",
