@@ -20,9 +20,13 @@
       const p = P.project(def, biz, biz.activeMinutes + (biz.owned ? this.extraMinutes() : 0));
       let tone = 'ok';
       let text;
-      if (!p.producing) tone = 'stopped';
+      const full = !p.producing && p.stock >= def.capacity - 1e-9;
+      if (full) tone = 'ready';
+      else if (!p.producing) tone = 'stopped';
       else if (p.minutesToStop <= this.state.settings.warnMinutes) tone = 'warning';
-      if (p.deliveryIn) {
+      if (full) {
+        text = 'Estoque cheio, hora de vender';
+      } else if (p.deliveryIn) {
         if (!p.producing) tone = 'warning';
         text = `Suprimentos chegando em ${P.formatMinutes(p.deliveryIn)}${p.producing ? '' : ' (parado até lá)'}`;
       } else if (p.producing) {
@@ -30,9 +34,9 @@
           ? `Suprimento acaba em ${P.formatMinutes(p.minutesToSupplyEmpty)}`
           : `Estoque enche em ${P.formatMinutes(p.minutesToFull)}`;
       } else {
-        text = p.stock >= def.capacity - 1e-9 ? 'Parado: estoque cheio, hora de vender' : 'Parado: sem suprimentos';
+        text = 'Parado: sem suprimentos';
       }
-      const pill = p.deliveryIn && !p.producing ? 'Aguardando' : { ok: 'Produzindo', warning: 'Acabando', stopped: 'Parado' }[tone];
+      const pill = p.deliveryIn && tone === 'warning' && !p.producing ? 'Aguardando' : { ok: 'Produzindo', warning: 'Acabando', stopped: 'Parado', ready: 'Pronto para vender' }[tone];
       return { biz, p, tone, text, pill };
     },
     owned() {
@@ -92,6 +96,7 @@
     const attention = App.owned().filter(d => App.business(d).tone !== 'ok').length;
     document.querySelector('[data-page=businesses] .badge').textContent = attention ? String(attention) : '';
     App.pages.releases.badge();
+    App.pages.notices.renderBell();
     const open = App.pages.todos.pending(s);
     document.querySelector('[data-page=todos] .badge').textContent = open ? String(open) : '';
     renderUpdate(s.updater);
@@ -115,6 +120,7 @@
 
   function navigate(page) {
     App.page = page;
+    App.pages.notices.closeBell();
     for (const b of document.querySelectorAll('#nav .nav-item')) b.classList.toggle('active', b.dataset.page === page);
     const root = document.getElementById('page');
     root.replaceChildren();
@@ -143,6 +149,9 @@
     App.data = await window.gta.data();
     App.setState(await window.gta.state());
     window.gta.onState(state => App.setState(state));
+    App.pages.notices.setupBell();
+    // Clicking a Windows notification opens the page it is about.
+    window.gta.onNavigate(page => { if (App.pages[page]) navigate(page); });
     // A new week arrived from GitHub: redraw the pages that show it.
     window.gta.onWeekly(weekly => {
       App.data.weekly = weekly;
@@ -150,7 +159,7 @@
     });
     window.gta.onWiki(wiki => {
       App.data.wiki = wiki;
-      if (['fleeca', 'casino', 'cayo'].includes(App.page)) navigate(App.page);
+      if (['casino', 'cayo', ...window.HeistPages].includes(App.page)) navigate(App.page);
     });
     navigate('overview');
     setInterval(tick, 1000);

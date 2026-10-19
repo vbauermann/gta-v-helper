@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { project } = require('./lib/production.js');
 const todos = require('./lib/todos.js');
+const notices = require('./lib/notices.js');
 const features = require('./lib/features.js');
 
 const DEFAULT_SETTINGS = Object.freeze({
@@ -26,7 +27,8 @@ function emptyBusiness() {
     calibration: {},
     alerts: { warned: false, empty: false, full: false },
     boost: null, // Acid Lab daily boost: { units left, startedAt, endsAt }
-    delivery: null // bought supplies on the way: { at: active minutes from the snapshot, orderedAt }
+    delivery: null, // bought supplies on the way: { at: active minutes from the snapshot, orderedAt }
+    nightclub: false // a Nightclub technician is assigned to this business's goods
   };
 }
 
@@ -62,7 +64,9 @@ function createStore(file, catalog) {
       // Heist wiki: setup ids done per heist ({ casino: ['scope', ...] }).
       heistProgress: loadProgress(raw.heistProgress),
       map: { owned: Array.isArray(raw.map && raw.map.owned) ? raw.map.owned.filter(id => typeof id === 'string') : [] },
-      todos: loadTodos(raw.todos)
+      todos: loadTodos(raw.todos),
+      // Avisos: notice history (newest first) and the player's periodic reminders.
+      notices: notices.load(raw.notices, Date.now())
     };
   }
 

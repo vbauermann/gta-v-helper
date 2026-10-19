@@ -12,7 +12,7 @@ const clone = v => JSON.parse(JSON.stringify(v));
 
 test('the bundled wiki is valid and covers the heist pages', () => {
   assert.ok(validWiki(bundled));
-  for (const id of ['fleeca', 'casino', 'cayo']) assert.ok(bundled.heists[id], id);
+  for (const id of ['fleeca', 'casino', 'cayo', 'prison', 'humane', 'seriesa', 'pacific', 'doomsday', 'kortz', 'cluckin', 'drdre']) assert.ok(bundled.heists[id], id);
 });
 
 test('every setup has a GTA Wiki source and steps', () => {
@@ -35,6 +35,9 @@ test('rejects broken wikis', () => {
   const dup = clone(bundled);
   dup.heists.fleeca.setups.push(dup.heists.fleeca.setups[0]);
   assert.ok(!validWiki(dup));
+  const badSection = clone(bundled);
+  badSection.heists.cayo.setups[0].section = 'nope';
+  assert.ok(!validWiki(badSection));
   const badApproach = clone(bundled);
   badApproach.heists.casino.setups[0].approaches = ['nope'];
   assert.ok(!validWiki(badApproach));

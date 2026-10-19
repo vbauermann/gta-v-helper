@@ -19,6 +19,7 @@ Cada arquivo registra uma decisão: o contexto, o que foi decidido e o que isso 
 | [0013](0013-release-notes.md) | Toda versão publicada tem release notes | Aceita |
 | [0014](0014-mapa-de-los-santos.md) | Mapa de Los Santos no app, com o que o jogador tem no estado | Aceita |
 | [0015](0015-wiki-dos-golpes.md) | Wiki dos golpes com resumos próprios, atualizada pelo GitHub | Aceita |
-| [0016](0016-recursos-opcionais.md) | Recursos de colaboradores vêm desligados, com chave em Ajustes | Proposta |
+| [0016](0016-avisos.md) | Avisos no app (sino e menu), notificação do Windows e lembretes | Aceita |
+| [0017](0017-recursos-opcionais.md) | Recursos de colaboradores vêm desligados, com chave em Ajustes | Proposta |
 
 Modelo para uma nova ADR: copie o formato de qualquer arquivo (Status, Data, Contexto, Decisão, Consequências) e use o próximo número.

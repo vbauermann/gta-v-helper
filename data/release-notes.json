@@ -1,6 +1,65 @@
 {
   "versions": [
     {
+      "version": "1.11.0",
+      "date": "2026-10-19",
+      "title": "Avisos e lembretes",
+      "items": [
+        "Sino no topo, ao lado do GTA aberto, com o número de avisos não lidos e os últimos avisos. Clicar num aviso abre a tela dele.",
+        "Novo menu Avisos com a lista inteira, separada por dia, e o contador de não lidos.",
+        "Todos os avisos que já existiam (suprimento acabando, sem suprimento, estoque cheio, Cayo liberado) ficam guardados no app, além da notificação do Windows. Também avisa quando saem os bônus da semana e quando uma versão nova fica pronta.",
+        "Lembretes que se repetem, configurados nos Ajustes: nome, intervalo e se conta só com o GTA aberto. Já vem com \"Conferir o Terrorbyte\" a cada 2h de jogo.",
+        "Botão para mandar um aviso de teste nos Ajustes."
+      ]
+    },
+    {
+      "version": "1.10.1",
+      "date": "2026-10-19",
+      "title": "Barras dos negócios na janela estreita",
+      "items": [
+        "Com a janela mais estreita, as barras de estoque e suprimento ficavam espremidas. Agora o nome e o valor ficam numa linha e a barra embaixo, com a largura toda."
+      ]
+    },
+    {
+      "version": "1.10.0",
+      "date": "2026-10-19",
+      "title": "Nightclub e Pronto para vender",
+      "items": [
+        "Novo botão nos Negócios, ao lado de Ressupri e Vendi tudo, para marcar se o negócio está vinculado ao Nightclub. O Acid Lab não tem técnico no Nightclub, então fica sem o botão, e o limite é de 5 negócios vinculados, como os técnicos do jogo.",
+        "Negócio parado com estoque cheio agora fica com a borda verde e a badge verde \"Pronto para vender\". Na Visão geral aparece um aviso dos negócios prontos.",
+        "A badge \"Produzindo\" passou de verde para azul."
+      ]
+    },
+    {
+      "version": "1.9.0",
+      "date": "2026-10-18",
+      "title": "Cluckin' Bell e Dr. Dre",
+      "items": [
+        "Novos no menu Golpes: The Cluckin' Bell Farm Raid e The Contract: Dr. Dre, com Visão geral, Setups e Final.",
+        "No Dr. Dre, as missões ficam agrupadas por vazamento (Nightlife, High Society e South Central) e depois Studio Time.",
+        "O filtro de approach só aparece nos setups quando ele muda a lista."
+      ]
+    },
+    {
+      "version": "1.8.0",
+      "date": "2026-10-18",
+      "title": "Todos os golpes",
+      "items": [
+        "Novos golpes no menu: Kortz Center, Doomsday, Pacific Standard, Series A Funding, Humane Labs e Prison Break, cada um com Visão geral, Setups e Final.",
+        "No Doomsday, os três atos funcionam como approaches: escolha o ato e veja as preps, os setups e o final dele.",
+        "Os setups de todos os golpes ficam agrupados como na tela de planejamento do jogo."
+      ]
+    },
+    {
+      "version": "1.7.1",
+      "date": "2026-10-18",
+      "title": "Setups agrupados",
+      "items": [
+        "Os setups do Cayo Perico agora vêm agrupados como na tela do Kosatka: Reconhecimento, Approach Vehicle, Equipment, Weapon Loadout e Disruption, cada grupo com o que é obrigatório e a contagem do que já fez.",
+        "No Diamond Casino os setups ficam separados em Setup e reconhecimento, Preps obrigatórias e Preps opcionais."
+      ]
+    },
+    {
       "version": "1.7.0",
       "date": "2026-10-18",
       "title": "Wiki dos golpes",

@@ -11,12 +11,26 @@ const all = { equipment: true, staff: true, security: true };
 fs.writeFileSync(file, JSON.stringify({
   settings: { detection: 'always', closeToTray: false },
   businesses: {
-    cocaine: biz(100, 3, all, 30),
+    cocaine: { ...biz(100, 3, all, 30), nightclub: true },
     bunker: biz(100, 40, all, 135),
     acid: biz(60, 160, { equipment: true }),
-    meth: biz(0, 7, { equipment: true })
+    meth: biz(0, 7, { equipment: true }),
+    cash: biz(55, 40, { equipment: true })
   },
   cayoCooldownEndsAt: Date.now() + 47 * 60000,
+  notices: {
+    items: [
+      { id: 'n4', kind: 'reminder', title: 'Conferir o Terrorbyte', body: 'Lembrete a cada 2h.', at: Date.now() - 3 * 60000, read: false },
+      { id: 'n3', kind: 'full', title: 'Acid Lab: estoque cheio', body: 'A produção parou. Hora de vender.', page: 'businesses', at: Date.now() - 25 * 60000, read: false },
+      { id: 'n2', kind: 'warn', title: 'Bunker: suprimentos acabando', body: 'Acabam em 10min de jogo.', page: 'businesses', at: Date.now() - 70 * 60000, read: false },
+      { id: 'n1', kind: 'heist', title: 'Cayo Perico liberado', body: 'O cooldown do golpe terminou.', page: 'cayo', at: Date.now() - 26 * 3600000, read: true }
+    ],
+    reminders: [
+      { id: 'r1', title: 'Conferir o Terrorbyte', every: 120, enabled: true, inGame: true, elapsed: 47 },
+      { id: 'r2', title: 'Beber água e esticar as pernas', every: 60, enabled: false, inGame: false, elapsed: 0 }
+    ],
+    weekSeen: null, updateSeen: null
+  },
   map: { owned: ['mc-cocaine-2', 'bunker-1', 'garage-1', 'office-4', 'agency-2'] }
 }));
 process.env.GTA_HELPER_DATA = file;
@@ -32,7 +46,17 @@ app.whenReady().then(async () => {
   const errors = [];
   win.webContents.on('console-message', e => { if (e.level === 'error') errors.push(e.message); });
   await wait(1200);
-  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'fleeca', 'payouts', 'weekly', 'todos', 'map', 'settings', 'releases']) {
+  // Bell: unread count, popover, then everything read.
+  const bellBefore = await win.webContents.executeJavaScript(`document.querySelector('#bell .bell-count') ? document.querySelector('#bell .bell-count').textContent : ''`);
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=overview]').click()`);
+  await wait(400);
+  fs.writeFileSync(path.join(out, 'bell-count.png'), (await win.webContents.capturePage({ x: 940, y: 0, width: 380, height: 44 })).toPNG());
+  await win.webContents.executeJavaScript(`document.getElementById('bell').click()`);
+  await wait(700);
+  fs.writeFileSync(path.join(out, 'bell.png'), (await win.webContents.capturePage()).toPNG());
+  const bellAfter = await win.webContents.executeJavaScript(`(async () => { document.body.click(); await window.gta.notices('reminder-add', { title: 'Teste', every: 30 }); const s = await window.gta.state(); return { unread: GtaNotices.unread(s.notices.items), pop: document.getElementById('bell-pop').hidden, reminders: s.notices.reminders.length, nav: document.querySelector('[data-page=notices] .badge').textContent }; })()`);
+  if (bellBefore !== '3' || bellAfter.unread !== 0 || !bellAfter.pop || bellAfter.reminders !== 3 || bellAfter.nav !== '') errors.push(`avisos falharam: ${bellBefore} ${JSON.stringify(bellAfter)}`);
+  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'kortz', 'cluckin', 'drdre', 'doomsday', 'pacific', 'seriesa', 'humane', 'prison', 'fleeca', 'payouts', 'weekly', 'todos', 'map', 'settings', 'releases', 'notices']) {
     await win.webContents.executeJavaScript(`document.querySelector('[data-page=${page}]').click();
       ${page === 'cayo' ? "const rows = document.querySelectorAll('.loot-row'); for (const [r, n] of [[0, 2], [1, 3], [2, 1], [3, 1]]) { const b = rows[r].querySelectorAll('.qty button')[n - 1]; if (!b.classList.contains('active')) b.click(); }" : ''}`);
     await wait(700);
@@ -215,9 +239,30 @@ app.whenReady().then(async () => {
   await win.webContents.executeJavaScript(`${tabOf('Final')}`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'wiki-final.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=doomsday]').click(); ${tabOf('Setups')}
+    [...document.querySelectorAll('.wiki-filter button')][1].click();`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-doomsday-setups.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=kortz]').click(); ${tabOf('Setups')}`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-kortz-setups.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=drdre]').click(); ${tabOf('Setups')}`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-drdre-setups.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=cluckin]').click(); ${tabOf('Final')}`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-cluckin-final.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=pacific]').click(); ${tabOf('Final')}`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-pacific-final.png'), (await win.webContents.capturePage()).toPNG());
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=fleeca]').click(); ${tabOf('Setups')}`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'wiki-fleeca-setups.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=cayo]').click(); ${tabOf('Setups')}`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'wiki-cayo-setups.png'), (await win.webContents.capturePage()).toPNG());
+  const cayoSections = await win.webContents.executeJavaScript(`[...document.querySelectorAll('.wiki-section-head h4')].map(e => e.textContent)`);
+  if (cayoSections.length !== 5) errors.push(`seções do cayo: ${JSON.stringify(cayoSections)}`);
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=cayo]').click(); ${tabOf('Visão geral')}`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'wiki-cayo.png'), (await win.webContents.capturePage()).toPNG());
@@ -238,13 +283,26 @@ app.whenReady().then(async () => {
     await new Promise(r => setTimeout(r, 200));
     [...document.querySelectorAll('.card.biz[data-id=meth] .chip')].find(b => b.textContent === 'Funcionários').click();
     await new Promise(r => setTimeout(r, 300));
+    document.querySelector('.card.biz[data-id=bunker] .nightclub-toggle').click();
+    await new Promise(r => setTimeout(r, 300));
     const s = await window.gta.state();
-    return { delivery: s.businesses.meth.delivery && s.businesses.meth.delivery.at, staff: s.businesses.meth.upgrades.staff,
+    const acid = document.querySelector('.card.biz[data-id=acid]'), full = document.querySelector('.card.biz[data-id=cash]');
+    return { nightclub: s.businesses.bunker.nightclub && s.businesses.cocaine.nightclub, acidToggle: !!acid.querySelector('.nightclub-toggle'),
+      ready: full.classList.contains('ready') && full.querySelector('[data-live=pill]').textContent === 'Pronto para vender',
+      delivery: s.businesses.meth.delivery && s.businesses.meth.delivery.at, staff: s.businesses.meth.upgrades.staff,
       status: document.querySelector('.card.biz[data-id=meth] [data-live=status]').textContent };
   })()`);
   await win.webContents.executeJavaScript(`document.querySelector('.card.biz[data-id=meth]').scrollIntoView({ block: 'center' })`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'businesses-delivery.png'), (await win.webContents.capturePage()).toPNG());
+  // Narrow window (minimum width): the bars must keep a usable width.
+  win.setSize(1000, 880);
+  await win.webContents.executeJavaScript(`document.querySelector('.content, main') && window.scrollTo(0, 0); document.querySelector('.card.biz').scrollIntoView({ block: 'start' })`);
+  await wait(600);
+  fs.writeFileSync(path.join(out, 'businesses-narrow.png'), (await win.webContents.capturePage()).toPNG());
+  const narrowBar = await win.webContents.executeJavaScript(`Math.min(...[...document.querySelectorAll('.card.biz .meter .bar')].map(b => b.getBoundingClientRect().width))`);
+  if (narrowBar < 150) errors.push(`barra espremida na janela estreita: ${narrowBar}px`);
+  if (!after.nightclub || after.acidToggle || !after.ready) errors.push(`nightclub/pronto falhou: ${JSON.stringify(after)}`);
   if (!(after.delivery > 9) || !after.staff || !after.status.startsWith('Suprimentos chegando')) errors.push(`round trip falhou: ${JSON.stringify(after)}`);
   console.log(JSON.stringify({ out, errors, after }));
   app.exit(errors.length ? 1 : 0);

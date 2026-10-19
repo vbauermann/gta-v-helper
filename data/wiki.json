@@ -1,5 +1,5 @@
 {
- "version": "2026-10-18",
+ "version": "2026-10-18.3",
  "note": "Resumos próprios em português com base no GTA Wiki (gta.fandom.com, CC BY-SA). Cada golpe e setup tem o link do artigo original.",
  "heists": {
   "fleeca": {
@@ -62,7 +62,8 @@
       "O hacking tem 3 níveis: guie a linha até a saída sem encostar em nada. Errar muito deixa o ponto mais lento, mas reduz a avaliação.",
       "Falha se alguém morrer, se chamar a atenção da polícia ou se Lester ou Paige morrerem."
      ],
-     "source": "https://gta.fandom.com/wiki/Fleeca_Job_-_Scope_Out"
+     "source": "https://gta.fandom.com/wiki/Fleeca_Job_-_Scope_Out",
+     "section": "setups"
     },
     {
      "id": "kuruma",
@@ -83,7 +84,8 @@
       "Mais membros da gangue em Fugitive e Feltzer atacam dentro do estacionamento e na volta para a fábrica.",
       "A missão também falha se a equipe ficar sem vidas ou se alguém sair."
      ],
-     "source": "https://gta.fandom.com/wiki/Fleeca_Job_-_Kuruma"
+     "source": "https://gta.fandom.com/wiki/Fleeca_Job_-_Kuruma",
+     "section": "setups"
     }
    ],
    "finale": {
@@ -116,7 +118,14 @@
      "Concluir libera a Gas Mask, preços especiais do Kuruma e do Kuruma (Armored) e o próximo golpe, Prison Break."
     ],
     "source": "https://gta.fandom.com/wiki/The_Fleeca_Job"
-   }
+   },
+   "sections": [
+    {
+     "id": "setups",
+     "title": "Setups",
+     "note": "Obrigatórios: Scope Out e depois Kuruma"
+    }
+   ]
   },
   "casino": {
    "id": "casino",
@@ -191,7 +200,8 @@
       "Feito só uma vez, logo depois de comprar o Arcade; libera o planejamento do golpe.",
       "Dois carros de Kkangpae aparecem na volta: dá para matar ou só fugir deles."
      ],
-     "source": "https://gta.fandom.com/wiki/Arcades/Setup:_Equipment"
+     "source": "https://gta.fandom.com/wiki/Arcades/Setup:_Equipment",
+     "section": "start"
     },
     {
      "id": "casino-scoping",
@@ -213,7 +223,8 @@
       "Com Master Penthouse, fotografe a planta do cofre na mesa de Agatha Baker para poder comprar a porta de treino ($900.000).",
       "Só é obrigatória uma vez; pode ser repetida para achar acessos que faltam."
      ],
-     "source": "https://gta.fandom.com/wiki/Setup:_Casino_Scoping"
+     "source": "https://gta.fandom.com/wiki/Setup:_Casino_Scoping",
+     "section": "start"
     },
     {
      "id": "vault-contents",
@@ -234,7 +245,8 @@
       "Você tem no máximo 2 minutos nas câmeras.",
       "O primeiro golpe sempre tem dinheiro; depois pode vir arte, ouro ou, em eventos, diamantes."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Contents"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Contents",
+     "section": "start"
     },
     {
      "id": "unmarked-weapons",
@@ -253,7 +265,8 @@
       "Atirador melhor dá armas melhores, mas fica com uma fatia maior.",
       "As armas mudam conforme a abordagem: na Big Con a secundária é a Ceramic Pistol, que passa pelo detector de metais."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Unmarked_Weapons_(The_Diamond_Casino_Heist)"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Unmarked_Weapons_(The_Diamond_Casino_Heist)",
+     "section": "required"
     },
     {
      "id": "getaway-vehicles",
@@ -273,7 +286,8 @@
       "No Illicit Importers dá para usar o Cargobob próximo e trazer os carros pelo ar.",
       "Depois de entregues, os carros podem ser melhorados na garagem do Arcade ($10.000 a $25.000 por nível)."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Getaway_Vehicles"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Getaway_Vehicles",
+     "section": "required"
     },
     {
      "id": "hacking-device",
@@ -294,7 +308,8 @@
       "Recomendado ao menos 2 jogadores.",
       "Hacker melhor dá mais tempo dentro do cofre."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Hacking_Device"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Hacking_Device",
+     "section": "required"
     },
     {
      "id": "vault-keycards",
@@ -314,7 +329,8 @@
       "Em Duggans' Goons, matar fazendo barulho dá 3 estrelas.",
       "Na prisão, use arma branca no guarda da torre; se alertar os guardas, são 4 estrelas."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Keycards"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Keycards",
+     "section": "required"
     },
     {
      "id": "nano-drones",
@@ -336,7 +352,8 @@
       "Há policiais perto dos drones; conte com nível de procurado.",
       "No final cada jogador tem um drone com dardos tranquilizantes limitados."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Nano_Drones"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Nano_Drones",
+     "section": "required"
     },
     {
      "id": "vault-lasers",
@@ -358,7 +375,8 @@
       "Na variante militar você ganha 4 estrelas na hora.",
       "A variante Cliffford não dá estrelas, mas tem um Juggernaut e perseguição de Dubsta 6x6 e Buzzard."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Lasers"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Lasers",
+     "section": "required"
     },
     {
      "id": "emp-device",
@@ -379,7 +397,8 @@
       "No final, apaga as luzes e desliga câmeras e detectores por cerca de um minuto, além de reduzir a visão dos guardas.",
       "Sem Infiltration Suits vocês ficam sem visão noturna durante o apagão."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_EMP_Device"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_EMP_Device",
+     "section": "optional"
     },
     {
      "id": "infiltration-suits",
@@ -400,7 +419,8 @@
       "Hackear o painel sempre alerta os inimigos.",
       "Libera a descida pelo poço do elevador a partir do heliponto e a visão noturna no final."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Infiltration_Suits"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Infiltration_Suits",
+     "section": "optional"
     },
     {
      "id": "bugstar-gear-1",
@@ -421,7 +441,8 @@
       "Primeira parte do disfarce Bugstars; precisa da Part 2 também.",
       "Os seguranças são fáceis de despistar."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Bugstar_Gear_Part_1"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Bugstar_Gear_Part_1",
+     "section": "required"
     },
     {
      "id": "bugstar-gear-2",
@@ -443,7 +464,8 @@
       "Exige a Part 1 concluída.",
       "No final, a entrada Bugstars leva ao escritório de Agatha e exige hackear um painel nível 3 (quatro hacks de impressão digital)."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Bugstar_Gear_Part_2"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Bugstar_Gear_Part_2",
+     "section": "required"
     },
     {
      "id": "maintenance-gear-1",
@@ -464,7 +486,8 @@
      "tips": [
       "Primeira parte do disfarce de manutenção (LSDWP); precisa da Part 2 também."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Maintenance_Gear_Part_1"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Maintenance_Gear_Part_1",
+     "section": "required"
     },
     {
      "id": "maintenance-gear-2",
@@ -486,7 +509,8 @@
       "Exige a Part 1 concluída.",
       "No final, a entrada de manutenção começa pela lavanderia, direto no subsolo."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Maintenance_Gear_Part_2"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Maintenance_Gear_Part_2",
+     "section": "required"
     },
     {
      "id": "gruppe-sechs-gear-1",
@@ -508,7 +532,8 @@
       "Só aparece se você fotografou o túnel de segurança no Casino Scoping.",
       "Os mecânicos atacam assim que você descobre que a van está trancada."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Gruppe_Sechs_Gear_Part_1"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Gruppe_Sechs_Gear_Part_1",
+     "section": "required"
     },
     {
      "id": "gruppe-sechs-gear-2",
@@ -531,7 +556,8 @@
       "Se a segurança de Duggan te vir, todos ficam hostis e você ganha 2 estrelas.",
       "No final, se ninguém notar o disfarce, o guarda do cofre abre a porta para vocês."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Gruppe_Sechs_Gear_Part_2"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Gruppe_Sechs_Gear_Part_2",
+     "section": "required"
     },
     {
      "id": "vault-drills",
@@ -553,13 +579,14 @@
       "Você ganha 3 estrelas nas duas variantes.",
       "Também permite treinar na porta de cofre de prática, se comprada."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Drills"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Drills",
+     "section": "required"
     },
     {
      "id": "firefighter-gear",
      "name": "Firefighter Gear",
      "kind": "optional",
-     "group": "Disfarce de saída (opcional)",
+     "group": "Disfarce de saída",
      "players": "Solo ou grupo (1 a 4)",
      "approaches": [
       "bigcon"
@@ -575,13 +602,14 @@
       "Só serve caminhão dos quartéis destacados no mapa.",
       "No final, se vocês não forem detectados, o uniforme fica na lavanderia para sair sem chamar atenção."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Firefighter_Gear"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Firefighter_Gear",
+     "section": "optional"
     },
     {
      "id": "noose-gear",
      "name": "NOOSE Gear",
      "kind": "optional",
-     "group": "Disfarce de saída (opcional)",
+     "group": "Disfarce de saída",
      "players": "Solo ou grupo (1 a 4)",
      "approaches": [
       "bigcon"
@@ -597,7 +625,8 @@
       "Os policiais atacam assim que você entra em outra sala.",
       "Alternativa sem missão: o disfarce High Roller fica disponível se você coletou as 54 Playing Cards."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_NOOSE_Gear"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_NOOSE_Gear",
+     "section": "optional"
     },
     {
      "id": "thermal-charges",
@@ -618,7 +647,8 @@
       "Obrigatória no Aggressive.",
       "No final, substituem os hacks das portas internas do cofre."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Thermal_Charges"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Thermal_Charges",
+     "section": "required"
     },
     {
      "id": "vault-explosives",
@@ -639,7 +669,8 @@
       "Obrigatória no Aggressive.",
       "Os Buzzards na volta têm atiradores com Combat MG; um parceiro ajuda."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Explosives"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Vault_Explosives",
+     "section": "required"
     },
     {
      "id": "reinforced-armor",
@@ -660,7 +691,8 @@
       "No final, a armadura aguenta mais dano, mas deixa você mais lento.",
       "No bunker dá para sair com o Insurgent que está lá dentro."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Reinforced_Armor"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Reinforced_Armor",
+     "section": "optional"
     },
     {
      "id": "tunnel-boring-machine",
@@ -681,7 +713,8 @@
       "Só aparece se você fotografou a entrada do esgoto no Casino Scoping.",
       "Libera a entrada pelo esgoto, que não pode ser usada como saída."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Tunnel_Boring_Machine"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Tunnel_Boring_Machine",
+     "section": "optional"
     },
     {
      "id": "guard-patrol-routes",
@@ -700,7 +733,8 @@
       "Mostra todos os guardas como pontos vermelhos no mapa durante o golpe.",
       "Se os guardas te virem, são 3 estrelas."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Guard_Patrol_Routes"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Guard_Patrol_Routes",
+     "section": "optional"
     },
     {
      "id": "duggan-shipments",
@@ -717,7 +751,8 @@
       "Os guardas enfraquecem ao destruir 3, 6 e todos os 10 alvos; com 10 eles ficam sem colete e com armas fracas.",
       "Helicópteros de escolta não precisam ser destruídos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Duggan_Shipments"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Duggan_Shipments",
+     "section": "optional"
     },
     {
      "id": "power-drills",
@@ -736,7 +771,8 @@
       "Matar trabalhadores ou o motorista gera estrelas; Lester pede para não matar ninguém.",
       "Explodir a van também solta as furadeiras."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Power_Drills"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Power_Drills",
+     "section": "optional"
     },
     {
      "id": "security-pass",
@@ -755,7 +791,8 @@
       "Quem tem Master Penthouse pode pegar o nível 1 no carrinho da faxineira, sem missão.",
       "Na festa, beba ou dance para não encher a barra de suspeita."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Security_Pass"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Security_Pass",
+     "section": "optional"
     },
     {
      "id": "security-intel",
@@ -773,7 +810,8 @@
       "Feita uma vez, mostra para sempre as câmeras e seus cones de visão no golpe.",
       "Dá o award Moving On."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Security_Intel"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Security_Intel",
+     "section": "optional"
     },
     {
      "id": "masks",
@@ -788,7 +826,8 @@
      "tips": [
       "Gratuito para o golpe e pode ser feito a qualquer momento."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Masks"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Masks",
+     "section": "optional"
     }
    ],
    "finale": {
@@ -882,7 +921,24 @@
       "source": "https://gta.fandom.com/wiki/Casino_Heist_-_Aggressive"
      }
     ]
-   }
+   },
+   "sections": [
+    {
+     "id": "start",
+     "title": "Setup e reconhecimento",
+     "note": "Obrigatório, antes das preps"
+    },
+    {
+     "id": "required",
+     "title": "Preps obrigatórias",
+     "note": "As do approach escolhido mais as comuns"
+    },
+    {
+     "id": "optional",
+     "title": "Preps opcionais",
+     "note": "Facilitam o final"
+    }
+   ]
   },
   "cayo": {
    "id": "cayo",
@@ -951,13 +1007,13 @@
       "A missão é repetível até o final começar, então dá para voltar para buscar o que faltou.",
       "Os drop zones e o túnel de drenagem precisam ser achados aqui para liberar o Stealth helicopter e o Cutting Torch."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Gather_Intel"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Gather_Intel",
+     "section": "intel"
     },
     {
      "id": "kosatka",
      "name": "Kosatka",
-     "kind": "setup",
-     "group": "Veículo de entrada (escolha 1)",
+     "kind": "prep",
      "players": "Solo ou grupo",
      "goal": "Roubar o sonar jammer de um submarino da Merryweather para usar o próprio Kosatka (comprado antes de iniciar o golpe) como veículo de entrada.",
      "steps": [
@@ -973,53 +1029,13 @@
       "Basta um veículo de entrada para liberar o final; os outros viram opcionais.",
       "Limite de 30 minutos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Kosatka"
-    },
-    {
-     "id": "velum",
-     "name": "Velum",
-     "kind": "prep",
-     "group": "Veículo de entrada (escolha 1)",
-     "players": "Solo ou grupo",
-     "goal": "Roubar um Velum dos contrabandistas de El Rubio para pousar na pista da ilha disfarçado de contrabandista.",
-     "steps": [
-      "Vá até o Sandy Shores Airfield, onde os contrabandistas fazem um negócio.",
-      "Elimine todos os inimigos e pegue o Velum.",
-      "Voe até o hangar de Miguel Madrazo no LSIA e pare em frente às portas."
-     ],
-     "tips": [
-      "No final, desarmado, os guardas deixam você circular pela área da pista, mas atacam se te virem em outro lugar.",
-      "Contrate o Weapon Stash no apoio para ter armas na ilha sem ser detectado ao chegar.",
-      "Limite de 30 minutos."
-     ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Velum"
-    },
-    {
-     "id": "stealth-helicopter",
-     "name": "Stealth helicopter",
-     "kind": "prep",
-     "group": "Veículo de entrada (escolha 1)",
-     "players": "Solo ou grupo",
-     "goal": "Roubar um Annihilator Stealth para descer de rapel sem ser detectado em um dos drop zones da ilha.",
-     "steps": [
-      "Variante Yacht: suba no iate, vá até a ponte e hackeie o laptop para desligar a defesa antiaérea.",
-      "Variante Merryweather HQ: destrua as torres antiaéreas com explosivos, alguns exigem achar um ponto alto.",
-      "Pegue o helicóptero e derrube ou fuja dos helicópteros de reforço.",
-      "Pouse em frente ao hangar de Miguel Madrazo no LSIA."
-     ],
-     "tips": [
-      "Só libera depois de achar pelo menos um drop zone (North ou South Drop Zone) na Gather Intel.",
-      "Exige também a prep Pilot, a menos que ela já tenha sido feita para o Alkonost.",
-      "Se tentar sair antes de desligar as defesas, o helicóptero é abatido.",
-      "Limite de 30 minutos."
-     ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Stealth_helicopter"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Kosatka",
+     "section": "vehicle"
     },
     {
      "id": "alkonost",
      "name": "Alkonost",
      "kind": "prep",
-     "group": "Veículo de entrada (escolha 1)",
      "players": "Solo ou grupo",
      "goal": "Roubar o RO-86 Alkonost em Fort Zancudo para saltar de paraquedas (Halo Jump) sobre a ilha.",
      "steps": [
@@ -1034,13 +1050,13 @@
       "Exige também a prep Pilot, a menos que ela já tenha sido feita para o Stealth helicopter.",
       "Limite de 30 minutos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Alkonost"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Alkonost",
+     "section": "vehicle"
     },
     {
      "id": "pilot",
      "name": "Pilot",
      "kind": "prep",
-     "group": "Só com Alkonost ou Stealth helicopter",
      "players": "Solo ou grupo",
      "goal": "Fazer um favor para o piloto Pernell Moss, que é quem pilota o Alkonost ou o Annihilator Stealth no final.",
      "steps": [
@@ -1052,13 +1068,54 @@
       "Feita uma vez, vale para as duas aeronaves na mesma execução.",
       "Obrigatória só se você for usar o Alkonost ou o Stealth helicopter."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Pilot"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Pilot",
+     "section": "vehicle",
+     "group": "Para Alkonost ou Stealth helicopter"
+    },
+    {
+     "id": "velum",
+     "name": "Velum",
+     "kind": "prep",
+     "players": "Solo ou grupo",
+     "goal": "Roubar um Velum dos contrabandistas de El Rubio para pousar na pista da ilha disfarçado de contrabandista.",
+     "steps": [
+      "Vá até o Sandy Shores Airfield, onde os contrabandistas fazem um negócio.",
+      "Elimine todos os inimigos e pegue o Velum.",
+      "Voe até o hangar de Miguel Madrazo no LSIA e pare em frente às portas."
+     ],
+     "tips": [
+      "No final, desarmado, os guardas deixam você circular pela área da pista, mas atacam se te virem em outro lugar.",
+      "Contrate o Weapon Stash no apoio para ter armas na ilha sem ser detectado ao chegar.",
+      "Limite de 30 minutos."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Velum",
+     "section": "vehicle"
+    },
+    {
+     "id": "stealth-helicopter",
+     "name": "Stealth helicopter",
+     "kind": "prep",
+     "players": "Solo ou grupo",
+     "goal": "Roubar um Annihilator Stealth para descer de rapel sem ser detectado em um dos drop zones da ilha.",
+     "steps": [
+      "Variante Yacht: suba no iate, vá até a ponte e hackeie o laptop para desligar a defesa antiaérea.",
+      "Variante Merryweather HQ: destrua as torres antiaéreas com explosivos, alguns exigem achar um ponto alto.",
+      "Pegue o helicóptero e derrube ou fuja dos helicópteros de reforço.",
+      "Pouse em frente ao hangar de Miguel Madrazo no LSIA."
+     ],
+     "tips": [
+      "Só libera depois de achar pelo menos um drop zone (North ou South Drop Zone) na Gather Intel.",
+      "Exige também a prep Pilot, a menos que ela já tenha sido feita para o Alkonost.",
+      "Se tentar sair antes de desligar as defesas, o helicóptero é abatido.",
+      "Limite de 30 minutos."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Stealth_helicopter",
+     "section": "vehicle"
     },
     {
      "id": "patrol-boat",
      "name": "Patrol Boat",
      "kind": "prep",
-     "group": "Veículo de entrada (escolha 1)",
      "players": "Solo ou grupo",
      "goal": "Roubar um Kurtz 31 Patrol Boat armado para chegar às docas ou à praia da ilha atirando.",
      "steps": [
@@ -1071,13 +1128,13 @@
       "É a opção barulhenta: entra pelo North Dock, West Beach ou Main Dock.",
       "Limite de 30 minutos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Patrol_Boat"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Patrol_Boat",
+     "section": "vehicle"
     },
     {
      "id": "longfin",
      "name": "Longfin",
      "kind": "prep",
-     "group": "Veículo de entrada (escolha 1)",
      "players": "Solo ou grupo",
      "goal": "Roubar a lancha Longfin apreendida pela polícia para chegar às docas disfarçado de contrabandista.",
      "steps": [
@@ -1092,69 +1149,8 @@
       "Também é uma das opções de fuga pelo North Dock ou Main Dock.",
       "Limite de 30 minutos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Longfin"
-    },
-    {
-     "id": "unmarked-weapons",
-     "name": "Unmarked Weapons",
-     "kind": "prep",
-     "players": "Solo ou grupo",
-     "goal": "Roubar o kit de armas escolhido (Aggressor, Conspirator, Crack Shot, Saboteur ou Marksman) para usar no final.",
-     "steps": [
-      "Escolha o kit de armas na tela de preps.",
-      "Variante Office Assault: entre no prédio de escritórios (pelo térreo vigiado ou pelo telhado), elimine os guardas e hackeie o laptop para abrir o armário.",
-      "Variante Tail Helicopter: siga o Valkyrie a partir da Merryweather HQ, limpe a área e pegue as armas dentro do Avenger.",
-      "No Avenger, pegue um paraquedas e salte quando ele decolar.",
-      "Entregue as armas no Kosatka."
-     ],
-     "tips": [
-      "Obrigatória em toda execução.",
-      "Na volta há ondas de Buzzards (escritório) ou de Mesas (Avenger) atrás de você.",
-      "Supressores não têm prep, mas podem ser comprados por $5.000.",
-      "Limite de 30 minutos."
-     ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Unmarked_Weapons_(The_Cayo_Perico_Heist)"
-    },
-    {
-     "id": "safe-code",
-     "name": "Safe Code",
-     "kind": "prep",
-     "group": "Alvo principal",
-     "players": "Solo ou grupo",
-     "goal": "Pegar o código do cofre com o chefe de segurança de El Rubio na cobertura do Diamond Casino; obrigatória quando o alvo principal está no cofre.",
-     "steps": [
-      "Vá ao cassino. Sem Master Penthouse, pegue o cartão no porta-malas do carro de Tom Connors na garagem.",
-      "Suba ao andar das coberturas e elimine em silêncio os dois guardas da porta.",
-      "Ache o chefe de segurança pela foto que Pavel enviou (quarto extra, bar ou sala perto do lounge).",
-      "Elimine-o e reviste o corpo para pegar o código.",
-      "Saia do cassino e perca as 2 estrelas."
-     ],
-     "tips": [
-      "Só aparece se a Gather Intel mostrar o alvo dentro do cofre.",
-      "Sacar arma dentro da cobertura ou alertar os guardas da porta deixa todos hostis.",
-      "Há inimigos perto dos elevadores na saída."
-     ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Safe_Code"
-    },
-    {
-     "id": "plasma-cutter",
-     "name": "Plasma Cutter",
-     "kind": "prep",
-     "group": "Alvo principal",
-     "players": "Solo ou grupo",
-     "goal": "Roubar um plasma cutter de uma quadrilha para cortar a vitrine reforçada; obrigatória quando o alvo principal está na vitrine.",
-     "steps": [
-      "Vá ao esconderijo da quadrilha e procure pistas lá dentro.",
-      "Fotografe o quadro de planejamento e envie a Pavel.",
-      "Vá ao local do assalto em Rockford Hills ou Del Perro.",
-      "Pegue o plasma cutter (matar a quadrilha é opcional) e entregue no Kosatka."
-     ],
-     "tips": [
-      "Só aparece se a Gather Intel mostrar o alvo na vitrine.",
-      "Reforços chegam em Fugitives enquanto você está no local.",
-      "Limite de 30 minutos."
-     ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Plasma_Cutter"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Longfin",
+     "section": "vehicle"
     },
     {
      "id": "fingerprint-cloner",
@@ -1175,13 +1171,56 @@
       "Se as câmeras do arquivo te virem, Novaks perseguem na volta.",
       "Limite de 30 minutos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Fingerprint_Cloner"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Fingerprint_Cloner",
+     "section": "equipment"
+    },
+    {
+     "id": "safe-code",
+     "name": "Safe Code",
+     "kind": "prep",
+     "players": "Solo ou grupo",
+     "goal": "Pegar o código do cofre com o chefe de segurança de El Rubio na cobertura do Diamond Casino; obrigatória quando o alvo principal está no cofre.",
+     "steps": [
+      "Vá ao cassino. Sem Master Penthouse, pegue o cartão no porta-malas do carro de Tom Connors na garagem.",
+      "Suba ao andar das coberturas e elimine em silêncio os dois guardas da porta.",
+      "Ache o chefe de segurança pela foto que Pavel enviou (quarto extra, bar ou sala perto do lounge).",
+      "Elimine-o e reviste o corpo para pegar o código.",
+      "Saia do cassino e perca as 2 estrelas."
+     ],
+     "tips": [
+      "Só aparece se a Gather Intel mostrar o alvo dentro do cofre.",
+      "Sacar arma dentro da cobertura ou alertar os guardas da porta deixa todos hostis.",
+      "Há inimigos perto dos elevadores na saída."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Safe_Code",
+     "section": "equipment",
+     "group": "Se o alvo estiver no cofre"
+    },
+    {
+     "id": "plasma-cutter",
+     "name": "Plasma Cutter",
+     "kind": "prep",
+     "players": "Solo ou grupo",
+     "goal": "Roubar um plasma cutter de uma quadrilha para cortar a vitrine reforçada; obrigatória quando o alvo principal está na vitrine.",
+     "steps": [
+      "Vá ao esconderijo da quadrilha e procure pistas lá dentro.",
+      "Fotografe o quadro de planejamento e envie a Pavel.",
+      "Vá ao local do assalto em Rockford Hills ou Del Perro.",
+      "Pegue o plasma cutter (matar a quadrilha é opcional) e entregue no Kosatka."
+     ],
+     "tips": [
+      "Só aparece se a Gather Intel mostrar o alvo na vitrine.",
+      "Reforços chegam em Fugitives enquanto você está no local.",
+      "Limite de 30 minutos."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Plasma_Cutter",
+     "section": "equipment",
+     "group": "Se o alvo estiver na vitrine"
     },
     {
      "id": "cutting-torch",
      "name": "Cutting Torch",
      "kind": "prep",
-     "group": "Entrada no complexo (escolha 1)",
      "players": "Solo ou grupo",
      "goal": "Roubar um maçarico de uma obra para cortar a grade do túnel de drenagem e os cadeados dos depósitos.",
      "steps": [
@@ -1196,13 +1235,14 @@
       "Substitui os Bolt Cutters nos cadeados, inclusive na Power Station e na Control Tower.",
       "Os guardas armados notam se você ficar muito tempo na visão deles ou com arma na mão."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Cutting_Torch"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Cutting_Torch",
+     "section": "equipment",
+     "group": "Entrada: escolha 1"
     },
     {
      "id": "demolition-charges",
      "name": "Demolition Charges",
      "kind": "prep",
-     "group": "Entrada no complexo (escolha 1)",
      "players": "Solo ou grupo",
      "goal": "Roubar as cargas de demolição dos O'Neil Brothers para explodir o portão principal do complexo e os cadeados.",
      "steps": [
@@ -1218,13 +1258,36 @@
       "No porão há dois inimigos com faca.",
       "Limite de 30 minutos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Demolition_Charges"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Demolition_Charges",
+     "section": "equipment",
+     "group": "Entrada: escolha 1"
+    },
+    {
+     "id": "unmarked-weapons",
+     "name": "Unmarked Weapons",
+     "kind": "prep",
+     "players": "Solo ou grupo",
+     "goal": "Roubar o kit de armas escolhido (Aggressor, Conspirator, Crack Shot, Saboteur ou Marksman) para usar no final.",
+     "steps": [
+      "Escolha o kit de armas na tela de preps.",
+      "Variante Office Assault: entre no prédio de escritórios (pelo térreo vigiado ou pelo telhado), elimine os guardas e hackeie o laptop para abrir o armário.",
+      "Variante Tail Helicopter: siga o Valkyrie a partir da Merryweather HQ, limpe a área e pegue as armas dentro do Avenger.",
+      "No Avenger, pegue um paraquedas e salte quando ele decolar.",
+      "Entregue as armas no Kosatka."
+     ],
+     "tips": [
+      "Obrigatória em toda execução.",
+      "Na volta há ondas de Buzzards (escritório) ou de Mesas (Avenger) atrás de você.",
+      "Supressores não têm prep, mas podem ser comprados por $5.000.",
+      "Limite de 30 minutos."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Unmarked_Weapons_(The_Cayo_Perico_Heist)",
+     "section": "weapons"
     },
     {
      "id": "disrupt-weapons",
      "name": "Disrupt Weapons",
      "kind": "optional",
-     "group": "Disrupção",
      "players": "Solo ou grupo",
      "goal": "Matar os três fornecedores de armas de El Rubio para enfraquecer as armas dos guardas no final.",
      "steps": [
@@ -1239,13 +1302,13 @@
       "Mísseis teleguiados não travam nos alvos.",
       "Matar a escolta é opcional."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Disrupt_Weapons"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Disrupt_Weapons",
+     "section": "disruption"
     },
     {
      "id": "disrupt-armor",
      "name": "Disrupt Armor",
      "kind": "optional",
-     "group": "Disrupção",
      "players": "Solo ou grupo",
      "goal": "Destruir as 10 cargas de colete para que os guardas fiquem sem armadura no final.",
      "steps": [
@@ -1260,13 +1323,13 @@
       "As caixas explodem e podem te matar se estiver perto.",
       "Mísseis teleguiados não travam no Tug."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Disrupt_Armor"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Disrupt_Armor",
+     "section": "disruption"
     },
     {
      "id": "disrupt-air-support",
      "name": "Disrupt Air Support",
      "kind": "optional",
-     "group": "Disrupção",
      "players": "Solo ou grupo",
      "goal": "Destruir os 10 Buzzards de El Rubio para que não haja helicópteros atacando se o alarme tocar no final.",
      "steps": [
@@ -1281,7 +1344,8 @@
       "Os Buzzards não aceitam trava de míssil, mas veículos e inimigos ao lado aceitam, e a explosão costuma pegar os helicópteros.",
       "Depois do primeiro grupo chegam dois Froggers inimigos."
      ],
-     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Disrupt_Air_Support"
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Disrupt_Air_Support",
+     "section": "disruption"
     }
    ],
    "finale": {
@@ -1308,6 +1372,2553 @@
      "Dia vai das 12:00 e congela às 19:00; noite vai das 22:00 e congela às 5:00. À noite os guardas enxergam menos."
     ],
     "source": "https://gta.fandom.com/wiki/The_Cayo_Perico_Heist/Finale"
+   },
+   "sections": [
+    {
+     "id": "intel",
+     "title": "Reconhecimento",
+     "note": "Obrigatório"
+    },
+    {
+     "id": "vehicle",
+     "title": "Approach Vehicle",
+     "note": "Obrigatório: pelo menos 1. Alkonost e Stealth helicopter também pedem o Pilot"
+    },
+    {
+     "id": "equipment",
+     "title": "Equipment",
+     "note": "Fingerprint Cloner sempre; Safe Code ou Plasma Cutter conforme o alvo; Cutting Torch ou Demolition Charges para entrar no complexo"
+    },
+    {
+     "id": "weapons",
+     "title": "Weapon Loadout",
+     "note": "Obrigatório"
+    },
+    {
+     "id": "disruption",
+     "title": "Disruption",
+     "note": "Opcionais: enfraquecem os guardas no final"
+    }
+   ]
+  },
+  "kortz": {
+   "id": "kortz",
+   "name": "The Kortz Center Heist",
+   "source": "https://gta.fandom.com/wiki/The_Kortz_Center_Heist",
+   "facts": [
+    {
+     "label": "Jogadores",
+     "value": "1 a 4"
+    },
+    {
+     "label": "Quem inicia",
+     "value": "Mr. Faber, com apoio de Raf De Angelis"
+    },
+    {
+     "label": "Requisito",
+     "value": "VIP, CEO ou presidente de MC com Mansion Prix Luxury e Art Studio"
+    },
+    {
+     "label": "Custo de preparação",
+     "value": "$100.000 (grátis na primeira vez)"
+    },
+    {
+     "label": "Pagamento",
+     "value": "Alvo principal: $1.218.000 a $1.925.000 (1ª vez na semana) · $304.500 a $481.250 (repetido)"
+    }
+   ],
+   "overview": [
+    "Mr. Faber contrata você, em nome de um cliente europeu, para roubar uma pintura rara guardada no cofre do Kortz Center, em Pacific Bluffs. Raf De Angelis ajuda no planejamento, que fica no quadro do Art Studio da sua Mansion.",
+    "A estrutura lembra o Diamond Casino e o Cayo Perico: um Scope Out, preps obrigatórias divididas em quatro categorias, preps opcionais de uso único e o final. Todas as missões de preparação podem ser feitas sozinho e em sessão só por convite.",
+    "O final pode ser feito solo, mas com mais jogadores dá para carregar mais alvos secundários. Alguns secundários são Buyer's Requests e valem mais. Os cortes de cada jogador são definidos automaticamente pelo jogo, e o líder escolhe se vende a pintura principal ou a guarda como decoração da Mansion.",
+    "Novidade importante: apagar as provas pesa no pagamento. Não deletar as gravações do CCTV do cofre ou deixar guardas testemunhas vivos reduz bastante o valor do alvo principal (cerca de 25% a menos)."
+   ],
+   "start": [
+    "Compre uma Mansion Prix Luxury e adicione o Art Studio.",
+    "Registre-se como VIP, CEO ou presidente de MC; as missões precisam ser iniciadas assim.",
+    "No quadro (whiteboard) do Art Studio, inicie o Scope Out Kortz Center.",
+    "Encontre o mínimo de pontos de interesse no Scope Out para liberar as preps no quadro de planejamento.",
+    "Conclua as preps obrigatórias para liberar a tela do final; na primeira vez o custo de $100.000 não é cobrado."
+   ],
+   "approaches": [],
+   "sections": [
+    {
+     "id": "scope",
+     "title": "Scope Out",
+     "note": "Obrigatório; repetível até iniciar o final"
+    },
+    {
+     "id": "infiltration-gear",
+     "title": "Infiltration Gear",
+     "note": "Obrigatório: pelo menos 1 (cada uma libera uma entrada)"
+    },
+    {
+     "id": "unmarked-weapons",
+     "title": "Unmarked Weapons",
+     "note": "Obrigatório: pelo menos 1 (loadout escolhido no final)"
+    },
+    {
+     "id": "getaway-vehicle",
+     "title": "Getaway Vehicle",
+     "note": "Obrigatório: pelo menos 1 (veículo de fuga escolhido no final)"
+    },
+    {
+     "id": "equipment",
+     "title": "Equipment",
+     "note": "Obrigatório: as 2 missões"
+    },
+    {
+     "id": "optional-prep-work",
+     "title": "Optional Prep Work",
+     "note": "Opcionais, uso único por rodada: Guard Shipments, Guard Routes, Glass Cutter, Power Drills, EMP Charges"
+    }
+   ],
+   "setups": [
+    {
+     "id": "scope-out-kortz-center",
+     "name": "Scope Out Kortz Center",
+     "kind": "scope",
+     "players": "Solo ou grupo (1 a 4)",
+     "section": "scope",
+     "goal": "Visitar a exposição disfarçado de visitante, localizar o alvo principal e mapear entradas, pontos de interesse e alvos secundários.",
+     "steps": [
+      "Inicie a missão no whiteboard do Art Studio (começa às 19:00).",
+      "Vá ao Kortz Center e entre na exposição como visitante.",
+      "Fotografe com a câmera Snapmatic os alvos e pontos pedidos e envie para Raf.",
+      "Chegue à sala do CCTV pela porta de funcionários sem ser visto pelas câmeras e hackeie o sistema.",
+      "Pelas câmeras, encontre o alvo principal no cofre e os secundários dos andares de cima.",
+      "Depois do mínimo exigido, continue explorando ou volte para a Mansion."
+     ],
+     "tips": [
+      "Não há confronto: se uma câmera te pegar na área restrita você é expulso da exposição, e ser pego vezes demais encerra a missão.",
+      "Os quatro itens do cofre só aparecem pelo CCTV; o resto fica nos três andares da exposição.",
+      "Pontos de interesse: Radio Tower no telhado, um guarda lá dentro, Electrical Box perto da escada do Skylight e Display Case Alarm no andar mais baixo, atrás da mesa com computadores.",
+      "É repetível até o final: volte para achar o que faltou. Itens fixos ficam marcados para as próximas rodadas, mas os que mudam de lugar precisam ser achados de novo.",
+      "Achar secundários é opcional, mas eles aumentam muito o pagamento."
+     ],
+     "source": "https://gta.fandom.com/wiki/Scope_Out_Kortz_Center"
+    },
+    {
+     "id": "prep-staff-key-card",
+     "name": "Staff Key Card",
+     "kind": "prep",
+     "group": "Entrada: Staff Door",
+     "players": "Solo ou grupo",
+     "section": "infiltration-gear",
+     "goal": "Clonar um cartão de acesso no Bell Building para liberar a entrada pela Staff Door.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Vá ao Bell Building e clone o cartão de acesso.",
+      "Conclua a missão para liberar a infiltração pela Staff Door no final."
+     ],
+     "tips": [
+      "Combine a entrada com a roupa: a roupa escolhida define a melhor entrada, mas qualquer entrada descoberta e preparada pode ser usada."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Staff_Key_Card"
+    },
+    {
+     "id": "prep-tactical-equipment",
+     "name": "Tactical Equipment",
+     "kind": "prep",
+     "group": "Entrada: Skylight",
+     "players": "Solo ou grupo",
+     "section": "infiltration-gear",
+     "goal": "Conseguir o equipamento tático que libera a entrada pelo Skylight.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Consiga o equipamento tático.",
+      "Conclua a missão para liberar a infiltração pelo Skylight no final."
+     ],
+     "tips": [],
+     "source": "https://gta.fandom.com/wiki/Prep:_Tactical_Equipment"
+    },
+    {
+     "id": "prep-alpha-mail-disguise",
+     "name": "Alpha Mail Disguise",
+     "kind": "prep",
+     "group": "Entrada: Loading Bay",
+     "players": "Solo ou grupo",
+     "section": "infiltration-gear",
+     "goal": "Conseguir o disfarce da Alpha Mail que libera a entrada pela Loading Bay.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Consiga o disfarce da Alpha Mail.",
+      "Conclua a missão para liberar a infiltração pela Loading Bay no final."
+     ],
+     "tips": [],
+     "source": "https://gta.fandom.com/wiki/Prep:_Alpha_Mail_Disguise"
+    },
+    {
+     "id": "prep-hazmat-suit",
+     "name": "Hazmat Suit",
+     "kind": "prep",
+     "group": "Entrada: Sewer",
+     "players": "Solo ou grupo",
+     "section": "infiltration-gear",
+     "goal": "Conseguir a roupa Hazmat que libera a entrada pelo esgoto (Sewer).",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Consiga a roupa Hazmat.",
+      "Conclua a missão para liberar a infiltração pelo Sewer no final."
+     ],
+     "tips": [],
+     "source": "https://gta.fandom.com/wiki/Prep:_Hazmat_Suit"
+    },
+    {
+     "id": "prep-street-loadout",
+     "name": "Street Loadout",
+     "kind": "prep",
+     "group": "Loadout",
+     "players": "Solo ou grupo",
+     "section": "unmarked-weapons",
+     "goal": "Garantir o loadout Street para usar no final.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Consiga as armas do loadout.",
+      "Conclua a missão para poder escolher o loadout Street na tela do final."
+     ],
+     "tips": [
+      "Inclui Battle Rifle, Mini SMG, Pistol com silenciador, Pipe Bomb e Machete.",
+      "Com o add-on Armory da Mansion, ganha também uma Pump Shotgun Mk II."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Street_Loadout"
+    },
+    {
+     "id": "prep-security-loadout",
+     "name": "Security Loadout",
+     "kind": "prep",
+     "group": "Loadout",
+     "players": "Solo ou grupo",
+     "section": "unmarked-weapons",
+     "goal": "Garantir o loadout Security para usar no final.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Consiga as armas do loadout.",
+      "Conclua a missão para poder escolher o loadout Security na tela do final."
+     ],
+     "tips": [
+      "Inclui Bullpup Rifle e Machine Pistol com silenciador, Heavy Shotgun, Stun Gun, Combat Pistol, Grenade e Switchblade.",
+      "Com o add-on Armory da Mansion, ganha também um Marksman Rifle Mk II.",
+      "As armas com silenciador e a Stun Gun combinam com um jogo furtivo."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Security_Loadout"
+    },
+    {
+     "id": "prep-military-loadout",
+     "name": "Military Loadout",
+     "kind": "prep",
+     "group": "Loadout",
+     "players": "Solo ou grupo",
+     "section": "unmarked-weapons",
+     "goal": "Garantir o loadout Military para usar no final.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Consiga as armas do loadout.",
+      "Conclua a missão para poder escolher o loadout Military na tela do final."
+     ],
+     "tips": [
+      "Inclui Military Rifle, Assault Shotgun, Stun Gun, Tactical SMG, Sticky Bomb e Knife.",
+      "Com o add-on Armory da Mansion, ganha também uma Heavy Sniper Mk II."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Military_Loadout"
+    },
+    {
+     "id": "prep-manchez",
+     "name": "Manchez",
+     "kind": "prep",
+     "group": "Veículo de fuga",
+     "players": "Solo ou grupo",
+     "section": "getaway-vehicle",
+     "goal": "Garantir a moto Manchez como veículo de fuga do Kortz Center.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Consiga a Manchez.",
+      "Conclua a missão para poder escolher a Manchez na tela do final."
+     ],
+     "tips": [
+      "Com o add-on Vehicle Workshop da Mansion, os veículos de fuga vêm com melhorias de motor."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Manchez"
+    },
+    {
+     "id": "prep-armored-caracara",
+     "name": "Armored Caracara",
+     "kind": "prep",
+     "group": "Veículo de fuga",
+     "players": "Solo ou grupo",
+     "section": "getaway-vehicle",
+     "goal": "Garantir a Armored Caracara como veículo de fuga do Kortz Center.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Consiga a Armored Caracara.",
+      "Conclua a missão para poder escolher a Armored Caracara na tela do final."
+     ],
+     "tips": [
+      "Com o add-on Vehicle Workshop da Mansion, os veículos de fuga vêm com melhorias de motor."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Armored_Caracara"
+    },
+    {
+     "id": "prep-annihilator-stealth",
+     "name": "Annihilator Stealth",
+     "kind": "prep",
+     "group": "Veículo de fuga",
+     "players": "Solo ou grupo",
+     "section": "getaway-vehicle",
+     "goal": "Garantir o helicóptero Annihilator Stealth como veículo de fuga do Kortz Center.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Consiga o Annihilator Stealth.",
+      "Conclua a missão para poder escolher o Annihilator Stealth na tela do final."
+     ],
+     "tips": [
+      "Com o add-on Vehicle Workshop da Mansion, os veículos de fuga vêm com melhorias de motor."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Annihilator_Stealth"
+    },
+    {
+     "id": "prep-access-code",
+     "name": "Access Code",
+     "kind": "prep",
+     "group": "Obrigatória",
+     "players": "Solo ou grupo",
+     "section": "equipment",
+     "goal": "Obter o código de acesso exigido para o final.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Obtenha o código de acesso.",
+      "Conclua a missão; sem ela o final não libera."
+     ],
+     "tips": [
+      "Diferente das outras categorias, as duas missões de Equipment são obrigatórias."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Access_Code"
+    },
+    {
+     "id": "prep-hacking-device",
+     "name": "Hacking Device",
+     "kind": "prep",
+     "group": "Obrigatória",
+     "players": "Solo ou grupo",
+     "section": "equipment",
+     "goal": "Obter o dispositivo de hacking exigido para o final.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Obtenha o dispositivo de hacking.",
+      "Conclua a missão; sem ela o final não libera."
+     ],
+     "tips": [
+      "Diferente das outras categorias, as duas missões de Equipment são obrigatórias."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Hacking_Device"
+    },
+    {
+     "id": "prep-guard-shipments",
+     "name": "Guard Shipments",
+     "kind": "optional",
+     "players": "Solo ou grupo",
+     "section": "optional-prep-work",
+     "goal": "Prep opcional que sabota os guardas antes do golpe para facilitar o final.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Conclua a missão antes de iniciar o final.",
+      "A vantagem vale só para a próxima execução do final."
+     ],
+     "tips": [
+      "As preps opcionais só podem ser feitas uma vez por rodada do golpe."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Guard_Shipments"
+    },
+    {
+     "id": "prep-guard-routes",
+     "name": "Guard Routes",
+     "kind": "optional",
+     "players": "Solo ou grupo",
+     "section": "optional-prep-work",
+     "goal": "Prep opcional que sabota os guardas antes do golpe para facilitar o final.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Conclua a missão antes de iniciar o final.",
+      "A vantagem vale só para a próxima execução do final."
+     ],
+     "tips": [
+      "As preps opcionais só podem ser feitas uma vez por rodada do golpe."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Guard_Routes"
+    },
+    {
+     "id": "prep-glass-cutter",
+     "name": "Glass Cutter",
+     "kind": "optional",
+     "group": "Libera vitrines reforçadas",
+     "players": "Solo ou grupo (1 a 4)",
+     "section": "optional-prep-work",
+     "goal": "Roubar um cortador de vidro que abre as vitrines reforçadas da exposição.",
+     "steps": [
+      "Vá até a sede da KnoWay e envie o OG para os servidores.",
+      "Espere o OG analisar os dados; ele indica a área do esconderijo da gangue.",
+      "Procure o esconderijo em Burton (o OG também oferece um táxi da KnoWay até lá).",
+      "Invada o esconderijo, elimine a gangue e pegue o cortador de vidro.",
+      "Saia, despiste a gangue que te persegue e entregue o cortador na Mansion."
+     ],
+     "tips": [
+      "Limite de 30 minutos, com aviso nos 5 minutos finais.",
+      "Sem ela não dá para pegar os secundários das vitrines: Gemstone, Venus Statue, Horse Statue, Necklace e Skull Statue.",
+      "Pode ser pulada pagando $70.000.",
+      "A perseguição da gangue é fácil de despistar."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Glass_Cutter"
+    },
+    {
+     "id": "prep-power-drills",
+     "name": "Power Drills",
+     "kind": "optional",
+     "group": "Libera os cofrinhos do vault",
+     "players": "Solo ou grupo (1 a 4)",
+     "section": "optional-prep-work",
+     "goal": "Roubar furadeiras para arrombar os deposit boxes dentro do cofre.",
+     "steps": [
+      "Vá até a casa em obra em West Vinewood.",
+      "Aproxime-se da casa sem ser notado e entre.",
+      "Encontre as furadeiras, eliminando os mafiosos no caminho.",
+      "Saia da casa; se a polícia aparecer, despiste-a.",
+      "Entregue as furadeiras na Mansion."
+     ],
+     "tips": [
+      "Furtividade é recomendada, mas não obrigatória; ir no barulho rende procurado pela polícia.",
+      "Limite de 30 minutos, com aviso nos 5 minutos finais.",
+      "Sem ela os deposit boxes do cofre não podem ser roubados.",
+      "Pode ser pulada pagando $70.000."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_Power_Drills"
+    },
+    {
+     "id": "prep-emp-charges",
+     "name": "EMP Charges",
+     "kind": "optional",
+     "players": "Solo ou grupo",
+     "section": "optional-prep-work",
+     "goal": "Prep opcional que prepara cargas EMP para facilitar o final.",
+     "steps": [
+      "Inicie a prep no quadro de planejamento do Art Studio como VIP, CEO ou presidente de MC.",
+      "Conclua a missão antes de iniciar o final.",
+      "A vantagem vale só para a próxima execução do final."
+     ],
+     "tips": [
+      "As preps opcionais só podem ser feitas uma vez por rodada do golpe."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prep:_EMP_Charges"
+    }
+   ],
+   "finale": {
+    "name": "The Kortz Center Heist",
+    "summary": "Com as preps obrigatórias feitas, escolha veículo de fuga e loadout no quadro da Mansion, invada o Kortz Center à noite, roube a pintura do cofre, apague as provas e fuja com o máximo de secundários.",
+    "steps": [
+     "No quadro de planejamento do Art Studio, abra a tela do final e pague o custo de $100.000 (grátis na primeira vez).",
+     "Escolha o Getaway Vehicle (Manchez, Armored Caracara ou Annihilator Stealth) e o Weapon Loadout (Street, Security ou Military).",
+     "Inicie sozinho ou convide até 3 jogadores.",
+     "Entre no Kortz Center por qualquer entrada descoberta e preparada; a roupa escolhida indica a melhor.",
+     "Chegue ao cofre, pegue o alvo principal e os secundários que couberem na bolsa.",
+     "Apague as gravações do CCTV do cofre e não deixe guardas testemunhas vivos.",
+     "Fuja com o veículo de fuga escolhido."
+    ],
+    "tips": [
+     "Testemunhas ou CCTV não apagado cortam cerca de 25% do valor do alvo principal. No Hard o alvo vale 10% a mais.",
+     "Se você levar tiro dos guardas ou renascer, perde parte do loot secundário (o dinheiro do cofre não cai); quem carrega a pintura principal a perde se morrer. A missão falha quando acabam as vidas.",
+     "A arma só vem do loadout escolhido. Guardas abatidos sem alarme deixam munição e lanches, mas não as armas; com o alarme disparado, as armas deles podem ser pegas. Há até 3 armas extras dentro do prédio.",
+     "Cada bolsa tem espaço limitado (100), por isso grupo maior leva mais secundários; os Buyer's Requests valem mais. Secundário roubado não aparece na rodada seguinte.",
+     "Os cortes são definidos pelo jogo; o líder decide se vende a pintura ou a guarda como decoração da Mansion.",
+     "Elite Challenge (menos de 17:00, perda de valor abaixo de $75.000, precisão acima de 90% e lista Buyer's Request completa) dá $50.000, ou $100.000 no Hard; quick restart anula. Awards extras: $200.000 na primeira conclusão, $100.000 solo e $100.000 com 4 jogadores."
+    ],
+    "source": "https://gta.fandom.com/wiki/The_Kortz_Center_Heist/Finale"
+   },
+   "review": true
+  },
+  "doomsday": {
+   "id": "doomsday",
+   "name": "The Doomsday Heist",
+   "source": "https://gta.fandom.com/wiki/The_Doomsday_Heist",
+   "facts": [
+    {
+     "label": "Jogadores",
+     "value": "2 a 4"
+    },
+    {
+     "label": "Quem inicia",
+     "value": "CEO, VIP ou presidente de MC dono de Facility"
+    },
+    {
+     "label": "Requisito",
+     "value": "Facility"
+    },
+    {
+     "label": "Custo",
+     "value": "$25.000 por ato"
+    },
+    {
+     "label": "Pagamento",
+     "value": "Ato I $585.000, Ato II $855.000, Ato III $1.080.000 (base)"
+    }
+   ],
+   "overview": [
+    "Golpe em três atos com Lester, Avon Hertz e a IAA, planejado na Facility. Cada ato tem preps de free roam, setups e um final; terminar um ato libera o próximo.",
+    "As preps dão o equipamento que libera cada setup. Elas só rolam em sessão pública e rivais podem roubar o equipamento; dá para pular comprando no Planning Room, mas isso tira o líder dos desafios do Doomsday.",
+    "Todas as setups e finais aceitam de 2 a 4 jogadores. Cada membro recebe no mínimo 15% do final. No Hard o pagamento é 25% maior.",
+    "O Ato III tem mais preps e setups (11) e paga mais; terminar os três atos fecha a história de Avon e Cliffford."
+   ],
+   "start": [
+    "Seja CEO, VIP ou presidente de MC.",
+    "Compre uma Facility pelo site foreclosures.maze-bank.com.",
+    "Na Facility, abra a tela de planejamento e pague $25.000 para montar o ato.",
+    "Faça as preps (ou compre o equipamento) para liberar as setups.",
+    "Termine as setups e lance o final; o próximo ato é liberado ao concluir."
+   ],
+   "approaches": [
+    {
+     "id": "act1",
+     "name": "Act I: The Data Breaches",
+     "summary": "Recuperar dados roubados e defender uma base da IAA no deserto contra invasores. Final paga $585.000 (base, Normal)."
+    },
+    {
+     "id": "act2",
+     "name": "Act II: The Bogdan Problem",
+     "summary": "Preparar veículos e invadir o submarino de Bogdan na costa de Paleto. Final paga $855.000 (base, Normal)."
+    },
+    {
+     "id": "act3",
+     "name": "Act III: The Doomsday Scenario",
+     "summary": "Resgatar agentes, juntar armamento pesado e invadir a base de mísseis no Mount Chiliad para parar Avon e Cliffford. Final paga $1.080.000 (base, Normal)."
+    }
+   ],
+   "sections": [
+    {
+     "id": "act1-preps",
+     "title": "Ato I: Preps",
+     "note": "Obrigatórias: as 3 (ou compre o equipamento). Cada uma libera uma setup."
+    },
+    {
+     "id": "act1-setups",
+     "title": "Ato I: Setups",
+     "note": "Obrigatórias: as 3 para liberar The Data Breaches."
+    },
+    {
+     "id": "act2-preps",
+     "title": "Ato II: Preps",
+     "note": "Obrigatórias: as 5 (ou compre o equipamento). Strombergs e Torpedo ECU juntas liberam Submarine Recon."
+    },
+    {
+     "id": "act2-setups",
+     "title": "Ato II: Setups",
+     "note": "Obrigatórias: as 4 para liberar The Bogdan Problem."
+    },
+    {
+     "id": "act3-preps",
+     "title": "Ato III: Preps",
+     "note": "Obrigatórias: as 6 (ou compre o equipamento). Onboard Computer só aparece depois das quatro primeiras setups."
+    },
+    {
+     "id": "act3-setups",
+     "title": "Ato III: Setups",
+     "note": "Obrigatórias: as 5. Air Defenses é a última e libera The Doomsday Scenario."
+    }
+   ],
+   "setups": [
+    {
+     "id": "paramedic-equipment",
+     "name": "Paramedic Equipment",
+     "kind": "prep",
+     "group": "Libera Dead Courier",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act1"
+     ],
+     "section": "act1-preps",
+     "goal": "Roubar uma Ambulance com o equipamento de paramédico para entrar no necrotério.",
+     "steps": [
+      "Vá até o local marcado (hospital ou atendimento de emergência).",
+      "Roube a Ambulance; seguranças ou xerifes atacam quando você entra nela.",
+      "Perca as 2 estrelas de procurado.",
+      "Entregue a Ambulance na Facility."
+     ],
+     "tips": [
+      "Atalho: ligue 911 no celular e peça paramédicos; a Ambulance que chegar serve para a prep.",
+      "Falha se a Ambulance for destruída ou se o tempo acabar.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Paramedic_Equipment"
+    },
+    {
+     "id": "deluxos",
+     "name": "Deluxos",
+     "kind": "prep",
+     "group": "Libera Signal Intercepts",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act1"
+     ],
+     "section": "act1-preps",
+     "goal": "Roubar quatro Deluxo da garagem de uma mansão vigiada por seguranças.",
+     "steps": [
+      "Vá até a mansão marcada (Richman, Rockford Hills ou Vinewood Hills).",
+      "Elimine os seguranças e pegue a chave com o chefe da segurança.",
+      "Abra a garagem, mate os guardas lá dentro e pegue os Deluxo.",
+      "Leve cada Deluxo a uma LS Customs para pintar (grátis).",
+      "Entregue os quatro carros na Facility."
+     ],
+     "tips": [
+      "Com poucos jogadores serão várias viagens; nenhum Deluxo pode ser destruído.",
+      "Se não entregar todos de uma vez, dá para repetir a prep e buscar só os que faltam.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Deluxos"
+    },
+    {
+     "id": "akula",
+     "name": "Akula",
+     "kind": "prep",
+     "group": "Libera Server Farm",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act1"
+     ],
+     "section": "act1-preps",
+     "goal": "Baixar o plano de voo do Akula na torre de controle de Fort Zancudo e roubar o helicóptero.",
+     "steps": [
+      "Vá até Fort Zancudo (você recebe roupa militar e passe de acesso limitado).",
+      "Suba ao último andar da torre de controle e acesse o console.",
+      "Defenda quem está baixando os dados; mantenha um celular perto do console.",
+      "Vá até o local do Akula, elimine as tropas e roube o helicóptero.",
+      "Perca a polícia e entregue o Akula na Facility."
+     ],
+     "tips": [
+      "O passe é limitado: seja rápido e evite chamar atenção antes de baixar os dados.",
+      "O modo furtivo do Akula não funciona nesta prep.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Akula"
+    },
+    {
+     "id": "dead-courier",
+     "name": "Dead Courier",
+     "kind": "setup",
+     "group": "Precisa de Paramedic Equipment",
+     "players": "2 a 4 jogadores",
+     "approaches": [
+      "act1"
+     ],
+     "section": "act1-setups",
+     "goal": "Recuperar o pendrive de um agente morto no LS County Coroner e o Savage roubado dele.",
+     "steps": [
+      "Divida a equipe: Paramedic vai de Ambulance, Recovery vai atrás do Savage.",
+      "Paramedic: entre no Coroner, procure nos corpos da câmara fria e baixe os dados do laptop.",
+      "Recovery: siga o Savage até El Burro Heights, mate os inimigos, pegue a intel e roube o helicóptero.",
+      "Recovery: pouse no Coroner para buscar a outra dupla, que segura FIB e polícia do lado de fora.",
+      "Todos: percam a polícia e entreguem o Savage no ponto final."
+     ],
+     "tips": [
+      "Falha se o Savage for destruído.",
+      "Siga os objetivos na ordem: pular a volta ao Coroner com o Savage pode bugar a perseguição e deixar a polícia infinita.",
+      "Pagamento da setup: $25.600 no Normal."
+     ],
+     "source": "https://gta.fandom.com/wiki/Setup:_Dead_Courier"
+    },
+    {
+     "id": "signal-intercepts",
+     "name": "Signal Intercepts",
+     "kind": "setup",
+     "group": "Precisa de Deluxos",
+     "players": "2 a 4 jogadores",
+     "approaches": [
+      "act1"
+     ],
+     "section": "act1-setups",
+     "goal": "Usar os Deluxo para hackear e destruir veículos que carregam dados.",
+     "steps": [
+      "Pegue os Deluxo no estacionamento em La Mesa.",
+      "Hackeie de perto os quatro Stockade pretos pelo app da SecuroServ e destrua cada um depois.",
+      "No modo hover, hackeie e destrua os quatro Police Predator no mar.",
+      "No aeroporto, voe perto do Cargo Plane para hackear enquanto a equipe derruba os Valkyrie.",
+      "Destrua o avião e entregue os Deluxo no estacionamento em Little Seoul."
+     ],
+     "tips": [
+      "Não destrua um alvo antes de terminar o hack: a missão falha.",
+      "Fique perto do alvo durante todo o hack.",
+      "Concluir libera o preço de troca do Deluxo na Warstock."
+     ],
+     "source": "https://gta.fandom.com/wiki/Setup:_Signal_Intercepts"
+    },
+    {
+     "id": "server-farm",
+     "name": "Server Farm",
+     "kind": "setup",
+     "group": "Precisa de Akula",
+     "players": "2 a 4 jogadores",
+     "approaches": [
+      "act1"
+     ],
+     "section": "act1-setups",
+     "goal": "Invadir em silêncio o prédio da NOOSE pelo telhado e hackear os servidores.",
+     "steps": [
+      "Voe de Akula e pouse no telhado do prédio do governo.",
+      "Desça pela escada e vá até a entrada dos fundos sem ser visto (cuidado com câmeras).",
+      "Em cobertura, mate o chefe da segurança e pegue os códigos de acesso.",
+      "Desça ao server farm e hackeie os quatro servidores (minigame de ligar nós).",
+      "Com o alarme tocando, lute até o telhado, fuja de Akula e entregue em Sandy Shores."
+     ],
+     "tips": [
+      "Ser detectado antes dos servidores falha a missão: elimine guardas e câmeras com calma.",
+      "No minigame cada servidor tem até quatro tentativas; errar demais reinicia o hack.",
+      "Concluir libera o preço de troca do Akula na Warstock."
+     ],
+     "source": "https://gta.fandom.com/wiki/Setup:_Server_Farm"
+    },
+    {
+     "id": "keycards",
+     "name": "Keycards",
+     "kind": "prep",
+     "group": "Libera Avenger",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act2"
+     ],
+     "section": "act2-preps",
+     "goal": "Roubar o Police Riot da NOOSE que guarda os cartões de acesso ao hangar do aeroporto.",
+     "steps": [
+      "Vá até o posto de gasolina marcado, onde a NOOSE atende um assalto.",
+      "Elimine os policiais e roube o Police Riot.",
+      "Perca a polícia.",
+      "Entregue o Riot na Facility."
+     ],
+     "tips": [
+      "O posto pode explodir no tiroteio; não deixe o Riot ser destruído.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Keycards"
+    },
+    {
+     "id": "ulp-intel",
+     "name": "ULP Intel",
+     "kind": "prep",
+     "group": "Libera Rescue ULP",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act2"
+     ],
+     "section": "act2-preps",
+     "goal": "Achar o paradeiro do Agent ULP eliminando traficantes e pegando uma bolsa num apartamento.",
+     "steps": [
+      "Elimine os seis traficantes espalhados (Buccaneer Custom, BMX e Korean Plaza).",
+      "Vá ao apartamento rastreado e mate o traficante da entrada.",
+      "Lá dentro, elimine os traficantes e pegue a bolsa (duffel bag).",
+      "Saia, enfrente as ondas de Buccaneer Custom e entregue a bolsa na Facility."
+     ],
+     "tips": [
+      "Só um jogador entra no apartamento; o resto pode esperar e escoltar na saída.",
+      "Dois capangas chegam quando a bolsa é pega: esteja pronto.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_ULP_Intel"
+    },
+    {
+     "id": "riot-control-van",
+     "name": "Riot Control Van",
+     "kind": "prep",
+     "group": "Libera Salvage Hard Drives",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act2"
+     ],
+     "section": "act2-preps",
+     "goal": "Começar um tumulto para a Gruppe Sechs mandar um RCV e roubar o veículo.",
+     "steps": [
+      "Vá até o local marcado.",
+      "Jogue Tear Gas na multidão e brigue com os manifestantes (sem matar ninguém).",
+      "Quando o RCV chegar, cuide dos seguranças e roube o veículo.",
+      "Perca a polícia e entregue o RCV na Facility."
+     ],
+     "tips": [
+      "Matar manifestantes falha a prep: use socos e gás.",
+      "Falha também se o RCV for destruído.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Riot_Control_Van"
+    },
+    {
+     "id": "strombergs",
+     "name": "Strombergs",
+     "kind": "prep",
+     "group": "Libera Submarine Recon (com Torpedo ECU)",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act2"
+     ],
+     "section": "act2-preps",
+     "goal": "Roubar quatro caminhões que levam Stromberg destruídos de uma gangue de Import/Export.",
+     "steps": [
+      "Procure os caminhões marcados no mapa (há seis; nem todos levam Stromberg).",
+      "Chegue perto: Lester confirma se aquele caminhão serve.",
+      "Mate motorista e passageiro e pegue o caminhão certo.",
+      "Entregue na Facility, despistando os carros que vêm atrás; repita até quatro."
+     ],
+     "tips": [
+      "Caminhões com outros carros não contam, confira antes de levar.",
+      "Se não entregar os quatro de uma vez, dá para repetir e buscar os que faltam.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Strombergs"
+    },
+    {
+     "id": "torpedo-ecu",
+     "name": "Torpedo ECU",
+     "kind": "prep",
+     "group": "Libera Submarine Recon (com Strombergs)",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act2"
+     ],
+     "section": "act2-preps",
+     "goal": "Roubar duas ECUs de torpedo de traficantes de armas numa balsa no mar.",
+     "steps": [
+      "Vá até o ponto marcado; pode haver Seashark para chegar à balsa.",
+      "Limpe a balsa, incluindo os inimigos em Seashark.",
+      "Pegue as duas bolsas com as ECUs.",
+      "Entregue na Facility, fugindo ou derrubando os dois Frogger."
+     ],
+     "tips": [
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Torpedo_ECU"
+    },
+    {
+     "id": "avenger",
+     "name": "Avenger",
+     "kind": "setup",
+     "group": "Precisa de Keycards",
+     "players": "2 a 4 jogadores",
+     "approaches": [
+      "act2"
+     ],
+     "section": "act2-setups",
+     "goal": "Roubar o Avenger de um hangar da Merryweather no aeroporto de Los Santos.",
+     "steps": [
+      "Vá ao hangar no LSIA e chegue perto do Avenger.",
+      "Quando a luz cair (emboscada), use visão noturna e lute contra a Merryweather.",
+      "Suba às passarelas e ligue os dois geradores de reserva.",
+      "Entre no Avenger: um pilota, os outros vão nas armas.",
+      "Voe baixo, derrube os Buzzard e entregue na praia perto de Paleto Bay."
+     ],
+     "tips": [
+      "Falha se o Avenger for destruído.",
+      "Voar baixo ajuda a sair do radar até Lester avisar que estão livres."
+     ],
+     "source": "https://gta.fandom.com/wiki/Setup:_Avenger"
+    },
+    {
+     "id": "rescue-ulp",
+     "name": "Rescue ULP",
+     "kind": "setup",
+     "group": "Precisa de ULP Intel",
+     "players": "2 a 4 jogadores",
+     "approaches": [
+      "act2"
+     ],
+     "section": "act2-setups",
+     "goal": "Resgatar o Agent ULP na Grand Banks Steel Foundry.",
+     "steps": [
+      "Vá ao pátio da fundição e elimine os guardas de fora.",
+      "Ground Team: entre, suba ao andar de cima e liberte o ULP, que está sob a mira de um agente.",
+      "Lookout Team: suba na caixa d'água e derrube Nightshark e Buzzard que chegam.",
+      "Todos: levem o ULP num veículo (Insurgent Pick-Up, Nightshark ou o seu) até o McKenzie Field Hangar."
+     ],
+     "tips": [
+      "Mire com cuidado no agente que segura o ULP: se ele morrer, a missão falha.",
+      "Se o ULP travar e não se mexer, reinicie a missão do zero (o restart rápido repete o bug)."
+     ],
+     "source": "https://gta.fandom.com/wiki/Setup:_Rescue_ULP"
+    },
+    {
+     "id": "salvage-hard-drives",
+     "name": "Salvage Hard Drives",
+     "kind": "setup",
+     "group": "Precisa de Riot Control Van",
+     "players": "2 a 4 jogadores",
+     "approaches": [
+      "act2"
+     ],
+     "section": "act2-setups",
+     "goal": "Usar o RCV para apagar o fogo nas vans e recuperar os HDs roubados em quatro locais.",
+     "steps": [
+      "Entre no RCV com a equipe: Operator usa o canhão d'água, Salvage recolhe os HDs.",
+      "Stoner Cement Works: apague o fogo e pegue 2 HDs.",
+      "La Mesa (Mirror Park Rail Yard): pegue 3 HDs.",
+      "Cypress Flats: pegue 4 HDs; Elysian Island: pegue 5 HDs.",
+      "Leve o RCV até o ponto de entrega em La Puerta."
+     ],
+     "tips": [
+      "Falha se o RCV, as vans ou os HDs forem destruídos, ou se o tempo acabar.",
+      "Concluir libera o preço de troca do RCV na Warstock."
+     ],
+     "source": "https://gta.fandom.com/wiki/Setup:_Salvage_Hard_Drives"
+    },
+    {
+     "id": "submarine-recon",
+     "name": "Submarine Recon",
+     "kind": "setup",
+     "group": "Precisa de Strombergs e Torpedo ECU",
+     "players": "2 a 4 jogadores",
+     "approaches": [
+      "act2"
+     ],
+     "section": "act2-setups",
+     "goal": "Destruir o comboio de suprimentos e escanear o submarino usando os Stromberg.",
+     "steps": [
+      "Entre nos Stromberg e destrua o comboio em North Chumash (Brickade, Insurgent Pick-Up e Buzzard).",
+      "Divida em duas equipes: Paleto Bay e Paleto Cove.",
+      "Cada equipe destrói dez minas submarinas com torpedos.",
+      "Paleto Bay escaneia os destroços do avião; Paleto Cove escaneia o submarino e sai rápido.",
+      "Entregue os Stromberg no estacionamento da Ammu-Nation de Paleto Bay."
+     ],
+     "tips": [
+      "Fique perto do alvo enquanto escaneia.",
+      "No ponto de entrega os Stromberg parados podem explodir por bug: mantenha o carro em movimento e entreguem juntos.",
+      "Concluir libera o preço de troca do Stromberg na Warstock."
+     ],
+     "source": "https://gta.fandom.com/wiki/Setup:_Submarine_Recon"
+    },
+    {
+     "id": "marked-cash",
+     "name": "Marked Cash",
+     "kind": "prep",
+     "group": "Libera Rescue Agent 14 (com Recon)",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act3"
+     ],
+     "section": "act3-preps",
+     "goal": "Roubar uma bolsa de dinheiro de uma armação do FIB para pagar o resgate do Agent 14.",
+     "steps": [
+      "Vá até o local marcado e pegue a bolsa preta.",
+      "Enfrente os agentes do FIB e perca as 4 estrelas.",
+      "Entregue a bolsa na Facility."
+     ],
+     "tips": [
+      "As 4 estrelas vêm assim que pega a bolsa: tenha uma rota de fuga pronta.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Marked_Cash"
+    },
+    {
+     "id": "recon",
+     "name": "Recon",
+     "kind": "prep",
+     "group": "Libera Rescue Agent 14 (com Marked Cash)",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act3"
+     ],
+     "section": "act3-preps",
+     "goal": "Fotografar o Pacific Allied Shipyard antes da troca do Agent 14.",
+     "steps": [
+      "Vá até o Pacific Allied Shipyard.",
+      "Com a câmera do celular, fotografe cada ponto marcado, em qualquer ordem.",
+      "Envie as fotos para Lester.",
+      "Saia da área."
+     ],
+     "tips": [
+      "Lester libera o local só por pouco tempo: seja rápido.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Recon"
+    },
+    {
+     "id": "chernobog",
+     "name": "Chernobog",
+     "kind": "prep",
+     "group": "Libera Escort ULP",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act3"
+     ],
+     "section": "act3-preps",
+     "goal": "Roubar um Chernobog de um campo de treino da Merryweather.",
+     "steps": [
+      "Vá ao acampamento da Merryweather.",
+      "Elimine os guardas (dois têm Railgun).",
+      "Roube o Chernobog; os mísseis dele estão desligados.",
+      "Fuja dos Mesa da Merryweather, perca a polícia e entregue na Facility."
+     ],
+     "tips": [
+      "Há um Rhino vazio no local que pode escoltar o caminhão.",
+      "Perto da Facility os reforços param de perseguir.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Chernobog"
+    },
+    {
+     "id": "flight-path",
+     "name": "Flight Path",
+     "kind": "prep",
+     "group": "Libera Barrage",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act3"
+     ],
+     "section": "act3-preps",
+     "goal": "Pegar a maleta de um traficante de armas com a rota de voo do Barrage.",
+     "steps": [
+      "Vá ao local e encontre o traficante pela foto que Lester manda.",
+      "Siga-o de longe até um lugar tranquilo.",
+      "Derrube o alvo e pegue a maleta.",
+      "Entregue a maleta na Facility."
+     ],
+     "tips": [
+      "Se ele perceber que está sendo seguido, você ganha 3 estrelas e precisa perdê-las.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Flight_Path"
+    },
+    {
+     "id": "test-site-intel",
+     "name": "Test Site Intel",
+     "kind": "prep",
+     "group": "Libera Khanjali",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act3"
+     ],
+     "section": "act3-preps",
+     "goal": "Roubar o laptop com o local de testes do Khanjali na casa da equipe de engenharia de Avon.",
+     "steps": [
+      "Vá à casa marcada e elimine os guardas de fora em silêncio.",
+      "Um jogador entra e elimina a equipe de engenharia sem alertar ninguém.",
+      "Ache o lockbox e pegue o laptop.",
+      "Saia e entregue o laptop na Facility."
+     ],
+     "tips": [
+      "Ser detectado gera 3 estrelas e reforços de Avon: vá com calma.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Test_Site_Intel"
+    },
+    {
+     "id": "rescue-agent-14",
+     "name": "Rescue Agent 14",
+     "kind": "setup",
+     "group": "Precisa de Marked Cash e Recon",
+     "players": "2 a 4 jogadores",
+     "approaches": [
+      "act3"
+     ],
+     "section": "act3-setups",
+     "goal": "Resgatar o Agent 14 da Merryweather no Pacific Allied Shipyard.",
+     "steps": [
+      "Vá ao estaleiro; a troca dá errado e vocês entram atirando (inimigos aparecem no radar).",
+      "Limpe os mercenários e chegue ao Agent 14 do outro lado do dique seco.",
+      "Mate os Juggernauts invisíveis com Minigun usando a visão térmica dos óculos.",
+      "Abra caminho até a extração, mate os últimos Juggernauts e pegue os Akula.",
+      "Voe baixo para fugir do radar e deixe o Agent 14 no Grand Senora Desert."
+     ],
+     "tips": [
+      "Se o Agent 14 morrer, a missão falha.",
+      "Os Juggernauts ficam invisíveis: troque para a visão térmica.",
+      "Pagamento da setup: $36.000 no Normal."
+     ],
+     "source": "https://gta.fandom.com/wiki/Setup:_Rescue_Agent_14"
+    },
+    {
+     "id": "escort-ulp",
+     "name": "Escort ULP",
+     "kind": "setup",
+     "group": "Precisa de Chernobog",
+     "players": "2 a 4 jogadores",
+     "approaches": [
+      "act3"
+     ],
+     "section": "act3-setups",
+     "goal": "Escoltar a fuga do Agent ULP com o Chernobog.",
+     "steps": [
+      "Vá ao canteiro de obras em Paleto Bay e elimine os mercenários de Avon.",
+      "Pegue o Chernobog (e os Ramp Buggy, se houver mais jogadores).",
+      "Vá ao ponto de pouso e espere o ULP decolar no Havok.",
+      "Siga o ULP e derrube os Valkyrie com os mísseis do Chernobog.",
+      "Acompanhe até ele chegar ao esconderijo no Grand Senora Desert."
+     ],
+     "tips": [
+      "O Chernobog não anda e atira ao mesmo tempo: pare para lançar mísseis.",
+      "Quem estiver nos Ramp Buggy abre caminho e tira os Dubsta 6x6 de perto do caminhão.",
+      "Se o ULP morrer, a missão falha."
+     ],
+     "source": "https://gta.fandom.com/wiki/Setup:_Escort_ULP"
+    },
+    {
+     "id": "barrage",
+     "name": "Barrage",
+     "kind": "setup",
+     "group": "Precisa de Flight Path",
+     "players": "2 a 4 jogadores",
+     "approaches": [
+      "act3"
+     ],
+     "section": "act3-setups",
+     "goal": "Derrubar o Cargobob que leva o Barrage e destruir a operação de Avon no aeródromo de Sandy Shores.",
+     "steps": [
+      "Vá ao Galileo Observatory e espere o comboio aéreo.",
+      "Com Heavy Sniper Mk II de munição explosiva, derrube escolta e Cargobob.",
+      "Pegue o Barrage e vá ao Sandy Shores Airfield; os outros usam as torres contra os Dubsta 6x6.",
+      "Destrua o Bombushka antes de decolar, o Armored Boxville, os Dubsta e o Valkyrie.",
+      "Entregue o Barrage em Grapeseed."
+     ],
+     "tips": [
+      "Se o Cargobob chegar a Fort Zancudo, a missão falha.",
+      "Falha também se o Barrage for destruído."
+     ],
+     "source": "https://gta.fandom.com/wiki/Setup:_Barrage"
+    },
+    {
+     "id": "khanjali",
+     "name": "Khanjali",
+     "kind": "setup",
+     "group": "Precisa de Test Site Intel",
+     "players": "2 a 4 jogadores",
+     "approaches": [
+      "act3"
+     ],
+     "section": "act3-setups",
+     "goal": "Roubar o tanque TM-02 Khanjali no ferro-velho de aviões.",
+     "steps": [
+      "Vá ao Thomson Scrapyard.",
+      "Destrua o equipamento no galpão (dois Anti-Aircraft Trailer e um Insurgent Pick-Up).",
+      "Elimine os guardas e entrem todos no Khanjali.",
+      "Use as armas do tanque contra Dubsta 6x6, Insurgent e FH-1 Hunter na fuga.",
+      "Entregue aos agentes da IAA perto de Fort Zancudo."
+     ],
+     "tips": [
+      "Falha se o Khanjali for destruído, se um agente da IAA morrer ou se o tempo acabar.",
+      "O líder ganha o preço de troca do Khanjali na Warstock."
+     ],
+     "source": "https://gta.fandom.com/wiki/Setup:_Khanjali"
+    },
+    {
+     "id": "onboard-computer",
+     "name": "Onboard Computer",
+     "kind": "prep",
+     "group": "Liberada após as 4 setups; libera Air Defenses",
+     "players": "Solo ou grupo (1 a 4; MC até 8), só em sessão pública",
+     "approaches": [
+      "act3"
+     ],
+     "section": "act3-preps",
+     "goal": "Derrubar um Hydra de Avon e recuperar o módulo de frequência no cockpit.",
+     "steps": [
+      "Encontre o Hydra e acerte tiros até o piloto tentar pousar na água (não dá para travar mira).",
+      "Siga o jato até a queda no oceano ou no Alamo Sea.",
+      "Mergulhe e pegue o módulo no cockpit.",
+      "Entregue o módulo na Facility, cuidado com o Buzzard."
+     ],
+     "tips": [
+      "Só aparece depois das setups Rescue Agent 14, Escort ULP, Barrage e Khanjali.",
+      "Pode ser pulada comprando o equipamento no Planning Room (a partir de $94.500, cada compra seguinte mais cara), mas comprar impede os desafios do Doomsday para o líder."
+     ],
+     "source": "https://gta.fandom.com/wiki/Heist_Prep:_Onboard_Computer"
+    },
+    {
+     "id": "air-defenses",
+     "name": "Air Defenses",
+     "kind": "setup",
+     "group": "Precisa de Onboard Computer",
+     "players": "2 a 4 jogadores",
+     "approaches": [
+      "act3"
+     ],
+     "section": "act3-setups",
+     "goal": "Destruir as baterias SAM no Mount Chiliad com um bombardeiro Volatol.",
+     "steps": [
+      "Vá ao Sandy Shores Airfield e entrem todos no Volatol.",
+      "Voe até o Mount Chiliad.",
+      "Bombardeie as 12 torres SAM (bombas ilimitadas e raio maior).",
+      "Os artilheiros derrubam os Buzzard e os dois V-65 Molotok.",
+      "Volte com o Volatol ao Sandy Shores Airfield."
+     ],
+     "tips": [
+      "As SAM não miram no avião graças à frequência, mas aeronaves inimigas sim.",
+      "Há um bug antigo em que as armas do Volatol só atiram para frente, o que dificulta para os artilheiros.",
+      "Falha se o Volatol for destruído."
+     ],
+     "source": "https://gta.fandom.com/wiki/Setup:_Air_Defenses"
+    }
+   ],
+   "finale": {
+    "name": "The Doomsday Heist (finais dos atos)",
+    "summary": "Cada ato termina num final próprio para 2 a 4 jogadores, lançado da Facility quando todas as preps e setups do ato estão prontas. Concluir um final libera o ato seguinte.",
+    "steps": [
+     "Conclua todas as preps e setups do ato.",
+     "Na tela de planejamento da Facility, defina as porcentagens (mínimo 15% por jogador) e a dificuldade.",
+     "Lance o final e siga os objetivos do ato.",
+     "Ao terminar, o próximo ato é liberado na Facility."
+    ],
+    "tips": [
+     "No Hard o pagamento é 25% maior.",
+     "Cada ato concluído dá um bônus de $50.000 (award do ato).",
+     "Fazer todas as 29 setups e finais em ordem com a mesma equipe dá bônus extras (All In Order, Loyalty e Criminal Mastermind).",
+     "Com menos jogadores cada um pode receber uma fatia maior do final."
+    ],
+    "source": "https://gta.fandom.com/wiki/The_Doomsday_Heist",
+    "variants": [
+     {
+      "approach": "act1",
+      "name": "The Data Breaches",
+      "summary": "Defender a base da IAA sob o Satellite Relay Station, no deserto, de mercenários que tentam hackear os servidores.",
+      "steps": [
+       "Vá até a base da IAA e elimine os inimigos na entrada.",
+       "Desça pela base limpando cada andar até os servidores.",
+       "Volte à War Room, mate os inimigos e entre numa câmera de torreta.",
+       "Use as torretas para derrubar os Mesa e Buzzard que chegam.",
+       "Quando o ataque recuar, termine com os que fogem."
+      ],
+      "tips": [
+       "Todos precisam entrar numa torreta para a fase final começar.",
+       "Falha se a base cair na fase de defesa.",
+       "Elite: menos de 5:30, 78 kills e ninguém morrer."
+      ],
+      "source": "https://gta.fandom.com/wiki/The_Data_Breaches"
+     },
+     {
+      "approach": "act2",
+      "name": "The Bogdan Problem",
+      "summary": "Uma equipe entra no submarino de Bogdan com o Stromberg enquanto a outra dá cobertura aérea no Avenger.",
+      "steps": [
+       "Air Support: leve o Avenger até o submarino e derrube os Buzzard (podem vir Hunter e Savage).",
+       "Submarine Team: vá de Stromberg até a escotilha traseira e entre no submarino.",
+       "Ache o contato na cela, vá à sala de controle e fotografe a mesa de intel.",
+       "Conecte o Cliffford no console e fuja do submarino.",
+       "Air Support recolhe a equipe; todos levam o Avenger ao hangar no aeroporto."
+      ],
+      "tips": [
+       "Falha se o Stromberg, o Avenger, o contato ou o Asea do Lester forem destruídos.",
+       "No piloto automático o Avenger às vezes cai no mar quando o piloto vai para as armas: fique atento.",
+       "Elite: menos de 15:00, até 5% de dano no veículo e ninguém morrer."
+      ],
+      "source": "https://gta.fandom.com/wiki/The_Bogdan_Problem"
+     },
+     {
+      "approach": "act3",
+      "name": "The Doomsday Scenario",
+      "summary": "Invadir a base de mísseis no Mount Chiliad, impedir o lançamento, destruir o Cliffford e caçar Avon de Thruster.",
+      "steps": [
+       "Em Grapeseed, escolha Barrage ou Khanjali; todos entram no mesmo veículo.",
+       "Atravesse o túnel do Mount Chiliad e siga a pé, matando os Juggernauts e destruindo os suprimentos.",
+       "Na sala de controle, um jogador hackeia 4 consoles em até 20 minutos enquanto os outros defendem.",
+       "Suba ao Orbital Cannon e destrua os quatro Brickade (servidores móveis).",
+       "Vá ao silo, persiga Avon de Thruster, mate-o e entregue o Thruster no Galileo Observatory."
+      ],
+      "tips": [
+       "No hack, guie o feixe pelos nós azuis e evite os vermelhos; cada console tem 5 minutos.",
+       "O hacker não é alvo dos inimigos durante o minigame.",
+       "O líder ganha $100.000 extra se escolher o Barrage ou $50.000 com o Khanjali (o veículo não usado é vendido).",
+       "Elite: menos de 30:00, nenhum hack falho, 150 headshots e ninguém morrer."
+      ],
+      "source": "https://gta.fandom.com/wiki/The_Doomsday_Scenario"
+     }
+    ]
+   }
+  },
+  "pacific": {
+   "id": "pacific",
+   "name": "Pacific Standard",
+   "source": "https://gta.fandom.com/wiki/Pacific_Standard",
+   "facts": [
+    {
+     "label": "Jogadores",
+     "value": "4"
+    },
+    {
+     "label": "Quem inicia",
+     "value": "Lester Crest"
+    },
+    {
+     "label": "Requisito",
+     "value": "Ter concluído Series A e apartamento high-end com sala de planejamento"
+    },
+    {
+     "label": "Custo de preparação",
+     "value": "$25.000"
+    },
+    {
+     "label": "Pagamento",
+     "value": "$750.000 Fácil · $1.500.000 Normal · $1.875.000 Difícil"
+    }
+   ],
+   "overview": [
+    "Quinto golpe do GTA Online: Lester planeja assaltar a agência principal do Pacific Standard Public Deposit Bank, em Downtown Vinewood.",
+    "São 5 setups para juntar o necessário: uma van Post OP com transponder, a sintonia do sinal com Avi Schwartzman, um equipamento de hacking, cargas térmicas da Merryweather e as motos Lectro da fuga.",
+    "No final a equipe se divide entre controle da multidão, hacker e demolição dentro do banco, e depois foge a pé, de Lectro e de paraquedas até um Dinghy. É o golpe original que paga mais, mas o dinheiro diminui se os sacos levarem dano na fuga."
+   ],
+   "start": [
+    "Conclua Series A.",
+    "Tenha um apartamento high-end com sala de planejamento.",
+    "Lester apresenta o golpe; abra o quadro de planejamento no apartamento.",
+    "O líder paga $25.000 para montar o golpe."
+   ],
+   "approaches": [],
+   "sections": [
+    {
+     "id": "setups",
+     "title": "Setups",
+     "note": "Obrigatórios. Vans e Signal vêm primeiro, nessa ordem; Signal libera Hack, Convoy e Bikes juntos."
+    }
+   ],
+   "setups": [
+    {
+     "id": "vans",
+     "name": "Vans",
+     "kind": "setup",
+     "players": "4 jogadores (2 duplas)",
+     "section": "setups",
+     "goal": "Encontrar e fotografar as placas das vans Post OP para que Lester identifique a que tem o transponder, e roubá-la.",
+     "steps": [
+      "Navigators: usem o app Trackify para localizar as vans Post OP pela cidade.",
+      "Drivers: levem o seu Navigator até a van indicada, seguindo as instruções dele.",
+      "Navigators: fotografem a placa da van; a foto vai direto para Lester.",
+      "Quando Lester marcar a van certa no mapa, roubem a van.",
+      "Percam a polícia e entreguem a van para Paige na fábrica do Lester (Darnell Bros.)."
+     ],
+     "tips": [
+      "Só os Navigators enxergam as vans no Trackify e só eles mandam fotos; usem o chat de voz (alcance de cerca de 100 m) ou os indicadores na tela.",
+      "Há limite de 9 minutos antes de as vans saírem de circulação.",
+      "Não precisa dar zoom: qualquer foto nítida e sem obstrução da placa serve, mas sem filtro.",
+      "A van certa é a que roda por Pillbox Hill, Hawick, Burton e Rockford Hills.",
+      "Falha se o motorista da van for alertado, se a van for destruída ou se o tempo acabar.",
+      "Concluir dá desconto no Boxville (Post OP)."
+     ],
+     "source": "https://gta.fandom.com/wiki/Pacific_Standard_-_Vans"
+    },
+    {
+     "id": "signal",
+     "name": "Signal",
+     "kind": "setup",
+     "players": "4 jogadores",
+     "section": "setups",
+     "goal": "Resgatar Avi Schwartzman, cercado pela polícia numa ilha ao norte de Chumash, e levá-lo até uma fazenda em Grapeseed.",
+     "steps": [
+      "Vá ao ponto de encontro e peguem os Seasharks.",
+      "Sigam até a ilha e eliminem os agentes e os dois helicópteros da polícia.",
+      "Um jogador busca Avi no barraco; ele embarca num Police Predator.",
+      "Subam por Cassidy Creek e atravessem o Alamo Sea dentro do prazo.",
+      "Percam a polícia no Alamo Sea e entreguem Avi para Paige em Grapeseed."
+     ],
+     "tips": [
+      "Falha se Avi morrer, se o Police Predator for destruído ou se o tempo acabar.",
+      "A polícia persegue até o Alamo Sea; só dá para despistar lá."
+     ],
+     "source": "https://gta.fandom.com/wiki/Pacific_Standard_-_Signal"
+    },
+    {
+     "id": "hack",
+     "name": "Hack",
+     "kind": "setup",
+     "players": "4 jogadores (1 Transporter + 3 Decoys)",
+     "section": "setups",
+     "group": "Liberado após Signal",
+     "goal": "Tomar o equipamento de hacking de uma equipe rival em Vinewood, trocando-o de van, e despistar os rivais com uma isca.",
+     "steps": [
+      "Peguem a Gang Burrito em frente à Darnell Bros. e vão até Vinewood Boulevard.",
+      "Eliminem a equipe rival na entrada e no beco onde está a van preta.",
+      "Transporter: estacione a van branca ao lado da preta para trocar o equipamento.",
+      "Decoys: peguem a van preta, atraiam os rivais até Aguja Street, estacionem no beco e destruam a van.",
+      "Transporter: leve a van branca até a fábrica do Lester e entregue a Paige."
+     ],
+     "tips": [
+      "Falha se a van branca for destruída ou se a van preta for destruída antes de chegar ao beco em Aguja Street.",
+      "Os rivais perseguem os Decoys de Fugitive e Granger.",
+      "Concluir dá desconto na Gang Burrito."
+     ],
+     "source": "https://gta.fandom.com/wiki/Pacific_Standard_-_Hack"
+    },
+    {
+     "id": "convoy",
+     "name": "Convoy",
+     "kind": "setup",
+     "players": "4 jogadores",
+     "section": "setups",
+     "group": "Liberado após Signal",
+     "goal": "Emboscar um comboio da Merryweather na Calafia Bridge e roubar o Barracks com as cargas térmicas.",
+     "steps": [
+      "Vão até o ponto de emboscada na Calafia Bridge e esperem o comboio (cerca de 2 minutos).",
+      "O comboio tem um Mesa na frente, o Barracks no meio, um Insurgent Pick-Up atrás e um Savage no ar.",
+      "Eliminem a escolta sem destruir o Barracks.",
+      "Um jogador dirige o Barracks até Grapeseed; os outros escoltam, de preferência no Insurgent Pick-Up.",
+      "Derrubem os reforços (Mesas, bloqueios e Savages) e entreguem o caminhão a Paige."
+     ],
+     "tips": [
+      "Falha se o Barracks for destruído; o caminhão tenta fugir se a emboscada demorar.",
+      "Os Savages são a maior ameaça e podem destruir o Barracks e o Insurgent rapidamente; priorizem os helicópteros.",
+      "Mate o motorista do Insurgent antes do atirador para o veículo não cair no mar ou no barranco.",
+      "Concluir dá desconto no Savage."
+     ],
+     "source": "https://gta.fandom.com/wiki/Pacific_Standard_-_Convoy"
+    },
+    {
+     "id": "bikes",
+     "name": "Bikes",
+     "kind": "setup",
+     "players": "4 jogadores",
+     "section": "setups",
+     "group": "Liberado após Signal",
+     "goal": "Roubar 4 motos Lectro do clube da Lost em East Los Santos e deixá-las num beco perto do banco.",
+     "steps": [
+      "Vá até o clube da Lost MC em East Los Santos.",
+      "Elimine os guardas na entrada, no pátio e atrás dos prédios.",
+      "Cada jogador pega uma Lectro: duas no estacionamento da entrada, uma do outro lado do portão e uma numa garagem à direita.",
+      "Fujam dos Daemons da Lost e evitem o bloqueio de Gang Burrito no caminho mais curto.",
+      "Deixem as motos no beco em Downtown Vinewood, perto do prédio da GoPostal."
+     ],
+     "tips": [
+      "Falha se alguma moto for destruída.",
+      "Planejem a entrada; o clube é bem guardado."
+     ],
+     "source": "https://gta.fandom.com/wiki/Pacific_Standard_-_Bikes"
+    }
+   ],
+   "finale": {
+    "name": "The Pacific Standard Job",
+    "summary": "A equipe entra no banco, controla os reféns, abre as grades com cargas térmicas e hacking, esvazia o cofre e foge com 5 estrelas a pé, nas Lectro e de paraquedas até um Dinghy no rio.",
+    "roles": [
+     {
+      "name": "Crowd Control (2)",
+      "text": "Mantêm os civis rendidos no saguão sem matar ninguém e cuidam dos guardas que aparecerem enquanto o resto vai ao cofre."
+     },
+     {
+      "name": "Hacker",
+      "text": "Ajuda a eliminar os guardas, faz o hacking do painel de controle do cofre e depois pega o dinheiro."
+     },
+     {
+      "name": "Demolition",
+      "text": "Coloca as cargas térmicas nas duas grades e na grade do cofre e depois pega o dinheiro com o Hacker."
+     }
+    ],
+    "steps": [
+     "Vão até o banco sem chamar a polícia; qualquer estrela antes de chegar falha a missão.",
+     "Entrem, eliminem os seguranças e mantenham a multidão sob controle.",
+     "Demolition abre as duas grades com cargas térmicas; o Hacker hackeia o painel do cofre e o Demolition queima a última grade.",
+     "Hacker e Demolition pegam o dinheiro dos dois carrinhos.",
+     "Reagrupem na saída, sigam a rota de fuga a pé pelo beco até as Lectro.",
+     "Fujam de moto até o cânion e a ponte, saltem do penhasco e abram o paraquedas.",
+     "Entrem no Dinghy e passem por baixo da ponte rumo ao mar."
+    ],
+    "tips": [
+     "Matar 2 ou mais reféns (ou perder o controle da multidão) chama a NOOSE: a fuga fica bem mais difícil e o Elite falha.",
+     "Depois de sair do banco, tiros nos sacos reduzem o pagamento, mas o valor final não cai abaixo de 55% do que foi pego.",
+     "Use o KERS da Lectro para escapar das viaturas e desviar dos bloqueios; a equipe precisa ficar junta até as motos.",
+     "Atirar de volta na polícia ou dois jogadores no mesmo veículo intensificam a perseguição.",
+     "Falha se o Dinghy for destruído ou se não chegarem a ele a tempo.",
+     "Elite Challenges: menos de 10:15, NOOSE não chamada e ninguém morrer. Concluir libera preço especial da Lectro."
+    ],
+    "source": "https://gta.fandom.com/wiki/The_Pacific_Standard_Job"
+   }
+  },
+  "seriesa": {
+   "id": "seriesa",
+   "name": "Series A",
+   "source": "https://gta.fandom.com/wiki/Series_A",
+   "facts": [
+    {
+     "label": "Jogadores",
+     "value": "4"
+    },
+    {
+     "label": "Quem inicia",
+     "value": "Trevor (Ron coordena os setups)"
+    },
+    {
+     "label": "Requisito",
+     "value": "Ter concluído The Humane Labs Raid e apartamento high-end com sala de planejamento"
+    },
+    {
+     "label": "Custo de preparação",
+     "value": "$25.000"
+    },
+    {
+     "label": "Pagamento",
+     "value": "$353.500 Fácil · $707.000 Normal · $883.750 Difícil"
+    },
+    {
+     "label": "Desbloqueia",
+     "value": "Pacific Standard"
+    }
+   ],
+   "overview": [
+    "Quarto golpe do GTA Online. Trevor aparece no apartamento do líder com Ron e Chef e contrata a equipe para juntar estoque de drogas para uma grande venda da Trevor Philips Industries.",
+    "Na prática não há um roubo no final: a mercadoria é tomada nos 5 setups (cocaína, molly, remédios, maconha e ingredientes de metanfetamina) e o final é defender e entregar essa carga.",
+    "Quase todos os setups dividem os 4 jogadores em duas duplas com tarefas diferentes, então combinem os papéis antes de começar. Perder o veículo da carga costuma falhar a missão."
+   ],
+   "start": [
+    "Conclua The Humane Labs Raid.",
+    "Tenha um apartamento high-end com sala de planejamento.",
+    "Trevor, Ron e Chef aparecem no apartamento e apresentam o golpe; depois abra o quadro de planejamento.",
+    "O líder paga $25.000 para montar o golpe."
+   ],
+   "approaches": [],
+   "sections": [
+    {
+     "id": "setups",
+     "title": "Setups",
+     "note": "Obrigatórios. Coke, Trash Truck e Bikers liberam juntos; depois vêm Weed e Steal Meth, nessa ordem."
+    }
+   ],
+   "setups": [
+    {
+     "id": "coke",
+     "name": "Coke",
+     "kind": "setup",
+     "players": "4 jogadores (2 duplas)",
+     "section": "setups",
+     "group": "Primeira leva",
+     "goal": "Atacar um iate de traficantes perto de Del Perro por mar e ar, pegar a cocaína e entregar no armazém de Ron.",
+     "steps": [
+      "Dupla do barco: pegue o Tropic em Vespucci e vá até a popa do iate.",
+      "Dupla do helicóptero: pegue o Frogger na Higgins Helitours e voe até o iate.",
+      "Ataquem juntos e recolham os 8 pacotes de cocaína espalhados pelas cabines e pelo convés inferior.",
+      "Saiam do iate no Frogger ou nos Seasharks atracados.",
+      "Percam a polícia e entreguem a carga no armazém sob a Los Santos Freeway, em East Vinewood."
+     ],
+     "tips": [
+      "Coordenem a chegada das duas duplas; o iate é bem guardado.",
+      "Chegam Police Mavericks de reforço durante o ataque; o helicóptero pode dar cobertura do alto ou pousar no heliponto.",
+      "Se perderem o Tropic ou o Frogger depois de pegá-los, ainda dá para terminar com outro veículo.",
+      "Falha se a equipe ficar sem vidas ou se alguém sair."
+     ],
+     "source": "https://gta.fandom.com/wiki/Series_A_-_Coke"
+    },
+    {
+     "id": "trash-truck",
+     "name": "Trash Truck",
+     "kind": "setup",
+     "players": "4 jogadores (2 duplas)",
+     "section": "setups",
+     "group": "Primeira leva",
+     "goal": "Usar um Trashmaster para recolher sacos de lixo com molly nos pontos dos Vagos e levar o caminhão ao armazém.",
+     "steps": [
+      "Vão à central de reciclagem, eliminem os guardas e peguem o Trashmaster.",
+      "Operators entram na cabine; Collectors sobem na traseira do caminhão.",
+      "Operators dirigem para Forum Drive, Capital Boulevard, Supply Street e Vespucci Boulevard, e protegem os colegas em cada parada.",
+      "Collectors pegam os sacos (2, 3, 4 e 5 por parada) e jogam no compactador do caminhão.",
+      "Levem o Trashmaster ao armazém em East Vinewood enquanto os Vagos atacam no caminho."
+     ],
+     "tips": [
+      "Há limite de tempo para recolher os sacos a partir da primeira parada.",
+      "A partir da segunda parada os Vagos aparecem; não é preciso matar todos para seguir.",
+      "Cuidado com tiros na terceira parada, que fica num posto de gasolina.",
+      "Falha se o Trashmaster for destruído, se o tempo acabar, se a equipe ficar sem vidas ou se alguém sair.",
+      "Às vezes um saco fica preso no jogador e não entra no caminhão, o que impede concluir o setup."
+     ],
+     "source": "https://gta.fandom.com/wiki/Series_A_-_Trash_Truck"
+    },
+    {
+     "id": "bikers",
+     "name": "Bikers",
+     "kind": "setup",
+     "players": "4 jogadores",
+     "section": "setups",
+     "group": "Primeira leva",
+     "goal": "Invadir em silêncio o acampamento da Lost em Stab City à noite e roubar as duas vans carregadas.",
+     "steps": [
+      "Vá ao trailer do Trevor em Sandy Shores e pegue as armas com silenciador, se quiser.",
+      "Peguem o Dinghy e atravessem até a margem de Stab City.",
+      "Eliminem os membros da Lost um a um sem ser vistos.",
+      "Peguem as duas Gang Burrito e levem ao armazém em East Vinewood.",
+      "Defendam as vans da Lost, que persegue de moto e de Lost Slamvan."
+     ],
+     "tips": [
+      "A missão falha se algum membro da Lost perceber vocês ou ver um colega ser morto: use armas com silenciador.",
+      "Atirar de dentro das vans é difícil por causa das caixas na traseira; quem vai em outro veículo deve fazer a escolta.",
+      "Falha se uma van for destruída, se a equipe ficar sem vidas ou se alguém sair."
+     ],
+     "source": "https://gta.fandom.com/wiki/Series_A_-_Bikers"
+    },
+    {
+     "id": "weed",
+     "name": "Weed",
+     "kind": "setup",
+     "players": "4 jogadores (2 duplas)",
+     "section": "setups",
+     "goal": "Roubar dois Benson com maconha e o Technical dos Ballas na serraria de Paleto e levar ao armazém.",
+     "steps": [
+      "Vão até a serraria perto de Paleto Bay.",
+      "Lookouts: subam às posições leste e oeste e deem cobertura com rifle de precisão ou arma de longo alcance.",
+      "Ground Team: espere os lookouts se posicionarem e entre pela entrada principal.",
+      "Ground Team: lute até os dois Benson no meio da serraria e cada um pega um.",
+      "Lookouts: peguem o Technical perto da entrada e escoltem os Benson até o armazém em East Vinewood."
+     ],
+     "tips": [
+      "Falha se um Benson ou o Technical for destruído.",
+      "Há limite de tempo para a entrega."
+     ],
+     "source": "https://gta.fandom.com/wiki/Series_A_-_Weed"
+    },
+    {
+     "id": "steal-meth",
+     "name": "Steal Meth",
+     "kind": "setup",
+     "players": "4 jogadores",
+     "section": "setups",
+     "goal": "Roubar o tanque de ingredientes de metanfetamina no rancho dos O'Neil e entregar ao Chef.",
+     "steps": [
+      "Vá ao rancho dos O'Neil em Grapeseed.",
+      "Elimine os traficantes dentro da casa e espalhados pelo rancho.",
+      "Um jogador pega um dos caminhões estacionados ao norte da casa e engata no tanque em frente ao celeiro.",
+      "Levem o tanque até o laboratório na Liquor Ace enquanto o resto escolta.",
+      "Derrubem os O'Neil que perseguem de Sandking."
+     ],
+     "tips": [
+      "O tanque é inflamável: não deixe que ele tome muitos tiros. Falha se for destruído.",
+      "Falha também se a equipe ficar sem vidas ou se alguém sair."
+     ],
+     "source": "https://gta.fandom.com/wiki/Series_A_-_Steal_Meth"
+    }
+   ],
+   "finale": {
+    "name": "Series A Funding",
+    "summary": "Todas as gangues roubadas nos setups descobrem o armazém do Trevor. A equipe defende Trevor e a carga no armazém e depois leva duas Mule até o comprador perto do El Gordo Lighthouse, com prazo.",
+    "roles": [
+     {
+      "name": "Van Drivers (2)",
+      "text": "Dirigem as duas Mule com a mercadoria até o ponto de entrega no farol, sem deixar que sejam destruídas."
+     },
+     {
+      "name": "Technical (2)",
+      "text": "Um dirige e o outro opera a metralhadora do Technical (ou usam veículo próprio) para escoltar as vans e derrubar os perseguidores."
+     }
+    ],
+    "steps": [
+     "Vão rápido ao armazém em East Vinewood; há prazo para chegar.",
+     "Dois jogadores ficam na ponta norte e dois na ponta sul do armazém.",
+     "Segurem a posição e eliminem os atacantes até a área ficar limpa.",
+     "Entrem nos veículos: duas Mule e o Technical.",
+     "Levem as vans até o farol enquanto Ballas, Lost e os frat boys (de Frogger) atacam o comboio.",
+     "Concluam quando as duas Mule chegarem ao comprador."
+    ],
+    "tips": [
+     "Falha se Trevor morrer, se uma Mule ou o Technical for destruído, ou se o prazo para chegar ao armazém ou para a entrega acabar.",
+     "Derrubar os Froggers ainda no armazém deixa a fuga mais tranquila.",
+     "Elite Challenges: menos de 6:30, matar 75 inimigos, ninguém morrer e não usar reinício rápido.",
+     "Concluir libera preços especiais do Technical e da Mule (heist), a recompensa Product Placement e o próximo golpe, Pacific Standard."
+    ],
+    "source": "https://gta.fandom.com/wiki/Series_A_Funding"
+   }
+  },
+  "humane": {
+   "id": "humane",
+   "name": "Humane Raid",
+   "source": "https://gta.fandom.com/wiki/Humane_Raid",
+   "facts": [
+    {
+     "label": "Jogadores",
+     "value": "4"
+    },
+    {
+     "label": "Quem inicia",
+     "value": "Agent 14"
+    },
+    {
+     "label": "Requisito",
+     "value": "Concluir Prison Break; líder com apartamento high-end"
+    },
+    {
+     "label": "Custo de preparação",
+     "value": "$25.000"
+    },
+    {
+     "label": "Pagamento",
+     "value": "$472.500 Fácil · $945.000 Normal · $1.181.250 Difícil"
+    },
+    {
+     "label": "Desbloqueia",
+     "value": "Series A Funding"
+    }
+   ],
+   "overview": [
+    "Terceiro golpe do GTA Online. Agent 14 quer os arquivos da Humane Labs and Research, laboratório protegido pela Merryweather, e a equipe precisa invadir o lugar e sair com os dados.",
+    "São cinco setups e o final, sempre com 4 jogadores. Os setups juntam as peças do plano: os códigos de acesso, dois Insurgents, um EMP tirado de um Hydra, um helicóptero Valkyrie e a entrega furtiva do EMP dentro do laboratório.",
+    "No final a equipe se divide: dois jogadores saltam no laboratório depois que o EMP derruba a energia, e piloto e artilheiro seguram os reforços no Valkyrie e resgatam o time de solo na praia."
+   ],
+   "start": [
+    "Conclua o Prison Break.",
+    "Vá à sala de planejamento do apartamento high-end para abrir o quadro do Humane Raid com Agent 14.",
+    "O líder paga o custo de preparação de $25.000 e convida mais 3 jogadores."
+   ],
+   "approaches": [],
+   "sections": [
+    {
+     "id": "setups",
+     "title": "Setups",
+     "note": "Obrigatórios: Key Codes e Insurgents, depois EMP, depois Valkyrie e Deliver EMP"
+    }
+   ],
+   "setups": [
+    {
+     "id": "key-codes",
+     "name": "Key Codes",
+     "kind": "setup",
+     "group": "Etapa 1",
+     "players": "4 jogadores (Buyer, Bodyguard e 2 Lookouts)",
+     "section": "setups",
+     "goal": "Receber de uma contata, no centro de Los Santos, a maleta com os códigos da Humane Labs e levá-la ao apartamento.",
+     "steps": [
+      "Vão ao estacionamento na Elgin Avenue, perto da Ammu-Nation de Downtown.",
+      "Buyer e Bodyguard: fiquem na posição no meio do estacionamento.",
+      "Lookout North e South: subam aos pontos de observação (telhado à esquerda e passarela atrás da dupla).",
+      "Esperem Karen chegar no Zion preto e entregar a maleta.",
+      "Quando o FIB atacar, segurem os agentes; os Lookouts cobrem os flancos de cima.",
+      "Pegue a maleta e leve-a à sala de planejamento enquanto os outros seguram os reforços e saem do estacionamento."
+     ],
+     "tips": [
+      "Atrapalhar o encontro, destruir o carro da contata ou ganhar estrelas antes da entrega falha a missão.",
+      "Um Maverick sempre passa durante a espera: destruí-lo falha a missão.",
+      "Os agentes tentam flanquear pela entrada e pelos becos à direita e atrás da dupla.",
+      "Quem leva a maleta pode ser interceptado por FIB Buffalos no caminho, dependendo da distância até o apartamento.",
+      "Raramente a contata passa direto pelo estacionamento; reiniciar não resolve, troque de sessão pelo Free Mode."
+     ],
+     "source": "https://gta.fandom.com/wiki/Humane_Raid_-_Key_Codes"
+    },
+    {
+     "id": "insurgents",
+     "name": "Insurgents",
+     "kind": "setup",
+     "group": "Etapa 1",
+     "players": "4 jogadores",
+     "section": "setups",
+     "goal": "Roubar dois Insurgents (um deles o Insurgent Pick-Up armado) do campo de testes da Merryweather na pedreira Davis Quartz.",
+     "steps": [
+      "Vá à pedreira Davis Quartz.",
+      "Elimine os guardas da entrada e use o terreno alto para atacar o campo de testes no fundo da pedreira.",
+      "Peguem os dois Insurgents.",
+      "Levem os veículos ao píer abandonado na North Calafia Way, segurando Mesas e Buzzards no caminho.",
+      "Elimine os inimigos que estiverem no ponto de entrega e deixe os veículos."
+     ],
+     "tips": [
+      "Coloque alguém na metralhadora do Insurgent Pick-Up para derrubar os perseguidores, inclusive os Buzzards.",
+      "A missão falha se um dos Insurgents for destruído."
+     ],
+     "source": "https://gta.fandom.com/wiki/Humane_Raid_-_Insurgents"
+    },
+    {
+     "id": "emp",
+     "name": "EMP",
+     "kind": "setup",
+     "group": "Etapa 2",
+     "players": "4 jogadores (1 piloto do Hydra + escolta)",
+     "section": "setups",
+     "goal": "Invadir um porta-aviões, roubar o Hydra que carrega o EMP e levá-lo ao Sandy Shores Airfield.",
+     "steps": [
+      "Pegue o Dinghy na costa de El Burro Heights e vá até o porta-aviões.",
+      "Entre pela popa e limpe o hangar, enfrentando as duas ondas de inimigos.",
+      "Suba as escadas e limpe o convés de voo.",
+      "Um jogador pega o Hydra; os outros podem pegar Lazers do convés para escoltar.",
+      "Derrubem a esquadrilha de 10 jatos que vem atrás do Hydra.",
+      "Leve o Hydra ao Sandy Shores Airfield."
+     ],
+     "tips": [
+      "Os jatos inimigos só miram o Hydra; os outros jogadores ficam livres para atacar.",
+      "Não é preciso que todos entrem no Dinghy: dá para chegar ao navio por outro meio, até nadando.",
+      "Falha se o Dinghy, o Hydra ou o Insurgent forem destruídos, ou se o Dinghy encalhar.",
+      "Raramente o Dinghy ou o Hydra ficam travados; nesse caso reinicie (para o Dinghy, só trocando de sessão).",
+      "Concluir dá desconto na compra do Hydra."
+     ],
+     "source": "https://gta.fandom.com/wiki/Humane_Raid_-_EMP"
+    },
+    {
+     "id": "valkyrie",
+     "name": "Valkyrie",
+     "kind": "setup",
+     "group": "Etapa 3",
+     "players": "4 jogadores (1 piloto + 3 artilheiros)",
+     "section": "setups",
+     "goal": "Roubar o Valkyrie da base da Merryweather no Los Santos Naval Port e entregá-lo no píer da North Calafia Way.",
+     "steps": [
+      "Vá ao Los Santos Naval Port e elimine os guardas da entrada.",
+      "Avance até o helicóptero cuidando dos snipers (inclusive o do guindaste) e do Buzzard.",
+      "Um jogador pilota o Valkyrie e os outros três assumem as torres.",
+      "Derrubem a primeira onda (dois Froggers e um Buzzard) e depois a segunda (três Buzzards).",
+      "Entregue o Valkyrie no píer da North Calafia Way."
+     ],
+     "tips": [
+      "O Valkyrie aguenta cerca de três mísseis, mas derrubem os Buzzards rápido para não arriscar.",
+      "A missão falha se o Valkyrie for destruído."
+     ],
+     "source": "https://gta.fandom.com/wiki/Humane_Raid_-_Valkyrie"
+    },
+    {
+     "id": "deliver-emp",
+     "name": "Deliver EMP",
+     "kind": "setup",
+     "group": "Etapa 3",
+     "players": "4 jogadores",
+     "section": "setups",
+     "goal": "Levar o Insurgent com o EMP para dentro da garagem da Humane Labs sem ser detectado.",
+     "steps": [
+      "Pegue o Insurgent no píer da North Calafia Way e dirija até a entrada da Humane Labs.",
+      "Use a câmera que Agent 14 hackeia para ver onde estão guardas e cientistas.",
+      "Elimine em silêncio, com as armas com silenciador, todos no caminho até a doca dos fundos.",
+      "Leve o Insurgent até a doca e faça o hack da porta da garagem.",
+      "Estacione o Insurgent dentro da garagem.",
+      "Saiam na Boxville do local sem chamar a atenção do comboio da Merryweather que chega."
+     ],
+     "tips": [
+      "Ser visto ou deixar um corpo ser encontrado falha a missão na hora.",
+      "Há um guarda que passa dirigindo um Insurgent rumo à saída: elimine-o ou deixe passar sem ser visto.",
+      "A missão falha se o Insurgent for destruído."
+     ],
+     "source": "https://gta.fandom.com/wiki/Humane_Raid_-_Deliver_EMP"
+    }
+   ],
+   "finale": {
+    "name": "The Humane Labs Raid",
+    "summary": "A equipe sobe no Valkyrie; sobre o laboratório o EMP derruba a energia, o time de solo salta, invade a Humane Labs e foge nadando pelo túnel de resfriamento, enquanto piloto e artilheiro seguram a Merryweather e depois resgatam todos na praia.",
+    "roles": [
+     {
+      "name": "Pilot",
+      "text": "Leva o Valkyrie até a zona de salto, mantém a altitude no salto, desce enquanto o laboratório é invadido, segura a segurança e busca o time de solo pelo sinalizador na praia."
+     },
+     {
+      "name": "Gunner",
+      "text": "Fica na torre do Valkyrie derrubando Mesas e Buzzards da Merryweather enquanto o time de solo está dentro do laboratório."
+     },
+     {
+      "name": "Ground Team",
+      "text": "Dois jogadores com visão noturna, rebreather e flare gun: saltam no estacionamento, invadem o laboratório, pegam os dados e saem pelo túnel de resfriamento."
+     }
+    ],
+    "steps": [
+     "Todos: vão ao píer ao norte do Alamo Sea e entrem no Valkyrie.",
+     "Pilot: suba até o marcador alto sobre o laboratório para disparar o EMP e espere o time de solo saltar.",
+     "Ground Team: pouse no estacionamento, exploda o painel da porta e atravesse o prédio eliminando os guardas.",
+     "Ground Team: no laboratório, passem os cartões nos dois teclados ao mesmo tempo e peguem os dados.",
+     "Ground Team: desça pelo elevador, nade pelo túnel de resfriamento até a praia e dispare o sinalizador.",
+     "Pilot e Gunner: segurem os reforços e, ao ver o sinalizador, peguem o time de solo.",
+     "Todos: derrubem os Buzzards que perseguem o Valkyrie e voem até o Land Act Reservoir para entregar os dados a Karen."
+    ],
+    "tips": [
+     "Saltar antes de chegar à zona de salto ou voar perto do laboratório antes do EMP falha a missão.",
+     "O time de solo some do radar durante a invasão; o helicóptero precisa ficar atento ao sinalizador.",
+     "Os guardas dentro do laboratório usam cobertura; avance com cuidado.",
+     "O Valkyrie aguenta uns 5 ou 6 foguetes, mas a missão falha se ele for destruído.",
+     "Elite Challenges: menos de 11:00, dano no veículo abaixo de 2% e ninguém morrer.",
+     "Concluir dá descontos no Insurgent, Insurgent Pick-Up, Valkyrie e Dinghy (heist) e libera o próximo golpe, Series A Funding."
+    ],
+    "source": "https://gta.fandom.com/wiki/The_Humane_Labs_Raid"
+   }
+  },
+  "prison": {
+   "id": "prison",
+   "name": "Prison Break",
+   "source": "https://gta.fandom.com/wiki/Prison_Break",
+   "facts": [
+    {
+     "label": "Jogadores",
+     "value": "4"
+    },
+    {
+     "label": "Quem inicia",
+     "value": "Agent 14 (indicado por Lester)"
+    },
+    {
+     "label": "Requisito",
+     "value": "Concluir The Fleeca Job; líder com apartamento high-end"
+    },
+    {
+     "label": "Custo de preparação",
+     "value": "$25.000"
+    },
+    {
+     "label": "Pagamento",
+     "value": "$350.000 Fácil · $700.000 Normal · $875.000 Difícil"
+    },
+    {
+     "label": "Desbloqueia",
+     "value": "Humane Raid"
+    }
+   ],
+   "overview": [
+    "Segundo golpe do GTA Online. Agent 14 contrata a equipe para tirar o Professor Maxim Rashkovsky da Bolingbroke Penitentiary e levá-lo para fora do país.",
+    "São quatro setups e o final, sempre com 4 jogadores. Quase todas as missões dividem a equipe em funções com objetivos diferentes (piloto e equipe de solo, dois times de dois, etc.), então combinem antes quem faz o quê.",
+    "Plane, Bus e Station podem ser feitos em qualquer ordem; Wet Work só libera depois dos três e abre o final. No final cada jogador tem um papel próprio: Prison Officer, Prisoner, Demolition e Pilot."
+   ],
+   "start": [
+    "Conclua The Fleeca Job.",
+    "Lester liga avisando de um trabalho oferecido por gente que ele não conhece.",
+    "Vá à sala de planejamento do apartamento high-end e abra a porta para Agent 14, que apresenta o golpe.",
+    "O líder paga o custo de preparação de $25.000 e convida mais 3 jogadores."
+   ],
+   "approaches": [],
+   "sections": [
+    {
+     "id": "setups",
+     "title": "Setups",
+     "note": "Obrigatórios: Plane, Bus e Station em qualquer ordem; depois Wet Work"
+    }
+   ],
+   "setups": [
+    {
+     "id": "plane",
+     "name": "Plane",
+     "kind": "setup",
+     "group": "Qualquer ordem",
+     "players": "4 jogadores (1 piloto + 3 no solo)",
+     "section": "setups",
+     "goal": "Roubar o Velum dos Vagos no McKenzie Airfield e entregá-lo num hangar do aeroporto de Los Santos.",
+     "steps": [
+      "Vão todos até o McKenzie Airfield, em Grapeseed.",
+      "Equipe de solo: elimine os Vagos que guardam o hangar e o avião.",
+      "Equipe de solo: segure as duas ondas de reforços que chegam de carro por vários acessos da pista.",
+      "Pilot: com a pista limpa, pegue o Velum e decole.",
+      "Pilot: leve o Velum até o hangar indicado no LSIA, onde dois agentes esperam.",
+      "Equipe de solo: saia da área do aeródromo depois que o avião decolar."
+     ],
+     "tips": [
+      "Por padrão o líder é o piloto, mas as funções podem ser trocadas no quadro.",
+      "O piloto não vê todos os inimigos no radar; a equipe de solo deve avisar e limpar o caminho antes da decolagem.",
+      "Falha se o Velum for destruído, se os agentes do Agent 14 no LSIA morrerem ou se alguém voltar ao aeródromo depois de sair.",
+      "Quem já saiu e está parado em lugar seguro pode assistir os outros pelo menu de interação."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prison_Break_-_Plane"
+    },
+    {
+     "id": "bus",
+     "name": "Bus",
+     "kind": "setup",
+     "group": "Qualquer ordem",
+     "players": "4 jogadores",
+     "section": "setups",
+     "goal": "Sequestrar o ônibus de presos escoltado e guardá-lo num ferro-velho perto de Sandy Shores.",
+     "steps": [
+      "Intercepte o comboio que leva o ônibus da prisão em direção a Paleto Bay.",
+      "Destrua a escolta: um carro do FIB e um Police Maverick.",
+      "Mate o motorista do ônibus para pará-lo e tome o veículo.",
+      "Perca as 3 estrelas de procurado, de preferência fora das estradas principais.",
+      "Espere todos perderem a polícia e entregue o ônibus no ferro-velho perto de Sandy Shores."
+     ],
+     "tips": [
+      "Atacar a escolta dá 3 estrelas na hora para todos.",
+      "O motorista tenta fugir; derrube-o rápido sem destruir o ônibus.",
+      "A missão falha se o ônibus for destruído."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prison_Break_-_Bus"
+    },
+    {
+     "id": "station",
+     "name": "Station",
+     "kind": "setup",
+     "group": "Qualquer ordem",
+     "players": "4 jogadores (2 times de 2)",
+     "section": "setups",
+     "goal": "Um time pega a escala de transferência de presos na delegacia de Mission Row; o outro recupera o Casco de Rashkovsky num navio no porto.",
+     "steps": [
+      "Cop Station: roube uma viatura (pode cometer um crime ou ligar 911 para atrair uma) e perca a polícia.",
+      "Cop Station: entre na Mission Row Police Station disfarçado e pegue a escala na sala perto da entrada.",
+      "Cop Station: leve a viatura até o viaduto atrás do armazém do Lester, queime-a com os galões e leve a escala à sala de planejamento.",
+      "Cargo Ship: vá ao navio no Terminal, elimine a gangue e suba até o contêiner marcado no topo da pilha.",
+      "Cargo Ship: atire no cadeado, pegue o Casco e salte de cima dos contêineres.",
+      "Cargo Ship: perca a polícia e entregue o Casco no ferro-velho perto de Sandy Shores.",
+      "Quem terminar antes pode ajudar o outro time ou esperar."
+     ],
+     "tips": [
+      "Usar uma viatura própria não conta: é preciso roubar uma.",
+      "Para chegar ao contêiner, dá para usar a escada da ponte do navio, os contêineres da proa ou subir o guindaste do meio e descer de paraquedas.",
+      "No caminho com o Casco, a gangue persegue em Fugitives; cuidado com o dano, a missão falha se o carro for destruído.",
+      "Há um Felon GT no viaduto e um Baller no ferro-velho para quem for ajudar o outro time.",
+      "Concluir dá desconto na compra do Casco."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prison_Break_-_Station"
+    },
+    {
+     "id": "wet-work",
+     "name": "Wet Work",
+     "kind": "setup",
+     "group": "Depois dos outros 3",
+     "players": "4 jogadores (2 times de 2)",
+     "section": "setups",
+     "goal": "Eliminar os dois advogados na City Hall e pegar a deposição, e matar em silêncio o ex-sócio de Rashkovsky, Dima Popov.",
+     "steps": [
+      "City Hall: suba pela escada do prédio em frente até o ponto de observação.",
+      "City Hall: espere o Schafter preto chegar e só atire quando os dois advogados saírem do carro, matando os dois ao mesmo tempo.",
+      "City Hall: enfrente a polícia na entrada, pegue a deposição, perca as estrelas e leve-a à sala de planejamento.",
+      "Mansion: vá ao mirante perto da mansão em Richman Glen.",
+      "Mansion: chegue até Popov e mate-o com a pistola com silenciador sem alertar os seguranças.",
+      "Mansion: saia da área e ajude o outro time se ainda faltar a deposição."
+     ],
+     "tips": [
+      "Se os seguranças virem vocês, Popov corre escada abaixo para o carro; ainda dá para matá-lo antes de ele fugir, mas a missão falha se um alvo escapar.",
+      "A missão falha se a deposição for destruída.",
+      "Raramente o carro dos advogados não aparece; reiniciar não resolve, é preciso voltar ao Free Mode, trocar de sessão e começar de novo.",
+      "Concluir libera o final, The Prison Break."
+     ],
+     "source": "https://gta.fandom.com/wiki/Prison_Break_-_Wet_Work"
+    }
+   ],
+   "finale": {
+    "name": "The Prison Break",
+    "summary": "Dois jogadores entram na Bolingbroke com o ônibus disfarçados de guarda e preso e tiram Rashkovsky; o Demolition sequestra o ônibus real e protege o avião com um Buzzard; o Pilot traz o Velum, foge dos caças e resgata todos.",
+    "roles": [
+     {
+      "name": "Prison Officer",
+      "text": "Dirige o ônibus roubado até a prisão disfarçado de guarda, entra com o Prisoner, resgata Rashkovsky e o escolta até o Velum. Recebe uma Special Carbine."
+     },
+     {
+      "name": "Prisoner",
+      "text": "Entra no ônibus disfarçado de preso, acompanha o Officer pela prisão e entrega a pistola a Rashkovsky. Recebe uma AP Pistol."
+     },
+     {
+      "name": "Demolition",
+      "text": "Intercepta o ônibus de presos agendado, leva-o ao Sandy Shores Airfield e o destrói; depois rouba um Buzzard, protege o Velum dos jatos e cobre a fuga contra a polícia."
+     },
+     {
+      "name": "Pilot",
+      "text": "Pega o Velum no LSIA dentro do prazo, voa até o Sandy Shores Airfield fugindo dos Lazers, pousa para buscar o grupo e voa até a zona de salto."
+     }
+    ],
+    "steps": [
+     "Officer e Prisoner: levem o ônibus até a prisão com calma e estacionem dentro.",
+     "Officer e Prisoner: atravessem a prisão sem correr; ao passar pelo guarda com escopeta o disfarce cai e o tiroteio começa.",
+     "Officer e Prisoner: subam às passarelas, desçam ao pátio central e peguem Rashkovsky.",
+     "Officer e Prisoner: limpem os NOOSE no caminho de saída, peguem um Police Riot e levem Rashkovsky ao avião.",
+     "Demolition: mate o motorista do ônibus agendado, destrua o ônibus no Sandy Shores Airfield, pegue o Buzzard e derrube os jatos e a polícia.",
+     "Pilot: pegue o Velum no LSIA, evite os Lazers, pouse para recolher o grupo, perca a polícia e voe até a zona de salto.",
+     "Todos: saltem na praia, entrem no Buzzard do Demolition e voltem para a cidade."
+    ],
+    "tips": [
+     "Ganhar estrelas ou alertar os guardas antes de entrar na prisão falha a missão. Correr perto dos guardas também chama atenção.",
+     "Falha se Rashkovsky morrer, se o Velum ou o Buzzard forem destruídos, se o ônibus agendado chegar à prisão ou se o piloto não chegar a tempo ao aeródromo.",
+     "Há coletes que reaparecem em dois pontos da rota de saída, mas voltar atrás para pegá-los pode tirar você da área da missão.",
+     "Pilot: mantenha os jatos fora da sua frente com curvas fechadas e deixe o Demolition derrubá-los. Não voe sobre a prisão.",
+     "Não voe longe demais de Los Santos com estrelas e não faça manobras bruscas ao chegar à zona de salto: o avião pode cair na cutscene e matar Rashkovsky.",
+     "Elite Challenges: Rashkovsky com 1% ou menos de dano, extração em menos de 4:40 e ninguém morrer. O tempo conta da cutscene com Rashkovsky até o avião chegar ao destino."
+    ],
+    "source": "https://gta.fandom.com/wiki/The_Prison_Break"
+   }
+  },
+  "cluckin": {
+   "id": "cluckin",
+   "name": "The Cluckin' Bell Farm Raid",
+   "source": "https://gta.fandom.com/wiki/The_Cluckin%27_Bell_Farm_Raid",
+   "facts": [
+    {
+     "label": "Jogadores",
+     "value": "1 a 4"
+    },
+    {
+     "label": "Quem inicia",
+     "value": "Vincent Effenburger (Vespucci Police Station)"
+    },
+    {
+     "label": "Requisito",
+     "value": "Nenhum (sem rank ou propriedade)"
+    },
+    {
+     "label": "Pagamento",
+     "value": "$400.000 (1,5x na 1a vez da semana: $600.000)"
+    },
+    {
+     "label": "Bônus 1a conclusão",
+     "value": "$250.000 (award, líder ou membro)"
+    }
+   ],
+   "overview": [
+    "Série de missões do update The Chop Shop em que você ajuda o policial Vincent Effenburger a derrubar um cartel que produz cocaína na fábrica da Cluckin' Bell em Paleto Bay. Funciona como um heist: cinco setups e um final, Scene of the Crime.",
+    "Não exige rank nem propriedade, então dá para fazer com personagem novo, solo ou com até 3 parceiros. A base de operações é o Abandoned FIB Lockup, de onde partem os setups depois do primeiro.",
+    "O que mais importa é o Disorganized Crime: o que você faz na garagem do cartel define se o final será Silent ou Aggressive. As armas e o veículo de fuga escolhidos nos setups (confirmados por SMS ao Vincent) são os que você usa no final.",
+    "No fim, o Jorge compra a cocaína no lockup e paga o valor fixo. O roubo pode ser repetido; nas repetições o Slush Fund começa no lockup."
+   ],
+   "start": [
+    "Atenda a ligação do Vincent Effenburger, que convida o jogador para a operação.",
+    "Vá até o marcador do Vincent na Vespucci Police Station para começar o Slush Fund.",
+    "Os próximos setups são escolhidos na Vespucci Police Station e começam no Abandoned FIB Lockup.",
+    "Não há requisito de rank nem de propriedade."
+   ],
+   "approaches": [
+    {
+     "id": "silent",
+     "name": "Silent Approach",
+     "summary": "No Disorganized Crime, sabote os caminhões sem alarde, apague o CCTV e entregue o Flatbed com as caixas. No final você entra na fábrica escondido numa caixa da Cluckin' Bell, sem o cartel alertado."
+    },
+    {
+     "id": "aggressive",
+     "name": "Aggressive Approach",
+     "summary": "Acontece se você explodir os caminhões, deixar alguém escapar a tempo ou sair sem apagar o CCTV. No final você chega de trem e a fábrica já está em alerta máximo."
+    }
+   ],
+   "sections": [
+    {
+     "id": "setups",
+     "title": "Setups",
+     "note": "Todos obrigatórios. Ordem: Slush Fund, Breaking and Entering, depois Concealed Weapons e Hit and Run em qualquer ordem, e por fim Disorganized Crime."
+    }
+   ],
+   "setups": [
+    {
+     "id": "slush-fund",
+     "name": "Slush Fund",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "goal": "Roubar dinheiro de lavanderias de dinheiro e levar ao lockup do Vincent para financiar o roubo.",
+     "steps": [
+      "Vá até uma das lavanderias de dinheiro marcadas pelo Vincent.",
+      "Limpe o local e pegue o dinheiro das máquinas de lavar Wiwang.",
+      "Saia e repita na próxima lavanderia indicada.",
+      "Entregue o dinheiro no lockup do Vincent (Abandoned FIB Lockup)."
+     ],
+     "tips": [
+      "Na primeira vez começa na Vespucci Police Station; nas repetições começa direto no lockup.",
+      "Concluir libera os veículos de polícia para compra, como o Gauntlet Interceptor."
+     ],
+     "source": "https://gta.fandom.com/wiki/Slush_Fund"
+    },
+    {
+     "id": "breaking-and-entering",
+     "name": "Breaking and Entering",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "goal": "Conseguir o laptop de um funcionário, o Hacking Device de um Terrorbyte e roubar o trem de carga do cartel.",
+     "steps": [
+      "Use a foto enviada pelo Vincent para achar o funcionário da Cluckin' Bell e roube o laptop.",
+      "Vá até o Terrorbyte preto e destrua todos os drones que o protegem.",
+      "Entre no Terrorbyte e pegue o Hacking Device.",
+      "Vá ao complexo do cartel em Elysian Island, elimine os capangas e pegue a chave do trem.",
+      "Fuja com o Freight Train usando o Hacking Device para trocar os sinais da linha.",
+      "Siga até o túnel longo que sai da cidade para concluir."
+     ],
+     "tips": [
+      "Se o Terrorbyte for destruído, a missão falha.",
+      "Nocauteie o funcionário antes de pegar o laptop, senão ele pode reagir.",
+      "Os drones têm torretas e bastante vida; ataque de cobertura.",
+      "Sinal não trocado aciona o freio de emergência do trem.",
+      "Technicals e Valkyries perseguem o trem; use drive-by para matar os atiradores."
+     ],
+     "source": "https://gta.fandom.com/wiki/Breaking_and_Entering"
+    },
+    {
+     "id": "concealed-weapons",
+     "name": "Concealed Weapons",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "group": "Qualquer ordem com Hit and Run",
+     "goal": "Roubar armas e equipamento de uma gangue para usar no final.",
+     "steps": [
+      "Escolha a gangue: Marabunta Grande (El Burro Heights), The Professionals (Del Perro) ou Unnamed Militia (Sandy Shores Airfield).",
+      "Procure as armas e o equipamento no esconderijo e nos porta-malas dos veículos da gangue.",
+      "Entregue tudo no lockup do Vincent.",
+      "Confirme por SMS ao Vincent qual conjunto será usado no final."
+     ],
+     "tips": [
+      "Marabunta: armadura leve e vem com Crowbar, que poupa uma busca no final. Professionals: armadura média. Militia: armadura pesada, mas reduz mais o fôlego.",
+      "Dá para roubar das três gangues; os extras ficam numa caçamba nos fundos da fábrica durante o final.",
+      "A escolha pode ser trocada depois, na preparação do Scene of the Crime.",
+      "Se já fez Hit and Run, as gangues roubadas antes estarão em alerta e mais agressivas."
+     ],
+     "source": "https://gta.fandom.com/wiki/Concealed_Weapons"
+    },
+    {
+     "id": "hit-and-run",
+     "name": "Hit and Run",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "group": "Qualquer ordem com Concealed Weapons",
+     "goal": "Roubar um veículo de fuga e deixá-lo na garagem ao lado da fábrica da Cluckin' Bell.",
+     "steps": [
+      "Escolha a gangue pela foto do Vincent: Marabunta Grande (Harmony), The Professionals (entre o RON Alternates Wind Farm e a Palmer-Taylor Power Station) ou Unnamed Militia (Chumash).",
+      "Roube o veículo de fuga no local.",
+      "Se ele estiver muito danificado, passe na Beeker's Garage para consertar de graça.",
+      "Entregue na garagem perto da Clucking Bell Farms.",
+      "Confirme por SMS ao Vincent qual veículo será usado no final."
+     ],
+     "tips": [
+      "A escolha do veículo não pode ser mudada depois.",
+      "Veículos extras entregues são vendidos pelo Vincent por $10.000 cada ($5.000 se você usar quick restart).",
+      "Se já fez Concealed Weapons, as gangues roubadas antes estarão em alerta e mais agressivas."
+     ],
+     "source": "https://gta.fandom.com/wiki/Hit_and_Run"
+    },
+    {
+     "id": "disorganized-crime",
+     "name": "Disorganized Crime",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "group": "Define o approach do final",
+     "goal": "Achar a garagem do cartel, sabotar os caminhões e pegar o keycard do depósito de cocaína.",
+     "steps": [
+      "Vá ao Cluckin' Bell Outlet e hackeie as vans do cartel com o Hacking Device para achar a garagem.",
+      "Vista o uniforme de motorista que a van derrubar para passar pelas câmeras.",
+      "Entre na garagem e sabote os 4 caminhões Benson sem explodi-los.",
+      "Ache uma furadeira e fure os armários até achar o keycard.",
+      "Apague as imagens do CCTV na sala de vigilância antes de sair.",
+      "No Silent, roube o Flatbed com as caixas da Cluckin' Bell e entregue no lockup do Vincent."
+     ],
+     "tips": [
+      "Os ocupantes das vans atiram quando você começa o hack.",
+      "Inimigos com cone de visão vermelho não caem no disfarce.",
+      "Explodir um caminhão, não eliminar todos a tempo após um alerta ou sair sem apagar o CCTV deixa o final no Aggressive, e você ainda precisa fugir do cartel.",
+      "Furar os armários restantes depois do keycard rende dinheiro extra.",
+      "Após várias repetições você pode pular o hack das vans e ir direto à garagem.",
+      "Concluir como líder libera o Benson (Cluckin' Bell) com preço de troca."
+     ],
+     "source": "https://gta.fandom.com/wiki/Disorganized_Crime"
+    }
+   ],
+   "finale": {
+    "name": "Scene of the Crime",
+    "summary": "Invada a fábrica da Clucking Bell Farms, roube a cocaína dos dois depósitos e o conteúdo do cofre, fuja no veículo escolhido e entregue tudo no lockup do Vincent.",
+    "steps": [
+     "Entre na fábrica (escondido na caixa no Silent, ou pelo trem já com o cartel em alerta no Aggressive).",
+     "Use o keycard no depósito do porão, elimine os guardas e pegue as quatro pilhas de cocaína.",
+     "Use o keycard no outro depósito e abra as caixas com um Crowbar para achar mais droga.",
+     "Entre no escritório com a chave achada pela fábrica ou atirando na fechadura.",
+     "Hackeie o computador do escritório, equipe o Hacking Device (slot de pistolas) e encontre os três sinais fortes nas mesas da fábrica para obter o código do cofre.",
+     "Abra o cofre, atire na caixa de força da entrada da frente e vá até a garagem do veículo de fuga.",
+     "Perca o nível de procurado e entregue o loot ao Jorge no lockup do Vincent."
+    ],
+    "tips": [
+     "Atirar na fechadura do escritório dispara o alarme; procurar a chave mantém o sigilo.",
+     "Ao pegar o cofre o alarme dispara de qualquer forma e policiais corruptos chegam.",
+     "Se o alarme não tiver soado antes do cofre, os guardas de fora não sabem onde você está e dá para eliminá-los em silêncio até a garagem.",
+     "Equipamentos extras do Concealed Weapons ficam numa caçamba nos fundos; quebre a caixa de força da porta e elimine o guarda que vem conferir sem barulho.",
+     "Com o equipamento da Marabunta Grande você já tem o Crowbar.",
+     "O Jorge só abre o lockup sem nível de procurado. Na primeira conclusão você ganha $250.000 extras do award e o Gauntlet Interceptor fica com preço de troca."
+    ],
+    "source": "https://gta.fandom.com/wiki/Scene_of_the_Crime",
+    "variants": [
+     {
+      "approach": "silent",
+      "name": "Silent Approach",
+      "summary": "O cartel não sabe que você vem. Você entra escondido numa caixa da Cluckin' Bell que é levada para dentro por empilhadeira.",
+      "steps": [
+       "Entre na caixa preparada pelo Vincent e espere ser descarregado na fábrica.",
+       "Elimine os guardas sem ser visto e pegue a chave do escritório em vez de atirar na fechadura.",
+       "Faça os depósitos e o cofre; a partir daí o alarme dispara e você foge."
+      ],
+      "tips": [
+       "Se for detectado, a missão continua como Aggressive, sem falhar."
+      ],
+      "source": "https://gta.fandom.com/wiki/Scene_of_the_Crime"
+     },
+     {
+      "approach": "aggressive",
+      "name": "Aggressive Approach",
+      "summary": "A fábrica está em alerta máximo desde o início. Você chega de trem e precisa abrir caminho na força.",
+      "steps": [
+       "Chegue de trem à fábrica e enfrente os guardas já alertados.",
+       "Faça os dois depósitos e o cofre normalmente; os objetivos são os mesmos.",
+       "Lute até a garagem do veículo de fuga e perca o nível de procurado."
+      ],
+      "tips": [],
+      "source": "https://gta.fandom.com/wiki/Scene_of_the_Crime"
+     }
+    ]
+   }
+  },
+  "drdre": {
+   "id": "drdre",
+   "name": "The Contract: Dr. Dre",
+   "source": "https://gta.fandom.com/wiki/The_Contract:_Dr._Dre",
+   "facts": [
+    {
+     "label": "Jogadores",
+     "value": "1 a 4"
+    },
+    {
+     "label": "Quem inicia",
+     "value": "Dono da Agency, pelo computador da Agency"
+    },
+    {
+     "label": "Requisito",
+     "value": "Ter uma Agency e concluir 1 Security Contract"
+    },
+    {
+     "label": "Pagamento",
+     "value": "$900.000 (líder, no final)"
+    },
+    {
+     "label": "Estrutura",
+     "value": "3 leaks + Studio Time + final"
+    }
+   ],
+   "overview": [
+    "Contrato VIP da Agency (também chamado de The Data Leaks): o celular de Dr. Dre foi roubado e cópias das músicas inéditas dele estão espalhadas por Los Santos. Você e Franklin precisam recuperar as três cópias e descobrir quem está por trás do vazamento.",
+    "Depois das missões de abertura, o contrato se divide em três linhas (Nightlife Leak, High Society Leak e South Central Leak). Cada uma tem duas investigações em Free Mode e uma missão final de leak, e as três linhas podem ser feitas em qualquer ordem.",
+    "Com as três cópias recuperadas, liberam-se Studio Time e, por fim, Don't Fuck With Dre, iniciadas na Agency. O pagamento grande sai só no final para quem hospeda; cada leak, Studio Time e o final também dão um bônus único de award ao líder na primeira vez."
+   ],
+   "start": [
+    "Compre uma Agency e conclua qualquer Security Contract pelo computador da Agency.",
+    "Franklin entra em contato e libera On Course: encontre Dr. Dre no Los Santos Golf Club e resolva o problema com os golfistas (só obrigatória na primeira vez).",
+    "No computador da Agency, inicie o VIP Contract e faça Setup: Data Recovery no FIB Headquarters (também só na primeira vez).",
+    "Depois disso, as três linhas de leak ficam disponíveis no computador; escolha por qual começar."
+   ],
+   "approaches": [],
+   "sections": [
+    {
+     "id": "nightlife-leak",
+     "title": "Nightlife Leak",
+     "note": "Obrigatório. Ordem: Investigation: The Nightclub, Investigation: The Marina, Nightlife Leak. As três linhas de leak podem ser feitas em qualquer ordem."
+    },
+    {
+     "id": "high-society-leak",
+     "title": "High Society Leak",
+     "note": "Obrigatório. Ordem: Investigation: The Country Club, Investigation: Guest List, High Society Leak. As três linhas de leak podem ser feitas em qualquer ordem."
+    },
+    {
+     "id": "south-central-leak",
+     "title": "South Central Leak",
+     "note": "Obrigatório. Ordem: Investigation: Davis, Investigation: The Ballas, South Central Leak. As três linhas de leak podem ser feitas em qualquer ordem."
+    },
+    {
+     "id": "studio",
+     "title": "Studio Time",
+     "note": "Obrigatório. Liberada só depois de concluir os três leaks; libera o final."
+    }
+   ],
+   "setups": [
+    {
+     "id": "investigation-the-nightclub",
+     "name": "Investigation: The Nightclub",
+     "kind": "scope",
+     "players": "1 a 4 jogadores",
+     "section": "nightlife-leak",
+     "goal": "Roubar a fita de segurança de uma boate dos Triads e levá-la à Agency.",
+     "steps": [
+      "Vá até a boate (Cypress Flats ou La Mesa).",
+      "Opcional: roube a van de limpeza Sunset Bleach no caminho e despiste a polícia se for visto.",
+      "Entre pela entrada de mercadorias e atravesse a área principal até o escritório.",
+      "Pegue a fita de segurança no computador da mesa do escritório.",
+      "Saia da boate e entregue a fita na Agency."
+     ],
+     "tips": [
+      "Com a van de limpeza você entra disfarçado; finja varrer e não fique muito tempo no campo de visão dos inimigos nem com arma na mão.",
+      "O disfarce só funciona se você ainda não tiver entrado na boate com roupa normal.",
+      "Sem disfarce, evite os cones de visão no radar e use armas com silenciador; ou entre atirando.",
+      "Na volta, até três ondas de Triads em Fugitive tentam te interceptar, mesmo se ninguém te viu.",
+      "Falha se o tempo acabar."
+     ],
+     "source": "https://gta.fandom.com/wiki/Investigation:_The_Nightclub"
+    },
+    {
+     "id": "investigation-the-marina",
+     "name": "Investigation: The Marina",
+     "kind": "scope",
+     "players": "1 a 4 jogadores",
+     "section": "nightlife-leak",
+     "goal": "Usar o GPS do barco do promoter para achar o iate dele e fotografar a pista da festa.",
+     "steps": [
+      "Vá à Puerto Del Sol Marina e procure o Toro verde entre os barcos.",
+      "Roube o barco e siga até a área de busca no mar.",
+      "Suba no iate e enfrente a segurança.",
+      "Vá até a ponte de comando e use os controles para destrancar a cabine principal.",
+      "Entre na cabine, ache a evidência e tire foto com o Snapmatic.",
+      "Saia do iate e deixe a área."
+     ],
+     "tips": [
+      "Os dois seguranças da marina atiram se você roubar o barco ou apontar uma arma.",
+      "O iate tem defesa antiaérea; dá para desligá-la nos controles da ponte de comando.",
+      "A evidência pode estar em um dos quartos de hóspedes, na mesinha com computador ou no bar.",
+      "Na saída, pares de Buzzard atacam; use um dos veículos do iate para voltar à costa.",
+      "Falha se o tempo acabar ou se o barco for destruído antes de revelar a localização do iate."
+     ],
+     "source": "https://gta.fandom.com/wiki/Investigation:_The_Marina"
+    },
+    {
+     "id": "nightlife-leak-finale",
+     "name": "Nightlife Leak",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "nightlife-leak",
+     "goal": "Recuperar a cópia da música de Dre na festa da cobertura do Diamond Casino.",
+     "steps": [
+      "Vá à garagem do cassino e suba de elevador até a cobertura.",
+      "Encontre o promoter e tente pegar o equipamento de música.",
+      "Persiga o promoter, chame o elevador pelo teclado e desça para a área VIP do Music Locker.",
+      "Elimine os guardas e pegue a mochila.",
+      "Decida se mata ou deixa o promoter ir.",
+      "Saia do cassino e entregue a mochila na Agency."
+     ],
+     "tips": [
+      "Guardas da Duggan atacam na cobertura e te seguem num Kamacho na saída; não os leve até a Agency.",
+      "Matar ou poupar o promoter é escolha sua."
+     ],
+     "source": "https://gta.fandom.com/wiki/Nightlife_Leak/Finale"
+    },
+    {
+     "id": "investigation-the-country-club",
+     "name": "Investigation: The Country Club",
+     "kind": "scope",
+     "players": "1 a 4 jogadores",
+     "section": "high-society-leak",
+     "goal": "Pegar dados da limusine nas câmeras do Pacific Bluffs Country Club e descobrir para onde ela vai.",
+     "steps": [
+      "Vá ao Pacific Bluffs Country Club.",
+      "Chegue à sala de vigilância sem ser visto pelas câmeras e hackeie o teclado.",
+      "Elimine os quatro seguranças e hackeie um terminal.",
+      "Procure a Patriot Stretch (preta ou branca) na área marcada.",
+      "Siga a limusine de longe até a Richman Mansion, fotografe o portão e envie a Franklin.",
+      "Alternativa: mate o motorista, pegue a carteira e leve à Agency."
+     ],
+     "tips": [
+      "Ser visto pelas câmeras ou destruí-las dispara o alarme; talvez seja preciso escalar o prédio para desviar delas.",
+      "Dois seguranças da sala têm Pump Shotgun.",
+      "Fique a uma distância segura ao seguir a limusine (barra no canto da tela); se for detectado, use a opção da carteira.",
+      "Falha se o tempo acabar."
+     ],
+     "source": "https://gta.fandom.com/wiki/Investigation:_The_Country_Club"
+    },
+    {
+     "id": "investigation-guest-list",
+     "name": "Investigation: Guest List",
+     "kind": "scope",
+     "players": "1 a 4 jogadores",
+     "section": "high-society-leak",
+     "goal": "Sequestrar o advogado de Ben Brooks e trazer o Super Diamond dele para a Agency.",
+     "steps": [
+      "Vá à casa do advogado em Vinewood Hills.",
+      "Com as armas guardadas, procure o advogado no jardim usando a foto enviada por Franklin.",
+      "Use a Stun Gun para incapacitá-lo.",
+      "Elimine os seguranças.",
+      "Coloque o advogado no porta-malas do Super Diamond e dirija até a Agency."
+     ],
+     "tips": [
+      "Você recebe uma Stun Gun se não tiver uma.",
+      "Alguns guardas têm Assault Shotgun e um usa colete.",
+      "Na volta, até três ondas de Schafter V12 blindados perseguem você.",
+      "Falha se o advogado morrer, se o Super Diamond for destruído ou se o tempo acabar.",
+      "O Super Diamond fica na garagem da Agency e é usado no final do leak."
+     ],
+     "source": "https://gta.fandom.com/wiki/Investigation:_Guest_List"
+    },
+    {
+     "id": "high-society-leak-finale",
+     "name": "High Society Leak",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "high-society-leak",
+     "goal": "Acabar com a festa na Richman Mansion e tirar o celular de Ben Brooks.",
+     "steps": [
+      "Leve o Super Diamond até a mansão e digite o código no portão.",
+      "Ache o DJ de onde a música está tocando.",
+      "Destrua a festa: mate os guardas e exploda os veículos até encher o medidor.",
+      "Persiga o SuperVolito de Ben Brooks e atire nele.",
+      "Mate Brooks, pegue o celular e leve até a Agency."
+     ],
+     "tips": [
+      "Não mostre nem dispare armas ao entrar, ou os seguranças ficam agressivos desde o começo.",
+      "O Super Diamond tem uma bomba remota que ajuda a encher o medidor de intimidação.",
+      "Para sair da mansão, atire no painel de controle do portão; use um carro que você não explodiu.",
+      "Se derrubar o helicóptero, ele cai na praia de Lago Zancudo; senão, siga até o iate HODL usando os Seashark da praia.",
+      "A milícia de Brooks persegue você sem parar até chegar perto da Agency."
+     ],
+     "source": "https://gta.fandom.com/wiki/High_Society_Leak/Finale"
+    },
+    {
+     "id": "investigation-davis",
+     "name": "Investigation: Davis",
+     "kind": "scope",
+     "players": "1 a 4 jogadores",
+     "section": "south-central-leak",
+     "goal": "Ajudar Vernon a melar o negócio entre Aztecas e Lost MC e roubar a van com o equipamento de meth.",
+     "steps": [
+      "Encontre Vernon e entre no Cavalcade dele.",
+      "Leve Vernon até o local do negócio.",
+      "Elimine todos os inimigos, inclusive os que estão em pontos altos.",
+      "Roube a Burrito com o equipamento de meth.",
+      "Fuja da Lost MC e despiste a polícia.",
+      "Entregue a van no ponto de entrega."
+     ],
+     "tips": [
+      "Se policiais e motoqueiros ficarem perto, eles brigam entre si, o que facilita a fuga.",
+      "Falha se Vernon morrer, se o equipamento for destruído ou se o tempo acabar."
+     ],
+     "source": "https://gta.fandom.com/wiki/Investigation:_Davis"
+    },
+    {
+     "id": "investigation-the-ballas",
+     "name": "Investigation: The Ballas",
+     "kind": "scope",
+     "players": "1 a 4 jogadores",
+     "section": "south-central-leak",
+     "goal": "Ajudar as Families contra os Ballas e encurralar P para descobrir quem tem a cópia.",
+     "steps": [
+      "Encontre Vernon e leve-o no Cavalcade até Davis.",
+      "Ajude as Families a derrubar os Ballas e os reforços em Baller.",
+      "Siga Vernon pela trilha de sangue até a garagem onde P está.",
+      "Espere o interrogatório terminar.",
+      "Saia da garagem e deixe a área."
+     ],
+     "tips": [
+      "Um Police Maverick aparece e você recebe 3 estrelas de procurado; prepare-se para fugir no final.",
+      "Falha se Vernon ou P morrerem ou se o tempo acabar."
+     ],
+     "source": "https://gta.fandom.com/wiki/Investigation:_The_Ballas"
+    },
+    {
+     "id": "south-central-leak-finale",
+     "name": "South Central Leak",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "south-central-leak",
+     "goal": "Atacar os Vagos em Rancho Projects com Families e Ballas e recuperar o lowrider com a música.",
+     "steps": [
+      "Encontre Vernon e P no Davis Mega Mall.",
+      "Siga o comboio até Rancho Projects.",
+      "Elimine os Vagos junto com os aliados.",
+      "Persiga o líder dos Vagos no Buccaneer Custom e mate-o.",
+      "Leve o lowrider até a Agency."
+     ],
+     "tips": [
+      "Não chegue a Rancho Projects antes do comboio: você tem 15 segundos para sair ou a missão falha.",
+      "Se não matar o líder no caminho, ele para no Go Loco Railroad em Cypress Flats, onde há reforços.",
+      "Falha se o lowrider for destruído."
+     ],
+     "source": "https://gta.fandom.com/wiki/South_Central_Leak/Finale"
+    },
+    {
+     "id": "studio-time",
+     "name": "Studio Time",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "studio",
+     "goal": "Defender a Record A Studios do ataque dos homens de Johnny Guns.",
+     "steps": [
+      "Entre no corona ao lado do escritório de Franklin na Agency.",
+      "Leve o Champion de Dr. Dre até a Record A Studios.",
+      "Elimine as ondas de atiradores do lado de fora.",
+      "Entre no estúdio e elimine os inimigos lá dentro.",
+      "Vá até a Control Room para ver Dre."
+     ],
+     "tips": [
+      "Você pode ir ao estúdio de qualquer jeito, sem o Champion, que a missão continua normalmente.",
+      "Falha se o Champion for destruído ou se as vidas acabarem."
+     ],
+     "source": "https://gta.fandom.com/wiki/Studio_Time"
+    }
+   ],
+   "finale": {
+    "name": "Don't Fuck With Dre",
+    "summary": "Encontrar Johnny Guns, eliminar os mercenários dele, capturá-lo no aeroporto e levar Dr. Dre de volta ao Pacific Bluffs Country Club.",
+    "steps": [
+     "Vá à última localização de Johnny Guns em Textile City e ache-o no Mirror Park Railyard.",
+     "Elimine as ondas de atiradores que chegam em Granger 3600LX depois que ele foge.",
+     "Vá ao LSIA e entre no hangar pela porta lateral.",
+     "Elimine os mercenários e fira Johnny Guns sem matá-lo.",
+     "Agarre Johnny (o líder faz isso) e leve-o para fora até Dre.",
+     "Leve Dr. Dre até o Pacific Bluffs Country Club."
+    ],
+    "tips": [
+     "Não mate Johnny Guns: a missão falha.",
+     "Também falha se Dr. Dre ou o guarda-costas dele morrerem, se o carro de Dre for destruído ou se as vidas acabarem.",
+     "O portão principal do hangar fica fechado; só dá para entrar pela porta lateral.",
+     "Um carro cheio de inimigos sai do Bombushka dentro do hangar.",
+     "O líder ganha também o Media Stick de Dr. Dre e o Marathon Hoodie; concluir libera Short Trips."
+    ],
+    "source": "https://gta.fandom.com/wiki/Don't_Fuck_With_Dre"
    }
   }
  }
