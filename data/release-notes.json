@@ -1,6 +1,14 @@
 {
   "versions": [
     {
+      "version": "1.13.1",
+      "date": "2026-10-19",
+      "title": "Leitura da tela mais leve",
+      "items": [
+        "A leitura da tela não trava mais o app a cada 2 segundos: agora ela olha um print pequeno da tela e só tira um print grande quando a tela Sell Goods do Nightclub está aberta, para ler os números."
+      ]
+    },
+    {
       "version": "1.13.0",
       "date": "2026-10-19",
       "title": "Leitura da tela dos negócios",

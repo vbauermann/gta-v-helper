@@ -1,5 +1,5 @@
-// Business screens reader: while GTA is running, takes a color screenshot every couple of seconds
-// and looks for the Terrorbyte's Master Control Terminal or the Nightclub's "Sell Goods" page
+// Business screens reader: while GTA is running, takes a small color screenshot every couple of
+// seconds (a big one only when the Nightclub page is there, for its numbers) and looks for the Terrorbyte's Master Control Terminal or the Nightclub's "Sell Goods" page
 // (lib/biz-read.js, in a worker thread). A reading seen twice in a row is handed to onRead, which
 // updates the businesses. Read-only on the screen like any capture tool: it never reads game
 // memory, never injects and never sends input to GTA (ADR 0002).
@@ -11,6 +11,8 @@ const { desktopCapturer, screen } = require('electron');
 
 const INTERVAL_MS = 2000;
 const templates = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/biz-read.json'), 'utf8'));
+const PROBE_HEIGHT = 540; // enough for the MCT bars and to spot the Nightclub page; cheap to capture
+const BIG_EVERY_MS = 10000;
 const MAX_HEIGHT = 1440; // the Nightclub counts need about 1080 px; more only costs time
 
 // GTA_HELPER_FAKE_BIZ_SCREEN: a .ppm.gz color screenshot used instead of the real screen (tests).
@@ -34,6 +36,7 @@ function createBizScanner({ isActive, onRead, onChange }) {
   let busy = false;
   let last = '';
   let applied = '';
+  let bigAt = 0;
   let status = { state: 'off', screen: null, at: 0 };
 
   function setStatus(next) {
@@ -42,12 +45,12 @@ function createBizScanner({ isActive, onRead, onChange }) {
     if (changed) onChange();
   }
 
-  async function grab() {
+  async function grab(maxHeight) {
     const fake = fakeScreen();
     if (fake) return fake;
-    // The display the player is on (where the mouse is), at most MAX_HEIGHT tall.
+    // The display the player is on (where the mouse is), at most maxHeight tall.
     const d = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
-    const height = Math.round(Math.min(MAX_HEIGHT, d.size.height * d.scaleFactor));
+    const height = Math.round(Math.min(maxHeight, d.size.height * d.scaleFactor));
     const width = Math.round(height * d.size.width / d.size.height);
     const sources = await desktopCapturer.getSources({ types: ['screen'], thumbnailSize: { width, height } });
     const src = sources.find(s => s.display_id === String(d.id)) || sources[0];
@@ -56,7 +59,7 @@ function createBizScanner({ isActive, onRead, onChange }) {
     return { data: new Uint8Array(src.thumbnail.toBitmap()), width: size.width, height: size.height, bgra: true };
   }
 
-  function analyze(img) {
+  function analyze(img, mode) {
     if (!worker) {
       // Workers can't load from inside app.asar; the installer ships lib/ unpacked next to it.
       const file = path.join(__dirname, 'lib/biz-worker.cjs').replace(`app.asar${path.sep}`, `app.asar.unpacked${path.sep}`);
@@ -68,7 +71,7 @@ function createBizScanner({ isActive, onRead, onChange }) {
       const onErr = e => { worker.off('message', onMsg); worker = null; reject(e); };
       worker.once('message', onMsg);
       worker.once('error', onErr);
-      worker.postMessage(img, [img.data.buffer]);
+      worker.postMessage({ ...img, mode }, [img.data.buffer]);
     });
   }
 
@@ -77,8 +80,16 @@ function createBizScanner({ isActive, onRead, onChange }) {
     if (!isActive()) { last = ''; applied = ''; setStatus({ ...status, state: 'off', screen: null }); return; }
     busy = true;
     try {
-      const img = await grab();
-      const r = img ? await analyze(img) : null;
+      const small = await grab(PROBE_HEIGHT);
+      let r = small ? await analyze(small, 'probe') : null;
+      if (r && r.screen === 'nightclub') {
+        // The big capture is what costs: once the page was read, at most every BIG_EVERY_MS while it stays open.
+        if (applied && last === applied && Date.now() - bigAt < BIG_EVERY_MS) return;
+        bigAt = Date.now();
+        const big = await grab(MAX_HEIGHT);
+        r = big ? await analyze(big, 'read') : null;
+        if (r && r.screen !== 'nightclub') r = null;
+      }
       const sig = signature(r);
       if (!r) { last = ''; applied = ''; setStatus({ ...status, state: 'watching', screen: null }); return; }
       if (sig === last && sig !== applied && isActive()) {

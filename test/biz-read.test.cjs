@@ -84,6 +84,14 @@ test('Nightclub: too small to read the counts safely gives nothing rather than a
   assert.strictEqual(r, null);
 });
 
+test('small capture (540 px): reads the MCT and spots the Nightclub page without reading its numbers', () => {
+  const mct = R.probe(resize(load('mct1.ppm.gz'), 540), templates);
+  assert.strictEqual(mct.screen, 'mct');
+  assert.strictEqual(mct.cards.length, 6);
+  assert.deepStrictEqual(R.probe(resize(load('nightclub1.ppm.gz'), 540), templates), { screen: 'nightclub', goods: null });
+  assert.strictEqual(R.probe(resize(load('open-road.ppm.gz'), 540), templates), null);
+});
+
 test('other screens (a business laptop) are not mistaken for the MCT or the Nightclub', () => {
   assert.strictEqual(R.read(load('open-road.ppm.gz'), templates), null);
 });
