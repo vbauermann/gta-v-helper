@@ -22,6 +22,7 @@ App desktop Windows (Electron, JS puro, sem bundler) de apoio ao GTA Online. Don
 | `game-watcher.cjs` | Detecta `GTA5.exe`/`GTA5_Enhanced.exe` pela lista de processos |
 | `overlay.cjs`, `lib/hotkeys.js` | Overlay de referência das digitais e atalhos globais |
 | `fp-scanner.cjs`, `lib/fp-match.js`, `lib/fp-worker.cjs` | Detecção automática das digitais do Casino por captura de tela |
+| `biz-scanner.cjs`, `lib/biz-read.js`, `lib/biz-apply.js`, `data/biz-read.json` | Leitura da tela do Master Control Terminal (Terrorbyte) e do Sell Goods do Nightclub; modelos gerados por `tools/build-biz-templates.cjs`. Ver [ADR 0018](docs/adr/0018-leitura-da-tela-dos-negocios.md) |
 | `game-window.cjs` | Posição da janela do GTA na tela (modo janela), via user32 em um loop PowerShell |
 | `lib/heists.js`, `data/heists.json` | Cálculos de Cayo Perico e Diamond Casino |
 | `data/cayo-map.json`, `app/pages/cayo-map.js` | Mapa do Cayo (pontos de alvos, guardas, entradas) |
@@ -66,7 +67,7 @@ node package.cjs                # pasta portátil em dist/ (funciona no Linux, s
 
 ## Colaboração
 
-O Vinícius também contribui com o app ([ADR 0018](docs/adr/0018-recursos-opcionais.md)).
+O Vinícius também contribui com o app ([ADR 0019](docs/adr/0019-recursos-opcionais.md)).
 
 - Só o Vitor mexe direto na `main` e sobe `version`: publicar é decisão dele.
 - Colaboradores trabalham em branch e abrem PR. Não mexa na branch de outra pessoa nem dê push forçado nela.

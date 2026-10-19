@@ -6,6 +6,8 @@ const { advance } = require('./timers.cjs');
 const { createGameWatcher } = require('./game-watcher.cjs');
 const { createOverlay } = require('./overlay.cjs');
 const { createScanner } = require('./fp-scanner.cjs');
+const { createBizScanner } = require('./biz-scanner.cjs');
+const bizApply = require('./lib/biz-apply.js');
 const todos = require('./lib/todos.js');
 const notices = require('./lib/notices.js');
 const nightclub = require('./lib/nightclub.js');
@@ -42,6 +44,7 @@ let store;
 let watcher;
 let overlay = null;
 let scanner = null;
+let bizScanner = null;
 let updater = null;
 let weeklyFeed = null;
 let wikiFeed = null;
@@ -66,6 +69,7 @@ function snapshot() {
     detectionSupported: watcher.supported,
     overlay: overlay ? overlay.state() : null,
     scanner: scanner ? scanner.state() : null,
+    bizScanner: bizScanner ? bizScanner.state() : null,
     updater: updater ? updater.state() : null
   };
 }
@@ -131,6 +135,21 @@ function syncWarehouses(s) {
   const [vehicle = null] = marked('vehicle-warehouse');
   if (vehicle !== s.warehouses.vehicle.point) s.warehouses.vehicle = { point: vehicle, cars: vehicle && s.warehouses.vehicle.point ? s.warehouses.vehicle.cars : 0 };
   if (!nightclub.cargoSource(s)) s.nightclub.cargo = false;
+}
+
+// What the screen reader saw on the Terrorbyte or the Nightclub computer replaces the estimates.
+function screenRead(reading) {
+  mutate(s => {
+    if (reading.screen === 'mct') for (const c of reading.cards) if (s.businesses[c.id]) store.rebase(c.id);
+    const { changes } = bizApply.apply(catalog, s, reading);
+    if (!changes.length) return;
+    notify({
+      kind: 'scan',
+      title: reading.screen === 'mct' ? 'Negócios lidos do Terrorbyte' : 'Estoque do Nightclub lido',
+      body: changes.map(c => `${c.name}: ${c.text}`).join('. '),
+      page: 'businesses'
+    });
+  });
 }
 
 // Every notice goes to the Avisos list (bell and page) and, when enabled, to Windows.
@@ -338,6 +357,7 @@ function registerIpc() {
     if ('warnMinutes' in patch) s.settings.warnMinutes = num(patch.warnMinutes, 0, 120);
     if ('notify' in patch) s.settings.notify = !!patch.notify;
     if ('closeToTray' in patch) s.settings.closeToTray = !!patch.closeToTray;
+    if ('screenRead' in patch) s.settings.screenRead = !!patch.screenRead;
     if ('features' in patch) Object.assign(s.settings.features, features.sanitizePatch(patch.features));
     if ('theme' in patch && OVERLAY[patch.theme]) {
       s.settings.theme = patch.theme;
@@ -525,6 +545,12 @@ if (!app.requestSingleInstanceLock()) {
       onChange: broadcast
     });
     scanner.start();
+    bizScanner = createBizScanner({
+      isActive: () => store.get().settings.screenRead !== false && (watcher.isRunning() || !!process.env.GTA_HELPER_FAKE_BIZ_SCREEN),
+      onRead: screenRead,
+      onChange: broadcast
+    });
+    bizScanner.start();
     registerIpc();
     createTray();
     createWindow();
@@ -534,6 +560,6 @@ if (!app.requestSingleInstanceLock()) {
     setInterval(tick, TICK_MS);
     setInterval(persist, 30000);
   });
-  app.on('before-quit', () => { quitting = true; tick(); dirty = true; persist(); if (overlay) overlay.destroy(); if (scanner) scanner.destroy(); });
+  app.on('before-quit', () => { quitting = true; tick(); dirty = true; persist(); if (overlay) overlay.destroy(); if (scanner) scanner.destroy(); if (bizScanner) bizScanner.destroy(); });
   app.on('window-all-closed', () => { if (!tray) app.quit(); });
 }

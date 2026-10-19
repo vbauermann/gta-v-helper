@@ -331,6 +331,27 @@ app.whenReady().then(async () => {
   if (narrowBar < 150) errors.push(`barra espremida na janela estreita: ${narrowBar}px`);
   if (!after.nightclub || after.acidToggle || !after.ready) errors.push(`nightclub/pronto falhou: ${JSON.stringify(after)}`);
   if (!(after.delivery > 9) || !after.staff || !after.status.startsWith('Suprimentos chegando')) errors.push(`round trip falhou: ${JSON.stringify(after)}`);
+  // Business screens (last: they overwrite the sample levels): the Terrorbyte's MCT, then the Nightclub's Sell Goods, instead of the real screen.
+  process.env.GTA_HELPER_FAKE_BIZ_SCREEN = path.join(__dirname, '../test/fixtures/biz/mct1.ppm.gz');
+  await wait(5500);
+  const afterMct = await win.webContents.executeJavaScript(`window.gta.state().then(s => ({ coke: s.businesses.cocaine.supplyPct, weed: s.businesses.weed.owned, notice: s.notices.items[0].title, scan: s.bizScanner }))`);
+  if (Math.abs(afterMct.coke - 12.3) > 1.5 || !afterMct.weed || afterMct.notice !== 'Negócios lidos do Terrorbyte') errors.push(`leitura MCT: ${JSON.stringify(afterMct)}`);
+  process.env.GTA_HELPER_FAKE_BIZ_SCREEN = path.join(__dirname, '../test/fixtures/biz/nightclub1.ppm.gz');
+  await wait(5500);
+  const afterNc = await win.webContents.executeJavaScript(`window.gta.state().then(s => ({ stock: s.nightclub.stock, floors: s.nightclub.floors, notice: s.notices.items[0].title }))`);
+  if (afterNc.stock.sporting !== 35 || afterNc.stock.cargo !== 8 || afterNc.floors !== 5 || afterNc.notice !== 'Estoque do Nightclub lido') errors.push(`leitura Nightclub: ${JSON.stringify(afterNc)}`);
+  console.log('leitura', JSON.stringify(afterMct), JSON.stringify(afterNc));
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=notices]').click()`);
+  await wait(700);
+  fs.writeFileSync(path.join(out, 'leitura-avisos.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=settings]').click()`);
+  await wait(700);
+  fs.writeFileSync(path.join(out, 'leitura-ajustes.png'), (await win.webContents.capturePage()).toPNG());
+  win.setSize(1320, 880);
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=businesses]').click()`);
+  await wait(700);
+  fs.writeFileSync(path.join(out, 'leitura-negocios.png'), (await win.webContents.capturePage()).toPNG());
+  delete process.env.GTA_HELPER_FAKE_BIZ_SCREEN;
   console.log(JSON.stringify({ out, errors, after }));
   app.exit(errors.length ? 1 : 0);
 });

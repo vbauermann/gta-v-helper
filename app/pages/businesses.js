@@ -194,7 +194,7 @@
       h('div', { class: 'page-head' },
         h('div', null,
           h('h1', null, 'Negócios'),
-          h('div', { class: 'sub' }, 'Os timers contam tempo de jogo online. Fechou o GTA, eles param. Ao ressuprir ou vender no jogo, marque aqui.'))),
+          h('div', { class: 'sub' }, 'Os timers contam tempo de jogo online. Fechou o GTA, eles param. Ao ressuprir ou vender no jogo, marque aqui, ou abra o Master Control Terminal no Terrorbyte que o app lê sozinho.'))),
       owned.length || extra.length
         ? h('div', { class: 'biz-list' }, owned.map(card), extra)
         : h('div', { class: 'card' }, h('div', { class: 'empty' }, h('div', { class: 'icon' }, icon('businesses', 24)),

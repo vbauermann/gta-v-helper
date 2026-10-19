@@ -13,7 +13,8 @@
     reminder: { icon: 'bell', tone: 'blue' },
     week: { icon: 'calendar', tone: 'info' },
     update: { icon: 'download', tone: 'info' },
-    test: { icon: 'check', tone: 'blue' }
+    test: { icon: 'check', tone: 'blue' },
+    scan: { icon: 'eye', tone: 'ok' }
   };
   const timeFmt = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
   const shortFmt = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit' });

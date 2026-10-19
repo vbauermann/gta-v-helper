@@ -39,6 +39,7 @@
           setting('Testar', 'Manda um aviso de teste agora.',
             h('button', { class: 'btn sm', type: 'button', onclick: () => App.act(window.gta.notices('test')) }, icon('bell', 15), 'Enviar teste')),
           checkbox('Fechar mantém na bandeja', s.closeToTray, e => set({ closeToTray: e.target.checked }), 'Os timers continuam com a janela fechada.')),
+        screenSection(s, set),
         remindersSection(),
         updateSection(),
         section('palette', 'Aparência',
@@ -55,6 +56,23 @@
     return section('plus', 'Recursos extras',
       h('p', { class: 'muted small' }, 'Funções extras que vêm desligadas. Ligue as que quiser usar.'),
       list.map(f => checkbox(f.title, GtaFeatures.isOn(s, f.id), e => set({ features: { [f.id]: e.target.checked } }), f.description)));
+  }
+
+  // Screen reader of the Terrorbyte (Master Control Terminal) and the Nightclub computer.
+  function screenSection(s, set) {
+    const b = App.state.bizScanner || { state: 'off' };
+    const on = s.screenRead !== false;
+    const time = b.at ? new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' }).format(b.at) : null;
+    const now = !on ? 'Desligada.'
+      : b.state === 'error' ? `Erro na captura: ${b.error || 'desconhecido'}`
+        : b.state === 'off' ? 'Esperando o GTA abrir.'
+          : b.screen === 'mct' ? 'Lendo o Master Control Terminal agora.'
+            : b.screen === 'nightclub' ? 'Lendo o computador do Nightclub agora.'
+              : 'Olhando a tela.';
+    return section('eye', 'Leitura da tela',
+      checkbox('Ler as telas dos negócios', on, e => set({ screenRead: e.target.checked }),
+        'Abra o Master Control Terminal no Terrorbyte, ou Sell Goods no computador do Nightclub, e o app atualiza estoque e suprimentos sozinho. Ele só captura a tela, como o OBS: não lê nem mexe no jogo.'),
+      setting('Situação', time ? `Última leitura às ${time}.` : 'Nenhuma leitura ainda.', h('span', { class: 'muted small' }, now)));
   }
 
   // Periodic reminders ("Conferir o Terrorbyte a cada 2h"). In-game ones count only while the timers count.
@@ -114,7 +132,7 @@
   window.Pages.settings = {
     mount(el) { root = el; render(); },
     onState(s, force) {
-      const sig = JSON.stringify(s.updater);
+      const sig = JSON.stringify([s.updater, s.bizScanner]);
       if (root && root.isConnected && (force || sig !== this.updSig)) render();
       this.updSig = sig;
     }
