@@ -41,7 +41,10 @@ const groups = [
       ...Object.entries(MC).map(([biz, m]) => ({ id: `mc-${biz}`, title: m.title, icon: ico(m.icon), owns: 1, business: biz })),
       { id: 'bunker', title: 'Bunker', icon: ico('bunk'), owns: 1, business: 'bunker' },
       { id: 'warehouse', title: 'Warehouse de cargo (CEO)', icon: ico('warehouse'), owns: 5, note: 'Marcar aqui coloca a warehouse no card Special Cargo dos Negócios.' },
-      { id: 'vehicle-warehouse', title: 'Vehicle Warehouse', icon: ico('vehicle_warehouse'), owns: 1, note: 'Import/Export. Marcar aqui coloca a warehouse nos Negócios.' }
+      { id: 'vehicle-warehouse', title: 'Vehicle Warehouse', icon: ico('vehicle_warehouse'), owns: 1, note: 'Import/Export. Marcar aqui coloca a warehouse nos Negócios.' },
+      { id: 'car-wash', title: 'Hands On Car Wash', icon: ico('hands_on_car_wash'), owns: 1, note: 'Money Front.' },
+      { id: 'weed-shop', title: 'Smoke on the Water', icon: ico('smoke_on_the_water'), owns: 1, note: 'Money Front (loja de maconha).' },
+      { id: 'helitours', title: 'Higgins Helitours', icon: ico('higgins_helitours'), owns: 1, note: 'Money Front ligado ao Hangar.' }
     ]
   },
   {
@@ -75,6 +78,10 @@ list('bunker', C.bunkers, numbered(txt.bunker));
 const wh = JSON.parse(fs.readFileSync(path.join(src, 'warehouses.json'), 'utf8'));
 wh.special_cargo_warehouses.forEach(w => add('warehouse', w.index, w.game, { name: w.name, size: w.size }));
 wh.vehicle_warehouses.forEach(w => add('vehicle-warehouse', w.index, w.game, { name: w.name }));
+// Money Fronts (2025): one place each.
+add('car-wash', 1, C.hands_on_car_wash[0], { name: 'Hands On Car Wash', place: 'Strawberry' });
+add('weed-shop', 1, C.smoke_on_the_water_weed_shop[0], { name: 'Smoke on the Water', place: 'Vespucci' });
+add('helitours', 1, C.higgins_helitours[0], { name: 'Higgins Helitours', place: 'La Puerta (heliporto)' });
 
 // Properties
 list('office', C.offices, txt.offices);

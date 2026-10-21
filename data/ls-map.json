@@ -72,6 +72,27 @@
      "icon": "assets/ls/icons/vehicle_warehouse.png",
      "owns": 1,
      "note": "Import/Export. Marcar aqui coloca a warehouse nos Negócios."
+    },
+    {
+     "id": "car-wash",
+     "title": "Hands On Car Wash",
+     "icon": "assets/ls/icons/hands_on_car_wash.png",
+     "owns": 1,
+     "note": "Money Front."
+    },
+    {
+     "id": "weed-shop",
+     "title": "Smoke on the Water",
+     "icon": "assets/ls/icons/smoke_on_the_water.png",
+     "owns": 1,
+     "note": "Money Front (loja de maconha)."
+    },
+    {
+     "id": "helitours",
+     "title": "Higgins Helitours",
+     "icon": "assets/ls/icons/higgins_helitours.png",
+     "owns": 1,
+     "note": "Money Front ligado ao Hangar."
     }
    ]
   },
@@ -834,6 +855,30 @@
    "x": 0.30078,
    "y": 0.85581,
    "name": "LSIA"
+  },
+  {
+   "id": "car-wash-1",
+   "category": "car-wash",
+   "x": 0.44862,
+   "y": 0.79209,
+   "name": "Hands On Car Wash",
+   "place": "Strawberry"
+  },
+  {
+   "id": "weed-shop-1",
+   "category": "weed-shop",
+   "x": 0.30049,
+   "y": 0.80526,
+   "name": "Smoke on the Water",
+   "place": "Vespucci"
+  },
+  {
+   "id": "helitours-1",
+   "category": "helitours",
+   "x": 0.3515,
+   "y": 0.80044,
+   "name": "Higgins Helitours",
+   "place": "La Puerta (heliporto)"
   },
   {
    "id": "office-1",
