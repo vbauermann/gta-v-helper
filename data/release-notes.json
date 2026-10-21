@@ -1,6 +1,15 @@
 {
   "versions": [
     {
+      "version": "1.13.3",
+      "date": "2026-10-21",
+      "title": "Ordem dos negócios",
+      "items": [
+        "Negócios numa lista só, Nightclub, Special Cargo e Vehicle Warehouse junto, na ordem: Pronto para vender, Produzindo, Acabando, Aguardando e Parado. Com o mesmo status, quem tem mais suprimento vem antes.",
+        "A ordem se ajusta sozinha quando um negócio muda de status, sem fechar o que estiver aberto."
+      ]
+    },
+    {
       "version": "1.13.2",
       "date": "2026-10-19",
       "title": "Tempo do hacker no cofre",

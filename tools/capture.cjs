@@ -66,6 +66,15 @@ app.whenReady().then(async () => {
     await wait(700);
     fs.writeFileSync(path.join(out, `${page}.png`), (await win.webContents.capturePage()).toPNG());
   }
+  // Businesses order: ready to sell, producing, running out, waiting, stopped (Nightclub and warehouses included).
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=businesses]').click()`);
+  await wait(1500);
+  const order = await win.webContents.executeJavaScript(`[...document.querySelectorAll('.biz-list > .card')].map(c => (c.dataset.id || c.dataset.extra) + ':' + (c.querySelector('.pill') || {}).textContent)`);
+  console.log('ordem', JSON.stringify(order));
+  const rank = t => { const m = { 'Pronto para vender': 0, Produzindo: 1, Acabando: 2, Aguardando: 3, Parado: 4, 'Sem técnicos': 4 }; return t in m ? m[t] : 1; };
+  const ranks = order.map(o => rank(o.slice(o.indexOf(':') + 1)));
+  if (ranks.some((r, i) => i && r < ranks[i - 1])) errors.push(`ordem dos negócios: ${order.join(', ')}`);
+  fs.writeFileSync(path.join(out, 'businesses-ordem.png'), (await win.webContents.capturePage()).toPNG());
   // Acid Lab daily boost.
   await win.webContents.executeJavaScript(`(async () => {
     await App.act(window.gta.setStock('acid', 40));

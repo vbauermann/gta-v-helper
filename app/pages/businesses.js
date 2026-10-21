@@ -182,11 +182,7 @@
   function render() {
     if (!root) return;
     const defs = App.data.catalog.businesses;
-    // Most supply on top, the ones running dry at the bottom.
-    const owned = defs.filter(d => App.state.businesses[d.id].owned)
-      .map(d => ({ d, s: App.business(d).p.supplyPct }))
-      .sort((a, b) => b.s - a.s)
-      .map(x => x.d);
+    const owned = defs.filter(d => App.state.businesses[d.id].owned);
     const others = defs.filter(d => !App.state.businesses[d.id].owned);
     const extra = BizExtra.cards(render);
     const extraOthers = BizExtra.others();
@@ -196,7 +192,7 @@
           h('h1', null, 'Negócios'),
           h('div', { class: 'sub' }, 'Os timers contam tempo de jogo online. Fechou o GTA, eles param. Ao ressuprir ou vender no jogo, marque aqui, ou abra o Master Control Terminal no Terrorbyte que o app lê sozinho.'))),
       owned.length || extra.length
-        ? h('div', { class: 'biz-list' }, owned.map(card), extra)
+        ? sortList(h('div', { class: 'biz-list' }, owned.map(card), extra))
         : h('div', { class: 'card' }, h('div', { class: 'empty' }, h('div', { class: 'icon' }, icon('businesses', 24)),
           h('h3', null, 'Nenhum negócio marcado'), h('p', null, 'Marque abaixo os negócios que você tem.'))),
       others.length || extraOthers.length
@@ -206,10 +202,33 @@
         : null);
   }
 
+  // One list for everything owned, Nightclub and warehouses included: ready to sell, producing,
+  // running out, waiting for supplies, stopped. Same status: most supply first.
+  const RANK = { 'Pronto para vender': 0, Produzindo: 1, Acabando: 2, Aguardando: 3, Parado: 4 };
+  function sortKey(el) {
+    if (el.dataset.id) {
+      const b = App.business(App.data.catalog.businesses.find(d => d.id === el.dataset.id));
+      return [RANK[b.pill] ?? 4, -b.p.supplyPct];
+    }
+    const x = BizExtra[el.dataset.extra]();
+    // The Nightclub with no technician makes nothing: it counts as stopped. Warehouses are filled by hand.
+    return [x.tone === 'ready' ? 0 : x.tone === 'warning' ? 4 : 1, -100];
+  }
+
+  // Puts the cards in order by moving the existing elements (open cards and inputs stay as they are).
+  function sortList(list) {
+    const items = [...list.children].map(el => ({ el, k: sortKey(el) }));
+    items.sort((a, b) => a.k[0] - b.k[0] || a.k[1] - b.k[1]);
+    if (items.some((x, i) => x.el !== list.children[i])) for (const x of items) list.appendChild(x.el);
+    return list;
+  }
+
   // Updates countdowns and bars in place every second, without rebuilding inputs.
   function onSecond() {
     if (!root) return;
     BizExtra.onSecond(root);
+    const list = root.querySelector('.biz-list');
+    if (list) sortList(list);
     for (const el of root.querySelectorAll('.card.biz[data-id]')) {
       const def = App.data.catalog.businesses.find(d => d.id === el.dataset.id);
       const { p, tone, text, pill } = App.business(def);
