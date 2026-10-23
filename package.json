@@ -1,7 +1,7 @@
 {
   "name": "gta-helper",
   "productName": "GTA Helper",
-  "version": "1.13.4",
+  "version": "1.13.5",
   "private": true,
   "description": "Auxiliar de GTA Online: timers de negócios e calculadoras de golpes",
   "main": "main.cjs",
@@ -40,6 +40,7 @@
       "overlay.cjs",
       "fp-scanner.cjs",
       "biz-scanner.cjs",
+      "toast.cjs",
       "store.cjs",
       "timers.cjs",
       "game-watcher.cjs",

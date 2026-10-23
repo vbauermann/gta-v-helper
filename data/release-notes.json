@@ -1,6 +1,15 @@
 {
   "versions": [
     {
+      "version": "1.13.5",
+      "date": "2026-10-23",
+      "title": "Avisos na tela",
+      "items": [
+        "Os avisos agora aparecem no canto de cima da tela, por cima do jogo (como a detecção de digitais), com o mesmo visual da lista de Avisos, e somem sozinhos em 10 segundos. A notificação do Windows saiu.",
+        "A leitura do Terrorbyte e do Nightclub atualiza os negócios sem gerar aviso."
+      ]
+    },
+    {
       "version": "1.13.4",
       "date": "2026-10-21",
       "title": "Money Fronts no mapa",

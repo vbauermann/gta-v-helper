@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, Tray, Notification, ipcMain, session, nativeImage, shell } = require('electron');
+const { app, BrowserWindow, Menu, Tray, ipcMain, session, nativeImage, shell } = require('electron');
 const fs = require('node:fs');
 const path = require('node:path');
 const { createStore } = require('./store.cjs');
@@ -7,6 +7,7 @@ const { createGameWatcher } = require('./game-watcher.cjs');
 const { createOverlay } = require('./overlay.cjs');
 const { createScanner } = require('./fp-scanner.cjs');
 const { createBizScanner } = require('./biz-scanner.cjs');
+const { createToasts } = require('./toast.cjs');
 const bizApply = require('./lib/biz-apply.js');
 const todos = require('./lib/todos.js');
 const notices = require('./lib/notices.js');
@@ -44,6 +45,7 @@ let watcher;
 let overlay = null;
 let scanner = null;
 let bizScanner = null;
+let toasts = null;
 let updater = null;
 let weeklyFeed = null;
 let wikiFeed = null;
@@ -140,29 +142,18 @@ function syncWarehouses(s) {
 function screenRead(reading) {
   mutate(s => {
     if (reading.screen === 'mct') for (const c of reading.cards) if (s.businesses[c.id]) store.rebase(c.id);
-    const { changes } = bizApply.apply(catalog, s, reading);
-    if (!changes.length) return;
-    notify({
-      kind: 'scan',
-      title: reading.screen === 'mct' ? 'Negócios lidos do Terrorbyte' : 'Estoque do Nightclub lido',
-      body: changes.map(c => `${c.name}: ${c.text}`).join('. '),
-      page: 'businesses'
-    });
+    bizApply.apply(catalog, s, reading); // silent: the Negócios page shows the new levels
   });
 }
 
-// Every notice goes to the Avisos list (bell and page) and, when enabled, to Windows.
+// Every notice goes to the Avisos list (bell and page) and, when enabled, on screen for 10 s.
 function notify(notice) {
   const s = store.get();
   const item = notices.push(s.notices.items, notice, Date.now());
   dirty = true;
-  if (s.settings.notify && Notification.isSupported()) {
-    const n = new Notification({ title: item.title, body: item.body, silent: false });
-    n.on('click', () => {
-      showWindow();
-      if (mainWindow && !mainWindow.isDestroyed()) mainWindow.webContents.send('gta:navigate', item.page || 'notices');
-    });
-    n.show();
+  if (s.settings.notify) {
+    if (!toasts) toasts = createToasts();
+    toasts.show(item);
   }
   return item;
 }
@@ -558,6 +549,6 @@ if (!app.requestSingleInstanceLock()) {
     setInterval(tick, TICK_MS);
     setInterval(persist, 30000);
   });
-  app.on('before-quit', () => { quitting = true; tick(); dirty = true; persist(); if (overlay) overlay.destroy(); if (scanner) scanner.destroy(); if (bizScanner) bizScanner.destroy(); });
+  app.on('before-quit', () => { quitting = true; tick(); dirty = true; persist(); if (overlay) overlay.destroy(); if (scanner) scanner.destroy(); if (bizScanner) bizScanner.destroy(); if (toasts) toasts.destroy(); });
   app.on('window-all-closed', () => { if (!tray) app.quit(); });
 }

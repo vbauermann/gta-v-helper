@@ -5,17 +5,7 @@
   const { h, icon } = UI;
   const N = GtaNotices;
   const P = GtaProduction;
-  const KIND = {
-    warn: { icon: 'clock', tone: 'warn' },
-    empty: { icon: 'box', tone: 'danger' },
-    full: { icon: 'dollar', tone: 'ok' },
-    heist: { icon: 'cayo', tone: 'info' },
-    reminder: { icon: 'bell', tone: 'blue' },
-    week: { icon: 'calendar', tone: 'info' },
-    update: { icon: 'download', tone: 'info' },
-    test: { icon: 'check', tone: 'blue' },
-    scan: { icon: 'eye', tone: 'ok' }
-  };
+  const KIND = GtaNotices.STYLE;
   const timeFmt = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
   const shortFmt = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit' });
   const dayFmt = new Intl.DateTimeFormat('pt-BR', { weekday: 'long', day: '2-digit', month: '2-digit' });
@@ -85,7 +75,7 @@
     UI.fill(root,
       h('div', { class: 'page-head' },
         h('div', null, h('h1', null, 'Avisos'),
-          h('div', { class: 'sub' }, count ? `${count} não ${count === 1 ? 'lido' : 'lidos'}. Tudo que o app te avisou fica aqui, além da notificação do Windows.` : 'Tudo que o app te avisou fica aqui, além da notificação do Windows.')),
+          h('div', { class: 'sub' }, count ? `${count} não ${count === 1 ? 'lido' : 'lidos'}. Tudo que o app te avisou fica aqui, além do aviso na tela.` : 'Tudo que o app te avisou fica aqui, além do aviso na tela.')),
         h('div', { class: 'row' },
           h('button', { class: 'btn ghost sm', type: 'button', disabled: !list.length, onclick: () => App.act(notices('clear')) }, icon('eraser', 15), 'Limpar lista'))),
       remindersCard(),

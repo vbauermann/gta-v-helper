@@ -10,5 +10,10 @@ contextBridge.exposeInMainWorld('marker', Object.freeze({
     if (typeof callback !== 'function') throw new TypeError('callback');
     ipcRenderer.on('marker:badge', (_event, state) => callback(state));
     ipcRenderer.send('marker:ready');
+  },
+  onToasts: callback => {
+    if (typeof callback !== 'function') throw new TypeError('callback');
+    ipcRenderer.on('marker:toasts', (_event, list) => callback(list));
+    ipcRenderer.send('marker:ready');
   }
 }));

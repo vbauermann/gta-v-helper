@@ -92,21 +92,24 @@ app.whenReady().then(async () => {
   // Tasks: check two, add a custom one and a week-only suggestion.
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=todos]').click();`);
   await wait(400);
-  await win.webContents.executeJavaScript(`(async () => {
+  const hasBoost = await win.webContents.executeJavaScript(`(async () => {
     await window.gta.todo('toggle', 'supply-acid');
     await window.gta.todo('toggle', 'dre');
     const input = document.querySelector('.todo-card .todo-add input');
     input.value = 'Vender o estoque do bunker';
     input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
     await new Promise(r => setTimeout(r, 300));
-    document.querySelector('.todo-chip.boost').click();
+    // The week's bonus chip only exists while the bundled week is current.
+    const chip = document.querySelector('.todo-chip.boost');
+    if (chip) chip.click();
+    return !!chip;
   })()`);
   await wait(900);
   fs.writeFileSync(path.join(out, 'todos-marcadas.png'), (await win.webContents.capturePage()).toPNG());
   const todoCheck = await win.webContents.executeJavaScript(`({
     rows: document.querySelectorAll('.todo-row').length, done: document.querySelectorAll('.todo-row.done').length,
     badge: document.querySelector('[data-page=todos] .badge').textContent, boost: document.querySelectorAll('.todo-title .pill.ok').length })`);
-  if (todoCheck.rows !== 12 || todoCheck.done !== 2 || todoCheck.badge !== '10' || todoCheck.boost < 1) errors.push(`tarefas: ${JSON.stringify(todoCheck)}`);
+  if (todoCheck.rows !== (hasBoost ? 12 : 11) || todoCheck.done !== 2 || todoCheck.badge !== (hasBoost ? '10' : '9') || (hasBoost && todoCheck.boost < 1)) errors.push(`tarefas: ${JSON.stringify(todoCheck)}`);
   console.log('tarefas', JSON.stringify(todoCheck));
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=cayo]').click(); document.querySelector('.loot-rows').scrollIntoView({ block: 'center' });`);
   await wait(600);
@@ -348,12 +351,26 @@ app.whenReady().then(async () => {
   process.env.GTA_HELPER_FAKE_BIZ_SCREEN = path.join(__dirname, '../test/fixtures/biz/mct1.ppm.gz');
   await wait(5500);
   const afterMct = await win.webContents.executeJavaScript(`window.gta.state().then(s => ({ coke: s.businesses.cocaine.supplyPct, weed: s.businesses.weed.owned, notice: s.notices.items[0].title, scan: s.bizScanner }))`);
-  if (Math.abs(afterMct.coke - 12.3) > 1.5 || !afterMct.weed || afterMct.notice !== 'Negócios lidos do Terrorbyte') errors.push(`leitura MCT: ${JSON.stringify(afterMct)}`);
+  if (Math.abs(afterMct.coke - 12.3) > 1.5 || !afterMct.weed || afterMct.notice === 'Negócios lidos do Terrorbyte') errors.push(`leitura MCT: ${JSON.stringify(afterMct)}`);
   process.env.GTA_HELPER_FAKE_BIZ_SCREEN = path.join(__dirname, '../test/fixtures/biz/nightclub1.ppm.gz');
   await wait(5500);
   const afterNc = await win.webContents.executeJavaScript(`window.gta.state().then(s => ({ stock: s.nightclub.stock, floors: s.nightclub.floors, notice: s.notices.items[0].title }))`);
-  if (afterNc.stock.sporting !== 35 || afterNc.stock.cargo !== 8 || afterNc.floors !== 5 || afterNc.notice !== 'Estoque do Nightclub lido') errors.push(`leitura Nightclub: ${JSON.stringify(afterNc)}`);
+  if (afterNc.stock.sporting !== 35 || afterNc.stock.cargo !== 8 || afterNc.floors !== 5 || afterNc.notice === 'Estoque do Nightclub lido') errors.push(`leitura Nightclub: ${JSON.stringify(afterNc)}`);
   console.log('leitura', JSON.stringify(afterMct), JSON.stringify(afterNc));
+  // On-screen notices: two notices stack at the top right and leave after 10 s.
+  await win.webContents.executeJavaScript(`window.gta.notices('test')`);
+  await wait(300);
+  await win.webContents.executeJavaScript(`window.gta.notices('test')`);
+  await wait(1200);
+  const toastWin = BrowserWindow.getAllWindows().find(w => w.getTitle() === 'GTA Helper avisos na tela');
+  if (!toastWin || !toastWin.isVisible()) errors.push('aviso na tela não apareceu');
+  else {
+    const rows = await toastWin.webContents.executeJavaScript(`document.querySelectorAll('.toast').length`);
+    if (rows !== 2) errors.push(`aviso na tela com ${rows} linhas`);
+    fs.writeFileSync(path.join(out, 'aviso-na-tela.png'), (await toastWin.webContents.capturePage()).toPNG());
+    await wait(9500);
+    if (toastWin.isVisible()) errors.push('aviso na tela não sumiu em 10 s');
+  }
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=notices]').click()`);
   await wait(700);
   fs.writeFileSync(path.join(out, 'leitura-avisos.png'), (await win.webContents.capturePage()).toPNG());

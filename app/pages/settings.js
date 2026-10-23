@@ -35,7 +35,7 @@
         section('bell', 'Avisos',
           setting('Avisar quando faltar', 'Minutos de jogo antes de parar. 0 desliga o aviso antecipado.',
             numberInput(s.warnMinutes, { min: 0, max: 120, step: 1, class: 'small', onchange: e => set({ warnMinutes: Number(e.target.value) || 0 }) })),
-          checkbox('Notificações do Windows', s.notify, e => set({ notify: e.target.checked }), 'Os avisos sempre ficam no sino e no menu Avisos. Isto liga também o pop-up do Windows.'),
+          checkbox('Aviso na tela', s.notify, e => set({ notify: e.target.checked }), 'Mostra cada aviso no canto de cima da tela, por cima do jogo, por 10 segundos. Eles sempre ficam também no sino e no menu Avisos.'),
           setting('Testar', 'Manda um aviso de teste agora.',
             h('button', { class: 'btn sm', type: 'button', onclick: () => App.act(window.gta.notices('test')) }, icon('bell', 15), 'Enviar teste')),
           checkbox('Fechar mantém na bandeja', s.closeToTray, e => set({ closeToTray: e.target.checked }), 'Os timers continuam com a janela fechada.')),
@@ -93,7 +93,7 @@
     const chips = N.SUGGESTIONS.filter(x => !have.has(x.title.toLowerCase()));
     return h('div', { class: 'card pad settings-card reminders-card' },
       h('div', { class: 'card-head' }, h('h3', null, icon('clock', 18), 'Lembretes')),
-      h('p', { class: 'muted small' }, 'Avisos que se repetem de tempo em tempo. Aparecem no sino, no menu Avisos e no Windows.'),
+      h('p', { class: 'muted small' }, 'Avisos que se repetem de tempo em tempo. Aparecem no sino, no menu Avisos e na tela.'),
       rows.length ? h('div', { class: 'reminder-list' }, rows) : null,
       h('div', { class: 'reminder-add' }, title, every,
         h('button', { class: 'btn primary sm', type: 'button', onclick: add }, icon('plus', 15), 'Adicionar')),
