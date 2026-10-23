@@ -7,7 +7,8 @@ const DURATION = 10000;
 const MAX = 3;
 const WIDTH = 400, HEIGHT = 280;
 
-function createToasts() {
+// corner(): the area whose top right corner holds the notices (game window or screen), or null.
+function createToasts({ corner } = {}) {
   let win = null;
   let list = []; // { id, kind, title, body, until }
   let timer = null;
@@ -45,13 +46,20 @@ function createToasts() {
       return;
     }
     const w = ensure();
-    // Below the "Detecção de digitais" badge (top right, 40 px tall).
-    const area = screen.getPrimaryDisplay().workArea;
-    w.setBounds({ x: area.x + area.width - WIDTH - 16, y: area.y + 60, width: WIDTH, height: HEIGHT });
+    place(w);
     send();
     if (!w.isVisible()) w.showInactive();
     w.moveTop();
-    timer = setTimeout(update, Math.min(...list.map(t => t.until)) - now + 20);
+    // Follows the game window while the notices are on screen (windowed mode).
+    timer = setTimeout(update, Math.min(1000, Math.min(...list.map(t => t.until)) - now + 20));
+  }
+
+  function place(w) {
+    // Below the "Detecção de digitais" badge (top right, 40 px tall), in the game window when windowed.
+    const area = (corner && corner()) || screen.getPrimaryDisplay().workArea;
+    const next = { x: Math.round(area.x + area.width - WIDTH - 16), y: Math.round(area.y + 60), width: WIDTH, height: HEIGHT };
+    const cur = w.getBounds();
+    if (cur.x !== next.x || cur.y !== next.y) w.setBounds(next);
   }
 
   function show(item) {

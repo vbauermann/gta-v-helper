@@ -1,6 +1,14 @@
 {
   "versions": [
     {
+      "version": "1.13.6",
+      "date": "2026-10-23",
+      "title": "Avisos no modo janela",
+      "items": [
+        "Com o GTA em modo janela, os avisos na tela e a pílula da detecção de digitais ficam no canto de cima da janela do jogo e acompanham a janela quando ela muda de lugar, como as marcações das digitais."
+      ]
+    },
+    {
       "version": "1.13.5",
       "date": "2026-10-23",
       "title": "Avisos na tela",

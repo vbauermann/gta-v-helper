@@ -152,7 +152,7 @@ function notify(notice) {
   const item = notices.push(s.notices.items, notice, Date.now());
   dirty = true;
   if (s.settings.notify) {
-    if (!toasts) toasts = createToasts();
+    if (!toasts) toasts = createToasts({ corner: () => scanner && scanner.corner() });
     toasts.show(item);
   }
   return item;

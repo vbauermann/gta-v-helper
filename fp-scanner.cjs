@@ -75,6 +75,13 @@ function createScanner({ isAuto, isActive, onChange }) {
     return { display: d, area: { ...d.bounds } };
   }
 
+  // Where the badge and the on-screen notices go: the game window in windowed mode, otherwise the
+  // display without the taskbar.
+  function corner() {
+    const { display: d, area } = gameArea();
+    return JSON.stringify(area) === JSON.stringify(d.bounds) ? d.workArea : area;
+  }
+
   function ensureMarker() {
     if (marker && !marker.isDestroyed()) return marker;
     const { bounds } = display();
@@ -102,18 +109,26 @@ function createScanner({ isAuto, isActive, onChange }) {
   // Small "Detecção de digitais" pill (green dot) at the top right while it runs.
   function updateBadge() {
     const next = isEnabled() ? { on: true } : null;
-    if (JSON.stringify(next) === JSON.stringify(badgeState)) return;
+    if (JSON.stringify(next) === JSON.stringify(badgeState)) { placeBadge(); return; }
     badgeState = next;
     if (!next) { if (badge && !badge.isDestroyed()) badge.hide(); return; }
     if (!badge || badge.isDestroyed()) {
       badge = layerWindow({ width: 340, height: 40, title: 'GTA Helper detecção' }, 'badge.html');
       badge.on('closed', () => { badge = null; });
     }
-    const area = display().workArea;
-    badge.setBounds({ x: area.x + area.width - 340 - 16, y: area.y + 12, width: 340, height: 40 });
+    placeBadge();
     sendBadge();
     if (!badge.isVisible()) badge.showInactive();
     badge.moveTop();
+  }
+
+  // Follows the game window when it moves (windowed mode).
+  function placeBadge() {
+    if (!badge || badge.isDestroyed() || !badgeState) return;
+    const area = corner();
+    const next = { x: Math.round(area.x + area.width - 340 - 16), y: Math.round(area.y + 12), width: 340, height: 40 };
+    const cur = badge.getBounds();
+    if (cur.x !== next.x || cur.y !== next.y) badge.setBounds(next);
   }
 
   // Called when the setting changes (shortcut or switch in the app).
@@ -180,8 +195,9 @@ function createScanner({ isAuto, isActive, onChange }) {
 
   async function scan() {
     if (busy) return;
-    if (!isEnabled()) { gameWindow.stop(); misses = 0; setStatus({ state: 'off', picks: [], at: Date.now(), ms: 0 }); updateBadge(); return; }
-    gameWindow.start();
+    // The game window is followed while the game is open (on-screen notices use it too).
+    if (isActive()) gameWindow.start(); else gameWindow.stop();
+    if (!isEnabled()) { misses = 0; setStatus({ state: 'off', picks: [], at: Date.now(), ms: 0 }); updateBadge(); return; }
     busy = true;
     const t = Date.now();
     try {
@@ -215,7 +231,7 @@ function createScanner({ isAuto, isActive, onChange }) {
     if (badge && !badge.isDestroyed()) badge.destroy();
   }
 
-  return { start, destroy, toggled, refresh: scan, state: () => ({ state: status.state, picks: status.picks, ms: status.ms, error: status.error || null }) };
+  return { start, destroy, toggled, corner, refresh: scan, state: () => ({ state: status.state, picks: status.picks, ms: status.ms, error: status.error || null }) };
 }
 
 module.exports = { createScanner };
