@@ -36,6 +36,11 @@
           setting('Avisar quando faltar', 'Minutos de jogo antes de parar. 0 desliga o aviso antecipado.',
             numberInput(s.warnMinutes, { min: 0, max: 120, step: 1, class: 'small', onchange: e => set({ warnMinutes: Number(e.target.value) || 0 }) })),
           checkbox('Aviso na tela', s.notify, e => set({ notify: e.target.checked }), 'Mostra cada aviso no canto de cima da tela, por cima do jogo, por 10 segundos. Eles sempre ficam também no sino e no menu Avisos.'),
+          setting('Tamanho do aviso na tela', 'Grande é 50% maior, bom para tela cheia em monitor grande.',
+            select([
+              { value: 'normal', label: 'Normal' },
+              { value: 'large', label: 'Grande' }
+            ], s.toastSize || 'normal', { onchange: e => set({ toastSize: e.target.value }) })),
           setting('Testar', 'Manda um aviso de teste agora.',
             h('button', { class: 'btn sm', type: 'button', onclick: () => App.act(window.gta.notices('test')) }, icon('bell', 15), 'Enviar teste')),
           checkbox('Fechar mantém na bandeja', s.closeToTray, e => set({ closeToTray: e.target.checked }), 'Os timers continuam com a janela fechada.')),

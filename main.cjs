@@ -152,7 +152,7 @@ function notify(notice) {
   const item = notices.push(s.notices.items, notice, Date.now());
   dirty = true;
   if (s.settings.notify) {
-    if (!toasts) toasts = createToasts({ corner: () => scanner && scanner.corner() });
+    if (!toasts) toasts = createToasts({ corner: () => scanner && scanner.corner(), scale: () => (store.get().settings.toastSize === 'large' ? 1.5 : 1) });
     toasts.show(item);
   }
   return item;
@@ -342,6 +342,7 @@ function registerIpc() {
 
   ipcMain.handle('gta:set-settings', (_e, patch) => mutate(s => {
     if (!patch || typeof patch !== 'object') return;
+    if ('toastSize' in patch && ['normal', 'large'].includes(patch.toastSize)) s.settings.toastSize = patch.toastSize;
     if ('detection' in patch && ['auto', 'always'].includes(patch.detection)) s.settings.detection = patch.detection;
     if ('paused' in patch) s.settings.paused = !!patch.paused;
     if ('warnMinutes' in patch) s.settings.warnMinutes = num(patch.warnMinutes, 0, 120);

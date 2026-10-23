@@ -10,6 +10,7 @@ const DEFAULT_SETTINGS = Object.freeze({
   paused: false,
   warnMinutes: 10,
   notify: true,
+  toastSize: 'normal', // on-screen notices: 'normal' or 'large' (50% bigger)
   closeToTray: true,
   screenRead: true, // read the Terrorbyte / Nightclub screens (biz-scanner.cjs)
   theme: 'dark',

@@ -1,6 +1,14 @@
 {
   "versions": [
     {
+      "version": "1.13.7",
+      "date": "2026-10-23",
+      "title": "Tamanho do aviso na tela",
+      "items": [
+        "Ajustes > Avisos: novo \"Tamanho do aviso na tela\", Normal (o de antes) ou Grande (50% maior, bom para tela cheia)."
+      ]
+    },
+    {
       "version": "1.13.6",
       "date": "2026-10-23",
       "title": "Avisos no modo janela",

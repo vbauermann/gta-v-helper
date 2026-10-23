@@ -8,7 +8,8 @@ const MAX = 3;
 const WIDTH = 400, HEIGHT = 280;
 
 // corner(): the area whose top right corner holds the notices (game window or screen), or null.
-function createToasts({ corner } = {}) {
+// scale(): 1 for the normal size, 1.5 for the large one.
+function createToasts({ corner, scale = () => 1 } = {}) {
   let win = null;
   let list = []; // { id, kind, title, body, until }
   let timer = null;
@@ -31,6 +32,7 @@ function createToasts({ corner } = {}) {
     win.setContentProtection(true); // stays out of the screen reader's captures
     win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
     win.webContents.on('will-navigate', e => e.preventDefault());
+    win.webContents.on('did-finish-load', () => { if (win && !win.isDestroyed()) win.webContents.setZoomFactor(scale()); });
     win.on('closed', () => { win = null; });
     win.loadFile(path.join(__dirname, 'app', 'toast.html'));
     return win;
@@ -57,9 +59,12 @@ function createToasts({ corner } = {}) {
   function place(w) {
     // Below the "Detecção de digitais" badge (top right, 40 px tall), in the game window when windowed.
     const area = (corner && corner()) || screen.getPrimaryDisplay().workArea;
-    const next = { x: Math.round(area.x + area.width - WIDTH - 16), y: Math.round(area.y + 60), width: WIDTH, height: HEIGHT };
+    const k = scale();
+    const width = Math.round(WIDTH * k), height = Math.round(HEIGHT * k);
+    const next = { x: Math.round(area.x + area.width - width - 16), y: Math.round(area.y + 60), width, height };
     const cur = w.getBounds();
-    if (cur.x !== next.x || cur.y !== next.y) w.setBounds(next);
+    if (cur.x !== next.x || cur.y !== next.y || cur.width !== width || cur.height !== height) w.setBounds(next);
+    if (!w.webContents.isLoading() && w.webContents.getZoomFactor() !== k) w.webContents.setZoomFactor(k);
   }
 
   function show(item) {

@@ -371,6 +371,17 @@ app.whenReady().then(async () => {
     await wait(9500);
     if (toastWin.isVisible()) errors.push('aviso na tela não sumiu em 10 s');
   }
+  // Large size: 50% bigger window and content.
+  await win.webContents.executeJavaScript(`window.gta.setSettings({ toastSize: 'large' }).then(() => window.gta.notices('test'))`);
+  await wait(1200);
+  const bigWin = BrowserWindow.getAllWindows().find(w => w.getTitle() === 'GTA Helper avisos na tela');
+  if (!bigWin || !bigWin.isVisible()) errors.push('aviso grande não apareceu');
+  else {
+    const big = { w: bigWin.getBounds().width, zoom: bigWin.webContents.getZoomFactor() };
+    if (big.w !== 600 || big.zoom !== 1.5) errors.push(`aviso grande: ${JSON.stringify(big)}`);
+    fs.writeFileSync(path.join(out, 'aviso-na-tela-grande.png'), (await bigWin.webContents.capturePage()).toPNG());
+  }
+  await win.webContents.executeJavaScript(`window.gta.setSettings({ toastSize: 'normal' })`);
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=notices]').click()`);
   await wait(700);
   fs.writeFileSync(path.join(out, 'leitura-avisos.png'), (await win.webContents.capturePage()).toPNG());
