@@ -262,6 +262,13 @@ app.whenReady().then(async () => {
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=kortz]').click(); ${tabOf('Setups')}`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'wiki-kortz-setups.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`document.querySelector('[data-page=kortz]').click(); ${tabOf('Calculadora')}
+    [...document.querySelectorAll('.segmented button')].find(b => b.textContent === '2').click();`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'kortz-calculadora.png'), (await win.webContents.capturePage()).toPNG());
+  const kortzBags = await win.webContents.executeJavaScript(`document.querySelectorAll('.bag-plan h4').length`);
+  if (kortzBags !== 2) errors.push(`kortz: ${kortzBags} bolsas no plano`);
+  await win.webContents.executeJavaScript(`[...document.querySelectorAll('.segmented button')].find(b => b.textContent === 'Solo').click()`);
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=drdre]').click(); ${tabOf('Setups')}`);
   await wait(500);
   fs.writeFileSync(path.join(out, 'wiki-drdre-setups.png'), (await win.webContents.capturePage()).toPNG());

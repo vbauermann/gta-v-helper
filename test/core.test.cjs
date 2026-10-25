@@ -196,3 +196,22 @@ test('store rebase keeps the boost units that were not used yet', () => {
   close(b.stock, 20);
   close(b.boost.units, 60);
 });
+
+test('Kortz: each item goes whole into one bag and the plan beats ratio-only greed', () => {
+  const K = require('../data/heists.json').kortz;
+  const found = Object.fromEntries(K.loot.map(l => [l.id, l.typical || 0]));
+  const solo = H.kortz(K, { crewSize: 1, found });
+  assert.strictEqual(solo.bags.length, 1);
+  assert.ok(solo.bags[0].usedPct <= 100);
+  assert.deepStrictEqual(solo.skipped.sort(), ['circlets', 'crisp-painting', 'fertility', 'gem']);
+  const duo = H.kortz(K, { crewSize: 2, found });
+  for (const b of duo.bags) assert.ok(b.usedPct <= 100, JSON.stringify(b));
+  assert.ok(duo.value > solo.value);
+  // Two 50% paintings and three 30% cases in two bags: both paintings in one bag, the cases in the other.
+  const tight = H.kortz({ hardBonusPct: 10, loot: [
+    { id: 'p', name: 'P', bagPct: 50, min: 100, max: 100 }, { id: 'c', name: 'C', bagPct: 30, min: 90, max: 90 }] }, { crewSize: 2, found: { p: 2, c: 3 } });
+  assert.strictEqual(tight.value, 2 * 100 + 3 * 90);
+  assert.deepStrictEqual(tight.bags.map(b => b.usedPct).sort(), [100, 90]);
+  const hard = H.kortz(K, { crewSize: 1, found, hard: true });
+  assert.ok(Math.abs(hard.value - solo.value * 1.1) < 1);
+});

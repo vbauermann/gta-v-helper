@@ -566,3 +566,15 @@ td:last-child, th:last-child { text-align: right; }
 .wh-add .input.wh-pick { width: 340px; max-width: 100%; }
 .wh-note { margin: 10px 0 0; }
 .wh-row.full .nc-value { color: var(--ok); }
+/* Kortz Center secondary loot (calculator) */
+.kl-paintings { --loot: #c77dff; }
+.kl-gem { --loot: #5cc8ff; }
+.kl-statue { --loot: #e0b26b; }
+.kl-crate { --loot: #b98d5c; }
+.kl-ring { --loot: #f4c542; }
+.kl-egg { --loot: #ff9ec4; }
+.kl-box { --loot: #8d92a6; }
+.loot-tag { font-size: 11px; padding: 1px 6px; border-radius: 6px; margin-left: 6px; background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--text); white-space: nowrap; }
+.loot-name { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.bag-plan { display: flex; flex-direction: column; gap: 12px; }
+.bag-plan h4 { margin: 0 0 4px; font-size: 13px; display: flex; justify-content: space-between; }

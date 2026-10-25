@@ -358,5 +358,115 @@
       "weeklyMultiplier": "—",
       "firstWeekly": "—"
     }
-  ]
+  ],
+  "kortz": {
+    "source": "Tabela da GTAWeb.eu enviada pelo Vitor (2026-10-25), conferida com GTABoom e GTABoss. Valores do Normal; Hard +10%.",
+    "hardBonusPct": 10,
+    "loot": [
+      {
+        "id": "crisp-painting",
+        "name": "Pintura da Crisp Gallery",
+        "bagPct": 50,
+        "min": 140000,
+        "max": 162500,
+        "typical": 2,
+        "needsTwo": true,
+        "hint": "The Great Circle Back, Don't Forgo These Blueprints"
+      },
+      {
+        "id": "crate",
+        "name": "Caixa do caminhão (Loading Bay)",
+        "bagPct": 30,
+        "min": 105000,
+        "max": 140000,
+        "typical": 1,
+        "hint": "Crate in the truck"
+      },
+      {
+        "id": "gem",
+        "name": "Gema ou Venus d'Algernon",
+        "bagPct": 30,
+        "min": 100000,
+        "max": 127500,
+        "typical": 2,
+        "needsTwo": true,
+        "hint": "Gemstones e estátuas Venus da Crisp Gallery"
+      },
+      {
+        "id": "painting",
+        "name": "Pintura do térreo",
+        "bagPct": 50,
+        "min": 102500,
+        "max": 122500,
+        "typical": 6,
+        "hint": "Sod Off, Cooked, La Duchesse, The Chief, Orange Crush..."
+      },
+      {
+        "id": "case",
+        "name": "Cavalo, colar ou caveira (vitrine)",
+        "bagPct": 30,
+        "min": 77500,
+        "max": 100000,
+        "typical": 3,
+        "hint": "Horse Statue, Coquard Carcanet, Memento Non Mori"
+      },
+      {
+        "id": "fertility",
+        "name": "Fertility Statue ou meteorito",
+        "bagPct": 20,
+        "min": 70000,
+        "max": 96000,
+        "typical": 2,
+        "needsTwo": true,
+        "hint": "Mahogany, Gold, Silver, Bronze e Meteorite Fragment"
+      },
+      {
+        "id": "vault-painting",
+        "name": "Pintura pequena do cofre",
+        "bagPct": 50,
+        "min": 70000,
+        "max": 92500,
+        "typical": 0,
+        "hint": "With Friends Like These, Het Gouden Hondje... (0 a 4 no cofre)"
+      },
+      {
+        "id": "egg",
+        "name": "Œuf de Coquard ou Fertility (Ivory)",
+        "bagPct": 20,
+        "min": 50000,
+        "max": 64000,
+        "typical": 3,
+        "hint": "Ovos ornamentais e a Fertility Statue de marfim"
+      },
+      {
+        "id": "circlets",
+        "name": "Art Deco Circlets",
+        "bagPct": 10,
+        "min": 42000,
+        "max": 53000,
+        "typical": 1,
+        "needsTwo": true,
+        "hint": "Pulseira da Crisp Gallery"
+      },
+      {
+        "id": "rings",
+        "name": "Anéis e pulseiras",
+        "bagPct": 10,
+        "min": 28000,
+        "max": 35000,
+        "typical": 7,
+        "hint": "Coquard Rings, Pharaonic Bangles, Byzantine Hoops..."
+      },
+      {
+        "id": "deposit",
+        "name": "Cofres de depósito",
+        "bagPct": 30,
+        "min": 5000,
+        "max": 12500,
+        "avg": 7650,
+        "typical": 0,
+        "hint": "Precisam do prep Power Drills; quase nunca vale"
+      }
+    ]
+  }
 }

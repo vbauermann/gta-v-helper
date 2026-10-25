@@ -4,7 +4,6 @@
   'use strict';
   const { h, segmented } = UI;
   const HEISTS = {
-    kortz: 'The Kortz Center Heist',
     cluckin: "The Cluckin' Bell Farm Raid",
     drdre: 'The Contract: Dr. Dre',
     oscar: 'Oscar Guzman Flies Again',

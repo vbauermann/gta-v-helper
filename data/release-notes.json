@@ -1,6 +1,15 @@
 {
   "versions": [
     {
+      "version": "1.13.9",
+      "date": "2026-10-25",
+      "title": "Calculadora do Kortz Center",
+      "items": [
+        "Kortz Center ganhou a aba Calculadora: marque quantos de cada alvo secundário achou no scout e o app monta o melhor plano para cada bolsa (Solo a 4 jogadores, Normal ou Hard), sabendo que cada item vai inteiro numa bolsa e que a Crisp Gallery só abre com 2 ou mais.",
+        "Valores da tabela da GTAWeb, conferidos com GTABoom, GTABoss e Beebom."
+      ]
+    },
+    {
       "version": "1.13.8",
       "date": "2026-10-25",
       "title": "Oscar Guzman Flies Again",
