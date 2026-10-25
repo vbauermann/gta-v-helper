@@ -1,7 +1,7 @@
 {
   "name": "gta-helper",
   "productName": "GTA Helper",
-  "version": "1.13.7",
+  "version": "1.13.8",
   "private": true,
   "description": "Auxiliar de GTA Online: timers de negócios e calculadoras de golpes",
   "main": "main.cjs",

@@ -60,7 +60,7 @@ app.whenReady().then(async () => {
   fs.writeFileSync(path.join(out, 'bell.png'), (await win.webContents.capturePage()).toPNG());
   const bellAfter = await win.webContents.executeJavaScript(`(async () => { document.body.click(); await window.gta.notices('reminder-add', { title: 'Teste', every: 30 }); const s = await window.gta.state(); return { unread: GtaNotices.unread(s.notices.items), pop: document.getElementById('bell-pop').hidden, reminders: s.notices.reminders.length, nav: document.querySelector('[data-page=notices] .badge').textContent }; })()`);
   if (bellBefore !== String(bellUnread) || bellAfter.unread !== 0 || !bellAfter.pop || bellAfter.reminders !== 3 || bellAfter.nav !== '') errors.push(`avisos falharam: ${bellBefore} ${JSON.stringify(bellAfter)}`);
-  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'kortz', 'cluckin', 'drdre', 'doomsday', 'pacific', 'seriesa', 'humane', 'prison', 'fleeca', 'payouts', 'weekly', 'todos', 'map', 'settings', 'releases', 'notices']) {
+  for (const page of ['overview', 'businesses', 'cayo', 'casino', 'kortz', 'cluckin', 'drdre', 'oscar', 'doomsday', 'pacific', 'seriesa', 'humane', 'prison', 'fleeca', 'payouts', 'weekly', 'todos', 'map', 'settings', 'releases', 'notices']) {
     await win.webContents.executeJavaScript(`document.querySelector('[data-page=${page}]').click();
       ${page === 'cayo' ? "const rows = document.querySelectorAll('.loot-row'); for (const [r, n] of [[0, 2], [1, 3], [2, 1], [3, 1]]) { const b = rows[r].querySelectorAll('.qty button')[n - 1]; if (!b.classList.contains('active')) b.click(); }" : ''}`);
     await wait(700);

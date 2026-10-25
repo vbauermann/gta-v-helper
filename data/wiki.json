@@ -1,5 +1,5 @@
 {
- "version": "2026-10-18.3",
+ "version": "2026-10-25",
  "note": "Resumos próprios em português com base no GTA Wiki (gta.fandom.com, CC BY-SA). Cada golpe e setup tem o link do artigo original.",
  "heists": {
   "fleeca": {
@@ -3919,6 +3919,182 @@
      "O líder ganha também o Media Stick de Dr. Dre e o Marathon Hoodie; concluir libera Short Trips."
     ],
     "source": "https://gta.fandom.com/wiki/Don't_Fuck_With_Dre"
+   }
+  },
+  "oscar": {
+   "id": "oscar",
+   "name": "Oscar Guzman Flies Again",
+   "source": "https://gta.fandom.com/wiki/Oscar_Guzman_Flies_Again",
+   "facts": [
+    {
+     "label": "Jogadores",
+     "value": "1 a 4 (tudo dá para fazer solo)"
+    },
+    {
+     "label": "Quem inicia",
+     "value": "Oscar Guzman (laptop do escritório do hangar)"
+    },
+    {
+     "label": "Requisito",
+     "value": "McKenzie Field Hangar em Grapeseed ($1.475.000)"
+    },
+    {
+     "label": "Pagamento (líder)",
+     "value": "Normal $500.000, Hard $750.000 (1,5x na 1a vez da semana: $750.000 / $1.125.000)"
+    },
+    {
+     "label": "Bônus 1a conclusão",
+     "value": "$250.000 (award The Titan Job, como líder)"
+    },
+    {
+     "label": "Cooldown",
+     "value": "Cerca de 1 hora real depois do final"
+    }
+   ],
+   "overview": [
+    "Série de missões do update Agents of Sabotage (março de 2025) com o Oscar Guzman, rodada a partir do McKenzie Field Hangar em Grapeseed. São uma missão de abertura, quatro setups e o final, The Titan Job, em que você rouba o avião Titan 250 D da Eberhard Munitions.",
+    "A dificuldade escolhida no Up and Running vale para a série inteira. Para trocar, ligue para o Oscar e cancele. O Hard libera depois de completar tudo uma vez no Normal e fica liberado para sempre.",
+    "Os extras opcionais (segundo Mogul, Iron Mules a mais, Insurgent, armadura pesada e upgrades do Mogul) dão pouco dinheiro e ajudam no final, mas solo dá para pular quase todos.",
+    "Além do golpe, o hangar dá o avião Duster, quatro missões de Arms Trafficking e preço de troca do Titan 250 D e do Iron Mule."
+   ],
+   "start": [
+    "Compre o McKenzie Field Hangar (Grapeseed) no site Maze Bank Foreclosures ou na placa de venda.",
+    "Vá até o hangar e assista à apresentação do Oscar.",
+    "Use o laptop do escritório do hangar e escolha Oscar Guzman Flies Again.",
+    "Escolha Normal ou Hard no Up and Running: vale para toda a série."
+   ],
+   "approaches": [],
+   "sections": [
+    {
+     "id": "setups",
+     "title": "Missões",
+     "note": "Em ordem. Up and Running abre a série; Mogul, Intel e Iron Mule liberam o Ammunition, que libera o final."
+    }
+   ],
+   "setups": [
+    {
+     "id": "up-and-running",
+     "name": "Up and Running",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "goal": "Derrubar a torre de transmissão do Mount Gordo e pegar a carga que cai do avião dos Aztecas.",
+     "steps": [
+      "Pegue a SMG Mk II, o sniper e a Manchez que o Oscar entrega.",
+      "Atire nos suportes da torre de transmissão do Mount Gordo até ela cair.",
+      "Danifique o Streamer216 dos Aztecas até ele soltar a carga.",
+      "Recolha os quatro pacotes que caem.",
+      "Leve a carga ao comprador em Cape Catfish. A venda é destruída numa cutscene: faz parte da missão."
+     ],
+     "tips": [
+      "Com munição explosiva no sniper dá para derrubar a torre da estrada, sem subir o morro.",
+      "Um veículo pessoal rápido (HSW, se tiver) ajuda a seguir o avião e pegar os pacotes."
+     ],
+     "source": "https://gta.fandom.com/wiki/Oscar_Guzman_Flies_Again"
+    },
+    {
+     "id": "mogul",
+     "name": "Setup: Mogul",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "goal": "Roubar um Mammoth Mogul da pista da Eberhard e usar ele para bombardear cinco bases.",
+     "steps": [
+      "Voe no Velum até a pista da Eberhard perto de Banham Canyon.",
+      "Elimine o guarda perto do Mogul e entre nele.",
+      "Fuja voando baixo dos jatos Pyro até chegar perto do McKenzie Field, onde o Oscar derruba eles.",
+      "Abra o compartimento de bombas e bombardeie as cinco bases da Eberhard.",
+      "Entregue o Mogul no McKenzie Field e confirme por SMS."
+     ],
+     "tips": [
+      "Voe baixo e fique na área branca do minimapa perto do McKenzie Field para o Oscar cuidar dos jatos.",
+      "Solte as bombas um pouco antes do alvo: elas demoram a cair.",
+      "Há um segundo Mogul opcional (o Oscar usa ele no final); solo, pegue só um."
+     ],
+     "source": "https://gta.fandom.com/wiki/Oscar_Guzman_Flies_Again"
+    },
+    {
+     "id": "intel",
+     "name": "Setup: Intel",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "goal": "Hackear quatro servidores da Eberhard com um drone e recuperar os bloqueadores de sinal de um naufrágio.",
+     "steps": [
+      "Pilote o drone até os galpões da Eberhard no Port of Los Santos.",
+      "Hackeie os quatro servidores sem entrar no campo de visão de guardas e drones.",
+      "Use o choque do drone em guardas que estiverem no caminho.",
+      "Elimine os inimigos do farol e pegue o equipamento de mergulho na mesa.",
+      "Vá de barco até o círculo amarelo, mergulhe e recolha os quatro pacotes (ícones verdes).",
+      "Leve a carga até o hangar."
+     ],
+     "tips": [
+      "Bater em obstáculos destrói o drone; use o boost só em espaço aberto.",
+      "Os tubarões atrapalham mas tiram pouca vida; leve snacks e armadura."
+     ],
+     "source": "https://gta.fandom.com/wiki/Oscar_Guzman_Flies_Again"
+    },
+    {
+     "id": "iron-mule",
+     "name": "Setup: Iron Mule",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "goal": "Roubar um helicóptero DH-7 Iron Mule no campo de testes da Eberhard usando bloqueadores.",
+     "steps": [
+      "Vá ao campo de testes da Eberhard (Redwood Lights Track).",
+      "Plante os quatro bloqueadores nos marcadores verdes.",
+      "Destrua helicópteros e veículos da Eberhard até encher a barra que chama os Iron Mules.",
+      "Quando os Iron Mules pairarem sobre os bloqueadores, ative os bloqueadores para eles pousarem.",
+      "Roube um, desative os bloqueadores e leve ao McKenzie Field. Confirme por SMS."
+     ],
+     "tips": [
+      "Um Kuruma blindado protege bem enquanto planta os bloqueadores; cuidado com o atirador do Insurgent.",
+      "Se o Iron Mule roubado não decolar (bug conhecido), pegue outro que pousou.",
+      "Dá para levar até três Iron Mules a mais e um Insurgent Pick-Up Custom por um pouco de dinheiro extra."
+     ],
+     "source": "https://gta.fandom.com/wiki/Oscar_Guzman_Flies_Again"
+    },
+    {
+     "id": "ammunition",
+     "name": "Setup: Ammunition",
+     "kind": "setup",
+     "players": "1 a 4 jogadores",
+     "section": "setups",
+     "goal": "Tirar a munição do Titan de um navio da Eberhard com o gancho do Iron Mule.",
+     "steps": [
+      "Libera depois de Mogul, Intel e Iron Mule.",
+      "Salte do avião do Oscar sobre o porto e pegue o Iron Mule estacionado.",
+      "Voe até o navio de carga, cuidando das defesas antiaéreas.",
+      "Engate o contêiner de munição (marcador verde) com o gancho e entregue no local marcado.",
+      "Confirme a entrega por SMS."
+     ],
+     "tips": [
+      "Engatar é mais fácil na câmera em terceira pessoa.",
+      "Os contêineres opcionais (marcador branco) dão armadura pesada (vida dobrada), caixa de armas e upgrades do Mogul para o final.",
+      "Deixar os contêineres em linha no reboque dá bônus; empilhados não contam."
+     ],
+     "source": "https://gta.fandom.com/wiki/Oscar_Guzman_Flies_Again"
+    }
+   ],
+   "finale": {
+    "name": "The Titan Job",
+    "summary": "Derrube o Titan 250 D da Eberhard, conserte e carregue o avião, destrua os alvos da Eberhard com o canhão dele e pouse no McKenzie Field.",
+    "steps": [
+     "Atire do Mogul pilotado pelo Oscar até a vida do Titan chegar à marca preta. Ignore os outros inimigos e mísseis.",
+     "O Titan faz pouso de emergência no Grand Senora Desert: salte de paraquedas perto dele.",
+     "Elimine os guardas e conserte o motor apertando os botões indicados até a barra encher.",
+     "O Oscar traz a munição com o Iron Mule: carregue tudo no Titan.",
+     "Decole e destrua os Operation Centers (caminhões em movimento), o submarino Kosatka e o trem de carga com o canhão de 40 mm.",
+     "Pouse no McKenzie Field para terminar."
+    ],
+    "tips": [
+     "Todas as armas do Titan ficam do lado esquerdo: deixe o alvo à sua esquerda antes de mudar para a câmera do canhão.",
+     "O submarino precisa de seis tiros e o canhão tem cinco: recarregue no caminho entre os alvos.",
+     "No trem, destrua a locomotiva primeiro para ele parar.",
+     "Mate os pilotos dos helicópteros para derrubar eles rápido; pegue o Homing Launcher do começo."
+    ],
+    "source": "https://gta.fandom.com/wiki/Oscar_Guzman_Flies_Again"
    }
   }
  }

@@ -7,6 +7,7 @@
     kortz: 'The Kortz Center Heist',
     cluckin: "The Cluckin' Bell Farm Raid",
     drdre: 'The Contract: Dr. Dre',
+    oscar: 'Oscar Guzman Flies Again',
     doomsday: 'The Doomsday Heist',
     pacific: 'The Pacific Standard Job',
     seriesa: 'Series A Funding',
