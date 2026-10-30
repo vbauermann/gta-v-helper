@@ -22,7 +22,8 @@ test('rejects broken or incomplete weeks', () => {
 });
 
 test('only a later week replaces the current one', () => {
-  const next = { ...bundled, start: '2026-10-22', end: '2026-10-28', resetUtc: '2026-10-29T10:00:00Z' };
+  const day = (d, n) => new Date(Date.parse(`${d}T00:00:00Z`) + n * 86400000).toISOString().slice(0, 10);
+  const next = { ...bundled, start: day(bundled.start, 7), end: day(bundled.end, 7), resetUtc: `${day(bundled.end, 8)}T10:00:00Z` };
   assert.strictEqual(newer(bundled, next), next);
   assert.strictEqual(newer(next, bundled), next);
   assert.strictEqual(newer(bundled, { ...next, bonuses: 'x' }), bundled);

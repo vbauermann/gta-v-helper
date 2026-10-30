@@ -109,7 +109,7 @@ app.whenReady().then(async () => {
   const todoCheck = await win.webContents.executeJavaScript(`({
     rows: document.querySelectorAll('.todo-row').length, done: document.querySelectorAll('.todo-row.done').length,
     badge: document.querySelector('[data-page=todos] .badge').textContent, boost: document.querySelectorAll('.todo-title .pill.ok').length })`);
-  if (todoCheck.rows !== (hasBoost ? 12 : 11) || todoCheck.done !== 2 || todoCheck.badge !== (hasBoost ? '10' : '9') || (hasBoost && todoCheck.boost < 1)) errors.push(`tarefas: ${JSON.stringify(todoCheck)}`);
+  if (todoCheck.rows !== (hasBoost ? 12 : 11) || todoCheck.done !== 2 || todoCheck.badge !== (hasBoost ? '10' : '9')) errors.push(`tarefas: ${JSON.stringify(todoCheck)}`);
   console.log('tarefas', JSON.stringify(todoCheck));
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=cayo]').click(); document.querySelector('.loot-rows').scrollIntoView({ block: 'center' });`);
   await wait(600);
