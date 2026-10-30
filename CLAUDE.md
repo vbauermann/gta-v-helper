@@ -31,6 +31,7 @@ App desktop Windows (Electron, JS puro, sem bundler) de apoio ao GTA Online. Don
 | `lib/nightclub.js`, `app/pages/biz-extra.js` | Nightclub (produção dos técnicos), warehouses de cargo (CEO) e Vehicle Warehouse nos Negócios. Ver [ADR 0017](docs/adr/0017-nightclub-e-warehouses.md) |
 | `lib/todos.js`, `app/pages/todos.js` | Tarefas diárias e semanais |
 | `lib/notices.js`, `app/pages/notices.js` | Avisos: sino no título, menu Avisos, lembretes periódicos (configurados nos Ajustes); todo aviso passa por `notify()` no `main.cjs`. Ver [ADR 0016](docs/adr/0016-avisos.md) |
+| `lib/features.js` | Recursos opcionais de colaboradores (desligados por padrão, chave em Ajustes) |
 | `data/weekly.json`, `weekly-feed.cjs`, `app/pages/weekly.js` | Bônus da semana (baixados do repositório) |
 | `updater.cjs` | Atualização automática pelos releases do GitHub |
 | `data/release-notes.json`, `app/pages/releases.js` | Release notes e aba Novidades |
@@ -63,3 +64,11 @@ node package.cjs                # pasta portátil em dist/ (funciona no Linux, s
 - Commits pequenos, mensagem em português no imperativo/descritiva, como no histórico.
 - Antes de entregar mudança visual: rodar `tools/capture.cjs` e olhar o print. Teste passando não prova que a tela ficou certa.
 - Mudou uma decisão? Atualize ou crie a ADR correspondente em `docs/adr/`.
+
+## Colaboração
+
+O Vinícius também contribui com o app ([ADR 0019](docs/adr/0019-recursos-opcionais.md)).
+
+- Só o Vitor mexe direto na `main` e sobe `version`: publicar é decisão dele.
+- Colaboradores trabalham em branch e abrem PR. Não mexa na branch de outra pessoa nem dê push forçado nela.
+- Recurso novo de colaborador vem desligado, com chave em Ajustes > Recursos extras (`lib/features.js`).

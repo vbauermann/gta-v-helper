@@ -13,6 +13,7 @@ const todos = require('./lib/todos.js');
 const notices = require('./lib/notices.js');
 const nightclub = require('./lib/nightclub.js');
 const lsMapRules = require('./lib/ls-map.js');
+const features = require('./lib/features.js');
 const { createUpdater } = require('./updater.cjs');
 const { createWeeklyFeed } = require('./weekly-feed.cjs');
 const { createWikiFeed } = require('./wiki-feed.cjs');
@@ -349,6 +350,7 @@ function registerIpc() {
     if ('notify' in patch) s.settings.notify = !!patch.notify;
     if ('closeToTray' in patch) s.settings.closeToTray = !!patch.closeToTray;
     if ('screenRead' in patch) s.settings.screenRead = !!patch.screenRead;
+    if ('features' in patch) Object.assign(s.settings.features, features.sanitizePatch(patch.features));
     if ('theme' in patch && OVERLAY[patch.theme]) {
       s.settings.theme = patch.theme;
       if (mainWindow && !mainWindow.isDestroyed()) {

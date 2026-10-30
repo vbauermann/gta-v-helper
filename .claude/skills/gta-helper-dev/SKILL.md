@@ -19,7 +19,7 @@ Leia antes o [CLAUDE.md](../../../CLAUDE.md) e as ADRs em `docs/adr/`. Regra nú
 | Cayo Perico (`cayo`) | `app/pages/cayo.js`, `cayo-map.js` | Calculadora (alvo primário, secundários com slider, bolsas, cortes, modo difícil, Elite), cooldown, aba Mapa |
 | Diamond Casino (`casino`) | `app/pages/casino.js`, `fingerprint.js` | Abas Calculadora (abordagem, alvo, equipe, cortes) e Digitais (overlay de referência, detecção automática) |
 | Tabela de payouts (`payouts`) | `app/pages/payouts.js` | Payouts da atualização de economia |
-| Ajustes (`settings`) | `app/pages/settings.js` | Contagem de tempo, avisos, atualizações, tema |
+| Ajustes (`settings`) | `app/pages/settings.js` | Contagem de tempo, avisos, atualizações, tema, recursos extras (só aparece com algum recurso opcional) |
 | Novidades (`releases`) | `app/pages/releases.js` | Release notes de `data/release-notes.json`; marca "novo" após atualizar |
 
 Fora da janela principal: bandeja (fechar mantém rodando), notificações do Windows, overlay das digitais com atalhos globais (`Ctrl+Shift+F`, `0`–`4`, `M`), marcador automático das peças e aviso "Detecção de digitais" (`Ctrl+Shift+D`).
@@ -39,6 +39,15 @@ Fora da janela principal: bandeja (fechar mantém rodando), notificações do Wi
 - Toda escrita passa por um `ipcMain.handle('gta:...')` em `main.cjs` dentro de `mutate(s => ...)`, que valida, grava e envia o estado novo. Exponha a chamada em `preload.cjs` (lista fechada, nada genérico).
 - Valide tudo que vem da tela no processo principal (`num()`, listas de valores permitidos, `todos.sanitize`).
 - Lógica pura que as telas e os testes também usam vai em `lib/*.js` no formato UMD.
+
+## Recurso de colaborador (opcional)
+
+Ver [ADR 0019](../../../docs/adr/0019-recursos-opcionais.md). Recurso que não é do Vitor vem desligado:
+
+1. Adicione `{ id, title, description }` em `FEATURES` de `lib/features.js`. A chave aparece sozinha em Ajustes > Recursos extras.
+2. Antes de mostrar algo (menu, card, janela) ou rodar algo no processo principal, confira `GtaFeatures.isOn(App.state.settings, id)` na tela ou `features.isOn(store.get().settings, id)` no `main.cjs`.
+3. Ponha o código em arquivos próprios e deixe só o gancho mínimo em `main.cjs`, `preload.cjs`, `store.cjs` e `app/index.html`.
+4. Não suba `version` no PR: publicar é com o Vitor.
 
 ## Dados do jogo
 
