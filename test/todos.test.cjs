@@ -52,3 +52,18 @@ test('first run has the starter tasks, all from the catalog', () => {
 test('default daily hour is the game reset, 06:00 UTC, in local time', () => {
   assert.strictEqual(new Date(Date.UTC(2026, 9, 16, 6)).getHours(), T.defaultDailyHour());
 });
+
+test('Lucky Wheel: done for 24 real hours after the spin, not until the daily reset', () => {
+  const spin = Date.UTC(2026, 10, 2, 22, 0);
+  const wheel = { key: 'lucky-wheel', title: 'Roleta do Casino', period: 'daily', doneAt: spin, lastDoneAt: spin };
+  const typed = { key: null, title: 'Roleta do casino', period: 'daily', doneAt: spin };
+  for (const item of [wheel, typed]) {
+    assert.strictEqual(T.cooldownHours(item), 24);
+    assert.ok(T.isDone(item, spin + 23 * 3600000)); // the daily reset (06:00 UTC) already passed
+    assert.ok(!T.isDone(item, spin + 24 * 3600000));
+    assert.strictEqual(T.readyAt(item), spin + 24 * 3600000);
+  }
+  // After the check clears, the last spin is still known.
+  assert.strictEqual(T.lastDone({ ...wheel, doneAt: null }), spin);
+  assert.strictEqual(T.cooldownHours({ key: null, title: 'Stash house', period: 'daily' }), 0);
+});

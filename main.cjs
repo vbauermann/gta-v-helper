@@ -394,7 +394,14 @@ function registerIpc() {
       if (!list.some(i => i.id === item.id)) list.push(item);
     } else if (action === 'toggle') {
       const item = find();
-      item.doneAt = typeof item.doneAt === 'number' && todos.isDone(item, Date.now(), todoOpts(s)) ? null : Date.now();
+      // lastDoneAt survives the reset (shown for the Lucky Wheel); unchecking by mistake restores the previous one.
+      if (typeof item.doneAt === 'number' && todos.isDone(item, Date.now(), todoOpts(s))) {
+        item.doneAt = null;
+        item.lastDoneAt = typeof item.prevDoneAt === 'number' ? item.prevDoneAt : null;
+      } else {
+        item.prevDoneAt = todos.lastDone(item);
+        item.doneAt = item.lastDoneAt = Date.now();
+      }
     } else if (action === 'remove') {
       list.splice(list.indexOf(find()), 1);
     } else if (action === 'daily-hour') {

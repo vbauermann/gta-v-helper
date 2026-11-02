@@ -111,6 +111,17 @@ app.whenReady().then(async () => {
     badge: document.querySelector('[data-page=todos] .badge').textContent, boost: document.querySelectorAll('.todo-title .pill.ok').length })`);
   if (todoCheck.rows !== (hasBoost ? 12 : 11) || todoCheck.done !== 2 || todoCheck.badge !== (hasBoost ? '10' : '9')) errors.push(`tarefas: ${JSON.stringify(todoCheck)}`);
   console.log('tarefas', JSON.stringify(todoCheck));
+  // Lucky Wheel: 24 h real cooldown after the spin.
+  const wheel = await win.webContents.executeJavaScript(`(async () => {
+    await window.gta.todo('add', { key: 'lucky-wheel', title: 'Roleta do Casino', period: 'daily' });
+    await window.gta.todo('toggle', 'lucky-wheel');
+    await new Promise(r => setTimeout(r, 1500));
+    const el = document.querySelector('.todo-cooldown');
+    return el ? el.textContent : null;
+  })()`);
+  if (!wheel || !/libera em (23h|24h)/.test(wheel)) errors.push(`roleta: ${wheel}`);
+  fs.writeFileSync(path.join(out, 'todos-roleta.png'), (await win.webContents.capturePage()).toPNG());
+  await win.webContents.executeJavaScript(`window.gta.todo('remove', 'lucky-wheel')`);
   await win.webContents.executeJavaScript(`document.querySelector('[data-page=cayo]').click(); document.querySelector('.loot-rows').scrollIntoView({ block: 'center' });`);
   await wait(600);
   fs.writeFileSync(path.join(out, 'cayo-alvos.png'), (await win.webContents.capturePage()).toPNG());

@@ -10,6 +10,8 @@
     { id: 'weekly', title: 'Semanais', icon: 'calendar', placeholder: 'Nova tarefa semanal' }
   ];
   const resetFmt = new Intl.DateTimeFormat('pt-BR', { weekday: 'long', hour: '2-digit', minute: '2-digit' });
+  const whenFmt = new Intl.DateTimeFormat('pt-BR', { weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+  let cooldowns = []; // { el, item }: live "libera em" lines of the Lucky Wheel
   let root = null;
   let clocks = [];
 
@@ -40,13 +42,20 @@
   function row(item, now) {
     const done = T.isDone(item, now, opts());
     const { boost, note } = details(item);
+    let cd = null;
+    if (T.cooldownHours(item)) {
+      cd = h('div', { class: 'todo-note todo-cooldown' });
+      cooldowns.push({ el: cd, item });
+      cooldownText(cd, item, now);
+    }
     return h('div', { class: `todo-row${done ? ' done' : ''}` },
       h('button', { class: 'todo-check', type: 'button', title: done ? 'Desmarcar' : 'Marcar como feito', onclick: () => todo('toggle', item.id) }, icon('check', 14)),
       h('div', { class: 'grow todo-text', onclick: () => todo('toggle', item.id) },
         h('div', { class: 'todo-title' }, item.title,
           boost ? h('span', { class: 'pill sm ok' }, 'bônus') : null,
           item.expiresAt ? h('span', { class: 'pill sm info' }, 'só esta semana') : null),
-        boost || note ? h('div', { class: 'todo-note' }, boost || note) : null),
+        boost || (note && !cd) ? h('div', { class: 'todo-note' }, boost || note) : null,
+        cd),
       h('button', { class: 'icon-btn todo-del', type: 'button', title: 'Tirar da lista', onclick: () => todo('remove', item.id) }, icon('x', 15)));
   }
 
@@ -107,6 +116,7 @@
     const now = Date.now();
     const items = visible();
     clocks = [];
+    cooldowns = [];
     const t = App.state.todos;
     const hh = i => `${String(i).padStart(2, '0')}:00`;
     const hour = UI.select([{ value: 'game', label: `Com o jogo (${hh(T.defaultDailyHour())})` },
@@ -124,8 +134,18 @@
     onSecond();
   }
 
+  // "Último giro: sáb. 02/11 19:23 · libera em 3h 12min (dom. 03/11 19:23)" or "Liberada".
+  function cooldownText(el, item, now) {
+    const last = T.lastDone(item), at = T.readyAt(item);
+    if (last === null) { el.textContent = 'Libera 24h depois do último giro. Marque quando girar.'; return; }
+    const lastTxt = `Último giro: ${whenFmt.format(new Date(last))}`;
+    const m = Math.max(0, Math.ceil((at - now) / 60000));
+    el.textContent = at > now ? `${lastTxt} · libera em ${Math.floor(m / 60)}h ${String(m % 60).padStart(2, '0')}min (${whenFmt.format(new Date(at))})` : `${lastTxt} · liberada`;
+  }
+
   function onSecond() {
     const now = Date.now();
+    for (const c of cooldowns) cooldownText(c.el, c.item, now);
     for (const c of clocks) {
       const at = T.nextReset(c.period, now, opts());
       c.el.textContent = `Zera em ${left(at - now)} (${resetFmt.format(new Date(at))})`;
@@ -152,8 +172,9 @@
     },
     onSecond() {
       if (!root || !root.isConnected) return;
-      // A reset happened while the page is open: redraw so checks clear.
-      const sig = PERIODS.map(p => T.periodStart(p.id, Date.now(), opts())).join();
+      // A reset or a Lucky Wheel freeing up while the page is open: redraw so checks clear.
+      const now = Date.now();
+      const sig = PERIODS.map(p => T.periodStart(p.id, now, opts())).join() + visible().filter(i => T.cooldownHours(i)).map(i => T.isDone(i, now, opts())).join();
       if (sig !== this.periods) { if (this.periods) render(); this.periods = sig; }
       onSecond();
     }
