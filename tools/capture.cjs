@@ -356,6 +356,20 @@ app.whenReady().then(async () => {
   await wait(500);
   fs.writeFileSync(path.join(out, 'businesses-warehouses.png'), (await win.webContents.capturePage()).toPNG());
   if (!wh.cargo || wh.crates[0] !== 67 || wh.goods !== 7 || wh.linked !== 4 || !wh.vehicles || !wh.ready) errors.push(`nightclub/warehouses falhou: ${JSON.stringify(wh)}`);
+  // Hangar (Air-Freight): marked on the map, crates filled by hand.
+  const hg = await win.webContents.executeJavaScript(`(async () => {
+    await App.act(window.gta.mapOwn('hangar-1', true));
+    await App.act(window.gta.warehouse('hangar-crates', 22));
+    await new Promise(r => setTimeout(r, 600));
+    document.querySelector('[data-extra=hangar] .biz-toggle').click();
+    await new Promise(r => setTimeout(r, 400));
+    document.querySelector('[data-extra=hangar]').scrollIntoView({ block: 'start' });
+    const s = await window.gta.state();
+    return { crates: s.warehouses.hangar.crates, card: !!document.querySelector('[data-extra=hangar] .biz-more'), text: document.querySelector('[data-extra=hangar] .meter-text').textContent };
+  })()`);
+  await wait(500);
+  fs.writeFileSync(path.join(out, 'businesses-hangar.png'), (await win.webContents.capturePage()).toPNG());
+  if (hg.crates !== 22 || !hg.card || hg.text !== '22/50') errors.push(`hangar: ${JSON.stringify(hg)}`);
   // Narrow window (minimum width): the bars must keep a usable width.
   win.setSize(1000, 880);
   await win.webContents.executeJavaScript(`document.querySelector('.content, main') && window.scrollTo(0, 0); document.querySelector('.card.biz').scrollIntoView({ block: 'start' })`);

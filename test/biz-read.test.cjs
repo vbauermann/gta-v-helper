@@ -105,7 +105,7 @@ const fresh = () => {
   return {
     businesses,
     nightclub: { owned: false, floors: 1, equipment: false, cargo: false, stock, activeMinutes: 0 },
-    warehouses: { cargo: [], vehicle: { point: null, cars: 0 } },
+    warehouses: { cargo: [], vehicle: { point: null, cars: 0 }, hangar: { point: null, crates: 0 } },
     map: { owned: [] }
   };
 };
@@ -150,4 +150,14 @@ test('MCT Nightclub bar scales the goods to the total it shows', () => {
   // 360 units fit in 5 floors: a quarter is 90, spread 2:1 like before.
   assert.ok(Math.abs(s.nightclub.stock.sporting - 60) < 1e-9);
   assert.ok(Math.abs(s.nightclub.stock.cash - 30) < 1e-9);
+});
+
+test('MCT Air-Freight bar sets the crates of the marked Hangar (and nothing without one)', () => {
+  const s = fresh();
+  const reading = { screen: 'mct', cards: [{ id: 'hangar', stock: 0.224, supplies: null }] };
+  assert.deepStrictEqual(A.apply(catalog, s, reading).changes, []);
+  s.warehouses.hangar.point = 'hangar-1';
+  const { changes } = A.apply(catalog, s, reading);
+  assert.strictEqual(s.warehouses.hangar.crates, 11);
+  assert.deepStrictEqual(changes.map(c => c.text), ['11 caixas']);
 });

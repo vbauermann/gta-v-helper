@@ -367,5 +367,11 @@
   "vehicles": {
     "note": "Vehicle Warehouse (Import/Export): uma por jogador, até 40 carros.",
     "capacity": 40
+  },
+  "hangar": {
+    "note": "Air-Freight Cargo (Smuggler's Run): o Hangar guarda até 50 caixas de 8 tipos. Cada caixa vale GTA$ 30.000 na venda (desde Los Santos Drug Wars). Vender muitas caixas do mesmo tipo dá bônus: Narcotics, Chemicals e Medical Supplies +35% a cada 25; Animal Materials, Art & Antiques e Jewelry & Gemstones +12% a cada 10; Tobacco & Alcohol e Counterfeit Goods +5% a cada 5. O Ron fica com 5%. Fontes: Timesaver, GTA Intel.",
+    "capacity": 50,
+    "crateValue": 30000,
+    "ronPct": 5
   }
 }

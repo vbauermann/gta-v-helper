@@ -1,5 +1,6 @@
 // Negócios page: the Nightclub (technicians make goods from the linked businesses), the CEO special
-// cargo warehouses (crates bought in missions) and the Import/Export vehicle warehouse. Warehouses
+// cargo warehouses (crates bought in missions), the Import/Export vehicle warehouse and the Hangar
+// (Air-Freight crates). Warehouses
 // are places on the Los Santos map; marking one here or on the map is the same thing.
 (function () {
   'use strict';
@@ -46,12 +47,22 @@
     return { ...v, pt: v.point ? point(v.point) : null, cap, tone: full ? 'ready' : 'ok', pill: full ? 'Cheia' : `${v.cars} carros` };
   }
 
+  function hangar() {
+    const hg = App.state.warehouses.hangar;
+    const c = App.data.catalog.hangar;
+    const full = hg.crates >= c.capacity;
+    const value = hg.crates * c.crateValue;
+    return { ...hg, pt: hg.point ? point(hg.point) : null, cap: c.capacity, value, net: value * (1 - c.ronPct / 100), full,
+      tone: full ? 'ready' : 'ok', pill: full ? 'Pronto para vender' : `${hg.crates} caixas` };
+  }
+
   // How many of these need a look (sidebar badge on Negócios).
   function attention() {
     const s = App.state;
     let n = 0;
     if (s.nightclub.owned && nightclub().tone !== 'ok') n++;
     if (s.warehouses.cargo.length && cargo().tone !== 'ok') n++;
+    if (s.warehouses.hangar.point && hangar().tone !== 'ok') n++;
     return n;
   }
 
@@ -227,6 +238,39 @@
     return shell('vehicles', v.tone, head, body);
   }
 
+  // ---------- Hangar (Air-Freight) ----------
+  function hangarCard() {
+    const hg = hangar();
+    const c = App.data.catalog.hangar;
+    const set = crates => App.act(window.gta.warehouse('hangar-crates', Math.max(0, Math.min(hg.cap, crates))));
+    const ncOn = App.state.nightclub.cargo;
+    const head = row('hangar', 'Air-Freight Cargo', hg.pt ? `Hangar · ${hg.pt.name}` : 'Hangar',
+      [h('span', { class: `pill sm ${PILL[hg.tone]}` }, hg.pill)],
+      [meter('Caixas', 'hangar', (hg.crates / hg.cap) * 100, 'var(--biz-c)', `${hg.crates}/${hg.cap}`),
+        meter('Valor', 'hangar-value', (hg.crates / hg.cap) * 100, 'var(--ok)', moneyShort(hg.value))],
+      [h('button', { class: 'btn primary icon sm', title: 'Comprei 1 caixa', 'aria-label': 'Comprei 1 caixa', disabled: hg.full, onclick: () => set(hg.crates + 1) }, icon('plus', 15)),
+        h('button', { class: 'btn secondary icon sm', title: 'Vendi as caixas', 'aria-label': 'Vendi as caixas', disabled: !hg.crates, onclick: () => set(0) }, icon('dollar', 15)),
+        h('button', {
+          class: `btn icon sm nightclub-toggle ${ncOn ? 'on' : 'ghost'}`, 'aria-pressed': String(ncOn),
+          title: ncOn ? 'Vinculado ao Nightclub (Cargo and Shipments). Clique para desvincular' : 'Vincular ao Nightclub (Cargo and Shipments)',
+          onclick: () => App.act(window.gta.nightclub('cargo', !ncOn))
+        }, icon('music', 15))]);
+    if (!expanded.has('hangar')) return shell('hangar', hg.tone, head, null);
+    const input = numberInput(hg.crates, { min: 0, max: hg.cap, step: 1, class: 'small', onchange: e => set(Number(e.target.value) || 0) });
+    const body = h('div', { class: 'biz-more' },
+      h('div', { class: 'biz-facts' },
+        h('div', { class: 'stat-line' }, h('span', null, 'Valor das caixas'), h('b', { class: 'num' }, money(hg.value))),
+        h('div', { class: 'stat-line' }, h('span', null, `Depois do Ron (${c.ronPct}%)`), h('b', { class: 'num' }, money(hg.net)))),
+      h('p', { class: 'muted small wh-note' }, `Cada caixa vale ${money(c.crateValue)}. Vender muitas do mesmo tipo dá bônus: Narcotics, Chemicals e Medical Supplies +35% a cada 25 caixas; Animal Materials, Art & Antiques e Jewelry & Gemstones +12% a cada 10; Tobacco & Alcohol e Counterfeit Goods +5% a cada 5. A leitura do Terrorbyte também atualiza as caixas.`),
+      h('div', { class: 'row wh-actions' },
+        h('span', { class: 'muted small' }, 'Caixas no Hangar'), input,
+        [1, 2, 3, 4].map(n => h('button', { class: 'btn ghost sm', type: 'button', title: `Trouxe ${n} ${n === 1 ? 'caixa' : 'caixas'}`, disabled: hg.full, onclick: () => set(hg.crates + n) }, `+${n}`))),
+      h('div', { class: 'biz-tools' },
+        h('span', { class: 'grow' }),
+        h('button', { class: 'btn danger sm', onclick: () => App.act(window.gta.mapOwn(hg.point, false)) }, 'Não tenho mais')));
+    return shell('hangar', hg.tone, head, body);
+  }
+
   // Cards for what the player has, in this order.
   function cards(onRender) {
     rerender = onRender;
@@ -234,7 +278,8 @@
     return [
       s.nightclub.owned ? nightclubCard() : null,
       s.warehouses.cargo.length ? cargoCard() : null,
-      s.warehouses.vehicle.point ? vehiclesCard() : null
+      s.warehouses.vehicle.point ? vehiclesCard() : null,
+      s.warehouses.hangar.point ? hangarCard() : null
     ].filter(Boolean);
   }
 
@@ -249,6 +294,7 @@
         h('button', { class: 'btn secondary sm', onclick: () => App.act(window.gta.nightclub('own', true)) }, icon('plus', 15), 'Tenho este')));
     }
     if (!s.warehouses.cargo.length && hasPoints('warehouse')) out.push(rowOf('cargo', 'Special Cargo (CEO)', 'Escolha a warehouse', addWarehouse('warehouse', 'Tenho esta', 5, [])));
+    if (!s.warehouses.hangar.point && hasPoints('hangar')) out.push(rowOf('hangar', 'Air-Freight Cargo', 'Hangar', addWarehouse('hangar', 'Tenho este', 1, [])));
     if (!s.warehouses.vehicle.point && hasPoints('vehicle-warehouse')) out.push(rowOf('vehicles', 'Vehicle Warehouse', 'Import/Export', addWarehouse('vehicle-warehouse', 'Tenho esta', 1, [])));
     return out;
   }
@@ -276,5 +322,5 @@
     }
   }
 
-  window.BizExtra = { cards, others, onSecond, attention, nightclub, cargo, vehicles };
+  window.BizExtra = { cards, others, onSecond, attention, nightclub, cargo, vehicles, hangar };
 })();

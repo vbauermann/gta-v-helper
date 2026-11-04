@@ -135,6 +135,9 @@ function syncWarehouses(s) {
   s.warehouses.cargo = marked('warehouse').map(point => ({ point, crates: crates.get(point) || 0 }));
   const [vehicle = null] = marked('vehicle-warehouse');
   if (vehicle !== s.warehouses.vehicle.point) s.warehouses.vehicle = { point: vehicle, cars: vehicle && s.warehouses.vehicle.point ? s.warehouses.vehicle.cars : 0 };
+  // Hangar (Air-Freight): one per player; moving to another keeps the crates, like the game.
+  const [hangar = null] = marked('hangar');
+  if (hangar !== s.warehouses.hangar.point) s.warehouses.hangar = { point: hangar, crates: hangar ? s.warehouses.hangar.crates : 0 };
   if (!nightclub.cargoSource(s)) s.nightclub.cargo = false;
 }
 
@@ -278,6 +281,9 @@ function registerIpc() {
     } else if (action === 'cars') {
       if (!w.vehicle.point) throw new TypeError('marque a Vehicle Warehouse antes');
       w.vehicle.cars = Math.round(num(value, 0, catalog.vehicles.capacity));
+    } else if (action === 'hangar-crates') {
+      if (!w.hangar.point) throw new TypeError('marque o Hangar antes');
+      w.hangar.crates = Math.round(num(value, 0, catalog.hangar.capacity));
     } else throw new TypeError('ação desconhecida');
   }));
 

@@ -1,6 +1,15 @@
 {
   "versions": [
     {
+      "version": "1.14.0",
+      "date": "2026-11-04",
+      "title": "Air-Freight Cargo nos Negócios",
+      "items": [
+        "Negócios: novo card Air-Freight Cargo (Hangar) com as caixas (até 50), o valor ($30 mil por caixa) e o valor depois do Ron, botões de +1 a +4 caixas, vendi tudo e o vínculo do Nightclub (Cargo and Shipments). Marcar o Hangar aqui ou no mapa é a mesma coisa.",
+        "A leitura do Terrorbyte agora também atualiza as caixas do Hangar."
+      ]
+    },
+    {
       "version": "1.13.10",
       "date": "2026-11-02",
       "title": "Roleta do Casino com 24h",

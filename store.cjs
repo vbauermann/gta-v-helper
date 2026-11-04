@@ -107,7 +107,12 @@ function createStore(file, catalog) {
       .filter(x => x && typeof x.point === 'string')
       .map(x => ({ point: x.point, crates: Math.max(0, Math.floor(Number(x.crates) || 0)) }));
     const v = w.vehicle && typeof w.vehicle === 'object' ? w.vehicle : {};
-    return { cargo, vehicle: { point: typeof v.point === 'string' ? v.point : null, cars: Math.max(0, Math.floor(Number(v.cars) || 0)) } };
+    const hg = w.hangar && typeof w.hangar === 'object' ? w.hangar : {};
+    return {
+      cargo,
+      vehicle: { point: typeof v.point === 'string' ? v.point : null, cars: Math.max(0, Math.floor(Number(v.cars) || 0)) },
+      hangar: { point: typeof hg.point === 'string' ? hg.point : null, crates: Math.max(0, Math.floor(Number(hg.crates) || 0)) }
+    };
   }
 
   function loadProgress(saved) {

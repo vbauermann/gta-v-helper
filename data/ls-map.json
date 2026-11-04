@@ -154,7 +154,8 @@
      "id": "hangar",
      "title": "Hangar",
      "icon": "assets/ls/icons/hangar.png",
-     "owns": 1
+     "owns": 1,
+     "note": "Air-Freight Cargo. Marcar aqui coloca o Hangar nos Negócios."
     },
     {
      "id": "facility",

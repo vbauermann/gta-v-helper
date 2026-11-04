@@ -32,9 +32,11 @@
 .biz-nightclub { --biz-c: #e879f9; }
 .biz-cargo { --biz-c: #d6b98c; }
 .biz-vehicles { --biz-c: #8fb3ff; }
+.biz-hangar { --biz-c: #7dd3c0; }
 :root[data-theme='light'] .biz-nightclub { --biz-c: #b43fc9; }
 :root[data-theme='light'] .biz-cargo { --biz-c: #9a7642; }
 :root[data-theme='light'] .biz-vehicles { --biz-c: #3d6fd6; }
+:root[data-theme='light'] .biz-hangar { --biz-c: #1f8f7a; }
 :root[data-theme='light'] .biz-cocaine { --biz-c: #2f8fd6; }
 :root[data-theme='light'] .biz-meth { --biz-c: #12a594; }
 :root[data-theme='light'] .biz-cash { --biz-c: #12a46b; }

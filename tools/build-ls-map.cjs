@@ -58,7 +58,7 @@ const groups = [
       { id: 'arcade', title: 'Fliperama', icon: ico('arcade'), owns: 1 },
       { id: 'auto-shop', title: 'Auto Shop', icon: ico('autoshop'), owns: 1 },
       { id: 'salvage-yard', title: 'Ferro-velho (Salvage Yard)', icon: ico('salvage_yard'), owns: 1 },
-      { id: 'hangar', title: 'Hangar', icon: ico('hangar'), owns: 1 },
+      { id: 'hangar', title: 'Hangar', icon: ico('hangar'), owns: 1, note: 'Air-Freight Cargo. Marcar aqui coloca o Hangar nos Negócios.' },
       { id: 'facility', title: 'Instalação (Facility)', icon: ico('facility'), owns: 1 },
       { id: 'apartment', title: 'Apartamentos e casas', icon: ico('home2'), owns: 0 },
       { id: 'penthouse', title: 'Cobertura do Cassino', icon: ico('home8'), owns: 1 },
