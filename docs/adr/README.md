@@ -22,5 +22,6 @@ Cada arquivo registra uma decisão: o contexto, o que foi decidido e o que isso 
 | [0016](0016-avisos.md) | Avisos no app (sino e menu), notificação do Windows e lembretes | Aceita |
 | [0017](0017-nightclub-e-warehouses.md) | Nightclub e warehouses como negócios, com a posse marcada no mapa | Aceita |
 | [0018](0018-leitura-da-tela-dos-negocios.md) | Leitura da tela do Terrorbyte e do Nightclub para atualizar os negócios | Aceita |
+| [0019](0019-recursos-opcionais.md) | Recursos de colaboradores vêm desligados, com chave em Ajustes | Proposta |
 
 Modelo para uma nova ADR: copie o formato de qualquer arquivo (Status, Data, Contexto, Decisão, Consequências) e use o próximo número.
