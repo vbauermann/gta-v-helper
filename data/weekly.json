@@ -1,24 +1,20 @@
 {
- "start": "2026-10-29",
- "end": "2026-11-04",
- "resetUtc": "2026-11-05T10:00:00Z",
- "theme": "Halloween e Día de Muertos",
+ "start": "2026-11-05",
+ "end": "2026-11-11",
+ "resetUtc": "2026-11-12T10:00:00Z",
+ "theme": "Semana dos Golpes",
  "sources": [
   {
    "name": "Rockstar Newswire",
-   "url": "https://www.rockstargames.com/newswire"
-  },
-  {
-   "name": "Power Up Gaming",
-   "url": "https://powerupgaming.co.uk/2026/10/28/gta-online-weekly-update-october-29-november-4/"
-  },
-  {
-   "name": "Timesaver",
-   "url": "https://timesaver.gg/blog/gta-online-weekly-update-october-29-november-4-2026"
+   "url": "https://www.rockstargames.com/newswire/article/4k17a844oakk5o/take-down-the-kortz-center-and-more-high-value-targets-in-this-week-s"
   },
   {
    "name": "GTA Boss",
-   "url": "https://www.gtaboss.gg/gta-5-online/gta-online-weekly-updates"
+   "url": "https://www.gtaboss.gg/gta-5-online/gta-online-weekly-updates/2026-11-05"
+  },
+  {
+   "name": "GTABase",
+   "url": "https://www.gtabase.com/gta-online/this-week-bonuses-discounts/"
   }
  ],
  "bonuses": [
@@ -26,22 +22,7 @@
    "mult": "3x",
    "items": [
     {
-     "name": "Survivals de Halloween",
-     "note": "Alien, Cayo Perico e Ludendorff Cemetery. Com GTA+: 6x"
-    },
-    {
-     "name": "Halloween Featured Series: Slasher",
-     "note": "Inclui Slasher & Ramius"
-    },
-    {
-     "name": "Hotring Races"
-    },
-    {
-     "name": "Random Transform Races"
-    },
-    {
-     "name": "Community Mission Series",
-     "note": "PS5, Xbox Series X|S e PC Enhanced"
+     "name": "Mansion Raid"
     }
    ]
   },
@@ -49,56 +30,49 @@
    "mult": "2x",
    "items": [
     {
-     "name": "Bail Office",
-     "note": "Alvos comuns e Most Wanted"
+     "name": "Community Race Series"
     },
     {
-     "name": "Dispatch Work"
+     "name": "Original Heists, The Doomsday Heist e The Diamond Casino Heist",
+     "note": "Bônus de primeira conclusão (todos os atos do Doomsday)"
     },
     {
-     "name": "UFO Business Battles"
-    },
-    {
-     "name": "Jack O' Lanterns",
-     "note": "GTA$ e RP. Com GTA+: 4x"
-    },
-    {
-     "name": "Ghosts Exposed",
-     "note": "Só GTA$. Com GTA+: 4x"
+     "name": "KnoWay Out",
+     "note": "Bônus de primeira conclusão"
     }
    ]
   }
  ],
  "rewards": [
   {
-   "name": "Desafio semanal: 10 ondas de Survival sem morrer",
-   "note": "GTA$ 250.000 e o Slasher Clown Outfit"
+   "name": "Desafio semanal: vencer um Adversary Mode",
+   "note": "GTA$ 100.000"
   },
   {
-   "name": "GTA$ 2.000.000",
-   "note": "Complete todos os desafios semanais de Halloween até 04/11"
+   "name": "The Great Circle Back Mansion Painting Decoration",
+   "note": "Grátis ao entrar no jogo até 11/11"
   },
   {
-   "name": "Brown Vintage Skull Mask e Halloween Chute Bag",
-   "note": "Grátis jogando até 04/11"
+   "name": "Panther Statue no Cayo Perico",
+   "note": "Alvo principal garantido no primeiro golpe do Cayo da semana"
   },
   {
-   "name": "Día de Muertos Tee, Maritime Calaca Mask e Royal Calaca Mask",
-   "note": "Grátis ao entrar no jogo"
+   "name": "The Outcome of Endeavour no Kortz Center",
+   "note": "Alvo principal garantido no primeiro Kortz Center Heist da semana"
   }
  ],
  "rotations": [
   {
    "label": "FIB Priority File",
-   "value": "The Project Breakaway File"
+   "value": "The Black Box File"
   },
   {
    "label": "Kortz Center Heist (alvos)",
-   "value": "I, Fruit, Until Death e Gone to Seed"
+   "value": "The Outcome of Endeavour, To Beat About the Bush, Hare Oneself Think e True Love"
   },
   {
    "label": "Salvage Yard (roubos)",
-   "value": "Albany Fränken Stange (Duggan), Karin Boor (Podium) e Lampadati Cinquemila (Gangbanger)"
+   "value": "Annis Hellion (Podium), Truffade Z-Type (Cargo Ship) e Lampadati Cinquemila (McTony)"
   }
  ],
  "discounts": [
@@ -106,34 +80,20 @@
    "pct": 40,
    "items": [
     {
-     "name": "Agency",
-     "note": "Última semana. Inclui upgrades e modificações (Little Seoul GTA$ 1.206.000)",
+     "name": "Casino Master Penthouse",
+     "price": 1500000,
+     "sale": 900000,
+     "note": "Inclui upgrades e modificações"
+    },
+    {
+     "name": "Facility",
+     "note": "Inclui upgrades e modificações (a partir de GTA$ 750.000)",
      "kind": "property"
     },
     {
-     "name": "Albany Brigham",
-     "price": 1499000,
-     "sale": 899400
-    },
-    {
-     "name": "Albany Fränken Stange",
-     "price": 550000,
-     "sale": 330000
-    },
-    {
-     "name": "Albany Lurcher",
-     "price": 650000,
-     "sale": 390000
-    },
-    {
-     "name": "Declasse Tornado Rat Rod",
-     "price": 378000,
-     "sale": 226800
-    },
-    {
-     "name": "LCC Sanctus",
-     "price": 1995000,
-     "sale": 1197000
+     "name": "High-End Apartments",
+     "note": "A partir de GTA$ 120.000",
+     "kind": "property"
     }
    ]
   },
@@ -141,141 +101,138 @@
    "pct": 30,
    "items": [
     {
-     "name": "Bravado Gauntlet Classic",
-     "price": 615000,
-     "sale": 430500
+     "name": "Benefactor Vorschlaghammer",
+     "price": 1790000,
+     "sale": 1253000
     },
     {
-     "name": "Invetero Coquette D10",
-     "price": 1510000,
-     "sale": 1057000
+     "name": "Cheval Taipan",
+     "price": 1980000,
+     "sale": 1386000
     },
     {
-     "name": "Karin Futo GTX",
-     "price": 1590000,
-     "sale": 1113000
+     "name": "Dinka Blista Kanjo",
+     "price": 580000,
+     "sale": 406000
     },
     {
-     "name": "MTL Dune",
-     "price": 1300000,
-     "sale": 910000
+     "name": "Grotti Cheetah",
+     "price": 650000,
+     "sale": 455000
     },
     {
-     "name": "Pegassi Infernus Classic",
-     "price": 915000,
-     "sale": 640500
+     "name": "HVY Insurgent",
+     "price": 897750,
+     "sale": 628425
     },
     {
-     "name": "Shitzu Keitora",
-     "price": 810000,
-     "sale": 567000
+     "name": "Invetero Coquette D5",
+     "price": 1730000,
+     "sale": 1211000
     },
     {
-     "name": "Übermacht Zion Classic",
-     "price": 812000,
-     "sale": 568400
+     "name": "Maibatsu Penumbra FF",
+     "price": 1380000,
+     "sale": 966000
     },
     {
-     "name": "Vapid Firebolt ASP",
-     "price": 1894500,
-     "sale": 1326150
+     "name": "Pegassi Reaper",
+     "price": 1595000,
+     "sale": 1116500
     },
     {
-     "name": "Vapid FMJ",
-     "price": 1750000,
-     "sale": 1225000
+     "name": "Western Company Besra",
+     "price": 1150000,
+     "sale": 805000
+    },
+    {
+     "name": "Western Rampant Rocket Tricycle",
+     "price": 925000,
+     "sale": 647500
     }
    ]
   }
  ],
  "vehicles": {
   "podium": {
-   "name": "Progen GP1",
-   "price": 1260000,
+   "name": "Överflöd Entity XXR",
+   "price": 2305000,
    "note": "Roda da sorte do Diamond Casino"
   },
   "prize": {
-   "name": "Karin Previon",
-   "note": "Top 5 na LS Car Meet Series dois dias seguidos"
+   "name": "Annis Hellion",
+   "note": "Top 5 na LS Car Meet Series três dias seguidos"
   },
   "testRides": [
    {
-    "name": "Maibatsu MonstroCiti",
-    "price": 1485000,
-    "note": "Premium Test Ride do Hao (HSW: GTA$ 2.594.000)"
+    "name": "Cheval Taipan",
+    "price": 1980000,
+    "note": "Premium Test Ride (30% off nesta semana)"
    },
    {
-    "name": "Declasse Vamos",
-    "price": 596000,
+    "name": "HVY Insurgent",
+    "price": 897750,
     "note": "Test ride do LS Car Meet"
    },
    {
-    "name": "Dewbauchee Seven-70",
-    "price": 695000,
+    "name": "Pegassi Reaper",
+    "price": 1595000,
     "note": "Test ride do LS Car Meet"
    },
    {
-    "name": "Ocelot Locust",
-    "price": 978000,
-    "note": "Test ride do LS Car Meet"
+    "name": "Grotti Brioso R/A",
+    "price": 155000,
+    "note": "HSW Test Ride (PS5, Xbox Series X|S e PC Enhanced)"
    }
   ],
   "showroom": [
    {
-    "name": "Dewbauchee Rapid GT X",
-    "price": 2705500,
+    "name": "Grotti Veleno GT",
+    "price": 3090000,
     "note": "Luxury Autos"
    },
    {
-    "name": "Übermacht Sentinel XS4",
-    "price": 1429000,
+    "name": "Grotti GT750",
+    "price": 1247000,
     "note": "Luxury Autos"
    }
   ]
  },
  "gunVan": [
   {
-   "name": "The Shocker",
+   "name": "Knife",
    "note": "Grátis"
   },
   {
-   "name": "Service Carbine",
-   "note": "30% off (GTA$ 259.000)"
+   "name": "Precision Rifle",
+   "note": "50% off (GTA$ 225.000)"
   },
   {
-   "name": "Unholy Hellbringer, Up-n-Atomizer e Widowmaker",
-   "note": "50% off só com GTA+"
+   "name": "Compact EMP Launcher",
+   "note": "10% off (GTA$ 472.500; com GTA+ GTA$ 309.750)"
+  },
+  {
+   "name": "El Strickler e Widowmaker",
+   "note": "10% off (20% com GTA+)"
   }
  ],
- "gtaPlus": {
-  "until": "2026-11-04",
-  "items": [
-   "GTA$ 500.000 e um giro extra na roda da sorte",
-   "Grátis: MTL Brickade 6×6, Pegassi Oppressor, pintura Red/Orange Flip, roupas Ride or Die, Skeleton Bodysuit e Mummy Costume",
-   "Suprimentos grátis no Acid Lab",
-   "Armas alienígenas com 50% off"
-  ]
- },
  "todo": {
   "boosts": {
-   "weekly-challenge": "10 ondas de Survival sem morrer: GTA$ 250.000 e o Slasher Clown Outfit",
-   "bail-mw": "2x GTA$ e RP no Bail Office nesta semana"
+   "weekly-challenge": "Vencer um Adversary Mode: GTA$ 100.000",
+   "cayo": "Primeiro golpe da semana com a Panther Statue garantida",
+   "kortz": "Primeiro golpe da semana com The Outcome of Endeavour garantido",
+   "casino": "2x GTA$ no bônus de primeira conclusão nesta semana"
   },
   "extra": [
    {
-    "key": "wk-survival",
-    "title": "Survivals de Halloween",
+    "key": "wk-mansion-raid",
+    "title": "Mansion Raid",
     "note": "3x GTA$ e RP só nesta semana"
    },
    {
-    "key": "wk-jack",
-    "title": "Jack O' Lanterns",
-    "note": "2x GTA$ e RP (4x com GTA+) só nesta semana"
-   },
-   {
-    "key": "wk-all-challenges",
-    "title": "Todos os desafios semanais",
-    "note": "GTA$ 2.000.000 até 04/11"
+    "key": "wk-mansion-painting",
+    "title": "Pegar a pintura grátis da Mansion",
+    "note": "The Great Circle Back, basta entrar no jogo até 11/11"
    }
   ]
  }
