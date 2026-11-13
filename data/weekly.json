@@ -1,28 +1,39 @@
 {
- "start": "2026-11-05",
- "end": "2026-11-11",
- "resetUtc": "2026-11-12T10:00:00Z",
- "theme": "Semana dos Golpes",
+ "start": "2026-11-12",
+ "end": "2026-11-18",
+ "resetUtc": "2026-11-19T10:00:00Z",
  "sources": [
   {
    "name": "Rockstar Newswire",
-   "url": "https://www.rockstargames.com/newswire/article/4k17a844oakk5o/take-down-the-kortz-center-and-more-high-value-targets-in-this-week-s"
+   "url": "https://www.rockstargames.com/newswire"
   },
   {
    "name": "GTA Boss",
-   "url": "https://www.gtaboss.gg/gta-5-online/gta-online-weekly-updates/2026-11-05"
+   "url": "https://www.gtaboss.gg/gta-5-online/gta-online-weekly-updates/2026-11-12"
   },
   {
-   "name": "GTABase",
-   "url": "https://www.gtabase.com/gta-online/this-week-bonuses-discounts/"
+   "name": "Worthplaying",
+   "url": "https://worthplaying.com/"
   }
  ],
  "bonuses": [
   {
+   "mult": "4x",
+   "items": [
+    {
+     "name": "Freemode Challenges",
+     "note": "Até 02/12"
+    }
+   ]
+  },
+  {
    "mult": "3x",
    "items": [
     {
-     "name": "Mansion Raid"
+     "name": "Stunt Race Series"
+    },
+    {
+     "name": "Community Series"
     }
    ]
   },
@@ -30,170 +41,134 @@
    "mult": "2x",
    "items": [
     {
-     "name": "Community Race Series"
+     "name": "Contact Missions",
+     "note": "Todas, incluindo Madrazo's Dispatch Services, Gerald's Last Play, Premium Deluxe Repo Work e Lowriders. Com GTA+: 4x. Até 02/12"
     },
     {
-     "name": "Original Heists, The Doomsday Heist e The Diamond Casino Heist",
-     "note": "Bônus de primeira conclusão (todos os atos do Doomsday)"
-    },
-    {
-     "name": "KnoWay Out",
-     "note": "Bônus de primeira conclusão"
+     "name": "Sumo (Remix)",
+     "note": "Featured Series"
     }
    ]
   }
  ],
  "rewards": [
   {
-   "name": "Desafio semanal: vencer um Adversary Mode",
+   "name": "Desafio semanal: vencer duas Stunt Races",
    "note": "GTA$ 100.000"
-  },
-  {
-   "name": "The Great Circle Back Mansion Painting Decoration",
-   "note": "Grátis ao entrar no jogo até 11/11"
-  },
-  {
-   "name": "Panther Statue no Cayo Perico",
-   "note": "Alvo principal garantido no primeiro golpe do Cayo da semana"
-  },
-  {
-   "name": "The Outcome of Endeavour no Kortz Center",
-   "note": "Alvo principal garantido no primeiro Kortz Center Heist da semana"
   }
  ],
  "rotations": [
   {
    "label": "FIB Priority File",
-   "value": "The Black Box File"
+   "value": "The Brute Force File"
   },
   {
    "label": "Kortz Center Heist (alvos)",
-   "value": "The Outcome of Endeavour, To Beat About the Bush, Hare Oneself Think e True Love"
+   "value": "In Excess of Success, What are Melons? e Breathless"
   },
   {
    "label": "Salvage Yard (roubos)",
-   "value": "Annis Hellion (Podium), Truffade Z-Type (Cargo Ship) e Lampadati Cinquemila (McTony)"
+   "value": "Canis Seminole Frontier (Gangbanger), Karin Hotring Everon (McTony) e Grotti Stinger TT (Cargo Ship)"
   }
  ],
  "discounts": [
   {
-   "pct": 40,
-   "items": [
-    {
-     "name": "Casino Master Penthouse",
-     "price": 1500000,
-     "sale": 900000,
-     "note": "Inclui upgrades e modificações"
-    },
-    {
-     "name": "Facility",
-     "note": "Inclui upgrades e modificações (a partir de GTA$ 750.000)",
-     "kind": "property"
-    },
-    {
-     "name": "High-End Apartments",
-     "note": "A partir de GTA$ 120.000",
-     "kind": "property"
-    }
-   ]
-  },
-  {
    "pct": 30,
    "items": [
     {
-     "name": "Benefactor Vorschlaghammer",
-     "price": 1790000,
-     "sale": 1253000
+     "name": "Canis Castigator",
+     "price": 1650000,
+     "sale": 1155000
     },
     {
-     "name": "Cheval Taipan",
-     "price": 1980000,
-     "sale": 1386000
+     "name": "Declasse Hotring Sabre",
+     "price": 830000,
+     "sale": 581000
     },
     {
-     "name": "Dinka Blista Kanjo",
-     "price": 580000,
-     "sale": 406000
+     "name": "Declasse Impaler LX",
+     "price": 1465000,
+     "sale": 1025500
     },
     {
-     "name": "Grotti Cheetah",
-     "price": 650000,
-     "sale": 455000
+     "name": "Declasse Tahoma Coupe",
+     "price": 950000,
+     "sale": 665000
     },
     {
-     "name": "HVY Insurgent",
-     "price": 897750,
-     "sale": 628425
+     "name": "Dewbauchee Vagner",
+     "price": 1535000,
+     "sale": 1074500
     },
     {
-     "name": "Invetero Coquette D5",
-     "price": 1730000,
-     "sale": 1211000
+     "name": "Karin Vivanite",
+     "price": 960000,
+     "sale": 672000
     },
     {
-     "name": "Maibatsu Penumbra FF",
-     "price": 1380000,
-     "sale": 966000
+     "name": "MTL Wastelander",
+     "price": 658350,
+     "sale": 460845
     },
     {
-     "name": "Pegassi Reaper",
-     "price": 1595000,
-     "sale": 1116500
+     "name": "Obey I-Wagen",
+     "price": 1729000,
+     "sale": 1210300
     },
     {
-     "name": "Western Company Besra",
-     "price": 1150000,
-     "sale": 805000
+     "name": "Obey Tailgater S",
+     "price": 1495000,
+     "sale": 1046500
     },
     {
-     "name": "Western Rampant Rocket Tricycle",
-     "price": 925000,
-     "sale": 647500
+     "name": "Übermacht Rebla GTS",
+     "price": 1175000,
+     "sale": 822500
     }
    ]
   }
  ],
  "vehicles": {
   "podium": {
-   "name": "Överflöd Entity XXR",
-   "price": 2305000,
+   "name": "Karin Everon",
+   "price": 1475000,
    "note": "Roda da sorte do Diamond Casino"
   },
   "prize": {
-   "name": "Annis Hellion",
-   "note": "Top 5 na LS Car Meet Series três dias seguidos"
+   "name": "Western Powersurge",
+   "note": "Top 4 na LS Car Meet Series dois dias seguidos"
   },
   "testRides": [
    {
-    "name": "Cheval Taipan",
-    "price": 1980000,
+    "name": "Übermacht Rebla GTS",
+    "price": 1175000,
     "note": "Premium Test Ride (30% off nesta semana)"
    },
    {
-    "name": "HVY Insurgent",
-    "price": 897750,
+    "name": "Declasse Impaler LX",
+    "price": 1465000,
     "note": "Test ride do LS Car Meet"
    },
    {
-    "name": "Pegassi Reaper",
-    "price": 1595000,
+    "name": "Obey I-Wagen",
+    "price": 1729000,
     "note": "Test ride do LS Car Meet"
    },
    {
-    "name": "Grotti Brioso R/A",
-    "price": 155000,
+    "name": "Weeny Issi Rally",
+    "price": 1835000,
     "note": "HSW Test Ride (PS5, Xbox Series X|S e PC Enhanced)"
    }
   ],
   "showroom": [
    {
-    "name": "Grotti Veleno GT",
-    "price": 3090000,
+    "name": "Declasse Tampa GT",
+    "price": 1311000,
     "note": "Luxury Autos"
    },
    {
-    "name": "Grotti GT750",
-    "price": 1247000,
+    "name": "Pfister Astrale",
+    "price": 1475500,
     "note": "Luxury Autos"
    }
   ]
@@ -204,35 +179,32 @@
    "note": "Grátis"
   },
   {
-   "name": "Precision Rifle",
-   "note": "50% off (GTA$ 225.000)"
+   "name": "Tactical SMG",
+   "note": "40% off (GTA$ 195.000)"
   },
   {
-   "name": "Compact EMP Launcher",
-   "note": "10% off (GTA$ 472.500; com GTA+ GTA$ 309.750)"
+   "name": "Combat Shotgun",
+   "note": "10% off (GTA$ 265.500; com GTA+ GTA$ 174.050)"
   },
   {
-   "name": "El Strickler e Widowmaker",
+   "name": "Stun Gun e Up-n-Atomizer",
    "note": "10% off (20% com GTA+)"
   }
  ],
  "todo": {
   "boosts": {
-   "weekly-challenge": "Vencer um Adversary Mode: GTA$ 100.000",
-   "cayo": "Primeiro golpe da semana com a Panther Statue garantida",
-   "kortz": "Primeiro golpe da semana com The Outcome of Endeavour garantido",
-   "casino": "2x GTA$ no bônus de primeira conclusão nesta semana"
+   "weekly-challenge": "Vencer duas Stunt Races: GTA$ 100.000"
   },
   "extra": [
    {
-    "key": "wk-mansion-raid",
-    "title": "Mansion Raid",
-    "note": "3x GTA$ e RP só nesta semana"
+    "key": "wk-freemode",
+    "title": "Freemode Challenges",
+    "note": "4x GTA$ e RP até 02/12"
    },
    {
-    "key": "wk-mansion-painting",
-    "title": "Pegar a pintura grátis da Mansion",
-    "note": "The Great Circle Back, basta entrar no jogo até 11/11"
+    "key": "wk-contact",
+    "title": "Contact Missions",
+    "note": "2x GTA$ e RP (4x com GTA+) até 02/12"
    }
   ]
  }
